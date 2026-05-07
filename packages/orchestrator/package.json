@@ -1,0 +1,28 @@
+{
+  "name": "@threadsmith/orchestrator",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Execution orchestration and bridge runtime for Threadsmith.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teddy-creator/threadsmith-control-deck.git"
+  },
+  "homepage": "https://github.com/Teddy-creator/threadsmith-control-deck#readme",
+  "bugs": {
+    "url": "https://github.com/Teddy-creator/threadsmith-control-deck/issues"
+  },
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@threadsmith/domain": "0.1.0",
+    "@threadsmith/fs-bridge": "0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

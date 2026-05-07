@@ -1,0 +1,22 @@
+{
+  "projectGoal": "交付 Threadsmith v1",
+  "currentVersionScope": "以 workflow 为先的 control deck demo，附带一个已经过期的 handoff packet",
+  "nonGoals": [
+    "多项目编排",
+    "组织级权限体系"
+  ],
+  "keyConstraints": [
+    "保持 Codex-first",
+    "让 v1 具备 app-ready 潜力，但以 workflow 为主线"
+  ],
+  "successFrame": "用户切到过期 packet demo 后，能立刻看出 packet 需要刷新",
+  "priorityOrder": [
+    "workflow 主环",
+    "demo truth",
+    "packet 新鲜度",
+    "偏好设置"
+  ],
+  "openStrategicQuestions": [
+    "原生壳的具体封装方式"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "projectLabel": "Threadsmith",
+  "currentTrack": "workflow 为先的 control deck demo",
+  "overallState": "stable",
+  "currentFocus": "默认 demo 已收口为一个带最新 handoff packet 的已接受切片",
+  "projectStatusSummary": "这个示例代表一个已经收口完成的 demo 基线，用户打开后应该先理解当前项目与最新 handoff 边界。",
+  "latestAcceptedSlice": {
+    "title": "收口 v1 demo 基线",
+    "recordedAt": "2026-04-04T08:16:00.000Z"
+  },
+  "nextPlannedSlice": {
+    "title": "从最新 handoff packet 继续下一条窄切片",
+    "recordedAt": null
+  },
+  "topRisks": [],
+  "updatedAt": "2026-04-04T08:16:00.000Z"
+}

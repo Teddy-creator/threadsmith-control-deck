@@ -1,0 +1,42 @@
+{
+  "versionLabel": "Threadsmith Demo v1",
+  "finalGoal": "展示一个项目真相已前进，但 continuation packet 已经过期的高风险示例。",
+  "milestones": [
+    {
+      "id": "demo-baseline",
+      "label": "项目基线",
+      "title": "建立 workflow 为先的 control deck demo 基线",
+      "summary": "确保示例项目已经具备最小的工作流状态与界面骨架。",
+      "state": "done"
+    },
+    {
+      "id": "demo-acceptance",
+      "label": "切片接受",
+      "title": "让示例项目进入已接受状态",
+      "summary": "项目 truth 本身已经前进到新的已接受状态。",
+      "state": "done"
+    },
+    {
+      "id": "stale-packet",
+      "label": "刷新 packet",
+      "title": "刷新已经过期的 continuation packet",
+      "summary": "当前真正的风险不是代码没做，而是 packet 边界还停留在旧状态。",
+      "state": "blocked"
+    },
+    {
+      "id": "resume-flow",
+      "label": "恢复继续",
+      "title": "恢复可继续的 handoff 与 continuation 流程",
+      "summary": "刷新 packet 后，项目才能重新回到正常的继续点。",
+      "state": "next"
+    },
+    {
+      "id": "demo-extension",
+      "label": "扩展示例",
+      "title": "继续下一条 demo 切片",
+      "summary": "在 packet 重新对齐后，再进入新的切片扩展。",
+      "state": "later"
+    }
+  ],
+  "updatedAt": "2026-04-04T09:16:00.000Z"
+}

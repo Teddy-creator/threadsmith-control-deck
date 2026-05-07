@@ -1,0 +1,19 @@
+{
+  "projectLabel": "Threadsmith",
+  "currentTrack": "workflow 为先的 control deck demo",
+  "overallState": "at-risk",
+  "currentFocus": "当前项目真相已经前进，但 handoff packet 还停留在旧边界",
+  "projectStatusSummary": "这个示例代表一个已接受但 packet 过期的项目状态，目标是让用户立刻明白需要刷新 continuation packet。",
+  "latestAcceptedSlice": {
+    "title": "刷新过期 demo packet",
+    "recordedAt": "2026-04-04T09:12:00.000Z"
+  },
+  "nextPlannedSlice": {
+    "title": "刷新 continuation packet",
+    "recordedAt": null
+  },
+  "topRisks": [
+    "最新 continuation packet 已经过期。"
+  ],
+  "updatedAt": "2026-04-04T09:16:00.000Z"
+}

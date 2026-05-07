@@ -1,0 +1,86 @@
+{
+  "mode": "multi-thread",
+  "modeLabel": "多角色协作",
+  "summary": "public-release-hygiene v0.1 已完成：公开仓库卫生、运行痕迹清理、本地路径清理和公开文案边界已经收口。",
+  "lines": [
+    {
+      "id": "conductor-main",
+      "role": "planner",
+      "threadLabel": "Conductor",
+      "provider": "codex",
+      "presence": "live",
+      "status": "done",
+      "taskSummary": "已收束公开发布前的仓库卫生边界与检查清单。",
+      "requiresUserDecision": false,
+      "blockerSummary": null,
+      "latestEvidenceLabel": null,
+      "updatedAt": "2026-05-07T09:30:00Z"
+    },
+    {
+      "id": "builder-logical",
+      "role": "executor",
+      "threadLabel": "Builder",
+      "provider": "codex",
+      "presence": "logical",
+      "status": "done",
+      "taskSummary": "已清理内部计划文档、运行 bridge 草稿和公开文案噪音。",
+      "requiresUserDecision": false,
+      "blockerSummary": null,
+      "latestEvidenceLabel": "public hygiene 已验证",
+      "updatedAt": "2026-05-07T09:30:00Z"
+    },
+    {
+      "id": "critic-logical",
+      "role": "reviewer",
+      "threadLabel": "Critic",
+      "provider": "codex",
+      "presence": "logical",
+      "status": "done",
+      "taskSummary": "已复核公开面不再跟踪内部计划、本地路径或过期 bridge truth。",
+      "requiresUserDecision": false,
+      "blockerSummary": null,
+      "latestEvidenceLabel": null,
+      "updatedAt": "2026-05-07T09:30:00Z"
+    },
+    {
+      "id": "verifier-logical",
+      "role": "verifier",
+      "threadLabel": "Verifier",
+      "provider": "codex",
+      "presence": "logical",
+      "status": "done",
+      "taskSummary": "release-facing verification 已通过。",
+      "requiresUserDecision": false,
+      "blockerSummary": null,
+      "latestEvidenceLabel": "verification 已通过",
+      "updatedAt": "2026-05-07T09:30:00Z"
+    },
+    {
+      "id": "closeout-logical",
+      "role": "closeout",
+      "threadLabel": "Closeout",
+      "provider": "codex",
+      "presence": "logical",
+      "status": "done",
+      "taskSummary": "release hygiene closeout 已完成，等待 commit / PR / publish 动作。",
+      "requiresUserDecision": false,
+      "blockerSummary": null,
+      "latestEvidenceLabel": "closeout 已完成",
+      "updatedAt": "2026-05-07T09:30:00Z"
+    },
+    {
+      "id": "hygiene-logical",
+      "role": "hygiene",
+      "threadLabel": "Hygiene",
+      "provider": "codex",
+      "presence": "logical",
+      "status": "done",
+      "taskSummary": "已检查 committed truth 与 runtime artifact 边界。",
+      "requiresUserDecision": false,
+      "blockerSummary": null,
+      "latestEvidenceLabel": null,
+      "updatedAt": "2026-05-07T09:30:00Z"
+    }
+  ],
+  "updatedAt": "2026-05-07T09:59:52Z"
+}

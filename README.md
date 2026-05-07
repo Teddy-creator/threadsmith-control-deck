@@ -1,0 +1,245 @@
+# Threadsmith
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
+![Node.js >= 22](https://img.shields.io/badge/node-%3E%3D22-3c873a.svg)
+![npm >= 11](https://img.shields.io/badge/npm-%3E%3D11-cb3837.svg)
+![Codex-only v0.1](https://img.shields.io/badge/release-Codex--only%20v0.1-f59e0b.svg)
+![Web control deck](https://img.shields.io/badge/surface-web%20control%20deck-2563eb.svg)
+
+> A control deck for AI coding projects.
+> Keep project truth, workflow state, evidence, and acceptance in one place.
+
+Threadsmith 是一个面向 AI coding workflow 的 **web control deck**。
+
+它不替代你的主聊天面，也不假装自己是新的 AI IDE。当前公开主线里，它主要和 Codex Desktop、Codex CLI 这类 conductor surface 并排工作，专门把项目真相、推进状态、执行结果、证据和验收收口到一个独立界面里，让你在长任务、多轮推进、多角色协作时，始终知道项目现在到底走到了哪里。
+
+如果你已经在用 vibe coding / agentic coding，Threadsmith 主要帮你回答这几个问题：
+
+- 当前项目真正的目标和阶段目标是什么
+- 为什么下一步是现在这一步
+- 最近一次执行到底产出了什么
+- 验收究竟卡在哪一关
+- 哪些内容已经写回 truth，哪些还只是线程里的话
+
+它尤其适合这些场景：
+
+- 主聊天线程越来越长，项目状态越来越难讲清
+- 多线程 / 多角色推进后，不知道谁在做什么
+- agent 说“做完了”，但你不确定结果有没有真正落到项目 truth
+- 到验收时才发现一堆当时没暴露出来的问题
+
+当前版本：`v0.1.0`
+
+## Features
+
+- **Project front door**: choose a real project before diving into the deck.
+- **Truth-first workflow**: read and write `.threadsmith` project truth instead of relying on a long chat thread.
+- **Single-screen supervision**: see command, roadmap, judgement, collaboration, and acceptance without hunting through logs.
+- **Evidence and acceptance workbenches**: inspect what was actually run, verified, accepted, or still blocked.
+- **Codex-only release lane**: stable default routing for Codex Desktop / Codex CLI based workflows, with provider-routing truth prepared for later expansion.
+- **Local-first web app**: run it against your own project folder; no hosted backend is required for the current release.
+
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
+- Release notes: [docs/releases/threadsmith-v0.1.0.md](docs/releases/threadsmith-v0.1.0.md)
+- Release checklist: [docs/checklists/release-v0.1.0.md](docs/checklists/release-v0.1.0.md)
+- Usage and LLM configuration: [docs/guides/usage-and-llm-configuration.md](docs/guides/usage-and-llm-configuration.md)
+- Truth boundary: [docs/architecture/threadsmith-truth-boundary.md](docs/architecture/threadsmith-truth-boundary.md)
+
+![Threadsmith control deck screenshot](docs/assets/threadsmith-open-source-surface.png)
+
+## 它解决什么问题
+
+当 AI coding 进入长任务、多轮推进、多个角色协作时，主聊天线程往往会越来越难回答这些问题：
+
+- 当前真正的项目目标和阶段目标是什么
+- 下一步为什么是现在这一步
+- 最近一次执行到底产出了什么
+- 验收卡在哪一关
+- 哪些结论已经写回 truth，哪些还只是线程里的话
+
+Threadsmith 把这些信息拆成一个独立的 control deck，让主聊天面继续负责“对话与指挥”，而让监督界面负责“看清真相与流程”。
+
+## 当前 V0.1 表面
+
+目前仓库已经收口到一条可真实运行的 web app 路径，包含：
+
+- Threadsmith 前门：先决定今天进入哪个真实项目
+- 自定义项目接入：连接真实项目目录，必要时初始化最小 `.threadsmith`
+- 首页监督界面：当前总命令、项目地图、推进判断、协作现场、验收雷达
+- 侧边工作台：项目、阶段、证据、验收
+- install surface：安装 / 固定 / 日常打开方式说明
+- first-run onboarding：首次使用、初始化、设为默认进入、修复恢复路径
+- `Codex-only` 默认路由：`planner / executor / reviewer / verifier / closeout` 当前默认都由 Codex 承担，主 conductor surface 默认是 `Codex Desktop`
+
+## 快速开始
+
+### 1. 安装依赖
+
+如果你是从 GitHub 第一次拉取：
+
+```bash
+git clone https://github.com/Teddy-creator/threadsmith-control-deck.git
+cd threadsmith-control-deck
+```
+
+```bash
+npm ci
+```
+
+### 2. 直接打开 Threadsmith
+
+```bash
+./Launch-Threadsmith.command
+```
+
+如果没有显式项目参数，这个命令会遵循你在 Threadsmith 里保存的 `日常打开方式`。第一次上手或想先决定今天从哪条线进入时，优先用下面这个 Threadsmith 前门更直观。
+
+### 3. 作为“产品前门”打开
+
+```bash
+./Open-Threadsmith-App.command
+```
+
+这会先进入 Threadsmith 前门，再从前门决定今天进入哪个真实项目。
+
+### 4. 显式直达某个项目
+
+```bash
+./Launch-Threadsmith.command "/path/to/your-project"
+```
+
+也可以使用环境变量：
+
+```bash
+THREADSMITH_PROJECT_ROOT="/path/to/your-project" ./Launch-Threadsmith.command
+```
+
+## 典型使用路径
+
+推荐日常路径：
+
+1. 用 `Open-Threadsmith-App.command` 打开前门
+2. 在 `项目与来源` 里确认今天要进入的真实项目
+3. 需要时把当前项目设成 `默认进入`
+4. 在首页和侧边工作台里确认真相、证据和下一步
+5. 回到 `Codex Desktop`、`Codex CLI` 等 conductor surface 继续主要开发对话
+
+如果你已经明确知道这轮只做某个项目，也可以直接使用：
+
+```bash
+./Launch-Threadsmith.command "/path/to/your-project"
+```
+
+## 第一次连接真实项目
+
+进入后优先看 `项目与来源` 工作台：
+
+- 如果是第一次使用，先看 `首次上手引导`
+- 如果当前还是示例来源，切换到 `自定义项目`
+- 输入项目根目录并点击 `连接项目`
+
+如果项目还没有 `.threadsmith`：
+
+- 点击 `初始化 Threadsmith`
+- Threadsmith 会创建最小状态文件
+- 初始化完成后，再回到该项目继续推进
+
+## Threadsmith 怎么工作
+
+Threadsmith 的核心边界是：
+
+- 主聊天面负责对话、指挥和代码推进
+- Threadsmith 负责监督、展示、解释和对齐 truth
+
+```mermaid
+flowchart LR
+  A["Conductor Surface<br/>Codex / Claude / CLI"] --> B["真实项目目录<br/>含 .threadsmith"]
+  B --> C["Threadsmith packages<br/>domain / fs-bridge / runtime / orchestrator"]
+  C --> D["Control Deck Web App"]
+  D --> A
+```
+
+更具体地说：
+
+- `.threadsmith` 保存项目真相、阶段、验收、事件和运行记录
+- `packages/domain` 定义状态对象和 schema
+- `packages/fs-bridge` 负责读写项目 truth
+- `packages/runtime` 负责把底层 truth 组装成可展示的监督状态
+- `packages/orchestrator` 负责自动执行桥接与运行编排
+- `apps/control-deck` 提供你实际看到的 UI
+
+## 当前默认路由
+
+当前 `v0.1.0` 的公开可交付主线仍然是 `Codex-only`：
+
+- `planner / executor / reviewer / verifier / closeout` 的默认 provider 都是 `codex`
+- 主 conductor surface 的默认值是 `codex-desktop`
+- 当前自动执行桥真正稳定支持的是 `Codex` 路径，尤其是 executor run
+- 项目工作台里的 provider routing 主要用于把项目当前 truth 讲清楚，并为后续扩展预留；它不代表 `multi-provider` 已经是 `v0.1.0` 的交付承诺
+
+## 仓库结构
+
+```text
+apps/control-deck/   Web control deck 与本地 bridge server
+packages/domain/     共享 schema 与核心状态对象
+packages/runtime/    监督状态推导与 UI-facing selectors
+packages/fs-bridge/  .threadsmith 文件读写与 truth bridge
+packages/orchestrator/ 自动执行与 bridge 编排
+examples/            示例项目状态
+tests/               E2E 与 smoke tests
+docs/                面向用户和发布的文档
+```
+
+## 开发与验证
+
+常用命令：
+
+```bash
+npm run dev
+npm run test
+npm run build
+npm run test:e2e
+npm run verify:release
+npm run smoke:self-host
+```
+
+默认的 `npm run smoke:self-host` 会先把当前仓库的 committed truth 快照复制到隔离的 runtime workspace，再在那里跑一轮真实 executor smoke，这样不会默认把主仓库 `.threadsmith` 的 committed truth 再弄脏。
+
+如果你想显式对当前项目根目录运行 smoke，可使用：
+
+```bash
+npm run smoke:self-host -- .
+```
+
+如果你只想打开产品面而不是进入纯开发模式，也可以继续使用：
+
+```bash
+./Launch-Threadsmith.command
+./Open-Threadsmith-App.command
+```
+
+## 产品边界
+
+Threadsmith 当前优先是一个可长期使用、可安装、可公开发布的 web control deck。
+
+V0.1 明确不追求：
+
+- 原生桌面壳
+- 完整替代主聊天入口
+- 在这一步就覆盖所有 provider 的全自动执行
+- 把 provider routing 界面误读成“非 Codex provider 已正式可用”
+
+## 贡献
+
+欢迎围绕以下方向贡献：
+
+- workflow 监督与 truth surface
+- onboarding / install / repo surface
+- execution bridge、route truth 与 operator guidance
+- tests、smoke、release hygiene
+
+参与方式见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+## License
+
+本仓库采用 [MIT License](LICENSE)。

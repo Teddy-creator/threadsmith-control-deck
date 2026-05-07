@@ -1,0 +1,8 @@
+{
+  "planner": "codex",
+  "executor": "codex",
+  "reviewer": "codex",
+  "verifier": "codex",
+  "closeout": "codex",
+  "conductorSurface": "codex-desktop"
+}

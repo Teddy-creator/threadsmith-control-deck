@@ -1,0 +1,42 @@
+{
+  "versionLabel": "Threadsmith Demo v1",
+  "finalGoal": "展示一个已经完成 handoff 收口、可以继续下一刀的 demo 项目真相。",
+  "milestones": [
+    {
+      "id": "demo-baseline",
+      "label": "项目基线",
+      "title": "建立 workflow 为先的 control deck demo 基线",
+      "summary": "确保示例项目已经具备最小的工作流状态与界面骨架。",
+      "state": "done"
+    },
+    {
+      "id": "demo-acceptance",
+      "label": "收口验收",
+      "title": "让 demo 基线通过验证并完成 closeout",
+      "summary": "示例项目已经是一条已接受且可追溯的切片。",
+      "state": "done"
+    },
+    {
+      "id": "demo-handoff",
+      "label": "handoff",
+      "title": "写出最新 handoff packet 并把边界交清楚",
+      "summary": "打开示例时，用户应该先看到最新 truth 已经被 handoff 打包。",
+      "state": "done"
+    },
+    {
+      "id": "demo-next-slice",
+      "label": "下一切片",
+      "title": "从最新 handoff packet 继续下一条窄切片",
+      "summary": "这个示例现在的主任务不是补救，而是继续下一条切片。",
+      "state": "current"
+    },
+    {
+      "id": "demo-extension",
+      "label": "扩展示例",
+      "title": "把 demo 扩展到新的窄切片",
+      "summary": "在已接受的基线上继续扩展下一条工作流线。",
+      "state": "next"
+    }
+  ],
+  "updatedAt": "2026-04-04T08:16:00.000Z"
+}

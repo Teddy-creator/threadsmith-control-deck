@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "role": "planner",
+      "status": "done",
+      "taskSummary": "已将当前阶段重置为 public release hygiene v0.1，目标是公开仓库卫生而非新增功能。",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "executor",
+      "status": "done",
+      "taskSummary": "已移除内部过程文档和运行草稿，清理本地路径与公开文案边界。",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "reviewer",
+      "status": "done",
+      "taskSummary": "已复核 tracked public surface 不再跟踪内部计划、本地路径或过期 bridge truth。",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "verifier",
+      "status": "done",
+      "taskSummary": "已运行测试、构建、E2E、launcher 验证、公开扫描和 self-host smoke。",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "closeout",
+      "status": "done",
+      "taskSummary": "public release hygiene v0.1 已收口；下一步是 commit / PR / public publish 动作。",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "hygiene",
+      "status": "done",
+      "taskSummary": "已将旧的 blocked / 未同步叙事替换为 public release hygiene 当前状态。",
+      "requiresUserDecision": false
+    }
+  ],
+  "blockerSummary": null
+}

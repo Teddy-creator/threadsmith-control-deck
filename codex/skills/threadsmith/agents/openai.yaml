@@ -1,0 +1,7 @@
+interface:
+  display_name: "Threadsmith"
+  short_description: "Drive the current project through the Threadsmith control deck"
+  default_prompt: "Use $threadsmith to continue this project with Project Brief, Current Phase, Acceptance State, and the executor/reviewer/verifier workflow."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,119 @@
+import { basename, resolve } from "node:path";
+import { expect, test } from "@playwright/test";
+import { openSourceWorkbench } from "./helpers";
+
+test("default deck homepage loads the core control-deck regions", async ({
+  page
+}) => {
+  const projectName = basename(resolve(process.cwd()));
+
+  await page.goto("/");
+
+  await expect(page.getByText("工作区来源")).toHaveCount(0);
+  await expect(page.getByText("来源：自定义项目")).toBeVisible();
+  await expect(
+    page.getByText(new RegExp(`^项目根目录：.*${projectName}$`))
+  ).toBeVisible();
+  await expect(page.getByRole("button", { name: "项目", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "阶段", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "证据", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "验收", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "当前总命令" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "复制建议指令" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "查看为什么" })).toBeVisible();
+  const projectMapCard = page
+    .getByRole("article")
+    .filter({ has: page.getByRole("heading", { name: "项目地图" }).first() })
+    .first();
+  await expect(projectMapCard.getByRole("heading", { name: "项目地图" })).toBeVisible();
+  await expect(projectMapCard.getByText("版本路线", { exact: true })).toBeVisible();
+  await expect(projectMapCard.getByText(/里程碑 \d+ \/ \d+/, { exact: true })).toBeVisible();
+  await expect(projectMapCard.getByText("里程碑地图", { exact: true })).toBeVisible();
+  await expect(projectMapCard.getByText("最终目标", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "推进判断" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "协作现场" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "验收雷达" })).toBeVisible();
+});
+
+test("app-home route opens the Threadsmith front door", async ({ page }) => {
+  await page.goto("/?appHome=1");
+
+  await expect(page.getByRole("button", { name: "来源：前门入口" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "当前总命令" })).toBeVisible();
+  await expect(page.getByText("确认今天要进入的真实项目")).toBeVisible();
+  await expect(page.getByRole("button", { name: "连接新项目" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "复制建议指令" })).toHaveCount(0);
+
+  await page.getByRole("button", { name: "来源：前门入口" }).click();
+  await expect(page.getByText("先把第一个真实项目接进 Threadsmith")).toBeVisible();
+  await expect(page.getByRole("button", { name: "填写项目根目录" })).toBeVisible();
+});
+
+test("root route can prefer app-home when the saved entry mode requests it", async ({
+  page
+}) => {
+  await page.addInitScript(() => {
+    window.localStorage.setItem("threadsmith.entryModePreference", "app-home");
+  });
+
+  await page.goto("/");
+
+  await expect(page.getByRole("button", { name: "来源：前门入口" })).toBeVisible();
+  await expect(page.getByText("确认今天要进入的真实项目")).toBeVisible();
+  await expect(page.getByRole("button", { name: "连接新项目" })).toBeVisible();
+});
+
+test("current Threadsmith repo can be read as a real project from the source and workbenches", async ({
+  page
+}) => {
+  const projectRoot = resolve(process.cwd());
+  const projectName = basename(projectRoot);
+
+  await page.goto("/?appHome=1");
+  await expect(page.getByRole("button", { name: "来源：前门入口" })).toBeVisible();
+
+  const sourceWorkbench = await openSourceWorkbench(page);
+  await sourceWorkbench
+    .locator("button")
+    .filter({ hasText: "自定义项目" })
+    .first()
+    .click();
+  await page.getByRole("textbox", { name: "项目根目录" }).fill(projectRoot);
+  await page.getByRole("button", { name: "连接项目" }).click();
+
+  await expect(page.getByRole("button", { name: "来源：自定义项目" })).toBeVisible();
+  await expect(
+    page.getByText(new RegExp(`^项目根目录：.*${projectName}$`))
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Threadsmith", exact: true })).toBeVisible();
+  await expect(
+    page.getByText("Public web release hygiene", { exact: true })
+  ).toBeVisible();
+  await expect(
+    page.getByText("public release hygiene v0.1").first()
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "项目", exact: true }).click();
+  const inspectorPanel = page.locator(".inspector-panel");
+  await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
+  await expect(
+    inspectorPanel.getByText(/public release hygiene v0.1/)
+  ).toBeVisible();
+  await expect(
+    inspectorPanel.getByRole("combobox", { name: "指挥入口" })
+  ).toHaveValue("codex-desktop");
+
+  await page.getByRole("button", { name: "阶段", exact: true }).click();
+  await expect(inspectorPanel.getByText("阶段工作台")).toBeVisible();
+  await expect(
+    inspectorPanel.getByText("public release hygiene v0.1").first()
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "验收", exact: true }).click();
+  await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
+  await expect(
+    inspectorPanel.getByText(
+      "Threadsmith 已完成 public release hygiene v0.1：公开仓库已清掉内部过程文档、运行痕迹、本地路径和误导性 App 文案，并通过 release-facing verification；下一步可以进入 commit / PR / public publish 动作。"
+    ).first()
+  ).toBeVisible();
+});

@@ -1,0 +1,38 @@
+{
+  "currentClaim": "Threadsmith 已完成 public release hygiene v0.1：公开仓库已清掉内部过程文档、运行痕迹、本地路径和误导性 App 文案，并通过 release-facing verification；下一步可以进入 commit / PR / public publish 动作。",
+  "doneWhenChecklist": [
+    {
+      "id": "internal-docs-untracked",
+      "label": "内部过程文档已从公开 tracked surface 移除并加入忽略",
+      "status": "pass"
+    },
+    {
+      "id": "runtime-artifacts-untracked",
+      "label": "committed .threadsmith 不再跟踪 bridge 草稿、phase-reset 草稿或旧运行痕迹",
+      "status": "pass"
+    },
+    {
+      "id": "public-copy-honest",
+      "label": "README、release notes、changelog 与 checklist 使用 web control deck / front door 的准确边界",
+      "status": "pass"
+    },
+    {
+      "id": "sensitive-scan-clean",
+      "label": "tracked 文件敏感信息与本地路径扫描通过",
+      "status": "pass"
+    },
+    {
+      "id": "verification-green",
+      "label": "测试、构建、E2E、launcher 验证与 self-host smoke 均通过",
+      "status": "pass"
+    }
+  ],
+  "implementationStatus": "ready-for-review",
+  "reviewStatus": "ready-for-verification",
+  "verificationStatus": "passed",
+  "closeoutStatus": "done",
+  "knownGaps": [
+    "最终独立 public repo 创建、tag 与 GitHub Release 仍需要在 clean snapshot 验证后单独执行。"
+  ],
+  "finalState": "accepted"
+}

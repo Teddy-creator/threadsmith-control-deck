@@ -1,0 +1,42 @@
+{
+  "name": "@threadsmith/control-deck",
+  "private": true,
+  "version": "0.1.0",
+  "description": "React/Vite control deck UI for Threadsmith.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teddy-creator/threadsmith-control-deck.git"
+  },
+  "homepage": "https://github.com/Teddy-creator/threadsmith-control-deck#readme",
+  "bugs": {
+    "url": "https://github.com/Teddy-creator/threadsmith-control-deck/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@threadsmith/domain": "0.1.0",
+    "@threadsmith/runtime": "0.1.0",
+    "lucide-react": "^1.7.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "jsdom": "^27.0.0",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.10",
+    "vitest": "^3.2.4"
+  }
+}

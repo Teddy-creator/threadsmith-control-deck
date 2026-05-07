@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "role": "planner",
+      "status": "done",
+      "taskSummary": "定义已接受的 v1 slice 与 closeout 边界",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "executor",
+      "status": "done",
+      "taskSummary": "完成 runtime、deck 与文件系统桥接",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "reviewer",
+      "status": "done",
+      "taskSummary": "放行这个已接受 slice 进入 verification",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "verifier",
+      "status": "done",
+      "taskSummary": "用最新证据确认这个已接受 slice",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "closeout",
+      "status": "done",
+      "taskSummary": "把这个 slice 标记为已接受并可 handoff",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "hygiene",
+      "status": "done",
+      "taskSummary": "为下一刀写出最新 continuation packet",
+      "requiresUserDecision": false
+    }
+  ],
+  "blockerSummary": null
+}

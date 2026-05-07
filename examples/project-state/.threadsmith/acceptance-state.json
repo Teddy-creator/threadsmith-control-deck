@@ -1,0 +1,31 @@
+{
+  "currentClaim": "Threadsmith demo 基线已经接受，并且可以从这份贴近当前 truth 的 fixture 继续 handoff",
+  "doneWhenChecklist": [
+    {
+      "id": "workflow",
+      "label": "默认 deck 上能看到 workflow 主环",
+      "status": "pass"
+    },
+    {
+      "id": "verification",
+      "label": "能看到最新 verification 证据",
+      "status": "pass"
+    },
+    {
+      "id": "readiness",
+      "label": "下一 phase 就绪度全绿",
+      "status": "pass"
+    },
+    {
+      "id": "packet",
+      "label": "下一刀所需的 continuation packet 已存在",
+      "status": "pass"
+    }
+  ],
+  "implementationStatus": "ready-for-review",
+  "reviewStatus": "ready-for-verification",
+  "verificationStatus": "passed",
+  "closeoutStatus": "done",
+  "knownGaps": [],
+  "finalState": "accepted"
+}

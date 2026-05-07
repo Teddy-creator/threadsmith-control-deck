@@ -1,0 +1,50 @@
+{
+  "name": "threadsmith",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Workflow-first control deck for supervising AI coding projects.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teddy-creator/threadsmith-control-deck.git"
+  },
+  "homepage": "https://github.com/Teddy-creator/threadsmith-control-deck#readme",
+  "bugs": {
+    "url": "https://github.com/Teddy-creator/threadsmith-control-deck/issues"
+  },
+  "keywords": [
+    "ai-coding",
+    "workflow",
+    "control-deck",
+    "codex",
+    "threadsmith"
+  ],
+  "packageManager": "npm@11.11.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @threadsmith/control-deck",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "threadsmith:autopilot": "node --import tsx scripts/threadsmith-autopilot.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:autopilot": "playwright test tests/e2e/autopilot-v1.spec.ts",
+    "test:e2e:bridge": "playwright test tests/e2e/agent-run-bridge.spec.ts",
+    "verify:launchers": "zsh -n ./Launch-Threadsmith.command && zsh -n ./Open-Threadsmith-App.command && THREADSMITH_DRY_RUN=1 THREADSMITH_SKIP_OPEN=1 zsh ./Launch-Threadsmith.command >/dev/null && THREADSMITH_DRY_RUN=1 THREADSMITH_SKIP_OPEN=1 zsh ./Open-Threadsmith-App.command >/dev/null",
+    "verify:autopilot": "npm run test --workspace @threadsmith/orchestrator && npm run test --workspace @threadsmith/runtime && npm run test --workspace @threadsmith/control-deck -- src/test/renderDeck.workflow.test.tsx && npm run test:e2e:autopilot && npm run smoke:autopilot",
+    "verify:release": "npm run test && npm run build && npm run test:e2e && npm run smoke:autopilot && npm run verify:launchers",
+    "verify:bridge": "npm run test --workspace @threadsmith/orchestrator && npm run test:e2e:bridge",
+    "smoke:self-host": "node --import tsx scripts/self-host-smoke.ts",
+    "smoke:autopilot": "node --import tsx scripts/threadsmith-autopilot-smoke.ts",
+    "smoke:deck-route": "node --import tsx scripts/deck-route-smoke.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "tsx": "^4.8.1"
+  }
+}

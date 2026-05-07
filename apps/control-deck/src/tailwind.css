@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body {
+    margin: 0;
+    font-family:
+      "SF Pro Display",
+      "PingFang SC",
+      "Helvetica Neue",
+      ui-sans-serif,
+      system-ui,
+      sans-serif;
+    background: #0a0a0b;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}

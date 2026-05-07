@@ -1,0 +1,31 @@
+{
+  "currentClaim": "Threadsmith 这份过期 demo 基线已经接受，但最新 continuation packet 落后于当前 truth",
+  "doneWhenChecklist": [
+    {
+      "id": "workflow",
+      "label": "过期 packet demo 上能看到 workflow 主环",
+      "status": "pass"
+    },
+    {
+      "id": "verification",
+      "label": "能看到最新 verification 证据",
+      "status": "pass"
+    },
+    {
+      "id": "acceptance",
+      "label": "这个 slice 仍然处于正式 accepted 状态",
+      "status": "pass"
+    },
+    {
+      "id": "packet",
+      "label": "过期 packet 状态可见且可采取行动",
+      "status": "pass"
+    }
+  ],
+  "implementationStatus": "ready-for-review",
+  "reviewStatus": "ready-for-verification",
+  "verificationStatus": "passed",
+  "closeoutStatus": "done",
+  "knownGaps": [],
+  "finalState": "accepted"
+}

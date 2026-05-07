@@ -1,0 +1,25 @@
+{
+  "phaseName": "收口 v1 demo 基线",
+  "phaseGoal": "把已接受的 Threadsmith 基线整理成可 handoff 的 demo 状态",
+  "deliverable": "一个带真实事件和可复用 continuation packet 的已接受 workflow slice",
+  "inScope": [
+    "示例 .threadsmith truth",
+    "最近的 workflow 事件",
+    "continuation packet 可见性"
+  ],
+  "outOfScope": [
+    "多项目指挥中心",
+    "原生封装打磨"
+  ],
+  "stopCondition": "默认 deck 打开后就是一个已接受、可 handoff、且历史真实的 slice",
+  "verificationForThisPhase": [
+    "npm run test 通过",
+    "npm run build 通过",
+    "示例 fixture 能加载出 packet 与事件"
+  ],
+  "activeOwners": [
+    "closeout",
+    "hygiene"
+  ],
+  "blockedBy": []
+}

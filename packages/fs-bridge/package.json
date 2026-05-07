@@ -1,0 +1,28 @@
+{
+  "name": "@threadsmith/fs-bridge",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Filesystem bridge for reading and writing Threadsmith project truth.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teddy-creator/threadsmith-control-deck.git"
+  },
+  "homepage": "https://github.com/Teddy-creator/threadsmith-control-deck#readme",
+  "bugs": {
+    "url": "https://github.com/Teddy-creator/threadsmith-control-deck/issues"
+  },
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@threadsmith/domain": "0.1.0",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

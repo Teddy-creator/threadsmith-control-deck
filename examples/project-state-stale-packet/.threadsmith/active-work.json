@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "role": "planner",
+      "status": "done",
+      "taskSummary": "定义过期 packet 刷新 slice",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "executor",
+      "status": "done",
+      "taskSummary": "完成 runtime、deck 与文件系统桥接",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "reviewer",
+      "status": "done",
+      "taskSummary": "放行这个已接受 slice 进入 verification",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "verifier",
+      "status": "done",
+      "taskSummary": "用最新证据确认这个已接受 slice",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "closeout",
+      "status": "done",
+      "taskSummary": "在旧 packet 创建后完成 closeout",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "hygiene",
+      "status": "done",
+      "taskSummary": "为下一刀刷新这份过期 continuation packet",
+      "requiresUserDecision": false
+    }
+  ],
+  "blockerSummary": null
+}

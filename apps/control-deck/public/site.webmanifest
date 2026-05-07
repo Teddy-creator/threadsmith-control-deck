@@ -1,0 +1,17 @@
+{
+  "name": "Threadsmith",
+  "short_name": "Threadsmith",
+  "description": "面向 AI coding workflow 的 control deck。",
+  "start_url": "/?appHome=1",
+  "display": "standalone",
+  "background_color": "#0f0f11",
+  "theme_color": "#0f0f11",
+  "icons": [
+    {
+      "src": "/threadsmith-app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
