@@ -1,23 +1,23 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "Public web release hygiene",
+  "currentTrack": "Public web release v0.1",
   "overallState": "stable",
-  "currentFocus": "public release hygiene v0.1 已完成；下一步是在保持当前 private repo 私有的前提下，导出独立 public snapshot，再按 release checklist 执行 tag 与 GitHub Release。",
-  "projectStatusSummary": "Threadsmith 的公开仓库卫生已经收口：内部过程文档和 runtime bridge 草稿不再被 tracked，个人本地路径已清掉，README / release 文案明确表达 web control deck 与 front door 边界。",
+  "currentFocus": "public web release v0.1 已发布：当前 private repo 保持私有，独立 public snapshot 已推送到 Teddy-creator/threadsmith-control-deck，并已创建 v0.1.0 GitHub Release。",
+  "projectStatusSummary": "Threadsmith 的公开仓库卫生与发布面已经收口：README 顶部、使用/LLM 配置指南、release checklist、public metadata、测试可移植性和安全扫描均已对齐独立 public repo。",
   "latestAcceptedSlice": {
-    "title": "public release hygiene v0.1",
-    "recordedAt": "2026-05-07T09:59:52Z"
+    "title": "public web release publish v0.1",
+    "recordedAt": "2026-05-07T10:37:00Z"
   },
   "nextPlannedSlice": {
-    "title": "public web release publish v0.1",
-    "recordedAt": "2026-05-07T09:46:10Z"
+    "title": "post-release feedback / docs polish",
+    "recordedAt": "2026-05-07T10:37:00Z"
   },
   "currentMilestoneId": "public-web-release-publish-v0-1",
   "nextMilestoneId": null,
   "topRisks": [
-    "独立 public repo 创建、tag 与 release 发布动作仍需在干净 snapshot 上单独执行。",
-    "公开前仍建议用户打开前门和真实项目页做一次人眼验收。",
+    "public repo 后续改动需要继续从 private working repo 导出或建立明确同步策略。",
+    "公开传播前仍建议用户打开 public repo 页面做人眼验收。",
     "multi-provider automatic execution 仍不是当前发布要求。"
   ],
-  "updatedAt": "2026-05-07T09:59:52Z"
+  "updatedAt": "2026-05-07T10:37:00Z"
 }

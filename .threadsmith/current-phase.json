@@ -1,13 +1,13 @@
 {
-  "phaseName": "public release hygiene v0.1",
-  "phaseGoal": "把 Threadsmith 仓库整理到可以公开发布的 web v0.1 状态，清掉内部过程文档、运行痕迹、本地路径和容易误解的公开文案。",
-  "deliverable": "公开仓库卫生清理、README / release 文案收口、tracked truth 边界清洁和 release-facing verification",
+  "phaseName": "public web release publish v0.1",
+  "phaseGoal": "在保持 private working repo 私有的前提下，把 Threadsmith v0.1 作为独立 public repo 发布。",
+  "deliverable": "独立 public snapshot、public GitHub repo、v0.1.0 tag、GitHub Release、release-facing verification evidence",
   "inScope": [
-    "从 Git 中移除内部过程文档",
-    "从 committed .threadsmith 中移除运行 bridge / phase-reset 草稿和本地绝对路径",
-    "统一公开文案为 web control deck / Threadsmith front door",
-    "补充 release checklist 的公开卫生检查项",
-    "运行公开敏感信息扫描、schema load 和 release-facing verification"
+    "导出不含 private Git 历史的独立 public snapshot",
+    "补齐 README 顶部、使用指南和 LLM/provider 配置说明",
+    "修正 public metadata 和 release checklist",
+    "运行 public snapshot 验证矩阵",
+    "创建 public repo、tag 与 GitHub Release"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
@@ -15,7 +15,7 @@
     "重做当前 homepage / inspectors 的整体视觉骨架",
     "原生桌面 app 壳"
   ],
-  "stopCondition": "tracked 文件中不再包含内部过程文档、过期 runtime bridge truth 或个人本地路径；公开文案准确表达 web v0.1 边界；验证通过后即可进入 commit / PR / public 发布动作。",
+  "stopCondition": "public repo 可访问，private repo 仍为 private，v0.1.0 release 已创建，public snapshot 验证通过。",
   "verificationForThisPhase": [
     "npm run test",
     "npm run build",

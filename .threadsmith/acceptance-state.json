@@ -1,5 +1,5 @@
 {
-  "currentClaim": "Threadsmith 已完成 public release hygiene v0.1：公开仓库已清掉内部过程文档、运行痕迹、本地路径和误导性 App 文案，并通过 release-facing verification；下一步可以进入 commit / PR / public publish 动作。",
+  "currentClaim": "Threadsmith 已完成 public web release v0.1：独立 public snapshot 已发布到 Teddy-creator/threadsmith-control-deck，v0.1.0 tag 与 GitHub Release 已创建；当前 private repo 保持私有。",
   "doneWhenChecklist": [
     {
       "id": "internal-docs-untracked",
@@ -32,7 +32,7 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "最终独立 public repo 创建、tag 与 GitHub Release 仍需要在 clean snapshot 验证后单独执行。"
+    "后续需要决定 private working repo 与 public release repo 的长期同步策略。"
   ],
   "finalState": "accepted"
 }
