@@ -1,26 +1,26 @@
 {
-  "phaseName": "public repo fresh-clone smoke + sync strategy",
-  "phaseGoal": "验证 public repo 对新用户可用，并记录 private working repo 到 public release repo 的后续同步策略。",
-  "deliverable": "fresh-clone smoke evidence、public sync strategy 文档、release checklist 与 project truth 更新",
+  "phaseName": "public repo open-source polish",
+  "phaseGoal": "补齐 public repo 的 GitHub 反馈入口、开源文档入口与公开仓元信息，完成 public snapshot 同步与发布前验证。",
+  "deliverable": "issue/PR templates, SECURITY.md, CODE_OF_CONDUCT.md, README open-source入口, public snapshot sync, release verification",
   "inScope": [
-    "从 GitHub public repo 全新 clone",
-    "在 fresh clone 中运行 npm ci / test / build / verify:launchers",
-    "记录 private/public 同步策略",
-    "更新 release checklist 与 README 链接",
-    "写回 public release 后的 committed truth"
+    "issue/PR templates",
+    "security and conduct docs",
+    "README / CONTRIBUTING open-source入口",
+    "public snapshot sync and verification"
   ],
   "outOfScope": [
+    "new product features",
     "multi-provider automatic execution",
-    "把 deck 变成主聊天面或主指挥面",
-    "重做当前 homepage / inspectors 的整体视觉骨架",
-    "原生桌面 app 壳"
+    "native desktop shell"
   ],
-  "stopCondition": "fresh clone 验证通过，public sync strategy 已记录，项目 truth 不再停留在“待发布”状态。",
+  "stopCondition": "public repo can be cloned by a new user, the open-source entry points are present, and verification passes.",
   "verificationForThisPhase": [
+    "git diff --check",
     "npm run test",
     "npm run build",
-    "npm run test:e2e",
     "npm run verify:launchers",
+    "npm run test:e2e",
+    "npm audit --audit-level=moderate",
     "npm run smoke:self-host"
   ],
   "activeOwners": [

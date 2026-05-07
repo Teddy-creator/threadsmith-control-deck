@@ -239,6 +239,17 @@ V0.1 明确不追求：
 - execution bridge、route truth 与 operator guidance
 - tests、smoke、release hygiene
 
+## 开源入口
+
+如果你想参与反馈或提交改动，优先使用仓库里的标准入口：
+
+- 提交 bug：Issues 里的 `Bug report`
+- 提需求：Issues 里的 `Feature request`
+- 发 PR：仓库里的 Pull Request template
+- 涉及安全问题：优先查看 [SECURITY.md](SECURITY.md)
+
+如果你只是想先看 Threadsmith 是否适合自己，最直接的方式还是先读 README、再跑一次 `Launch-Threadsmith.command` 或 `Open-Threadsmith-App.command`。
+
 参与方式见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## License

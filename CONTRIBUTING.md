@@ -92,6 +92,16 @@ npm run verify:release
 3. 如何验证
 4. 是否影响 README、启动路径或 `.threadsmith` truth
 
+## 开源反馈入口
+
+公开仓库里已经准备了标准模板：
+
+- `Bug report`
+- `Feature request`
+- Pull Request template
+
+如果涉及安全或凭据问题，请先看 [SECURITY.md](SECURITY.md)，不要直接把敏感信息写进公开 issue。
+
 ## 当前贡献重点
 
 当前更欢迎的方向：

@@ -23,7 +23,7 @@ The public repository should stay boring:
 
 1. Develop and verify in the private working repository.
 2. Clean the public-facing surface in the private repository.
-3. Export a clean snapshot into `/Users/cloud/Code/Threadsmith-public`.
+3. Export a clean snapshot into a separate public repository directory.
 4. Reinitialize or update the public repository from that snapshot.
 5. Run the public release verification matrix from the public snapshot.
 6. Push `main` to `Teddy-creator/threadsmith-control-deck`.
@@ -74,7 +74,7 @@ git diff --check
 Also run a public scan:
 
 ```bash
-git grep -n -E '/Users/cloud|docs/superpowers|Threadsmith App|api[_-]?key|secret|token|password|gmncode|wechat|com\.tencent|qq' -- ':!package-lock.json' ':!docs/assets/*' || true
+git grep -n -E '/Users/cloud|docs/superpowers|Threadsmith App|api[_-]?key|secret|token|password|gmncode|wechat|com\.tencent|qq' -- ':!package-lock.json' ':!docs/assets/*' ':!docs/releases/public-sync-strategy.md' || true
 ```
 
 Expected benign matches are currently limited to:

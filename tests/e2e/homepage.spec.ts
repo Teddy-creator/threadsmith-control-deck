@@ -87,17 +87,17 @@ test("current Threadsmith repo can be read as a real project from the source and
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Threadsmith", exact: true })).toBeVisible();
   await expect(
-    page.getByText("Public web release hygiene", { exact: true })
+    page.getByText("Open-source polish for public repo", { exact: true })
   ).toBeVisible();
   await expect(
-    page.getByText("public release hygiene v0.1").first()
+    page.getByText("public repo open-source polish").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "项目", exact: true }).click();
   const inspectorPanel = page.locator(".inspector-panel");
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText(/public release hygiene v0.1/)
+    inspectorPanel.getByText(/公开仓库开源门面已补齐/)
   ).toBeVisible();
   await expect(
     inspectorPanel.getByRole("combobox", { name: "指挥入口" })
@@ -106,14 +106,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await page.getByRole("button", { name: "阶段", exact: true }).click();
   await expect(inspectorPanel.getByText("阶段工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText("public release hygiene v0.1").first()
+    inspectorPanel.getByText("public repo open-source polish").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith 已完成 public release hygiene v0.1：公开仓库已清掉内部过程文档、运行痕迹、本地路径和误导性 App 文案，并通过 release-facing verification；下一步可以进入 commit / PR / public publish 动作。"
+      "Threadsmith public repo open-source surface is ready: issue and PR templates, SECURITY.md, CODE_OF_CONDUCT.md, README open-source入口, CONTRIBUTING guidance, public snapshot sync, and release verification are complete."
     ).first()
   ).toBeVisible();
 });

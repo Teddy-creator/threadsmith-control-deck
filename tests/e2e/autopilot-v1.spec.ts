@@ -25,6 +25,15 @@ interface ScriptedStep {
 
 const smokeMarker = "THREADSMITH_SMOKE_OK";
 
+async function removeTemporaryProject(projectRoot: string) {
+  await rm(projectRoot, {
+    recursive: true,
+    force: true,
+    maxRetries: 5,
+    retryDelay: 100
+  });
+}
+
 async function seedRepository(projectRoot: string, args: {
   packageName: string;
   title: string;
@@ -252,7 +261,7 @@ test("the deck reflects an accepted autopilot chain for a bootstrapped custom pr
     await expect(inspectorPanel.getByRole("heading", { name: "当前阶段" })).toBeVisible();
     await expect(inspectorPanel.getByText("Locked phase 快照", { exact: true })).toBeVisible();
   } finally {
-    await rm(projectRoot, { recursive: true, force: true });
+    await removeTemporaryProject(projectRoot);
   }
 });
 
@@ -314,6 +323,6 @@ test("the deck reflects paused autopilot truth and explicit continue guidance", 
     await page.goto(`/?projectRoot=${encodeURIComponent(projectRoot)}`);
     await expectAcceptedContinuationGuidance(page);
   } finally {
-    await rm(projectRoot, { recursive: true, force: true });
+    await removeTemporaryProject(projectRoot);
   }
 });

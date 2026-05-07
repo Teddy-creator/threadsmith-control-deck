@@ -2,6 +2,13 @@
 
 All notable changes to Threadsmith will be documented in this file.
 
+## Unreleased
+
+### Added
+
+- GitHub issue templates, pull request template, security policy, and code of conduct for the public repository.
+- README and contributing guide links for open-source feedback and security reporting.
+
 ## v0.1.0 - 2026-04-11
 
 ### Added

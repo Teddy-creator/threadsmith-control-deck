@@ -1,6 +1,6 @@
 {
   "projectGoal": "交付 Threadsmith Codex-only v0.1：让它作为 mission-control web control deck，能稳定监督真实 AI coding 项目，并把 truth、workflow、evidence、acceptance 与 next steps 讲清楚。",
-  "currentVersionScope": "当前主线已完成 public release hygiene v0.1：不新增功能，先把内部过程文档、runtime artifact、本地路径和公开文案边界清到适合公开发布的状态。",
+  "currentVersionScope": "当前主线聚焦 public repo open-source polish：补齐 GitHub 反馈入口、开源文档入口与公开仓元信息，并完成独立 public snapshot 的同步与发布前验证。",
   "nonGoals": [
     "把 deck 变成主聊天面",
     "在当前主线里加入 multi-provider automatic execution",
@@ -16,10 +16,10 @@
     "保持 .threadsmith 只记录 durable truth，不记录普通聊天流水",
     "让 phase/task/bug/closeout 边界自动写回 accepted truth",
     "让前门入口、真实项目页和刷新状态入口的语义保持一致",
-    "完成公开仓库卫生验证后再进入 public web release publish v0.1"
+    "完成公开仓库发布验收后再进入宣传与示例内容打磨"
   ],
   "openStrategicQuestions": [
-    "公开发布前是否需要补一轮 README 顶部截图与真实项目示例",
-    "公开发布动作是先导出独立 public snapshot，再在 public repo 里 tag + GitHub Release"
+    "公开仓是否继续保持 public snapshot 的独立同步模式，还是后续切换到 public repo 直开发。",
+    "是否需要再补一轮 README 截图或示例项目说明来帮助新用户理解入口。"
   ]
 }

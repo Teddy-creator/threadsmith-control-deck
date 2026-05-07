@@ -1,22 +1,19 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "Public web release v0.1",
+  "currentTrack": "Open-source polish for public repo",
   "overallState": "stable",
-  "currentFocus": "public web release v0.1 已发布且 fresh-clone smoke 通过：当前 private repo 保持私有，独立 public repo 可被新用户 clone、安装、测试、构建和 launcher dry-run。",
-  "projectStatusSummary": "Threadsmith 的公开仓库卫生、发布面和新用户拉取路径已经收口：README 顶部、使用/LLM 配置指南、release checklist、public metadata、测试可移植性、安全扫描和 fresh-clone smoke 均已对齐独立 public repo。",
+  "currentFocus": "public repo GitHub templates、README open-source入口、贡献者入口和发布前验证已完成，当前可进入公开仓库发布验收。",
+  "projectStatusSummary": "Threadsmith 的公开仓库开源门面已补齐并通过验证：issue/PR 模板、SECURITY、CODE_OF_CONDUCT、README open-source入口、贡献者入口、E2E、self-host smoke 与 audit 均已对齐。",
   "latestAcceptedSlice": {
-    "title": "public repo fresh-clone smoke + sync strategy",
+    "title": "public repo open-source polish templates",
     "recordedAt": "2026-05-07T10:50:00Z"
   },
-  "nextPlannedSlice": {
-    "title": "post-release feedback / docs polish",
-    "recordedAt": "2026-05-07T10:37:00Z"
-  },
+  "nextPlannedSlice": null,
   "currentMilestoneId": "public-web-release-publish-v0-1",
   "nextMilestoneId": null,
   "topRisks": [
     "public repo 后续改动需要继续按 private working repo -> public snapshot 的同步策略执行。",
-    "公开传播前仍建议用户打开 public repo 页面做人眼验收。",
+    "公开传播前仍建议用户打开 public repo 页面做人眼验收 README、Issues、Discussions 和 clone flow。",
     "multi-provider automatic execution 仍不是当前发布要求。"
   ],
   "updatedAt": "2026-05-07T10:50:00Z"

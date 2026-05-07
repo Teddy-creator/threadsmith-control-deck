@@ -1,5 +1,5 @@
 {
-  "currentClaim": "Threadsmith 已完成 public web release v0.1 与 post-release fresh-clone smoke：独立 public repo 已发布，新用户 clone 后可完成安装、测试、构建和 launcher dry-run；private/public 同步策略已记录。",
+  "currentClaim": "Threadsmith public repo open-source surface is ready: issue and PR templates, SECURITY.md, CODE_OF_CONDUCT.md, README open-source入口, CONTRIBUTING guidance, public snapshot sync, and release verification are complete.",
   "doneWhenChecklist": [
     {
       "id": "internal-docs-untracked",
@@ -42,7 +42,7 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "长期是否转向 public repo 主开发仍未决定；当前推荐继续 private working repo -> public snapshot。"
+    "multi-provider automatic execution is still out of scope."
   ],
   "finalState": "accepted"
 }

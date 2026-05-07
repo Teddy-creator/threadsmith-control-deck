@@ -1,0 +1,34 @@
+name: Feature request
+description: Suggest a new Threadsmith capability or workflow improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for a single focused workflow improvement.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What user pain or workflow gap does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like Threadsmith to do?
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: Why this matters
+      description: What would get easier, safer, or clearer if this landed?
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Any mockups, examples, or acceptance ideas.
