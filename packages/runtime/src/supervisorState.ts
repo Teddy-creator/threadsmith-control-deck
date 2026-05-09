@@ -6,6 +6,8 @@ import type {
   ProviderRouting,
   ProjectState,
   ProjectSupervisionState,
+  ContextPacket,
+  RoleContextPacket,
   WorkflowEvent
 } from "@threadsmith/domain";
 import { providerRoutingSchema } from "@threadsmith/domain";
@@ -52,6 +54,10 @@ import {
   type PhaseParticipantSummary,
   type ProjectSupervisionSummary
 } from "./supervision.ts";
+import {
+  deriveContextRecovery,
+  type ContextRecoverySignal
+} from "./contextRecovery.ts";
 
 export interface PhaseTrackItem {
   label: string;
@@ -84,6 +90,7 @@ export interface SupervisorState {
   latestVerificationEvidence: VerificationEvidenceSummary;
   latestCloseoutRecord: CloseoutRecordSummary;
   latestContinuationState: LatestContinuationState;
+  contextRecovery: ContextRecoverySignal;
   supervisionTimeline: SupervisionTimelineEntry[];
   phaseReadiness: PhaseReadinessSummary;
   nextBestStep: NextBestStepDecision;
@@ -157,7 +164,11 @@ export function deriveSupervisorState(
   projectSupervisionState: ProjectSupervisionState | null = null,
   providerRouting: ProviderRouting | null = null,
   latestPhaseRun: PhaseRunRecord | null = null,
-  latestPhasePause: PhaseRunPause | null = null
+  latestPhasePause: PhaseRunPause | null = null,
+  currentPacket: ContextPacket | null = null,
+  rolePackets: RoleContextPacket[] = [],
+  contextArtifactsLoaded = false,
+  contextArtifactProblem: string | null = null
 ): SupervisorState {
   const latestContinuationState = deriveLatestContinuationState(recentEvents);
   const latestPhasePauseSummary = deriveLatestPhasePauseSummary(latestPhasePause);
@@ -165,19 +176,30 @@ export function deriveSupervisorState(
     latestPhaseRun,
     latestPhasePauseSummary
   );
+  const contextRecovery = deriveContextRecovery(state, {
+    currentPacket,
+    rolePackets,
+    contextArtifactsLoaded,
+    contextArtifactProblem,
+    latestRun,
+    latestPhaseRun: latestPhaseRunSummary,
+    latestPhasePause: latestPhasePauseSummary
+  });
   const gateSignal = deriveGateSignal(
     state,
     latestContinuationState,
     latestRun,
     latestPhaseRunSummary,
-    latestPhasePauseSummary
+    latestPhasePauseSummary,
+    contextRecovery
   );
   const nextBestStep = selectNextBestStep(
     state,
     latestContinuationState,
     latestRun,
     latestPhaseRunSummary,
-    latestPhasePauseSummary
+    latestPhasePauseSummary,
+    contextRecovery
   );
   const resolvedProviderRouting = providerRouting ?? providerRoutingSchema.parse({});
 
@@ -211,6 +233,7 @@ export function deriveSupervisorState(
     latestVerificationEvidence: deriveLatestVerificationEvidence(state, recentEvents),
     latestCloseoutRecord: deriveLatestCloseoutRecord(state, recentEvents),
     latestContinuationState,
+    contextRecovery,
     supervisionTimeline: deriveSupervisionTimeline(
       state,
       gateSignal,
@@ -224,7 +247,8 @@ export function deriveSupervisorState(
       state,
       latestContinuationState,
       latestPhaseRunSummary,
-      latestPhasePauseSummary
+      latestPhasePauseSummary,
+      contextRecovery
     ),
     gateSignal,
     phaseTrack: buildPhaseTrack(state),

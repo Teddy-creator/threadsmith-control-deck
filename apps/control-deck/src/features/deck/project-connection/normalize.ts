@@ -1,6 +1,7 @@
 import {
   agentRunRecordSchema,
   commandBridgeStateSchema,
+  contextPacketSchema,
   deriveFallbackProjectRoadmap,
   deriveFallbackProjectStatus,
   phaseRunPauseSchema,
@@ -8,7 +9,8 @@ import {
   projectSupervisionStateSchema,
   providerRoutingSchema,
   projectRoadmapSchema,
-  projectStatusSchema
+  projectStatusSchema,
+  roleContextPacketSchema
 } from "@threadsmith/domain";
 import type { BridgeResponse, BridgeResponsePayload, BridgeStatePayload } from "./types";
 
@@ -102,6 +104,26 @@ export function normalizeBridgeResponse(
     latestRun: normalizedLatestRun,
     latestPhaseRun: normalizedLatestPhaseRun,
     latestPhasePause: normalizedLatestPhasePause,
-    commandBridgeState: normalizedCommandBridgeState
+    commandBridgeState: normalizedCommandBridgeState,
+    contextArtifactsLoaded: Boolean(
+      (response as { contextArtifactsLoaded?: unknown }).contextArtifactsLoaded
+    ),
+    contextArtifactProblem:
+      typeof (response as { contextArtifactProblem?: unknown }).contextArtifactProblem === "string"
+        ? (response as { contextArtifactProblem: string }).contextArtifactProblem
+        : null,
+    currentPacket: contextPacketSchema.safeParse(
+      (response as { currentPacket?: unknown }).currentPacket
+    ).success
+      ? contextPacketSchema.parse(
+          (response as { currentPacket?: unknown }).currentPacket
+        )
+      : null,
+    rolePackets: Array.isArray((response as { rolePackets?: unknown }).rolePackets)
+      ? (response as { rolePackets?: unknown[] }).rolePackets
+          .map((packet) => roleContextPacketSchema.safeParse(packet))
+          .filter((result) => result.success)
+          .map((result) => result.data)
+      : []
   };
 }

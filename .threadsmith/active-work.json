@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收紧为 Threadsmith.skill v2：只升级 skill 协议、引用文档、truth 同步与本地安装副本，不改 UI / runtime / multi-provider。",
+      "taskSummary": "已将下一刀收紧为 Truth sync / recovery hygiene triggers：只做 runtime recovery signal 与 bridge artifacts 读取，不改 UI / multi-provider。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已升级 codex/skills/threadsmith：明确 sync / drive / recover、Role Packet 优先级、角色写入边界和 writeback 失败处理。",
+      "taskSummary": "已实现 contextRecovery runtime signal，并接入 supervisor state / health / gate / next best step / control-deck bridge。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核 skill v2 只描述协议边界，没有越界承诺 runtime/autopilot/UI 行为。",
+      "taskSummary": "已复核 recovery signal 能区分 missing / stale / fresh，且不会把未加载 artifacts 误判为缺失。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已验证 repo skill 与本机 installed skill 一致，JSON truth 合法，diff hygiene 通过。",
+      "taskSummary": "已通过 runtime targeted tests、control-deck bridge tests 与 build；等待全量 test/e2e。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "Threadsmith.skill v2 已完成本地 closeout；下一步是提交分支、创建 PR 并观察 CI。",
+      "taskSummary": "Truth sync / recovery hygiene triggers 已完成本地 closeout；下一步提交分支、创建 PR 并观察 CI。",
       "requiresUserDecision": false
     },
     {
@@ -37,5 +37,5 @@
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": "当前无外部 blocker；Threadsmith.skill v2 已本地验收，等待 PR/CI。"
+  "blockerSummary": null
 }

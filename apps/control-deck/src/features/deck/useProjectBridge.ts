@@ -212,7 +212,11 @@ export function useProjectBridge(projectRoot: string) {
             response.projectSupervision,
             response.providerRouting,
             response.latestPhaseRun,
-            response.latestPhasePause
+            response.latestPhasePause,
+            response.currentPacket ?? null,
+            response.rolePackets ?? [],
+            Boolean(response.contextArtifactsLoaded),
+            response.contextArtifactProblem ?? null
           )
         : null,
     [response]

@@ -1,14 +1,15 @@
 {
-  "phaseName": "Threadsmith.skill v2",
-  "phaseGoal": "升级 $threadsmith 协议，让它优先使用 Context Packet 与 Role-specific Packets，并明确 sync / drive / recover 三种入口、角色读写边界和 writeback 失败处理。",
-  "deliverable": "Threadsmith skill v2 docs and references in repo plus installed local skill sync",
+  "phaseName": "Truth sync / recovery hygiene triggers",
+  "phaseGoal": "让 Threadsmith 在继续执行前识别 stale / missing context artifacts、暂停或失败运行，以及 accepted 后缺少 continuation 的状态，并推荐 sync、hygiene、repair、handoff 或继续。",
+  "deliverable": "Runtime context recovery signal wired into supervisor state, health, gates, and next-best-step",
   "inScope": [
-    "codex/skills/threadsmith/SKILL.md v2 protocol",
-    "runtime contract updates for Context Packet and role packet usage",
-    "role contracts with required inputs, allowed writes, forbidden writes, and completion artifacts",
-    "action contracts for sync, drive, recover, stop-and-ask, and writeback failure handling",
-    "sync repo skill changes to /Users/cloud/.codex/skills/threadsmith",
-    "README / usage guide note that $threadsmith v2 prefers role packets when present"
+    "runtime context recovery signal",
+    "detect missing current context packet when artifacts are loaded",
+    "detect stale current context packet when phase or acceptance changed",
+    "detect missing or stale role-specific packets",
+    "prioritize paused/running/failed runs before context freshness",
+    "wire recovery signal into supervisor state, health, gates, and next best step",
+    "read context artifacts through the local control-deck bridge"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
@@ -16,18 +17,16 @@
     "large UI redesign",
     "Control Deck UI changes",
     "autopilot engine changes",
-    "TypeScript runtime changes",
     "prompt template generation",
-    "embedding/RAG or model API calls"
+    "embedding/RAG or model API calls",
+    "automatic context packet regeneration",
+    "changing $threadsmith skill docs again"
   ],
-  "stopCondition": "The repo and installed Threadsmith skill both describe v2 behavior: sync / drive / recover modes, role packet preference, role write boundaries, completion artifacts, and explicit writeback failure handling.",
+  "stopCondition": "Supervisor state can expose a context recovery signal and next-best-step can recommend context sync or hygiene when current packet / role packet artifacts are stale or missing.",
   "verificationForThisPhase": [
-    "test -f codex/skills/threadsmith/SKILL.md",
-    "test -f codex/skills/threadsmith/references/runtime-contract.md",
-    "test -f codex/skills/threadsmith/references/role-contracts.md",
-    "test -f codex/skills/threadsmith/references/action-contracts.md",
-    "diff -qr codex/skills/threadsmith /Users/cloud/.codex/skills/threadsmith",
-    "git diff --check"
+    "npm run test --workspace @threadsmith/runtime -- src/contextRecovery.test.ts src/nextBestStep.test.ts src/health.test.ts src/gates.test.ts src/supervisorState.test.ts",
+    "npm run test --workspace @threadsmith/control-deck -- src/features/deck/useProjectBridge.test.tsx src/features/deck/projectConnection.load.test.ts src/features/deck/projectConnection.mutations.test.ts",
+    "npm run build"
   ],
   "activeOwners": [
     "planner",

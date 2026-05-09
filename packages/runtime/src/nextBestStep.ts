@@ -6,6 +6,7 @@ import {
   type PhasePauseSummary,
   type PhaseRunSummary
 } from "./phaseRun.ts";
+import type { ContextRecoverySignal } from "./contextRecovery.ts";
 
 export type RuntimeActionId =
   | "advance-phase"
@@ -219,7 +220,8 @@ export function selectNextBestStep(
   },
   latestRun: AgentRunRecord | null = null,
   latestPhaseRun: PhaseRunSummary = createMissingPhaseRunSummary(),
-  latestPhasePause: PhasePauseSummary = createMissingPhasePauseSummary()
+  latestPhasePause: PhasePauseSummary = createMissingPhasePauseSummary(),
+  contextRecovery: ContextRecoverySignal | null = null
 ): NextBestStepDecision {
   if (latestPhaseRun.status === "paused") {
     const pauseReason = latestPhasePause.summary
@@ -383,6 +385,70 @@ export function selectNextBestStep(
 
   if (state.acceptanceState.finalState === "accepted") {
     return acceptedStateRecommendation(latestContinuationState);
+  }
+
+  const shouldPrioritizeContextRecovery =
+    contextRecovery &&
+    (contextRecovery.action === "sync-context" ||
+      contextRecovery.action === "run-hygiene") &&
+    state.activeWork.items.every((item) => item.status !== "running");
+
+  if (shouldPrioritizeContextRecovery && contextRecovery.action === "sync-context") {
+    return {
+      primary: recommendation(
+        "run-hygiene",
+        contextRecovery.currentPacketStatus === "missing"
+          ? "生成 Context Packet"
+          : "刷新 Context Packet",
+        contextRecovery.detail,
+        ["hygiene"],
+        "Context Packet 与当前 committed truth 重新一致。"
+      ),
+      alternatives: [
+        recommendation(
+          "open-current-phase",
+          "查看当前 phase 边界",
+          "在刷新 context 前，先确认当前 phase 与 acceptance 是否就是新的 source of truth。",
+          ["planner"],
+          "当前 phase、claim 与刷新目标已确认。"
+        ),
+        recommendation(
+          "create-handoff",
+          "创建恢复 handoff",
+          "如果这个线程已经很长，先保留一个恢复点再同步 context 会更稳。",
+          ["hygiene"],
+          "已经存在一个可继续的恢复边界。"
+        )
+      ]
+    };
+  }
+
+  if (shouldPrioritizeContextRecovery && contextRecovery.action === "run-hygiene") {
+    return {
+      primary: recommendation(
+        "run-hygiene",
+        "运行 context hygiene",
+        contextRecovery.detail,
+        ["hygiene"],
+        "过期或矛盾的 context artifact 已被重新锚定。"
+      ),
+      alternatives: [
+        recommendation(
+          "open-current-phase",
+          "检查 packet 来源",
+          "先检查 current phase、acceptance 和 role packet 的冲突点。",
+          ["planner"],
+          "冲突来源已经明确。"
+        ),
+        recommendation(
+          "create-handoff",
+          "保存恢复点",
+          "如果要切线程或暂停当前工作，先保存一个干净恢复点。",
+          ["hygiene"],
+          "恢复点已经可供下一轮继续。"
+        )
+      ]
+    };
   }
 
   const pendingUserDecision = findPendingUserDecision(state);

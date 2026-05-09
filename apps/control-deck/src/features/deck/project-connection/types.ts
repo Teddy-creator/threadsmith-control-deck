@@ -2,6 +2,7 @@ import type {
   AgentRunRecord,
   CommandBridgeState,
   ContinuationBehavior,
+  ContextPacket,
   ExecutionPacket,
   PhaseRunPause,
   PhaseRunRecord,
@@ -9,6 +10,7 @@ import type {
   ProjectState,
   ProjectSupervisionState,
   ProviderRouting,
+  RoleContextPacket,
   WorkflowEvent
 } from "@threadsmith/domain";
 import type { RuntimeActionId } from "@threadsmith/runtime";
@@ -23,6 +25,10 @@ export interface BridgeResponse {
   latestPhaseRun: PhaseRunRecord | null;
   latestPhasePause: PhaseRunPause | null;
   commandBridgeState: CommandBridgeState;
+  contextArtifactsLoaded?: boolean;
+  contextArtifactProblem?: string | null;
+  currentPacket?: ContextPacket | null;
+  rolePackets?: RoleContextPacket[];
   actionHistoryLength: number;
 }
 

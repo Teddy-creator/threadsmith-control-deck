@@ -95,7 +95,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   const inspectorPanel = page.locator(".inspector-panel");
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText(/Threadsmith v0\.2\.0 Context OS 已完成.*Threadsmith\.skill v2 本地验收/)
+    inspectorPanel.getByText(/Threadsmith v0\.2\.0 Context OS 已完成.*Truth sync \/ recovery hygiene triggers 本地验收/)
   ).toBeVisible();
   await expect(
     inspectorPanel.getByRole("combobox", { name: "指挥入口" })
@@ -104,14 +104,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await page.getByRole("button", { name: "阶段", exact: true }).click();
   await expect(inspectorPanel.getByText("阶段工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText("Threadsmith.skill v2").first()
+    inspectorPanel.getByText("Truth sync / recovery hygiene triggers").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith v0.2.0 Threadsmith.skill v2 is being implemented: $threadsmith should prefer context packets and role packets while enforcing explicit sync / drive / recover behavior."
+      "Threadsmith v0.2.0 Truth sync / recovery hygiene triggers are being implemented: runtime should detect stale or missing context artifacts and route to sync, hygiene, repair, handoff, or continue."
     ).first()
   ).toBeVisible();
 });

@@ -6,6 +6,7 @@ import {
   type PhasePauseSummary,
   type PhaseRunSummary
 } from "./phaseRun.ts";
+import type { ContextRecoverySignal } from "./contextRecovery.ts";
 
 export interface GateSignal {
   shouldSurfaceDeck: boolean;
@@ -26,7 +27,8 @@ export function deriveGateSignal(
   },
   latestRun: AgentRunRecord | null = null,
   latestPhaseRun: PhaseRunSummary = createMissingPhaseRunSummary(),
-  latestPhasePause: PhasePauseSummary = createMissingPhasePauseSummary()
+  latestPhasePause: PhasePauseSummary = createMissingPhasePauseSummary(),
+  contextRecovery: ContextRecoverySignal | null = null
 ): GateSignal {
   const reasons: string[] = [];
 
@@ -63,9 +65,12 @@ export function deriveGateSignal(
   ) {
     reasons.push("handoff-recommended");
   }
+  if (contextRecovery) {
+    reasons.push(...contextRecovery.reasons);
+  }
 
   return {
     shouldSurfaceDeck: reasons.length > 0,
-    reasons
+    reasons: [...new Set(reasons)]
   };
 }

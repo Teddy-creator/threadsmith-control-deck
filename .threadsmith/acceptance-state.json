@@ -1,29 +1,29 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Threadsmith.skill v2 is being implemented: $threadsmith should prefer context packets and role packets while enforcing explicit sync / drive / recover behavior.",
+  "currentClaim": "Threadsmith v0.2.0 Truth sync / recovery hygiene triggers are being implemented: runtime should detect stale or missing context artifacts and route to sync, hygiene, repair, handoff, or continue.",
   "doneWhenChecklist": [
     {
-      "id": "skill-v2-entry",
-      "label": "SKILL.md 明确 sync / drive / recover 三种入口",
+      "id": "context-recovery-signal",
+      "label": "runtime 暴露 contextRecovery signal",
       "status": "pass"
     },
     {
-      "id": "runtime-contract",
-      "label": "runtime contract 明确 Context Packet / Role Packet 优先级",
+      "id": "packet-freshness",
+      "label": "可区分 current packet missing / stale / fresh",
       "status": "pass"
     },
     {
-      "id": "role-contracts",
-      "label": "role contracts 声明 required inputs / allowed writes / forbidden writes / completion artifacts",
+      "id": "role-packet-freshness",
+      "label": "可区分 role packet missing / stale / fresh",
       "status": "pass"
     },
     {
-      "id": "action-contracts",
-      "label": "action contracts 覆盖 sync / drive / recover / stop-and-ask / writeback failure",
+      "id": "supervisor-wiring",
+      "label": "supervisor state / health / gate / next best step 已接入 recovery signal",
       "status": "pass"
     },
     {
-      "id": "installed-skill-sync",
-      "label": "repo skill 已同步到本机 /Users/cloud/.codex/skills/threadsmith",
+      "id": "bridge-artifacts",
+      "label": "control-deck bridge 可以读取 context artifacts 并传给 supervisor",
       "status": "pass"
     }
   ],
@@ -32,18 +32,14 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "This slice does not change TypeScript runtime or autopilot engine behavior.",
-    "This slice does not render role packets in the Control Deck UI.",
-    "This slice upgrades the skill protocol only; real execution remains Codex-only."
+    "This slice does not auto-regenerate context packets yet.",
+    "This slice does not redesign the Control Deck UI.",
+    "This slice does not add multi-provider automation."
   ],
   "verificationEvidence": [
-    "test -f codex/skills/threadsmith/SKILL.md",
-    "test -f codex/skills/threadsmith/references/runtime-contract.md",
-    "test -f codex/skills/threadsmith/references/role-contracts.md",
-    "test -f codex/skills/threadsmith/references/action-contracts.md",
-    "diff -qr codex/skills/threadsmith /Users/cloud/.codex/skills/threadsmith",
-    "git diff --check",
-    "for f in .threadsmith/*.json .threadsmith/context/*.json; do jq empty \"$f\" || exit 1; done"
+    "npm run test --workspace @threadsmith/runtime -- src/contextRecovery.test.ts src/nextBestStep.test.ts src/health.test.ts src/gates.test.ts src/supervisorState.test.ts",
+    "npm run test --workspace @threadsmith/control-deck -- src/features/deck/useProjectBridge.test.tsx src/features/deck/projectConnection.load.test.ts src/features/deck/projectConnection.mutations.test.ts",
+    "npm run build"
   ],
   "finalState": "accepted"
 }
