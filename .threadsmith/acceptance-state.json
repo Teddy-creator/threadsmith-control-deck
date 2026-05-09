@@ -1,34 +1,34 @@
 {
-  "currentClaim": "Threadsmith open-source onboarding polish has a focused branch: cross-platform npm startup, macOS launcher guidance, $threadsmith boundary docs, release notes, contributing docs, and release checklist are aligned for human review before merge.",
+  "currentClaim": "Threadsmith release presentation surface has a focused branch: README Share/Demo links, GitHub Release copy, and social post draft are ready for human review before squash merge.",
   "doneWhenChecklist": [
     {
       "id": "branch-created",
-      "label": "从 main 开 release/open-source-onboarding-polish 分支，不直接改 main",
+      "label": "从 main 开 release/presentation-surface-polish 分支，不直接改 main",
       "status": "pass"
     },
     {
-      "id": "cross-platform-start",
-      "label": "新增并验证跨平台 npm run start 路径",
+      "id": "release-copy",
+      "label": "新增 GitHub Release 可复用文案",
       "status": "pass"
     },
     {
-      "id": "docs-aligned",
-      "label": "README、usage guide、release notes、CONTRIBUTING 与 release checklist 对齐新用户上手路径",
+      "id": "social-copy",
+      "label": "新增中英文社交平台草稿与截图/轮播建议",
       "status": "pass"
     },
     {
-      "id": "skill-boundary-clear",
-      "label": "$threadsmith skill 的使用边界与无 skill 时的可用范围已说明",
+      "id": "readme-links",
+      "label": "README 与 release notes 指向展示材料",
       "status": "pass"
     },
     {
       "id": "lightweight-verification",
-      "label": "git diff check、unit tests、build、launcher verification 与 npm start smoke 通过",
+      "label": "git diff check、launcher verification 与文档链接检查通过",
       "status": "pass"
     },
     {
       "id": "human-review",
-      "label": "README Quick Start 仍需用户人眼验收后再 squash/merge 到 main",
+      "label": "Release copy 与社交文案仍需用户人眼验收后再 squash/merge 到 main",
       "status": "unknown"
     }
   ],

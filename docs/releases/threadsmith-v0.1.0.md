@@ -14,6 +14,8 @@ It packages Threadsmith as a workflow-first web control deck that sits beside yo
 - open-source repo surface with screenshot, README, license, and contribution guide
 - `Codex-only` release lane with an honest mission-control boundary
 
+For copy that can be pasted into a GitHub Release, see [Threadsmith v0.1.0 Release Copy](../marketing/github-release-v0.1.0.md).
+
 ## How To Start
 
 Install dependencies:

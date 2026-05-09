@@ -1,22 +1,22 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "Open-source onboarding polish",
+  "currentTrack": "Release presentation surface",
   "overallState": "stable",
-  "currentFocus": "在不频繁写 main 的 release 分支里打磨新用户上手路径：跨平台 npm 启动、macOS 快捷入口、$threadsmith 边界、release checklist 与 LICENSE 口径。",
-  "projectStatusSummary": "Threadsmith 的公开仓库已进入 onboarding polish：新增跨平台 npm start 路径，并把 README、usage guide、release notes、CONTRIBUTING 与 release checklist 对齐到新用户可操作的启动与验收路径。",
+  "currentFocus": "为公开传播补齐展示层材料：GitHub Release 可复制文案、社交平台草稿、README Share/Demo 入口，并保持产品边界不夸大。",
+  "projectStatusSummary": "Threadsmith 已进入发布展示层打磨：README 链到截图、Release copy 与 social post draft，v0.1.0 release notes 也指向可直接复用的 GitHub Release 文案。",
   "latestAcceptedSlice": {
     "title": "public repo open-source polish templates",
     "recordedAt": "2026-05-07T10:50:00Z"
   },
   "nextPlannedSlice": {
-    "title": "human review then squash/merge to main",
-    "recordedAt": "2026-05-09T06:55:00Z"
+    "title": "review presentation copy then squash/merge",
+    "recordedAt": "2026-05-09T07:10:00Z"
   },
   "currentMilestoneId": "public-web-release-publish-v0-1",
   "nextMilestoneId": null,
   "topRisks": [
     "public repo 后续改动需要继续按 private working repo -> public snapshot 的同步策略执行。",
-    "合入 main 前仍建议人眼验收 README 的 Quick Start 是否足够清楚。",
+    "合入 main 前仍建议人眼验收 Release copy 与社交文案是否符合想表达的气质。",
     "multi-provider automatic execution 仍不是当前发布要求。"
   ],
   "updatedAt": "2026-05-07T10:50:00Z"

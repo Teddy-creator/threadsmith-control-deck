@@ -1,25 +1,23 @@
 {
-  "phaseName": "open-source onboarding polish",
-  "phaseGoal": "在 release 分支里集中打磨新用户上手路径，避免频繁提交 main，并让跨平台启动、macOS 快捷入口、skill 边界和 release checklist 更清楚。",
-  "deliverable": "npm run start, README quick start polish, usage guide startup matrix, release checklist onboarding gates",
+  "phaseName": "release presentation surface polish",
+  "phaseGoal": "在独立 release 分支里补齐公开发布展示材料，让 GitHub Release 与社交平台介绍可以直接复用，同时不夸大当前 v0.1.0 的 Codex-only/web-first 边界。",
+  "deliverable": "README Share/Demo section, GitHub Release copy, social post draft",
   "inScope": [
-    "cross-platform npm startup path",
-    "macOS launcher documentation",
-    "$threadsmith skill boundary explanation",
-    "release checklist onboarding gates"
+    "GitHub Release copy",
+    "social post draft",
+    "README links to demo/share materials",
+    "release notes cross-link"
   ],
   "outOfScope": [
     "new runtime product features",
     "multi-provider automatic execution",
     "native desktop shell"
   ],
-  "stopCondition": "new users can choose a clear startup path from README, release-adjacent docs are consistent, and lightweight verification passes on the release branch.",
+  "stopCondition": "release-facing copy exists, README links to it, claims stay aligned with v0.1.0 scope, and lightweight documentation verification passes.",
   "verificationForThisPhase": [
     "git diff --check",
-    "npm run test",
-    "npm run build",
     "npm run verify:launchers",
-    "npm run start smoke"
+    "documentation link sanity check"
   ],
   "activeOwners": [
     "planner",

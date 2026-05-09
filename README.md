@@ -42,11 +42,19 @@ Threadsmith 是一个面向 AI coding workflow 的 **web control deck**。
 - Changelog: [CHANGELOG.md](CHANGELOG.md)
 - Release notes: [docs/releases/threadsmith-v0.1.0.md](docs/releases/threadsmith-v0.1.0.md)
 - Release checklist: [docs/checklists/release-v0.1.0.md](docs/checklists/release-v0.1.0.md)
+- Release copy: [docs/marketing/github-release-v0.1.0.md](docs/marketing/github-release-v0.1.0.md)
+- Social post draft: [docs/marketing/social-post-draft.md](docs/marketing/social-post-draft.md)
 - Public sync strategy: [docs/releases/public-sync-strategy.md](docs/releases/public-sync-strategy.md)
 - Usage and LLM configuration: [docs/guides/usage-and-llm-configuration.md](docs/guides/usage-and-llm-configuration.md)
 - Truth boundary: [docs/architecture/threadsmith-truth-boundary.md](docs/architecture/threadsmith-truth-boundary.md)
 
 ![Threadsmith control deck screenshot](docs/assets/threadsmith-open-source-surface.png)
+
+## Share / Demo
+
+- Screenshot: [docs/assets/threadsmith-open-source-surface.png](docs/assets/threadsmith-open-source-surface.png)
+- GitHub Release copy: [docs/marketing/github-release-v0.1.0.md](docs/marketing/github-release-v0.1.0.md)
+- Social post draft: [docs/marketing/social-post-draft.md](docs/marketing/social-post-draft.md)
 
 ## 它解决什么问题
 
