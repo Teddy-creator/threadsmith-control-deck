@@ -56,6 +56,44 @@ function formatStartupCommand(
   return `./Launch-Threadsmith.command ${JSON.stringify(projectRoot)}`;
 }
 
+const committedTruthFiles = [
+  ".threadsmith/project-brief.json",
+  ".threadsmith/current-phase.json",
+  ".threadsmith/acceptance-state.json"
+];
+
+function buildSourceFiles(sourceId: ProjectSourceId, hasSupervisorState: boolean) {
+  if (sourceId === "app-home") {
+    return [
+      "Threadsmith 前门快照",
+      "浏览器本地默认项目 / 最近项目",
+      "进入真实项目后才读取 .threadsmith"
+    ];
+  }
+
+  if (sourceId === "fresh-demo" || sourceId === "stale-packet-demo") {
+    return [
+      "examples/project-state/.threadsmith",
+      ...committedTruthFiles
+    ];
+  }
+
+  if (!hasSupervisorState) {
+    return [
+      "等待项目连接",
+      ".threadsmith/project-brief.json",
+      ".threadsmith/current-phase.json"
+    ];
+  }
+
+  return [
+    ".threadsmith/project-brief.json",
+    ".threadsmith/current-phase.json",
+    ".threadsmith/acceptance-state.json",
+    ".threadsmith/events.ndjson"
+  ];
+}
+
 function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGuide {
   const {
     currentSourceIsAppHome,
@@ -118,7 +156,8 @@ function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGu
         : "先决定今天要继续哪个真实项目；连接完成后，Threadsmith 会从项目 `.threadsmith` 读取实时状态。",
       command: formatStartupCommand(null, "app-home"),
       action: nextAction,
-      boundaryText
+      boundaryText,
+      sourceFiles: buildSourceFiles(currentProjectSourceId, Boolean(supervisorState))
     };
   }
 
@@ -134,7 +173,32 @@ function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGu
         : "如果要换项目，可以直接用下面的最近项目，或者输入新的项目根目录。",
       command: formatStartupCommand(projectRoot, currentProjectSourceId),
       action: null,
-      boundaryText
+      boundaryText,
+      sourceFiles: buildSourceFiles(currentProjectSourceId, Boolean(supervisorState))
+    };
+  }
+
+  if (!currentSourceIsCustomProject && supervisorState) {
+    return {
+      tone: "purple",
+      badgeLabel: "Demo mode",
+      title:
+        currentProjectSourceId === "stale-packet-demo"
+          ? "这是一个交接点过期的学习示例"
+          : "这是一个已收口项目的学习示例",
+      detail:
+        currentProjectSourceId === "stale-packet-demo"
+          ? "这个 demo 用来展示：项目 truth 已经继续前进，但最新 handoff packet 落后了。它适合理解为什么 Threadsmith 要区分 fresh / stale。"
+          : "这个 demo 用来展示：一个已完成验收和 closeout 的项目，在首页五块和四个工作台里分别会呈现什么。",
+      nextStep:
+        "先用 demo 看懂页面结构；准备真实开发时，再切到自定义项目并连接你的项目根目录。",
+      command:
+        currentProjectSourceId === "stale-packet-demo"
+          ? "npm run start，然后打开 ?demoFixture=stale-packet"
+          : "npm run start，然后打开默认 demo 或前门",
+      action: null,
+      boundaryText,
+      sourceFiles: buildSourceFiles(currentProjectSourceId, true)
     };
   }
 
@@ -150,7 +214,8 @@ function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGu
         currentProjectSourceId
       ),
       action: null,
-      boundaryText
+      boundaryText,
+      sourceFiles: buildSourceFiles(currentProjectSourceId, false)
     };
   }
 
@@ -174,7 +239,8 @@ function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGu
             onClick: () => onConnectCustomProject(recoveryRecentProject.projectRoot)
           }
         : null,
-      boundaryText
+      boundaryText,
+      sourceFiles: buildSourceFiles(currentProjectSourceId, false)
     };
   }
 
@@ -190,7 +256,8 @@ function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGu
         label: `打开默认项目 ${dailyEntryProjectIdentityName}`,
         onClick: () => onConnectCustomProject(dailyEntryProjectRoot)
       },
-      boundaryText
+      boundaryText,
+      sourceFiles: buildSourceFiles(currentProjectSourceId, Boolean(supervisorState))
     };
   }
 
@@ -206,7 +273,8 @@ function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGu
         label: `继续最近项目 ${primaryRecentProjectIdentityName}`,
         onClick: () => onConnectCustomProject(primaryRecentProject.projectRoot)
       },
-      boundaryText
+      boundaryText,
+      sourceFiles: buildSourceFiles(currentProjectSourceId, Boolean(supervisorState))
     };
   }
 
@@ -218,7 +286,8 @@ function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGu
     nextStep: "连接后，Threadsmith 会负责监督、证据和路由说明；主要开发对话仍然留在 conductor surface。",
     command: formatStartupCommand(null),
     action: null,
-    boundaryText
+    boundaryText,
+    sourceFiles: buildSourceFiles(currentProjectSourceId, Boolean(supervisorState))
   };
 }
 

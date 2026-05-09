@@ -1,23 +1,23 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "Release presentation surface",
-  "overallState": "stable",
-  "currentFocus": "为公开传播补齐展示层材料：GitHub Release 可复制文案、社交平台草稿、README Share/Demo 入口，并保持产品边界不夸大。",
-  "projectStatusSummary": "Threadsmith 已进入发布展示层打磨：README 链到截图、Release copy 与 social post draft，v0.1.0 release notes 也指向可直接复用的 GitHub Release 文案。",
+  "currentTrack": "v0.1.1 onboarding polish",
+  "overallState": "in-progress",
+  "currentFocus": "修复 GitHub Actions 红灯，并补齐 first-run、demo mode、refresh truth、skill/docs 与 v0.1.1 release surface。",
+  "projectStatusSummary": "Threadsmith 正在做 v0.1.1 发布质量修复：保持 web-first / Codex-only 边界，只把公开上手路径和 CI 健康度收干净。",
   "latestAcceptedSlice": {
-    "title": "public repo open-source polish templates",
-    "recordedAt": "2026-05-07T10:50:00Z"
+    "title": "Threadsmith v0.1.0 public release",
+    "recordedAt": "2026-05-09T07:11:46Z"
   },
   "nextPlannedSlice": {
-    "title": "review presentation copy then squash/merge",
-    "recordedAt": "2026-05-09T07:10:00Z"
+    "title": "v0.1.1 onboarding polish PR",
+    "recordedAt": null
   },
-  "currentMilestoneId": "public-web-release-publish-v0-1",
-  "nextMilestoneId": null,
+  "currentMilestoneId": "onboarding-polish",
+  "nextMilestoneId": "v0-1-1-release",
   "topRisks": [
-    "public repo 后续改动需要继续按 private working repo -> public snapshot 的同步策略执行。",
-    "合入 main 前仍建议人眼验收 Release copy 与社交文案是否符合想表达的气质。",
-    "multi-provider automatic execution 仍不是当前发布要求。"
+    "GitHub Actions 红灯会影响公开仓库观感。",
+    "首次使用者如果不理解 .threadsmith 和 conductor 边界，容易误以为页面是聊天入口。",
+    "v0.1.1 不应扩大到 multi-provider 或桌面壳。"
   ],
-  "updatedAt": "2026-05-07T10:50:00Z"
+  "updatedAt": "2026-05-09T11:20:00Z"
 }

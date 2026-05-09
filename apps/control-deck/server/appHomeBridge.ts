@@ -8,7 +8,7 @@ import {
 import { APP_HOME_PROJECT_ROOT } from "../src/features/deck/appHomeSource";
 
 export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
-  const calibratedAt = "2026-04-11T16:55:18.000Z";
+  const calibratedAt = "2026-05-09T11:20:00.000Z";
   const state = projectStateSchema.parse({
     projectBrief: {
       projectGoal: "打开 Threadsmith 并进入今天的工作",
@@ -17,206 +17,201 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       nonGoals: [
         "替代主聊天面",
         "把现有 web control deck 重写成桌面应用",
-        "在当前 freeze 里直接切 public"
+        "在 v0.1.1 发布修复里引入 multi-provider 自动执行"
       ],
       keyConstraints: [
         "保持 web + launcher 为稳定基座",
         "主要开发对话继续留在外部 conductor surface",
-        "桌面壳和 public 发布都不混入当前 freeze 基线"
+        "v0.1.1 只打磨公开上手路径，不扩大到桌面壳"
       ],
       successFrame:
         "用户打开 Threadsmith 前门后，能清楚知道这里是入口页，并能立刻进入真实项目查看实时 truth",
       priorityOrder: [
-        "保持前门和项目入口稳定",
-        "保持当前 web freeze 基线",
-        "把桌面壳留作后续独立阶段",
-        "公开发布动作按需要单独处理"
+        "修复 CI 绿灯",
+        "解释 first-run 和 demo mode",
+        "让刷新状态与 truth 来源更清楚",
+        "补齐 v0.1.1 发布说明"
       ],
       openStrategicQuestions: [
         "什么时候正式开启 desktop shell / macOS wrapper v1",
-        "何时把当前 private 仓库切到 public"
+        "何时重启 multi-provider 自动执行路线"
       ]
     },
     projectStatus: {
       projectLabel: "Threadsmith",
-      currentTrack: "front door / project entry",
-      overallState: "stable",
-      currentFocus: "前门页只显示入口快照；进入真实项目后才展示该项目的实时 `.threadsmith` 状态",
+      currentTrack: "v0.1.1 onboarding polish",
+      overallState: "in-progress",
+      currentFocus: "先修复 GitHub Actions 红灯，再让首次使用、demo mode、刷新状态和 skill/docs 说明更清楚",
       projectStatusSummary:
-        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。它用于选择默认项目、最近项目或新项目；真正的 phase、acceptance、run 和 evidence 会在进入真实项目后从该项目 `.threadsmith` 读取。",
+        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。v0.1.1 的重点是让新用户知道怎么连接真实项目、demo mode 是什么、刷新状态读了哪些 truth，以及何时回到 Codex/CLI 继续对话。",
       latestAcceptedSlice: {
-        title: "front door entry surface",
+        title: "v0.1.0 public release",
         recordedAt: calibratedAt
       },
       nextPlannedSlice: {
-        title: "desktop shell / macOS wrapper v1",
+        title: "v0.1.1 onboarding polish",
         recordedAt: null
       },
-      currentMilestoneId: null,
-      nextMilestoneId: "desktop-shell",
+      currentMilestoneId: "onboarding-polish",
+      nextMilestoneId: "v0-1-1-release",
       topRisks: [
-        "如果把前门状态误认为真实项目状态，会导致用户误判当前进度。",
-        "desktop shell 与长期桌面分发仍未定义，不应混进当前前门边界。",
-        "仓库仍保持 private，公开发布动作尚未执行。"
+        "GitHub Actions 红灯会让公开仓库显得不稳。",
+        "首次使用时如果不知道 .threadsmith 和 conductor 边界，会误以为页面是聊天入口。",
+        "demo 与真实项目的区别需要在产品内更清楚。"
       ],
       updatedAt: calibratedAt
     },
     projectRoadmap: {
-      versionLabel: "Threadsmith 前门",
+      versionLabel: "Threadsmith v0.1.1",
       finalGoal:
-        "让 Threadsmith 既保留稳定的 web control deck，又拥有更像产品的日常打开入口。",
+        "让 Threadsmith v0.1.1 成为一个 CI 绿灯、首次上手清楚、demo 可解释、文档可发布的 public web release。",
       milestones: [
         {
-          id: "front-door",
-          label: "前门入口",
-          title: "建立 Threadsmith 的产品前门",
-          summary: "让用户先从产品入口理解 Threadsmith，再决定进入哪个真实项目。",
+          id: "v0-1-0-release",
+          label: "v0.1.0",
+          title: "发布初始公开版本",
+          summary: "public repo、README、release note 和基础 web control deck 已公开。",
           state: "done"
         },
         {
-          id: "daily-entry",
-          label: "日常进入",
-          title: "收口默认项目、最近项目与重新打开路径",
-          summary: "让 Threadsmith 真正适合作为每天都会打开的控制台入口。",
-          state: "done"
+          id: "ci-health",
+          label: "CI 绿灯",
+          title: "修复 GitHub Actions 线上验证",
+          summary: "Ubuntu runner 需要安装 zsh，避免 launcher verification 红灯。",
+          state: "current"
         },
         {
-          id: "project-entry",
-          label: "项目进入",
-          title: "让前门能够清楚跳去真实项目",
-          summary: "从默认项目、最近项目和首次连接这三条路径里，选对今天的进入路线。",
-          state: "done"
+          id: "onboarding-polish",
+          label: "上手打磨",
+          title: "打磨 first-run、demo mode、刷新状态与 truth 来源",
+          summary: "让用户第一次打开时知道该连接什么、看什么、回到哪里继续。",
+          state: "next"
         },
         {
-          id: "install-surface",
-          label: "安装感",
-          title: "让 Threadsmith 能被感知成可安装、可固定的入口",
-          summary: "让产品自己说明安装与固定方式，而不只是被动依赖 manifest 和 launcher。",
-          state: "done"
+          id: "docs-skill",
+          label: "文档说明",
+          title: "补齐 Threadsmith skill 与 conductor 边界说明",
+          summary: "讲清什么时候调用 skill，什么时候只正常和 Codex/CLI 对话。",
+          state: "later"
         },
         {
-          id: "open-source-surface",
-          label: "开源表面",
-          title: "让仓库和产品说明适合公开展示与上手",
-          summary: "README、截图、release note 和贡献说明已经具备公开交付表面。",
-          state: "done"
-        },
-        {
-          id: "release-hygiene",
-          label: "发布收口",
-          title: "把 v0.1 release hygiene 做完整",
-          summary: "版本、changelog、release note、CI 和 launcher 校验已经完成。",
-          state: "done"
-        },
-        {
-          id: "web-surface",
-          label: "Web 基座",
-          title: "保持 web control deck 作为长期稳定基座",
-          summary: "桌面壳不会替代这条路径，而是在它之上加一个更自然的入口。",
-          state: "done"
+          id: "v0-1-1-release",
+          label: "v0.1.1",
+          title: "发布 onboarding polish 修复版本",
+          summary: "更新 release note、README 顶部和 share/demo 材料。",
+          state: "later"
         },
         {
           id: "desktop-shell",
           label: "桌面壳",
           title: "评估并落地一个很薄的 macOS wrapper",
           summary: "先做独立窗口与稳定启动，不提前跳进签名、更新和重度原生能力。",
-          state: "next"
+          state: "later"
         }
       ],
       updatedAt: calibratedAt
     },
     currentPhase: {
-      phaseName: "front door entry snapshot",
-      phaseGoal: "把 Threadsmith 前门清楚表达为入口页，而不是某个真实项目的实时开发状态",
-      deliverable: "可进入默认项目、最近项目或新项目的前门快照",
+      phaseName: "v0.1.1 onboarding polish",
+      phaseGoal: "把 Threadsmith 的公开上手体验打磨到 CI 绿、first-run 清楚、demo 可理解、刷新状态可信",
+      deliverable: "v0.1.1 onboarding polish PR",
       inScope: [
-        "Threadsmith 前门与项目直达路径",
-        "web control deck 的当前交付表面",
-        "release hygiene 与 truth boundary",
-        "self-host smoke 的隔离 workspace 默认行为"
+        "CI zsh launcher verification 修复",
+        "first-run / demo mode / truth source 说明",
+        "状态刷新与最近读取时间可理解",
+        "Threadsmith skill 和 conductor 边界文档",
+        "v0.1.1 release surface"
       ],
       outOfScope: [
-        "desktop shell / macOS wrapper v1",
-        "原生桌面分发、签名与自动更新",
-        "把当前仓库切到 public"
+        "multi-provider 自动执行",
+        "native desktop shell",
+        "替代 Codex Desktop / Codex CLI 的主聊天入口"
       ],
-      stopCondition: "用户能从前门进入真实项目，并理解实时状态以真实项目 `.threadsmith` 为准。",
+      stopCondition: "GitHub Actions 变绿，新用户能跑起来、看懂 demo、连接真实项目，并知道何时回到 conductor。",
       verificationForThisPhase: [
-        "npm run verify:release",
-        "npm run smoke:self-host"
+        "npm run test",
+        "npm run build",
+        "npm run verify:launchers",
+        "CI run on PR"
       ],
-      activeOwners: [],
+      activeOwners: [
+        "planner",
+        "executor",
+        "reviewer",
+        "verifier",
+        "closeout"
+      ],
       blockedBy: []
     },
     acceptanceState: {
-      currentClaim: "Threadsmith 前门只是入口快照；真实项目的实时进度必须进入对应项目后读取。",
+      currentClaim: "Threadsmith v0.1.1 正在打磨公开上手路径；当前前门仍只是入口快照，真实进度以进入项目后的 `.threadsmith` 为准。",
       doneWhenChecklist: [
         {
-          id: "web-surface",
-          label: "前门、项目入口和安装感已经稳定",
-          status: "pass"
+          id: "ci-green",
+          label: "GitHub Actions 线上 CI 变绿",
+          status: "unknown"
         },
         {
-          id: "boundaries",
-          label: "已经明确 web control deck 仍是当前稳定基座",
-          status: "pass"
+          id: "first-run",
+          label: "首次使用说明清楚解释项目连接、.threadsmith 与 conductor 边界",
+          status: "unknown"
         },
         {
-          id: "smoke-boundary",
-          label: "self-host smoke 默认在隔离 workspace 运行，且真实 bridge 能稳定收口",
-          status: "pass"
+          id: "refresh-truth",
+          label: "刷新状态、上次读取时间和当前信息来源可见",
+          status: "unknown"
         },
         {
-          id: "deferred-boundary",
-          label: "桌面壳与 public 发布没有混进当前 web v0.1 基线",
-          status: "pass"
+          id: "demo-mode",
+          label: "内置 demo mode 能帮助新用户理解首页五块与工作台",
+          status: "unknown"
         },
         {
-          id: "non-goals",
-          label: "前门继续清楚说明 Threadsmith 不是主聊天面",
-          status: "pass"
+          id: "release-surface",
+          label: "README、usage guide、release note 和 share 文案对齐 v0.1.1",
+          status: "unknown"
         }
       ],
-      implementationStatus: "ready-for-review",
-      reviewStatus: "ready-for-verification",
-      verificationStatus: "passed",
-      closeoutStatus: "done",
+      implementationStatus: "implementing",
+      reviewStatus: "not-started",
+      verificationStatus: "not-started",
+      closeoutStatus: "not-started",
       knownGaps: [
-        "desktop shell / 原生分发仍在后续 backlog，不属于当前 web v0.1 的 blocker。",
-        "仓库暂时保持 private；是否切 public 由你后续单独决定。"
+        "multi-provider automatic execution 仍不属于 v0.1.1 交付范围。",
+        "desktop shell 仍在后续 backlog，不作为当前发布 blocker。"
       ],
-      finalState: "accepted"
+      finalState: "not-ready"
     },
     activeWork: {
       items: [
         {
           role: "planner",
-          status: "idle",
-          taskSummary: "前门等待用户选择今天要进入的真实项目",
+          status: "done",
+          taskSummary: "定义 v0.1.1 onboarding polish 的发布修复范围",
           requiresUserDecision: false
         },
         {
           role: "executor",
-          status: "idle",
-          taskSummary: "前门不直接执行真实项目任务；进入项目后再由项目 truth 驱动",
+          status: "running",
+          taskSummary: "修复 CI 并打磨 first-run、demo mode、refresh 和 docs",
           requiresUserDecision: false
         },
         {
           role: "reviewer",
-          status: "done",
-          taskSummary: "已复核 freeze 边界，确认 desktop shell 与 public 发布没有混进当前基线",
+          status: "waiting",
+          taskSummary: "等待实现完成后检查公开发布 claims 是否准确",
           requiresUserDecision: false
         },
         {
           role: "verifier",
-          status: "done",
-          taskSummary: "`npm run verify:release` 与 `npm run smoke:self-host` 已通过",
+          status: "waiting",
+          taskSummary: "等待本地验证与 GitHub Actions 回流",
           requiresUserDecision: false
         },
         {
           role: "closeout",
-          status: "done",
-          taskSummary: "前门边界已明确：入口页不等于真实项目实时页",
+          status: "waiting",
+          taskSummary: "等待 v0.1.1 PR closeout 与 release notes",
           requiresUserDecision: false
         }
       ],
@@ -227,34 +222,34 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
 
   const projectSupervision = projectSupervisionStateSchema.parse({
     mode: "multi-thread",
-    modeLabel: "前门引导",
+    modeLabel: "发布打磨",
     summary:
-      "当前是 Threadsmith 前门，不直接承载某个真实项目的编码执行；它只负责选择入口，真实进度进入项目后从该项目 `.threadsmith` 读取。",
+      "当前是 Threadsmith 前门，不直接承载某个真实项目的编码执行；v0.1.1 正在修复 CI 与首次上手路径。",
     lines: [
       {
         id: "planner",
         role: "planner",
-        threadLabel: "Front Door",
+        threadLabel: "Release Planner",
         provider: providerRouting.planner,
         presence: "logical",
         status: "done",
-        taskSummary: "当前前门只负责稳定进入；真实项目页才展示实时 truth。",
+        taskSummary: "v0.1.1 聚焦 CI、first-run、refresh、demo、docs 与 release surface。",
         requiresUserDecision: false,
         blockerSummary: null,
-        latestEvidenceLabel: "verify:release + smoke:self-host 已通过",
+        latestEvidenceLabel: "scope accepted by user",
         updatedAt: calibratedAt
       },
       {
         id: "executor",
         role: "executor",
-        threadLabel: "Project Entry",
+        threadLabel: "Onboarding Polish",
         provider: providerRouting.executor,
         presence: "logical",
-        status: "idle",
-        taskSummary: "当前没有新的实现任务；desktop shell 与 public 发布都留待后续阶段。",
+        status: "running",
+        taskSummary: "正在把公开上手路径做成可发布的 v0.1.1 修复版。",
         requiresUserDecision: false,
         blockerSummary: null,
-        latestEvidenceLabel: "web surface remains stable",
+        latestEvidenceLabel: "CI zsh fix + UI copy pass in progress",
         updatedAt: calibratedAt
       }
     ],

@@ -1,7 +1,7 @@
 {
   "name": "@threadsmith/fs-bridge",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Filesystem bridge for reading and writing Threadsmith project truth.",
   "license": "MIT",
   "repository": {
@@ -18,7 +18,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@threadsmith/domain": "0.1.0",
+    "@threadsmith/domain": "0.1.1",
     "zod": "^4.1.11"
   },
   "devDependencies": {

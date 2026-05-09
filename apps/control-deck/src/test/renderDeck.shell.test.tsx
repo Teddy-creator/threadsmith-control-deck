@@ -454,15 +454,15 @@ describe("DeckScreen shell", () => {
     expect(projectsDrawer).not.toBeNull();
     const projectsScope = within(projectsDrawer as HTMLElement);
     expect(projectsScope.getByText("推荐进入路径")).toBeInTheDocument();
-    expect(projectsScope.getByText("先连接一个真实项目")).toBeInTheDocument();
+    expect(projectsScope.getByText("这是一个已收口项目的学习示例")).toBeInTheDocument();
     expect(projectsScope.getByRole("button", { name: /前门入口/i })).toBeInTheDocument();
-    expect(projectsScope.getByRole("button", { name: /过期 packet 示例/i })).toBeInTheDocument();
+    expect(projectsScope.getByRole("button", { name: /Demo：过期交接点/i })).toBeInTheDocument();
     expect(projectsScope.getByRole("button", { name: /自定义项目/i })).toBeInTheDocument();
 
     fireEvent.click(projectsScope.getByRole("button", { name: /自定义项目/i }));
     expect(screen.getByRole("button", { name: /连接项目/i })).toBeDisabled();
 
-    fireEvent.click(projectsScope.getByRole("button", { name: /过期 packet 示例/i }));
+    fireEvent.click(projectsScope.getByRole("button", { name: /Demo：过期交接点/i }));
     expect(onSelectProjectSource).toHaveBeenCalledWith("stale-packet-demo");
   });
 

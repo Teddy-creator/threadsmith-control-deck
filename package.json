@@ -1,7 +1,7 @@
 {
   "name": "threadsmith",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Workflow-first control deck for supervising AI coding projects.",
   "license": "MIT",
   "repository": {
@@ -28,7 +28,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "npm run dev --workspace @threadsmith/control-deck -- --host 127.0.0.1 --port 5173",
+    "start": "node scripts/start-message.mjs && npm run dev --workspace @threadsmith/control-deck -- --host 127.0.0.1 --port 5173",
     "dev": "npm run dev --workspace @threadsmith/control-deck",
     "test": "npm run test --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",

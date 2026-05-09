@@ -15,7 +15,12 @@ export function ProjectsSourceSwitcherSection({
 }: ProjectsSourceSwitcherSectionProps) {
   return (
     <div className="space-y-4">
-      <h3 className="text-xs uppercase tracking-[0.18em] text-zinc-500">来源</h3>
+      <div>
+        <h3 className="text-xs uppercase tracking-[0.18em] text-zinc-500">来源</h3>
+        <p className="mt-2 text-sm leading-6 text-zinc-500">
+          Demo mode 用来学习页面含义；正式工作请选择自定义项目，让 Threadsmith 读取真实项目的 `.threadsmith`。
+        </p>
+      </div>
       <div className="grid gap-3">
         {PROJECT_SOURCE_OPTIONS.map((option) => (
           <button

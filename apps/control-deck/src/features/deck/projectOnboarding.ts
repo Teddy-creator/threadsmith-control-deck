@@ -47,13 +47,13 @@ export function buildProjectOnboardingGuide(args: {
       badgeLabel: "首次使用",
       title: "先把第一个真实项目接进 Threadsmith",
       detail:
-        "第一次使用时，先连上一个真实项目根目录。第一次接入完成后，再把它设成默认进入，以后就能从前门直接回来。",
+        "第一次使用时，先连上一个真实项目根目录。Threadsmith 会读取这个项目里的 `.threadsmith`，把目标、阶段、验收和证据展示出来；你的主要开发对话仍然回到 Codex Desktop 或 Codex CLI。",
       steps: [
         { label: "填写真实项目根目录", state: "current" },
         { label: "如果缺少 .threadsmith 就初始化", state: "next" },
-        { label: "把它设为默认进入并回到 Conductor", state: "next" }
+        { label: "进入项目后回到 Conductor 推进", state: "next" }
       ],
-      hint: "这一步只是在建立 Threadsmith 的第一个真实项目入口，不会替代你的主聊天面。",
+      hint: "可以先打开 demo mode 理解页面含义；正式工作时再连接真实项目。",
       actionId: "focus-connect",
       actionLabel: "填写项目根目录"
     };

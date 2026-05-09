@@ -1,7 +1,7 @@
 {
   "name": "@threadsmith/orchestrator",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Execution orchestration and bridge runtime for Threadsmith.",
   "license": "MIT",
   "repository": {
@@ -18,8 +18,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@threadsmith/domain": "0.1.0",
-    "@threadsmith/fs-bridge": "0.1.0"
+    "@threadsmith/domain": "0.1.1",
+    "@threadsmith/fs-bridge": "0.1.1"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

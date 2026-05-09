@@ -27,7 +27,7 @@ describe("DeckScreen projects", () => {
         <DeckScreen
           projectRoot="/tmp/project"
           currentProjectSourceId="fresh-demo"
-          currentProjectSourceLabel="最新 packet 示例"
+          currentProjectSourceLabel="Demo：已收口项目"
           dailyEntryProjectRoot="/tmp/recent-beta"
           customProjectDraft={draft}
           customProjectError={null}
@@ -60,19 +60,16 @@ describe("DeckScreen projects", () => {
 
     render(<Harness />);
 
-    fireEvent.click(screen.getByRole("button", { name: "来源：最新 packet 示例" }));
+    fireEvent.click(screen.getByRole("button", { name: "来源：Demo：已收口项目" }));
     const projectsDrawer = screen.getByText("项目与来源").closest(".inspector-panel");
     expect(projectsDrawer).not.toBeNull();
     const projectsScope = within(projectsDrawer as HTMLElement);
     fireEvent.click(projectsScope.getByRole("button", { name: /自定义项目/i }));
     expect(projectsScope.getByText("推荐进入路径")).toBeInTheDocument();
     expect(projectsScope.getByText("日常进入项目")).toBeInTheDocument();
-    expect(
-      screen.getByText('./Launch-Threadsmith.command "/tmp/recent-beta"')
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "打开默认项目 recent-beta" })
-    ).toBeInTheDocument();
+    expect(screen.getByText("这是一个已收口项目的学习示例")).toBeInTheDocument();
+    expect(screen.getByText("Demo mode")).toBeInTheDocument();
+    expect(screen.getByText("examples/project-state/.threadsmith")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "打开 /tmp/recent-alpha" })).toBeInTheDocument();
 
     const input = screen.getByRole("textbox", { name: /项目根目录/i });

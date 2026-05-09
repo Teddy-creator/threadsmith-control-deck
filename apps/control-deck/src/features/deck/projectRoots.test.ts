@@ -14,7 +14,7 @@ describe("resolveInitialProjectSelection", () => {
   it("defaults to the fresh demo fixture when no self-host default exists", () => {
     expect(resolveInitialProjectSelection({ search: "" })).toMatchObject({
       sourceId: "fresh-demo",
-      label: "最新 packet 示例",
+      label: "Demo：已收口项目",
       projectRoot: FRESH_DEMO_PROJECT_ROOT
     });
   });
@@ -51,7 +51,7 @@ describe("resolveInitialProjectSelection", () => {
       resolveInitialProjectSelection({ search: "?demoFixture=stale-packet" })
     ).toMatchObject({
       sourceId: "stale-packet-demo",
-      label: "过期 packet 示例",
+      label: "Demo：过期交接点",
       projectRoot: STALE_PACKET_DEMO_PROJECT_ROOT
     });
   });
@@ -64,7 +64,7 @@ describe("resolveInitialProjectSelection", () => {
       })
     ).toMatchObject({
       sourceId: "stale-packet-demo",
-      label: "过期 packet 示例",
+      label: "Demo：过期交接点",
       projectRoot: STALE_PACKET_DEMO_PROJECT_ROOT
     });
   });

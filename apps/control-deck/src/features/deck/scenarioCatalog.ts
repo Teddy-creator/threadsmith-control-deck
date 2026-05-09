@@ -31,15 +31,15 @@ export const PROJECT_SOURCE_CATALOG: ProjectSourceDefinition[] = [
   },
   {
     id: "fresh-demo",
-    label: "最新 packet 示例",
-    description: "已接受的 slice，并带有最新的 handoff packet。",
+    label: "Demo：已收口项目",
+    description: "学习首页五块和工作台：已验收、可继续、packet 最新。",
     projectRoot: FRESH_DEMO_PROJECT_ROOT,
     demoFixture: null
   },
   {
     id: "stale-packet-demo",
-    label: "过期 packet 示例",
-    description: "已接受的 slice，但当前 packet 之后又出现了更新的 truth。",
+    label: "Demo：过期交接点",
+    description: "学习风险态：项目 truth 已更新，但 handoff packet 落后。",
     projectRoot: STALE_PACKET_DEMO_PROJECT_ROOT,
     demoFixture: "stale-packet"
   },

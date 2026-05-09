@@ -17,6 +17,7 @@ export interface StartupGuide {
   command: string;
   action: StartupGuideAction | null;
   boundaryText: string;
+  sourceFiles: string[];
 }
 
 export interface OnboardingGuide {
@@ -50,13 +51,13 @@ export const PROJECT_SOURCE_OPTIONS: ProjectSourceOption[] = [
   },
   {
     id: "fresh-demo",
-    label: "最新 packet 示例",
-    description: "已接受切片，并带有最新交接点。"
+    label: "Demo：已收口项目",
+    description: "学习首页五块和工作台：已验收、可继续、packet 最新。"
   },
   {
     id: "stale-packet-demo",
-    label: "过期 packet 示例",
-    description: "已有交接点，但项目真相已经更新。"
+    label: "Demo：过期交接点",
+    description: "学习风险态：项目 truth 已更新，但 handoff packet 落后。"
   },
   {
     id: "custom-project",

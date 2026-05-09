@@ -1,25 +1,29 @@
 {
-  "projectGoal": "交付 Threadsmith Codex-only v0.1：让它作为 mission-control web control deck，能稳定监督真实 AI coding 项目，并把 truth、workflow、evidence、acceptance 与 next steps 讲清楚。",
-  "currentVersionScope": "当前主线聚焦 public repo open-source polish：补齐 GitHub 反馈入口、开源文档入口与公开仓元信息，并完成独立 public snapshot 的同步与发布前验证。",
+  "projectGoal": "交付 Threadsmith Codex-only v0.1.1：让 public web control deck 的首次上手、demo mode、状态刷新、文档和 CI 健康度足够适合公开传播。",
+  "currentVersionScope": "当前主线聚焦 v0.1.1 onboarding polish：修复 GitHub Actions 红灯，打磨 first-run / demo / refresh / skill docs / release surface。",
   "nonGoals": [
     "把 deck 变成主聊天面",
     "在当前主线里加入 multi-provider automatic execution",
-    "现在就进入 native desktop shell"
+    "现在就进入 native desktop shell",
+    "在 v0.1.1 里实现 multi-provider automatic execution"
   ],
   "keyConstraints": [
     "继续保持 deck 是 mission control，而不是 primary command surface",
     "当前自动执行与 release hardening 仍以 Codex 为唯一 provider 基座",
-    "第一次接入项目时必须能靠产品本身走通，而不是依赖额外口头解释"
+    "第一次接入项目时必须能靠产品本身走通，而不是依赖额外口头解释",
+    "v0.1.1 只修公开上手路径，不扩大产品边界"
   ],
-  "successFrame": "第一次使用者可以打开 Threadsmith、连接真实项目、看懂当前真相与验收位置，并回到 Codex conductor surface 继续推进；README、release notes、checklist 与实际产品边界保持一致。",
+  "successFrame": "第一次使用者可以打开 Threadsmith、试用 demo mode、连接真实项目、理解刷新状态和 truth 来源，并回到 Codex conductor surface 继续推进；GitHub Actions 线上 CI 变绿。",
   "priorityOrder": [
     "保持 .threadsmith 只记录 durable truth，不记录普通聊天流水",
     "让 phase/task/bug/closeout 边界自动写回 accepted truth",
     "让前门入口、真实项目页和刷新状态入口的语义保持一致",
-    "完成公开仓库发布验收后再进入宣传与示例内容打磨"
+    "先修 GitHub Actions 红灯",
+    "再让 first-run / demo / refresh / docs 说人话",
+    "最后发 v0.1.1 release"
   ],
   "openStrategicQuestions": [
-    "公开仓是否继续保持 public snapshot 的独立同步模式，还是后续切换到 public repo 直开发。",
-    "是否需要再补一轮 README 截图或示例项目说明来帮助新用户理解入口。"
+    "v0.1.1 合并后是否立即发布 GitHub Release。",
+    "是否需要录制一个短 GIF 展示 demo mode 与真实项目连接。"
   ]
 }

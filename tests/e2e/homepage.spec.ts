@@ -87,17 +87,15 @@ test("current Threadsmith repo can be read as a real project from the source and
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Threadsmith", exact: true })).toBeVisible();
   await expect(
-    page.getByText("Open-source polish for public repo", { exact: true })
+    page.getByText("v0.1.1 onboarding polish", { exact: true }).first()
   ).toBeVisible();
-  await expect(
-    page.getByText("public repo open-source polish").first()
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "当前总命令" })).toBeVisible();
 
   await page.getByRole("button", { name: "项目", exact: true }).click();
   const inspectorPanel = page.locator(".inspector-panel");
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText(/公开仓库开源门面已补齐/)
+    inspectorPanel.getByText(/v0\.1\.1 发布质量修复/)
   ).toBeVisible();
   await expect(
     inspectorPanel.getByRole("combobox", { name: "指挥入口" })
@@ -106,14 +104,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await page.getByRole("button", { name: "阶段", exact: true }).click();
   await expect(inspectorPanel.getByText("阶段工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText("public repo open-source polish").first()
+    inspectorPanel.getByText("v0.1.1 onboarding polish").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith public repo open-source surface is ready: issue and PR templates, SECURITY.md, CODE_OF_CONDUCT.md, README open-source入口, CONTRIBUTING guidance, public snapshot sync, and release verification are complete."
+      "Threadsmith v0.1.1 onboarding polish is locally verified on release/v0.1.1-onboarding-polish: tests, build, e2e, launcher verification, smoke checks, diff hygiene, and public-surface scan passed. GitHub Actions CI still requires PR/push confirmation."
     ).first()
   ).toBeVisible();
 });

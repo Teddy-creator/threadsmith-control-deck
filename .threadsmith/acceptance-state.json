@@ -1,35 +1,35 @@
 {
-  "currentClaim": "Threadsmith release presentation surface has a focused branch: README Share/Demo links, GitHub Release copy, and social post draft are ready for human review before squash merge.",
+  "currentClaim": "Threadsmith v0.1.1 onboarding polish is locally verified on release/v0.1.1-onboarding-polish: tests, build, e2e, launcher verification, smoke checks, diff hygiene, and public-surface scan passed. GitHub Actions CI still requires PR/push confirmation.",
   "doneWhenChecklist": [
     {
       "id": "branch-created",
-      "label": "从 main 开 release/presentation-surface-polish 分支，不直接改 main",
+      "label": "从 main 开 release/v0.1.1-onboarding-polish 分支，不直接改 main",
       "status": "pass"
     },
     {
-      "id": "release-copy",
-      "label": "新增 GitHub Release 可复用文案",
-      "status": "pass"
-    },
-    {
-      "id": "social-copy",
-      "label": "新增中英文社交平台草稿与截图/轮播建议",
-      "status": "pass"
-    },
-    {
-      "id": "readme-links",
-      "label": "README 与 release notes 指向展示材料",
-      "status": "pass"
-    },
-    {
-      "id": "lightweight-verification",
-      "label": "git diff check、launcher verification 与文档链接检查通过",
-      "status": "pass"
-    },
-    {
-      "id": "human-review",
-      "label": "Release copy 与社交文案仍需用户人眼验收后再 squash/merge 到 main",
+      "id": "ci-green",
+      "label": "GitHub Actions 线上 CI 变绿",
       "status": "unknown"
+    },
+    {
+      "id": "first-run",
+      "label": "首次使用说明清楚解释项目连接、.threadsmith 与 conductor 边界",
+      "status": "pass"
+    },
+    {
+      "id": "refresh-truth",
+      "label": "刷新状态、上次读取时间和当前信息来源可见",
+      "status": "pass"
+    },
+    {
+      "id": "demo-mode",
+      "label": "demo mode 能帮助新用户理解首页五块与工作台",
+      "status": "pass"
+    },
+    {
+      "id": "release-surface",
+      "label": "README、usage guide、release note 和 release copy 对齐 v0.1.1",
+      "status": "pass"
     }
   ],
   "implementationStatus": "ready-for-review",
@@ -37,7 +37,8 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "multi-provider automatic execution is still out of scope."
+    "multi-provider automatic execution is still out of scope.",
+    "GitHub Actions CI can only be confirmed after PR push."
   ],
-  "finalState": "accepted"
+  "finalState": "not-ready"
 }

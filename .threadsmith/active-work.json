@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将当前阶段重置为 public release hygiene v0.1，目标是公开仓库卫生而非新增功能。",
+      "taskSummary": "已收束 v0.1.1 onboarding polish 范围：CI、first-run、demo mode、refresh truth、skill/docs 与 release surface。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已移除内部过程文档和运行草稿，清理本地路径与公开文案边界。",
+      "taskSummary": "已完成 v0.1.1 onboarding polish 实现：CI workflow、前门/来源说明、demo labels、startup message、docs 与 release copy 已更新。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核 tracked public surface 不再跟踪内部计划、本地路径或过期 bridge truth。",
+      "taskSummary": "已复核当前 diff 聚焦 onboarding polish，没有进入 multi-provider、desktop app 或大 UI redesign。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已运行测试、构建、E2E、launcher 验证、公开扫描和 self-host smoke。",
+      "taskSummary": "已运行 npm run test、npm run build、npm run test:e2e、npm run verify:launchers、smoke:autopilot、smoke:self-host、diff check 和公开扫描。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "public release hygiene v0.1 已收口；下一步是 commit / PR / public publish 动作。",
+      "taskSummary": "已清理误触发的 deck-route runtime 噪音，并准备提交/PR；线上 CI 待 PR 后确认。",
       "requiresUserDecision": false
     },
     {
@@ -37,5 +37,5 @@
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": null
+  "blockerSummary": "GitHub Actions CI 尚未在线确认；需要 push PR 后等待 Actions 回流。"
 }

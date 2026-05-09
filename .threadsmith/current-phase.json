@@ -1,28 +1,33 @@
 {
-  "phaseName": "release presentation surface polish",
-  "phaseGoal": "在独立 release 分支里补齐公开发布展示材料，让 GitHub Release 与社交平台介绍可以直接复用，同时不夸大当前 v0.1.0 的 Codex-only/web-first 边界。",
-  "deliverable": "README Share/Demo section, GitHub Release copy, social post draft",
+  "phaseName": "v0.1.1 onboarding polish",
+  "phaseGoal": "修复 GitHub Actions 红灯，并把 first-run、demo mode、状态刷新、skill/docs 与 release surface 打磨到可发布。",
+  "deliverable": "v0.1.1 onboarding polish PR",
   "inScope": [
-    "GitHub Release copy",
-    "social post draft",
-    "README links to demo/share materials",
-    "release notes cross-link"
+    "CI zsh launcher verification fix",
+    "first-run guidance",
+    "refresh / truth source visibility",
+    "demo mode labels and docs",
+    "Threadsmith skill usage guidance",
+    "v0.1.1 release notes and release copy"
   ],
   "outOfScope": [
-    "new runtime product features",
     "multi-provider automatic execution",
-    "native desktop shell"
+    "native desktop shell",
+    "large UI redesign"
   ],
-  "stopCondition": "release-facing copy exists, README links to it, claims stay aligned with v0.1.0 scope, and lightweight documentation verification passes.",
+  "stopCondition": "CI is green, local verification passes, and new users can understand how to start, demo, refresh, and hand control back to Codex/CLI.",
   "verificationForThisPhase": [
-    "git diff --check",
+    "npm run test",
+    "npm run build",
     "npm run verify:launchers",
-    "documentation link sanity check"
+    "npm run test:e2e",
+    "GitHub Actions CI"
   ],
   "activeOwners": [
     "planner",
     "executor",
     "reviewer",
+    "verifier",
     "hygiene"
   ],
   "blockedBy": []

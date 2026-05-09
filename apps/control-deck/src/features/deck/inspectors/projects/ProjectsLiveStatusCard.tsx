@@ -54,7 +54,7 @@ export function ProjectsLiveStatusCard({
               ? pill(verificationTone, verificationStatusLabel)
               : null}
             {pill("blue", freshnessText)}
-            {lastSyncLabel ? pill("green", lastSyncLabel) : null}
+            {lastSyncLabel ? pill("green", lastSyncLabel) : pill("zinc", "尚未读取")}
           </>
         ) : (
           pill("red", "未就绪")
@@ -66,7 +66,7 @@ export function ProjectsLiveStatusCard({
           : "当前项目还没有加载出可展示的真实状态。"}
       </div>
       <div className="mt-2 text-xs leading-5 text-zinc-500">
-        真实项目页会自动轮询状态，也可以用顶部“刷新状态”立即重读 `.threadsmith`。
+        顶部“刷新状态”会立即重读 `.threadsmith`；页面也会自动轮询。这里显示的是最近一次成功读取到的 committed truth。
       </div>
     </div>
   );
