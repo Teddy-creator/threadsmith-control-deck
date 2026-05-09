@@ -68,7 +68,7 @@ Threadsmith 是一个面向 AI coding workflow 的 **web control deck**。
 
 Threadsmith 把这些信息拆成一个独立的 control deck，让主聊天面继续负责“对话与指挥”，而让监督界面负责“看清真相与流程”。
 
-## 当前 V0.1 表面
+## 当前 v0.1.1 表面
 
 目前仓库已经收口到一条可真实运行的 web app 路径，包含：
 
@@ -306,7 +306,7 @@ npm run smoke:self-host -- .
 
 Threadsmith 当前优先是一个可长期使用、可安装、可公开发布的 web control deck。
 
-V0.1 明确不追求：
+当前 v0.1.1 明确不追求：
 
 - 原生桌面壳
 - 完整替代主聊天入口
