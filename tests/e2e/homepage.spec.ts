@@ -95,7 +95,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   const inspectorPanel = page.locator(".inspector-panel");
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText(/本地验收 Context Budget Ledger v1/)
+    inspectorPanel.getByText(/本地验收 Role-specific Packets v1/)
   ).toBeVisible();
   await expect(
     inspectorPanel.getByRole("combobox", { name: "指挥入口" })
@@ -104,14 +104,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await page.getByRole("button", { name: "阶段", exact: true }).click();
   await expect(inspectorPanel.getByText("阶段工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText("Context Budget Ledger v1").first()
+    inspectorPanel.getByText("Role-specific Packets v1").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith v0.2.0 Context Budget Ledger v1 is accepted locally: Context Packet reports estimated size, budget level, heavy sections, and compression advice without real tokenizer dependency."
+      "Threadsmith v0.2.0 Role-specific Packets v1 is accepted locally: each role receives a focused packet derived from the main Context Packet, with fs persistence under role-packets."
     ).first()
   ).toBeVisible();
 });
