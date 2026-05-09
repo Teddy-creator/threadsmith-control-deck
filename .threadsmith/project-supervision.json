@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "v0.2.0 Context packet regeneration engine v1 已本地验收：sync-context 现在是真实动作，可以重新生成 current-packet.json。",
+  "summary": "v0.2.0 release hardening 已本地验收：公开文档、release notes、checklist、package versions 和验证面已对齐 Context OS 能力。",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,11 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "已确认 Context packet regeneration engine v1 范围：只做 current packet regeneration，不扩展到 role packets 或 multi-provider。",
+      "taskSummary": "已确认并收口 release hardening 范围：只做公开发布 surface，不新增产品功能或 multi-provider。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "phase contract 已刷新",
-      "updatedAt": "2026-05-09T18:17:35Z"
+      "updatedAt": "2026-05-09T18:39:39Z"
     },
     {
       "id": "builder-logical",
@@ -23,11 +23,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已实现 first-class sync-context action：fs-bridge 读取 truth / repo map / evidence summary 并写回 current-packet.json。",
+      "taskSummary": "已更新 README、usage guide、v0.2.0 release checklist、release notes、release copy、package versions 和 app-home 前门。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "fs-bridge workflow test 已覆盖",
-      "updatedAt": "2026-05-09T18:17:35Z"
+      "latestEvidenceLabel": "release docs 已更新",
+      "updatedAt": "2026-05-09T18:39:39Z"
     },
     {
       "id": "critic-logical",
@@ -36,11 +36,12 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已复核 sync-context 与 run-hygiene 保持语义分离，Control Deck 文案不再说 regeneration engine 不存在。",
+      "status": "done",
+      "taskSummary": "已复核 v0.2.0 文案保持 web-first / Codex-only 边界，multi-provider 与桌面壳仍明确 deferred。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T18:17:35Z"
+      "updatedAt": "2026-05-09T18:39:39Z"
     },
     {
       "id": "verifier-logical",
@@ -49,11 +50,12 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已通过 npm run test、npm run build、npm run test:e2e、git diff --check 和 .threadsmith JSON 校验。",
+      "status": "done",
+      "taskSummary": "已通过 test、build、e2e、launcher、self-host smoke、diff check 和 JSON 校验。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "full verification 已通过",
-      "updatedAt": "2026-05-09T18:17:35Z"
+      "latestEvidenceLabel": "release verification 已通过",
+      "updatedAt": "2026-05-09T18:39:39Z"
     },
     {
       "id": "closeout-logical",
@@ -62,11 +64,12 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "Context packet regeneration engine v1 已完成本地 closeout；下一步提交 PR 并进入 v0.2.0 release hardening。",
+      "status": "done",
+      "taskSummary": "已写回 accepted truth；下一步提交 PR，CI 绿后进入 v0.2.0 GitHub Release publish。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "acceptance 已更新",
-      "updatedAt": "2026-05-09T18:17:35Z"
+      "updatedAt": "2026-05-09T18:39:39Z"
     },
     {
       "id": "hygiene-logical",
@@ -75,12 +78,13 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "守住本 slice 边界：没有生成全部 role packets，没有进入 multi-provider，也没有改动整体 UI 风格。",
+      "status": "done",
+      "taskSummary": "守住边界：本 slice 不发布 GitHub Release 本身，不做桌面壳，不做 multi-provider。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T18:17:35Z"
+      "updatedAt": "2026-05-09T18:39:39Z"
     }
   ],
-  "updatedAt": "2026-05-09T18:17:35Z"
+  "updatedAt": "2026-05-09T18:39:39Z"
 }

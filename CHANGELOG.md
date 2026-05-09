@@ -8,6 +8,12 @@ All notable changes to Threadsmith will be documented in this file.
 
 - GitHub issue templates, pull request template, security policy, and code of conduct for the public repository.
 - README and contributing guide links for open-source feedback and security reporting.
+- v0.2.0 Context OS release docs, checklist, and GitHub Release copy.
+- Context Packet, Repo Map, Evidence Summary, Context Budget Ledger, Role-specific Packets, context recovery, and `sync-context` regeneration surfaces for the v0.2.0 line.
+
+### Changed
+
+- README and usage docs now describe the v0.2.0 Context OS line while keeping multi-provider and desktop app work out of scope.
 
 ## v0.1.1 - 2026-05-09
 

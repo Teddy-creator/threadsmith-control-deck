@@ -1,7 +1,7 @@
 {
   "name": "threadsmith",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Workflow-first control deck for supervising AI coding projects.",
   "license": "MIT",
   "repository": {

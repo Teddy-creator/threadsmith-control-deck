@@ -17,20 +17,20 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       nonGoals: [
         "替代主聊天面",
         "把现有 web control deck 重写成桌面应用",
-        "在 v0.1.1 发布修复里引入 multi-provider 自动执行"
+        "在 v0.2.0 里引入 multi-provider 自动执行"
       ],
       keyConstraints: [
         "保持 web + launcher 为稳定基座",
         "主要开发对话继续留在外部 conductor surface",
-        "v0.1.1 只打磨公开上手路径，不扩大到桌面壳"
+        "v0.2.0 只发布 Context OS 能力，不扩大到桌面壳"
       ],
       successFrame:
         "用户打开 Threadsmith 前门后，能清楚知道这里是入口页，并能立刻进入真实项目查看实时 truth",
       priorityOrder: [
-        "修复 CI 绿灯",
-        "解释 first-run 和 demo mode",
-        "让刷新状态与 truth 来源更清楚",
-        "补齐 v0.1.1 发布说明"
+        "对齐版本表述",
+        "解释 Context Packet 和 truth 来源",
+        "让 sync-context 与 recovery 边界更清楚",
+        "补齐 v0.2.0 release notes"
       ],
       openStrategicQuestions: [
         "什么时候正式开启 desktop shell / macOS wrapper v1",
@@ -39,66 +39,66 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
     },
     projectStatus: {
       projectLabel: "Threadsmith",
-      currentTrack: "v0.1.1 onboarding polish",
+      currentTrack: "v0.2.0 Context OS release hardening",
       overallState: "in-progress",
-      currentFocus: "先修复 GitHub Actions 红灯，再让首次使用、demo mode、刷新状态和 skill/docs 说明更清楚",
+      currentFocus: "对齐 Context Packet、truth sync、context recovery 和 release docs 的公开发布面",
       projectStatusSummary:
-        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。v0.1.1 的重点是让新用户知道怎么连接真实项目、demo mode 是什么、刷新状态读了哪些 truth，以及何时回到 Codex/CLI 继续对话。",
+        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。v0.2.0 的重点是让用户理解 Context Packet 从 committed truth 来、sync-context 何时刷新 packet、以及何时回到 Codex/CLI 继续对话。",
       latestAcceptedSlice: {
-        title: "v0.1.0 public release",
+        title: "v0.1.1 public release",
         recordedAt: calibratedAt
       },
       nextPlannedSlice: {
-        title: "v0.1.1 onboarding polish",
+        title: "v0.2.0 Context OS release hardening",
         recordedAt: null
       },
-      currentMilestoneId: "onboarding-polish",
-      nextMilestoneId: "v0-1-1-release",
+      currentMilestoneId: "version-surface",
+      nextMilestoneId: "v0-2-0-release",
       topRisks: [
-        "GitHub Actions 红灯会让公开仓库显得不稳。",
-        "首次使用时如果不知道 .threadsmith 和 conductor 边界，会误以为页面是聊天入口。",
-        "demo 与真实项目的区别需要在产品内更清楚。"
+        "版本与文档表述不一致会让公开仓库显得不稳。",
+        "如果不知道 Context Packet 与 committed truth 的边界，会误以为页面会读取聊天里的临时想法。",
+        "v0.2.0 仍需避免把 provider routing 误读成 multi-provider 已完成。"
       ],
       updatedAt: calibratedAt
     },
     projectRoadmap: {
-      versionLabel: "Threadsmith v0.1.1",
+      versionLabel: "Threadsmith v0.2.0",
       finalGoal:
-        "让 Threadsmith v0.1.1 成为一个 CI 绿灯、首次上手清楚、demo 可解释、文档可发布的 public web release。",
+        "让 Threadsmith v0.2.0 成为一个 Context OS 清楚、packet 可恢复、文档可发布的 public web release。",
       milestones: [
         {
-          id: "v0-1-0-release",
-          label: "v0.1.0",
-          title: "发布初始公开版本",
-          summary: "public repo、README、release note 和基础 web control deck 已公开。",
+          id: "v0-1-1-release",
+          label: "v0.1.1",
+          title: "发布 onboarding polish 版本",
+          summary: "public repo、README、release note、CI 与首次上手路径已公开。",
           state: "done"
         },
         {
-          id: "ci-health",
-          label: "CI 绿灯",
-          title: "修复 GitHub Actions 线上验证",
-          summary: "Ubuntu runner 需要安装 zsh，避免 launcher verification 红灯。",
+          id: "version-surface",
+          label: "版本对齐",
+          title: "对齐公开版本与 README",
+          summary: "README、usage guide、release docs 和 package version 需要一致。",
           state: "current"
         },
         {
-          id: "onboarding-polish",
-          label: "上手打磨",
-          title: "打磨 first-run、demo mode、刷新状态与 truth 来源",
-          summary: "让用户第一次打开时知道该连接什么、看什么、回到哪里继续。",
+          id: "context-os-surface",
+          label: "Context OS",
+          title: "打磨 Context Packet、recovery 与 truth 来源",
+          summary: "让用户知道 packet 从哪里来、何时刷新、何时回到 conductor。",
           state: "next"
         },
         {
           id: "docs-skill",
-          label: "文档说明",
-          title: "补齐 Threadsmith skill 与 conductor 边界说明",
-          summary: "讲清什么时候调用 skill，什么时候只正常和 Codex/CLI 对话。",
+          label: "release docs",
+          title: "补齐 v0.2.0 release notes 与 checklist",
+          summary: "讲清 Context OS 已交付能力与 deferred non-goals。",
           state: "later"
         },
         {
-          id: "v0-1-1-release",
-          label: "v0.1.1",
-          title: "发布 onboarding polish 修复版本",
-          summary: "更新 release note、README 顶部和 share/demo 材料。",
+          id: "v0-2-0-release",
+          label: "v0.2.0",
+          title: "发布 Context OS 版本",
+          summary: "创建 tag、GitHub Release 和公开发布说明。",
           state: "later"
         },
         {
@@ -112,26 +112,28 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       updatedAt: calibratedAt
     },
     currentPhase: {
-      phaseName: "v0.1.1 onboarding polish",
-      phaseGoal: "把 Threadsmith 的公开上手体验打磨到 CI 绿、first-run 清楚、demo 可理解、刷新状态可信",
-      deliverable: "v0.1.1 onboarding polish PR",
+      phaseName: "v0.2.0 Context OS release hardening",
+      phaseGoal: "把 Threadsmith 的公开发布面打磨到版本表述一致、Context OS 能力清楚、验证路径可信",
+      deliverable: "v0.2.0 Context OS release hardening PR",
       inScope: [
-        "CI zsh launcher verification 修复",
-        "first-run / demo mode / truth source 说明",
-        "状态刷新与最近读取时间可理解",
-        "Threadsmith skill 和 conductor 边界文档",
-        "v0.1.1 release surface"
+        "README / usage guide / release note 版本表述对齐",
+        "Context Packet / sync-context / truth source 说明",
+        "release checklist 与验证命令对齐",
+        "Threadsmith skill 和 conductor 边界保持清楚",
+        "v0.2.0 release surface"
       ],
       outOfScope: [
         "multi-provider 自动执行",
         "native desktop shell",
         "替代 Codex Desktop / Codex CLI 的主聊天入口"
       ],
-      stopCondition: "GitHub Actions 变绿，新用户能跑起来、看懂 demo、连接真实项目，并知道何时回到 conductor。",
+      stopCondition: "公开文档能清楚解释 v0.2.0 Context OS，验证命令通过，并且不承诺 multi-provider 或桌面壳。",
       verificationForThisPhase: [
         "npm run test",
         "npm run build",
+        "npm run test:e2e",
         "npm run verify:launchers",
+        "npm run smoke:self-host",
         "CI run on PR"
       ],
       activeOwners: [
@@ -144,31 +146,31 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       blockedBy: []
     },
     acceptanceState: {
-      currentClaim: "Threadsmith v0.1.1 正在打磨公开上手路径；当前前门仍只是入口快照，真实进度以进入项目后的 `.threadsmith` 为准。",
+      currentClaim: "Threadsmith v0.2.0 正在打磨 Context OS 发布面；当前前门仍只是入口快照，真实进度以进入项目后的 `.threadsmith` 为准。",
       doneWhenChecklist: [
         {
           id: "ci-green",
-          label: "GitHub Actions 线上 CI 变绿",
+          label: "release verification 和 GitHub Actions CI 变绿",
           status: "unknown"
         },
         {
           id: "first-run",
-          label: "首次使用说明清楚解释项目连接、.threadsmith 与 conductor 边界",
+          label: "公开说明清楚解释 .threadsmith、Context Packet 与 conductor 边界",
           status: "unknown"
         },
         {
           id: "refresh-truth",
-          label: "刷新状态、上次读取时间和当前信息来源可见",
+          label: "sync-context、刷新状态和 truth 来源边界清楚",
           status: "unknown"
         },
         {
           id: "demo-mode",
-          label: "内置 demo mode 能帮助新用户理解首页五块与工作台",
+          label: "前门和 demo mode 不会伪装成真实项目进度",
           status: "unknown"
         },
         {
           id: "release-surface",
-          label: "README、usage guide、release note 和 share 文案对齐 v0.1.1",
+          label: "README、usage guide、release note 和 share 文案对齐 v0.2.0",
           status: "unknown"
         }
       ],
@@ -177,7 +179,7 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       verificationStatus: "not-started",
       closeoutStatus: "not-started",
       knownGaps: [
-        "multi-provider automatic execution 仍不属于 v0.1.1 交付范围。",
+        "multi-provider automatic execution 仍不属于 v0.2.0 交付范围。",
         "desktop shell 仍在后续 backlog，不作为当前发布 blocker。"
       ],
       finalState: "not-ready"
@@ -187,13 +189,13 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
         {
           role: "planner",
           status: "done",
-          taskSummary: "定义 v0.1.1 onboarding polish 的发布修复范围",
+          taskSummary: "定义 v0.2.0 Context OS release hardening 的发布修复范围",
           requiresUserDecision: false
         },
         {
           role: "executor",
           status: "running",
-          taskSummary: "修复 CI 并打磨 first-run、demo mode、refresh 和 docs",
+          taskSummary: "对齐版本、release docs、Context OS 说明和验证路径",
           requiresUserDecision: false
         },
         {
@@ -211,7 +213,7 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
         {
           role: "closeout",
           status: "waiting",
-          taskSummary: "等待 v0.1.1 PR closeout 与 release notes",
+          taskSummary: "等待 v0.2.0 PR closeout 与 release notes",
           requiresUserDecision: false
         }
       ],
@@ -224,7 +226,7 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
     mode: "multi-thread",
     modeLabel: "发布打磨",
     summary:
-      "当前是 Threadsmith 前门，不直接承载某个真实项目的编码执行；v0.1.1 正在修复 CI 与首次上手路径。",
+      "当前是 Threadsmith 前门，不直接承载某个真实项目的编码执行；v0.2.0 正在对齐 Context OS 发布面。",
     lines: [
       {
         id: "planner",
@@ -233,7 +235,7 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
         provider: providerRouting.planner,
         presence: "logical",
         status: "done",
-        taskSummary: "v0.1.1 聚焦 CI、first-run、refresh、demo、docs 与 release surface。",
+        taskSummary: "v0.2.0 聚焦 Context Packet、recovery、docs、checklist 与 release surface。",
         requiresUserDecision: false,
         blockerSummary: null,
         latestEvidenceLabel: "scope accepted by user",
@@ -242,14 +244,14 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       {
         id: "executor",
         role: "executor",
-        threadLabel: "Onboarding Polish",
+        threadLabel: "Release Surface",
         provider: providerRouting.executor,
         presence: "logical",
         status: "running",
-        taskSummary: "正在把公开上手路径做成可发布的 v0.1.1 修复版。",
+        taskSummary: "正在把 Context OS 发布面做成可发布的 v0.2.0 版本。",
         requiresUserDecision: false,
         blockerSummary: null,
-        latestEvidenceLabel: "CI zsh fix + UI copy pass in progress",
+        latestEvidenceLabel: "Context OS release surface in progress",
         updatedAt: calibratedAt
       }
     ],

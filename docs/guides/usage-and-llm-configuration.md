@@ -2,11 +2,12 @@
 
 Threadsmith 是一个本地运行的 web control deck。它负责展示和维护项目的 workflow truth，不负责替代你和 AI 的主聊天入口。
 
-当前 `v0.1.1` 推荐搭配：
+当前 `v0.2.0 Context OS` 推荐搭配：
 
 - `Codex Desktop` 作为主要 conductor surface
 - `Codex CLI` 作为自动执行桥的默认 executor
 - `.threadsmith/` 作为项目 truth、阶段、证据和验收状态的持久层
+- `.threadsmith/context/` 作为 Context Packet、Repo Map、Evidence Summary、Role-specific Packets 等上下文压缩层
 
 ## 1. 安装
 
@@ -218,7 +219,7 @@ Provider routing 存在于：
 .threadsmith/provider-routing.json
 ```
 
-它的作用是让项目明确“每个角色现在由谁承担”。当前 UI 可以展示和记录这些路由，但 `v0.1.1` 不承诺非 Codex provider 的全自动执行已经完成。
+它的作用是让项目明确“每个角色现在由谁承担”。当前 UI 可以展示和记录这些路由，但 `v0.2.0` 不承诺非 Codex provider 的全自动执行已经完成。
 
 ## 7. Codex CLI 配置
 
@@ -247,7 +248,7 @@ npm run threadsmith:autopilot -- resume "/path/to/your-project"
 
 ## 8. Claude / Gemini / Other Providers
 
-Threadsmith 的架构为 multi-provider 预留了 provider routing 和 role boundary，但当前 public `v0.1.1` 不把 fully automated multi-provider execution 作为交付承诺。
+Threadsmith 的架构为 multi-provider 预留了 provider routing 和 role boundary，但当前 public `v0.2.0` 不把 fully automated multi-provider execution 作为交付承诺。
 
 这意味着：
 
