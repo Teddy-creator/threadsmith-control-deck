@@ -2,6 +2,7 @@ import {
   mkdir,
   readFile,
   readdir,
+  rename,
   stat,
   writeFile
 } from "node:fs/promises";
@@ -96,12 +97,17 @@ function formatResultSummary(result: ExecutionResult) {
 
 async function writeRunRecord(projectRoot: string, record: AgentRunRecord) {
   const parsed = agentRunRecordSchema.parse(record);
-  await mkdir(getRunDir(projectRoot, parsed.runId), { recursive: true });
-  await writeFile(
-    getRunFilePath(projectRoot, parsed.runId, AGENT_RUN_FILES.status),
-    formatJson(parsed),
-    "utf8"
+  const statusPath = getRunFilePath(
+    projectRoot,
+    parsed.runId,
+    AGENT_RUN_FILES.status
   );
+  const temporaryStatusPath = `${statusPath}.${process.pid}.${Date.now()}.tmp`;
+
+  await mkdir(getRunDir(projectRoot, parsed.runId), { recursive: true });
+  await writeFile(temporaryStatusPath, formatJson(parsed), "utf8");
+  await rename(temporaryStatusPath, statusPath);
+
   return parsed;
 }
 

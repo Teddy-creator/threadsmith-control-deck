@@ -51,7 +51,7 @@ export async function launchProjectRoleRun(
 
 export async function startProjectRun(
   input: RunExecutionRequest
-): Promise<RunLaunchResponse> {
+): Promise<RoleRunLaunchResponse> {
   const role = input.role ?? "executor";
 
   if (role !== "executor") {
@@ -63,7 +63,8 @@ export async function startProjectRun(
   return {
     projectRoot: input.projectRoot,
     packet: launched.packet,
-    run: launched.run
+    run: launched.run,
+    completion: launched.completion
   };
 }
 

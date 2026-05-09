@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, utimes } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, utimes } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -103,6 +103,44 @@ describe("agentRuns", () => {
     expect(updated.status).toBe("running");
     expect(updated.promptPath).toBe(".threadsmith/runs/run-1/prompt.md");
     expect(promptContents).toContain("当前 slice");
+  });
+
+  it("replaces status records atomically without leaving temporary files", async () => {
+    const projectRoot = await createProjectRoot();
+    await createAgentRun(projectRoot, {
+      runId: "run-atomic",
+      projectRoot,
+      role: "executor",
+      provider: "codex",
+      objective: "原子写 status",
+      scope: ["更新 run metadata"],
+      doneWhen: ["status.json 始终可解析"],
+      verification: [],
+      contextRefs: [
+        { kind: "state", path: ".threadsmith/current-phase.json" }
+      ],
+      output: {
+        resultPath: ".threadsmith/runs/run-atomic/result.json",
+        summaryPath: ".threadsmith/runs/run-atomic/result.md"
+      }
+    });
+
+    await updateAgentRunStatus(projectRoot, "run-atomic", {
+      status: "running",
+      statusDetail: "正在执行"
+    });
+    await updateAgentRunStatus(projectRoot, "run-atomic", {
+      status: "failed",
+      outcome: "failed",
+      statusDetail: "执行失败"
+    });
+
+    const runDirEntries = await readdir(join(projectRoot, ".threadsmith", "runs", "run-atomic"));
+    const record = await readAgentRunRecord(projectRoot, "run-atomic");
+
+    expect(record.status).toBe("failed");
+    expect(record.statusDetail).toBe("执行失败");
+    expect(runDirEntries.filter((entry) => entry.endsWith(".tmp"))).toEqual([]);
   });
 
   it("writes a structured result and marks the run complete", async () => {

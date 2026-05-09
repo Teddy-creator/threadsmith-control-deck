@@ -59,24 +59,6 @@ async function setPhaseVerification(projectRoot: string, verification: string[])
   });
 }
 
-async function waitForRunRecord(
-  projectRoot: string,
-  runId: string,
-  predicate: (record: Awaited<ReturnType<typeof readAgentRunRecord>>) => boolean
-) {
-  for (let attempt = 0; attempt < 100; attempt += 1) {
-    const record = await readAgentRunRecord(projectRoot, runId);
-
-    if (predicate(record)) {
-      return record;
-    }
-
-    await sleep(10);
-  }
-
-  throw new Error(`等待 run ${runId} 达到预期状态超时`);
-}
-
 async function waitForRunEvent(
   projectRoot: string,
   runId: string,
@@ -267,7 +249,7 @@ describe("startProjectRun", () => {
     const spawnMock = vi.fn(() => child as any);
     process.env.THREADSMITH_CODEX_REASONING_EFFORT = "low";
 
-    await startProjectRun({
+    const launched = await startProjectRun({
       projectRoot,
       role: "executor",
       provider: "codex",
@@ -295,7 +277,7 @@ describe("startProjectRun", () => {
     const { child, emit } = createMockChild();
     const spawnMock = vi.fn(() => child as any);
 
-    await startProjectRun({
+    const launched = await startProjectRun({
       projectRoot,
       role: "executor",
       provider: "codex",
@@ -308,15 +290,7 @@ describe("startProjectRun", () => {
     child.stderr.end("429 Too Many Requests");
     emit("close", 1, null);
 
-    const record = await waitForRunRecord(
-      projectRoot,
-      "run-reporting-failure",
-      (candidate) =>
-        candidate.status === "failed" &&
-        candidate.taskOutcome === "succeeded" &&
-        candidate.failureStage === "result-reporting" &&
-        candidate.failureKind === "rate-limit"
-    );
+    const record = await launched.completion;
 
     expect(record.status).toBe("failed");
     expect(record.taskOutcome).toBe("succeeded");
@@ -355,7 +329,7 @@ describe("startProjectRun", () => {
     const { child, emit } = createMockChild();
     const spawnMock = vi.fn(() => child as any);
 
-    await startProjectRun({
+    const launched = await startProjectRun({
       projectRoot,
       role: "executor",
       provider: "codex",
@@ -366,15 +340,7 @@ describe("startProjectRun", () => {
 
     emit("error", new Error("spawn failed"));
 
-    const record = await waitForRunRecord(
-      projectRoot,
-      "run-startup-failure",
-      (candidate) =>
-        candidate.status === "failed" &&
-        candidate.taskOutcome === "unknown" &&
-        candidate.failureStage === "cli-startup" &&
-        candidate.failureKind === "cli-startup"
-    );
+    const record = await launched.completion;
 
     expect(record.status).toBe("failed");
     expect(record.taskOutcome).toBe("unknown");

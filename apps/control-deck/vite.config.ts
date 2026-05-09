@@ -336,7 +336,11 @@ const threadsmithApiPlugin = {
             );
           }
 
-          json(res, 200, launched);
+          json(res, 200, {
+            projectRoot: launched.projectRoot,
+            packet: launched.packet,
+            run: launched.run
+          });
         } catch (error) {
           if (bridgeState.latestRoute) {
             await recordCommandBridgeFailure(
