@@ -1,27 +1,29 @@
 {
-  "phaseName": "Context sync action surface",
-  "phaseGoal": "把 Context 状态从可见推进到可处理：当 runtime contextRecovery 建议 sync / hygiene / handoff / wait / repair 时，阶段工作台能解释该怎么处理，并在已有 action flow 支持时打开对应动作预览。",
-  "deliverable": "Context recovery handling panel plus backed action preview entry for hygiene / handoff paths",
+  "phaseName": "Context packet regeneration engine v1",
+  "phaseGoal": "把 sync-context 从恢复建议升级为真实动作：当 current-packet.json 缺失、过期或无效时，可以从 committed .threadsmith truth 和已有 context artifacts 重新生成 current context packet。",
+  "deliverable": "First-class sync-context action that regenerates .threadsmith/context/current-packet.json",
   "inScope": [
-    "阶段工作台 Context 状态增加“处理方式”面板",
-    "把 sync-context 明确解释为当前版本可先通过 hygiene 重新锚定，而不假装自动生成 current-packet.json",
-    "run-hygiene / create-handoff 可打开现有动作预览",
-    "wait / resume / repair 类信号只给出人工处理说明，不展示虚假可执行按钮",
-    "补充前端渲染测试覆盖 context handling action surface"
+    "新增 first-class sync-context deck action",
+    "复用 runtime buildContextPacket 生成 current packet",
+    "fs-bridge 读取 repo-map / evidence-summary 并写回 .threadsmith/context/current-packet.json",
+    "nextBestStep 对 sync-context 返回真实 sync-context action，而不是 run-hygiene",
+    "Control Deck Context 状态处理入口改成真实刷新 Context Packet",
+    "补充 runtime / fs-bridge / control-deck / e2e 测试"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
     "native desktop shell",
     "large UI redesign",
     "改变首页整体视觉骨架",
-    "autopilot engine changes",
     "embedding/RAG or model API calls",
-    "automatic context packet regeneration",
-    "new runtime action id for sync-context",
-    "changing $threadsmith skill docs again"
+    "regenerating all role packets",
+    "changing $threadsmith skill docs again",
+    "turning run-hygiene into packet generation"
   ],
-  "stopCondition": "Context 状态详情能清楚说明下一步处理方式，并且已有 action flow 支持的处理入口可打开动作确认面板。",
+  "stopCondition": "删除或弄旧 current-packet.json 后，执行 sync-context 可以重新生成有效 packet，并让 deck reload 后 context 状态向 fresh 收敛。",
   "verificationForThisPhase": [
+    "npm run test --workspace @threadsmith/runtime -- src/nextBestStep.test.ts",
+    "npm run test --workspace @threadsmith/fs-bridge -- src/workflow.test.ts",
     "npm run test --workspace @threadsmith/control-deck -- src/test/renderDeck.shell.test.tsx",
     "npm run test --workspace @threadsmith/control-deck",
     "npm run build",

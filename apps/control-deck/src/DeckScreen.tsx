@@ -542,7 +542,9 @@ export function DeckScreen({
     triggerAction(primaryAction);
   }
 
-  function openContextActionPreview(actionId: "run-hygiene" | "create-handoff" | null) {
+  function openContextActionPreview(
+    actionId: "sync-context" | "run-hygiene" | "create-handoff" | null
+  ) {
     if (!actionId || !supervisorState) {
       return;
     }
@@ -559,13 +561,20 @@ export function DeckScreen({
 
     triggerAction({
       actionId,
-      label: actionId === "create-handoff" ? "创建 handoff" : "运行 context hygiene",
+      label:
+        actionId === "create-handoff"
+          ? "创建 handoff"
+          : actionId === "sync-context"
+            ? "刷新 Context Packet"
+            : "运行 context hygiene",
       reason: supervisorState.contextRecovery.detail,
       expectedRoles: ["hygiene"],
       stopCondition:
         actionId === "create-handoff"
           ? "已经存在一个可继续的 handoff packet。"
-          : "当前 truth 已被重新锚定，继续前的 context 风险已降低。"
+          : actionId === "sync-context"
+            ? "Context Packet 与当前 committed truth 重新一致。"
+            : "当前 truth 已被重新锚定，继续前的 context 风险已降低。"
     });
   }
 

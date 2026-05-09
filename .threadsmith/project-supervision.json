@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "v0.2.0 Control Deck Context Surface v1 已本地验收：contextRecovery 已在首页和阶段工作台成为可见对象。",
+  "summary": "v0.2.0 Context packet regeneration engine v1 已本地验收：sync-context 现在是真实动作，可以重新生成 current-packet.json。",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,11 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "已确认 Control Deck Context Surface v1 范围：展示 contextRecovery，不改整体视觉骨架或执行链路。",
+      "taskSummary": "已确认 Context packet regeneration engine v1 范围：只做 current packet regeneration，不扩展到 role packets 或 multi-provider。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "phase contract 已刷新",
-      "updatedAt": "2026-05-09T16:34:59Z"
+      "updatedAt": "2026-05-09T18:17:35Z"
     },
     {
       "id": "builder-logical",
@@ -23,11 +23,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已实现首页 context 摘要、阶段工作台 Context 状态详情、中文标签与渲染测试。",
+      "taskSummary": "已实现 first-class sync-context action：fs-bridge 读取 truth / repo map / evidence summary 并写回 current-packet.json。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "control-deck tests + build 已通过",
-      "updatedAt": "2026-05-09T16:34:59Z"
+      "latestEvidenceLabel": "fs-bridge workflow test 已覆盖",
+      "updatedAt": "2026-05-09T18:17:35Z"
     },
     {
       "id": "critic-logical",
@@ -36,11 +36,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已复核改动没有重画前端骨架，信息层只追加在推进判断和阶段工作台中。",
+      "taskSummary": "已复核 sync-context 与 run-hygiene 保持语义分离，Control Deck 文案不再说 regeneration engine 不存在。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T16:34:59Z"
+      "updatedAt": "2026-05-09T18:17:35Z"
     },
     {
       "id": "verifier-logical",
@@ -49,11 +49,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已通过 targeted render test、control-deck full tests、build 和 Playwright smoke。",
+      "taskSummary": "已通过 npm run test、npm run build、npm run test:e2e、git diff --check 和 .threadsmith JSON 校验。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "tests + build + smoke 已通过",
-      "updatedAt": "2026-05-09T16:34:59Z"
+      "latestEvidenceLabel": "full verification 已通过",
+      "updatedAt": "2026-05-09T18:17:35Z"
     },
     {
       "id": "closeout-logical",
@@ -62,11 +62,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "Control Deck Context Surface v1 已完成本地 closeout；下一步提交分支、创建 PR 并观察 CI。",
+      "taskSummary": "Context packet regeneration engine v1 已完成本地 closeout；下一步提交 PR 并进入 v0.2.0 release hardening。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "acceptance 已更新",
-      "updatedAt": "2026-05-09T16:34:59Z"
+      "updatedAt": "2026-05-09T18:17:35Z"
     },
     {
       "id": "hygiene-logical",
@@ -75,12 +75,12 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "守住本 slice 边界：不加入 packet regeneration、multi-provider、桌面壳或新的执行桥能力。",
+      "taskSummary": "守住本 slice 边界：没有生成全部 role packets，没有进入 multi-provider，也没有改动整体 UI 风格。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T16:34:59Z"
+      "updatedAt": "2026-05-09T18:17:35Z"
     }
   ],
-  "updatedAt": "2026-05-09T16:34:59Z"
+  "updatedAt": "2026-05-09T18:17:35Z"
 }

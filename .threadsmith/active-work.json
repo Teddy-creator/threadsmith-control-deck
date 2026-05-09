@@ -3,37 +3,37 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收紧为 Context sync action surface：只做 Context 状态的处理说明与已有 action flow 入口，不实现真正 packet regeneration。",
+      "taskSummary": "已把本 slice 收束为 Context packet regeneration engine v1，并确认不进入 role packets / multi-provider / 桌面壳。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现阶段工作台“处理方式”面板，并把 run-hygiene / create-handoff 接到动作预览入口。",
+      "taskSummary": "已实现 first-class sync-context action，复用 buildContextPacket 并写回 current-packet.json。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核 sync-context 文案不会假装自动重写 current-packet.json；wait / resume / repair 也不会展示虚假按钮。",
+      "taskSummary": "已复核 sync-context 与 run-hygiene 的语义边界：一个刷新 packet，一个做线程/恢复 hygiene。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已通过 targeted shell test、control-deck 全量测试、build、e2e、diff check 和 .threadsmith JSON 校验。",
+      "taskSummary": "已通过 runtime、fs-bridge、control-deck、build、Playwright e2e、diff check 和 JSON 校验。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "Context sync action surface 已完成本地 closeout；下一步提交分支、创建 PR 并观察 CI。",
+      "taskSummary": "已清理临时测试产物并把 acceptance / supervision / context truth 写回 accepted。",
       "requiresUserDecision": false
     },
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "守住本 slice 边界：不加入 packet regeneration、multi-provider、桌面壳或新的执行桥能力。",
+      "taskSummary": "守住边界：本 slice 只生成 current-packet.json，不生成全部 role packets，也不进入 multi-provider。",
       "requiresUserDecision": false
     }
   ],

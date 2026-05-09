@@ -17,6 +17,7 @@ export const deckActionIdSchema = z.enum([
   "advance-phase",
   "open-current-phase",
   "run-verification",
+  "sync-context",
   "run-hygiene",
   "create-handoff"
 ]);

@@ -131,3 +131,58 @@ test("a custom project can execute the primary deck action and reflect fresh tru
     await rm(projectRoot, { recursive: true, force: true });
   }
 });
+
+test("a custom project can regenerate a missing current context packet from the deck", async ({
+  page
+}) => {
+  const projectRoot = await mkdtemp(join(tmpdir(), "threadsmith-context-sync-"));
+  const currentPacketPath = join(
+    projectRoot,
+    ".threadsmith",
+    "context",
+    "current-packet.json"
+  );
+  const eventsPath = join(projectRoot, ".threadsmith", "events.ndjson");
+
+  try {
+    await seedBootstrappableProject(projectRoot, {
+      packageName: "threadsmith-context-sync",
+      title: "Threadsmith Context Sync",
+      summary: "Repository used to prove context packet regeneration."
+    });
+
+    await page.goto("/");
+    await connectAndInitializeCustomProject(page, projectRoot);
+
+    await rm(currentPacketPath, { force: true });
+    await page.getByRole("button", { name: /刷新状态/ }).click();
+
+    await page.getByRole("button", { name: "阶段", exact: true }).click();
+    const inspectorPanel = page.locator(".inspector-panel");
+    await expect(inspectorPanel.getByRole("heading", { name: "Context 状态" })).toBeVisible();
+    await expect(inspectorPanel.getByText(/建议先(生成|刷新) Context Packet/)).toBeVisible();
+    await inspectorPanel.getByRole("button", { name: "打开 context sync 动作" }).click();
+
+    await expect(page.getByText("动作确认", { exact: true })).toBeVisible();
+    await page.getByRole("button", { name: "确认启动" }).click();
+
+    await expect
+      .poll(async () => {
+        const packet = await readJsonFileWhenReady<{
+          currentPhase: { name: string };
+          sourceRefs: Array<{ path: string }>;
+        }>(currentPacketPath);
+        return packet?.currentPhase.name ?? null;
+      })
+      .toBe("为 Threadsmith Context Sync 收紧第一条 autopilot slice");
+
+    await expect
+      .poll(async () => {
+        const contents = await readFile(eventsPath, "utf8");
+        return contents.includes("\"actionId\":\"sync-context\"");
+      })
+      .toBe(true);
+  } finally {
+    await rm(projectRoot, { recursive: true, force: true });
+  }
+});

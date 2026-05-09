@@ -427,4 +427,30 @@ describe("selectNextBestStep", () => {
     expect(result.primary.label).toBe("处理结果上报失败");
     expect(result.primary.reason).toContain("任务体已完成");
   });
+
+  it("recommends a real context sync action when the current packet is missing", () => {
+    const result = selectNextBestStep(
+      baseState,
+      undefined,
+      null,
+      undefined,
+      undefined,
+      {
+        status: "recover",
+        action: "sync-context",
+        headline: "缺少 current context packet",
+        detail: "当前项目没有可用的 Context Packet，继续前应先从 committed truth 重新生成 packet。",
+        reasons: ["context-packet-missing"],
+        selectedRole: "executor",
+        currentPacketStatus: "missing",
+        rolePacketStatus: "not-required"
+      }
+    );
+
+    expect(result.primary.actionId).toBe("sync-context");
+    expect(result.primary.label).toBe("生成 Context Packet");
+    expect(result.primary.stopCondition).toBe(
+      "Context Packet 与当前 committed truth 重新一致。"
+    );
+  });
 });

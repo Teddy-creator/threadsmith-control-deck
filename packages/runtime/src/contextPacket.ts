@@ -74,6 +74,20 @@ function buildPacketId(state: ProjectState, generatedAt: string) {
 function buildNextStep(state: ProjectState) {
   const recommendedRole = inferRecommendedRole(state);
 
+  if (state.acceptanceState.finalState === "accepted") {
+    return {
+      label: state.projectStatus.nextPlannedSlice
+        ? `进入 ${state.projectStatus.nextPlannedSlice.title}`
+        : "规划下一刀",
+      rationale:
+        state.projectStatus.nextPlannedSlice
+          ? "当前 slice 已 accepted，下一步应该基于 accepted truth 进入下一条计划 slice。"
+          : "当前 slice 已 accepted，下一步应该从干净的 accepted truth 起草新的 narrow slice。",
+      recommendedRole: "planner" as const,
+      actionId: "open-current-phase"
+    };
+  }
+
   if (state.currentPhase.blockedBy.length > 0) {
     return {
       label: "先解除当前 blocker",

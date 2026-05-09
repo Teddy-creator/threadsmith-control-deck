@@ -12,6 +12,7 @@ export type RuntimeActionId =
   | "advance-phase"
   | "open-current-phase"
   | "run-verification"
+  | "sync-context"
   | "run-hygiene"
   | "create-handoff";
 
@@ -396,7 +397,7 @@ export function selectNextBestStep(
   if (shouldPrioritizeContextRecovery && contextRecovery.action === "sync-context") {
     return {
       primary: recommendation(
-        "run-hygiene",
+        "sync-context",
         contextRecovery.currentPacketStatus === "missing"
           ? "生成 Context Packet"
           : "刷新 Context Packet",

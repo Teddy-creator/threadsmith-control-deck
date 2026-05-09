@@ -227,6 +227,8 @@ export function formatRuntimeAction(actionId: RuntimeActionId) {
       return "查看当前阶段";
     case "run-verification":
       return "执行验证";
+    case "sync-context":
+      return "刷新 Context Packet";
     case "run-hygiene":
       return "整理当前线程";
     case "create-handoff":

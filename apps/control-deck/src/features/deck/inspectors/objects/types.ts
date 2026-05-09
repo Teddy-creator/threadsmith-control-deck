@@ -35,7 +35,7 @@ export interface ContextRecoveryModel {
     title: string;
     detail: string;
     tone: string;
-    executableActionId: "run-hygiene" | "create-handoff" | null;
+    executableActionId: "sync-context" | "run-hygiene" | "create-handoff" | null;
     executableLabel: string | null;
     manualHint: string | null;
   };

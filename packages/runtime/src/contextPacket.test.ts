@@ -176,6 +176,34 @@ describe("buildContextPacket", () => {
     expect(packet.recentDiff.status).toBe("unknown");
   });
 
+  it("points accepted slices at the next planned slice instead of repeating verification", () => {
+    const packet = buildContextPacket({
+      ...baseState,
+      projectStatus: {
+        ...baseState.projectStatus,
+        overallState: "stable",
+        nextPlannedSlice: {
+          title: "Release hardening",
+          recordedAt: null
+        }
+      },
+      acceptanceState: {
+        ...baseState.acceptanceState,
+        implementationStatus: "ready-for-review",
+        reviewStatus: "ready-for-verification",
+        verificationStatus: "passed",
+        closeoutStatus: "done",
+        finalState: "accepted"
+      }
+    }, {
+      generatedAt: "2026-05-09T13:16:10.000Z"
+    });
+
+    expect(packet.nextStep.label).toBe("进入 Release hardening");
+    expect(packet.nextStep.recommendedRole).toBe("planner");
+    expect(packet.nextStep.actionId).toBe("open-current-phase");
+  });
+
   it("can enrich relevant files from a repo map without replacing explicit files", () => {
     const packet = buildContextPacket(baseState, {
       generatedAt: "2026-05-09T13:16:30.000Z",

@@ -1,29 +1,29 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Context sync action surface is implemented: Context 状态 now explains how to handle recovery signals and can open backed hygiene / handoff action previews without pretending sync-context has a true regeneration engine.",
+  "currentClaim": "Threadsmith v0.2.0 Context packet regeneration engine v1 is implemented: sync-context is now a real deck/runtime action that regenerates .threadsmith/context/current-packet.json from committed truth and available context artifacts.",
   "doneWhenChecklist": [
     {
-      "id": "handling-panel",
-      "label": "阶段工作台 Context 状态增加处理方式面板",
+      "id": "sync-context-action",
+      "label": "sync-context 成为 first-class deck action",
       "status": "pass"
     },
     {
-      "id": "honest-sync-context",
-      "label": "sync-context 诚实说明当前只能先通过 hygiene 重新锚定",
+      "id": "packet-regeneration",
+      "label": "执行 sync-context 会写回有效 current-packet.json",
       "status": "pass"
     },
     {
-      "id": "backed-action-entry",
-      "label": "run-hygiene / create-handoff 可打开现有动作预览",
+      "id": "recommendation-routing",
+      "label": "missing/stale packet 的 next best step 指向 sync-context",
       "status": "pass"
     },
     {
-      "id": "non-executable-guidance",
-      "label": "wait / resume / repair 不展示虚假按钮，只给出处理说明",
+      "id": "deck-copy",
+      "label": "Control Deck 不再说 regeneration engine 不存在",
       "status": "pass"
     },
     {
       "id": "verification-green",
-      "label": "targeted / full control-deck / build / e2e / diff / JSON checks 全部通过",
+      "label": "runtime / fs-bridge / control-deck / e2e / build / JSON checks 全部通过",
       "status": "pass"
     }
   ],
@@ -32,17 +32,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "This slice does not auto-regenerate current-packet.json yet.",
-    "This slice does not add multi-provider automation.",
-    "sync-context remains a recovery recommendation mapped to existing run-hygiene handling until a real regeneration engine exists."
-  ],
-  "verificationEvidence": [
-    "npm run test --workspace @threadsmith/control-deck -- src/test/renderDeck.shell.test.tsx",
-    "npm run test --workspace @threadsmith/control-deck",
-    "npm run build",
-    "npm run test:e2e",
-    "git diff --check",
-    "jq empty .threadsmith/*.json .threadsmith/context/*.json"
+    "Role packet regeneration remains out of scope for this slice.",
+    "multi-provider automation remains out of scope for v0.2.0.",
+    "v0.2.0 still needs release hardening before a public release."
   ],
   "finalState": "accepted"
 }

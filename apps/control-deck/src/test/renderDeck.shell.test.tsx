@@ -917,17 +917,17 @@ describe("DeckScreen shell", () => {
     const objectsScope = within(objectsDrawer as HTMLElement);
 
     expect(objectsScope.getByText("建议先生成 Context Packet")).toBeInTheDocument();
-    expect(objectsScope.getByText("打开 hygiene 处理动作")).toBeInTheDocument();
+    expect(objectsScope.getByText("打开 context sync 动作")).toBeInTheDocument();
     expect(
-      objectsScope.getByText(/当前版本还没有自动重写 current-packet\.json/)
+      objectsScope.getByText(/可以从 committed Threadsmith truth/)
     ).toBeInTheDocument();
 
-    fireEvent.click(objectsScope.getByRole("button", { name: "打开 hygiene 处理动作" }));
+    fireEvent.click(objectsScope.getByRole("button", { name: "打开 context sync 动作" }));
 
     expect(screen.getByText("动作确认")).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "确认启动" }));
-    expect(onRunAction).toHaveBeenCalledWith("run-hygiene", undefined);
+    expect(onRunAction).toHaveBeenCalledWith("sync-context", undefined);
   });
 
   it("keeps action count and latest deck action visible after a workflow action", () => {

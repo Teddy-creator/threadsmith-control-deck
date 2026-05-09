@@ -5,8 +5,15 @@ import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { readLatestContinuationPacket } from "./continuationPackets.ts";
 import { appendEvent, readRecentEvents } from "./events.ts";
-import { ensureStateDir, loadProjectState, writeStateFragment } from "./fileStore.ts";
-import { STATE_FILES } from "./paths.ts";
+import {
+  ensureStateDir,
+  loadProjectState,
+  readCurrentContextPacket,
+  writeEvidenceSummary,
+  writeRepoMap,
+  writeStateFragment
+} from "./fileStore.ts";
+import { CONTEXT_FILES, STATE_FILES, THREADSMITH_DIR } from "./paths.ts";
 import { readLatestWorkflowArtifact } from "./workflowArtifacts.ts";
 import {
   applyAgentRunResult,
@@ -203,6 +210,67 @@ describe("workflow", () => {
     expect(events[0]?.actionId).toBe("run-hygiene");
     expect(events[0]?.detail).toContain(".threadsmith/packets/");
     expect(latestPacket?.kind).toBe("hygiene");
+  });
+
+  it("regenerates the current context packet when sync-context is executed", async () => {
+    const projectRoot = await createProjectRoot();
+    await seedProject(projectRoot);
+    await writeRepoMap(projectRoot, {
+      mapId: "repo-map-test",
+      generatedAt: "2026-05-09T10:00:00.000Z",
+      projectRootLabel: "threadsmith-workflow",
+      packageManager: "npm",
+      rootPackage: null,
+      workspacePackages: [],
+      topLevelDirectories: [],
+      sourceDirectories: [],
+      entryPoints: [],
+      git: {
+        status: "dirty",
+        changedFiles: ["packages/fs-bridge/src/workflow.ts"],
+        command: "git status --short"
+      },
+      warnings: []
+    });
+    await writeEvidenceSummary(projectRoot, {
+      summaryId: "ev-test",
+      generatedAt: "2026-05-09T10:01:00.000Z",
+      status: "passed",
+      headline: "Verification passed",
+      detail: "Targeted workflow tests passed.",
+      commands: [
+        {
+          command: "npm run test --workspace @threadsmith/fs-bridge -- src/workflow.test.ts",
+          status: "passed",
+          summary: "Workflow tests passed.",
+          exitCode: 0,
+          durationMs: 1200,
+          failureFocus: null,
+          artifactRefs: []
+        }
+      ],
+      artifactRefs: [],
+      failureFocus: null,
+      source: "verification",
+      warnings: []
+    });
+
+    await applyDeckActionState(projectRoot, "sync-context");
+
+    const packet = await readCurrentContextPacket(projectRoot);
+    const events = await readRecentEvents(projectRoot);
+
+    expect(packet.currentPhase.name).toBe("Build workflow loop");
+    expect(packet.recentDiff.status).toBe("dirty");
+    expect(packet.recentDiff.changedFiles).toContain(
+      "packages/fs-bridge/src/workflow.ts"
+    );
+    expect(packet.evidence.status).toBe("ready");
+    expect(events[0]?.actionId).toBe("sync-context");
+    expect(events[0]?.artifactPath).toBe(
+      `${THREADSMITH_DIR}/context/${CONTEXT_FILES.currentPacket}`
+    );
+    expect(events[0]?.detail).toContain(packet.packetId);
   });
 
   it("keeps workflow-generated timestamps monotonic when older truth contains future packet timestamps", async () => {

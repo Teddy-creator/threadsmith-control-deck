@@ -34,10 +34,10 @@ function buildContextHandling(recovery: ContextRecoverySignal) {
           ? "建议先生成 Context Packet"
           : "建议先刷新 Context Packet",
       detail:
-        "当前版本还没有自动重写 current-packet.json 的 regeneration engine；可先运行 hygiene，把 committed truth 重新锚定成可继续的恢复边界。",
+        "可以从 committed Threadsmith truth、repo map 和 evidence summary 重新生成 current-packet.json，让 Context Packet 回到当前 phase / acceptance 边界。",
       tone: recovery.currentPacketStatus === "missing" ? "amber" : "red",
-      executableActionId: "run-hygiene" as const,
-      executableLabel: "打开 hygiene 处理动作",
+      executableActionId: "sync-context" as const,
+      executableLabel: "打开 context sync 动作",
       manualHint: "如果你正在指挥官聊天里推进，也可以直接说：使用 $threadsmith sync，只同步 truth 与 context。"
     };
   }
