@@ -28,6 +28,8 @@ import {
   loadProjectSupervisionState,
   loadProjectState,
   persistContinuationPreference,
+  readCurrentContextPacket,
+  readRoleContextPacket,
   writeStateFragment
 } from "../../packages/fs-bridge/src/fileStore";
 import {
@@ -52,6 +54,7 @@ import {
   workflowTransitionRequestSchema
 } from "../../packages/fs-bridge/src/schema";
 import { STATE_FILES } from "../../packages/fs-bridge/src/paths";
+import type { PhaseOwner } from "../../packages/domain/src/index";
 import { createAppHomeBridgeResponse } from "./server/appHomeBridge";
 import { APP_HOME_PROJECT_ROOT, isAppHomeProjectRoot } from "./src/features/deck/appHomeSource";
 
@@ -148,6 +151,39 @@ function buildUnsupportedProviderMessage(
   return `当前 ${role} 已路由到 Claude；auto-execution v1 暂不支持自动执行，请回到当前入口（${formatConductorSurfaceLabel(routing.conductorSurface)}）继续。`;
 }
 
+async function readOptionalCurrentPacket(projectRoot: string) {
+  try {
+    return {
+      packet: await readCurrentContextPacket(projectRoot),
+      problem: null
+    };
+  } catch (error) {
+    return {
+      packet: null,
+      problem:
+        error instanceof Error
+          ? `无法读取 .threadsmith/context/current-packet.json：${error.message}`
+          : "无法读取 .threadsmith/context/current-packet.json。"
+    };
+  }
+}
+
+async function readAvailableRolePackets(projectRoot: string, roles: PhaseOwner[]) {
+  const packets = await Promise.all(
+    roles.map(async (role) => {
+      try {
+        return await readRoleContextPacket(projectRoot, role);
+      } catch {
+        return null;
+      }
+    })
+  );
+
+  return packets.filter((packet): packet is NonNullable<typeof packet> =>
+    packet !== null
+  );
+}
+
 async function buildBridgeResponse(projectRoot: string) {
   if (isAppHomeProjectRoot(projectRoot)) {
     const providerRouting = await loadProviderRouting(selfHostedProjectRoot);
@@ -165,6 +201,15 @@ async function buildBridgeResponse(projectRoot: string) {
     ? await readPhasePause(projectRoot, latestPhaseRun.phaseRunId)
     : null;
   const commandBridgeState = await readCommandBridgeState(projectRoot);
+  const currentPacketRead = await readOptionalCurrentPacket(projectRoot);
+  const rolePackets = await readAvailableRolePackets(projectRoot, [
+    "planner",
+    "executor",
+    "reviewer",
+    "verifier",
+    "closeout",
+    "hygiene"
+  ]);
 
   return {
     projectRoot,
@@ -176,6 +221,10 @@ async function buildBridgeResponse(projectRoot: string) {
     latestPhaseRun,
     latestPhasePause,
     commandBridgeState,
+    contextArtifactsLoaded: true,
+    contextArtifactProblem: currentPacketRead.problem,
+    currentPacket: currentPacketRead.packet,
+    rolePackets,
     actionHistoryLength: actionHistory.length
   };
 }

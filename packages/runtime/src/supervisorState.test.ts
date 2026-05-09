@@ -499,4 +499,30 @@ describe("deriveSupervisorState", () => {
     expect(supervisorState.nextBestStep.primary.label).toBe("先处理恢复条件");
     expect(supervisorState.nextBestStep.primary.reason).toContain("回到指挥入口");
   });
+
+  it("routes invalid context artifacts to context sync recovery", () => {
+    const supervisorState = deriveSupervisorState(
+      baseState,
+      [],
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      [],
+      true,
+      "无法读取 .threadsmith/context/current-packet.json：missing budget"
+    );
+
+    expect(supervisorState.contextRecovery.action).toBe("sync-context");
+    expect(supervisorState.contextRecovery.reasons).toContain(
+      "context-artifact-invalid"
+    );
+    expect(supervisorState.nextBestStep.primary.label).toBe("刷新 Context Packet");
+    expect(supervisorState.gateSignal.reasons).toContain(
+      "context-artifact-invalid"
+    );
+  });
 });

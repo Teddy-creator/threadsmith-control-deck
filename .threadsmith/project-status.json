@@ -2,14 +2,14 @@
   "projectLabel": "Threadsmith",
   "currentTrack": "v0.2.0 Context OS",
   "overallState": "in-progress",
-  "currentFocus": "Threadsmith.skill v2 已本地验收：$threadsmith 现在优先使用 Context Packet / Role Packet，并明确 sync / drive / recover 协议。",
-  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1 和 Threadsmith.skill v2 本地验收。下一步是 PR/CI，然后继续 truth sync / recovery hygiene triggers。",
+  "currentFocus": "Truth sync / recovery hygiene triggers 已本地验收：runtime 可以识别 context artifacts 过期/缺失，并在继续前推荐 sync、hygiene、repair、handoff 或 continue。",
+  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1、Threadsmith.skill v2 和 Truth sync / recovery hygiene triggers 本地验收。下一步建议进入 Control Deck Context Surface v1。",
   "latestAcceptedSlice": {
-    "title": "Threadsmith.skill v2",
-    "recordedAt": "2026-05-09T15:43:45Z"
+    "title": "Truth sync / recovery hygiene triggers",
+    "recordedAt": "2026-05-09T16:15:18Z"
   },
   "nextPlannedSlice": {
-    "title": "Truth sync / recovery hygiene triggers",
+    "title": "Control Deck Context Surface v1",
     "recordedAt": null
   },
   "currentMilestoneId": "threadsmith-skill-v2",
@@ -19,5 +19,5 @@
     "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
     "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T15:43:45Z"
+  "updatedAt": "2026-05-09T16:15:18Z"
 }

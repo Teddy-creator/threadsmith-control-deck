@@ -65,6 +65,10 @@ function buildBridgeResponse(projectRoot: string, actionHistoryLength = 0) {
       latestRun: null,
       updatedAt: null
     },
+    contextArtifactsLoaded: false,
+    contextArtifactProblem: null,
+    currentPacket: null,
+    rolePackets: [],
     actionHistoryLength
   };
 }
@@ -261,7 +265,11 @@ describe("useProjectBridge", () => {
         response.projectSupervision,
         response.providerRouting,
         response.latestPhaseRun,
-        response.latestPhasePause
+        response.latestPhasePause,
+        response.currentPacket,
+        response.rolePackets,
+        response.contextArtifactsLoaded,
+        response.contextArtifactProblem
       );
     });
   });

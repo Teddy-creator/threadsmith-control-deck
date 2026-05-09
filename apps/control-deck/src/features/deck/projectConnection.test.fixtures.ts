@@ -70,6 +70,10 @@ export function buildBridgeResponseBody(actionHistoryLength = 0) {
     recentEvents: [],
     latestPhaseRun: null,
     latestPhasePause: null,
+    contextArtifactsLoaded: false,
+    contextArtifactProblem: null,
+    currentPacket: null,
+    rolePackets: [],
     actionHistoryLength
   };
 }

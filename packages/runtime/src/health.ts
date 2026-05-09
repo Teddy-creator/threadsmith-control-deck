@@ -6,6 +6,7 @@ import {
   type PhasePauseSummary,
   type PhaseRunSummary
 } from "./phaseRun.ts";
+import type { ContextRecoverySignal } from "./contextRecovery.ts";
 
 export type HealthLevel = "healthy" | "watch" | "risky" | "blocked";
 export type ThreadHealth = "healthy" | "watch" | "handoff-recommended";
@@ -31,7 +32,8 @@ export function deriveHealth(
     recordedAt: null
   },
   latestPhaseRun: PhaseRunSummary = createMissingPhaseRunSummary(),
-  latestPhasePause: PhasePauseSummary = createMissingPhasePauseSummary()
+  latestPhasePause: PhasePauseSummary = createMissingPhasePauseSummary(),
+  contextRecovery: ContextRecoverySignal | null = null
 ): ProjectHealth {
   const phaseRunBlocker =
     latestPhaseRun.status === "paused" &&
@@ -66,7 +68,10 @@ export function deriveHealth(
     ...state.currentPhase.blockedBy,
     ...state.acceptanceState.knownGaps,
     ...(phaseRunRisk ? [phaseRunRisk] : []),
-    ...(continuationRisk ? [continuationRisk] : [])
+    ...(continuationRisk ? [continuationRisk] : []),
+    ...(contextRecovery && contextRecovery.status !== "fresh"
+      ? [contextRecovery.detail]
+      : [])
   ].slice(0, 3);
 
   let level: HealthLevel = "healthy";
@@ -76,12 +81,14 @@ export function deriveHealth(
     level = "risky";
   } else if (
     state.acceptanceState.verificationStatus === "failed" ||
-    state.acceptanceState.reviewStatus === "review-blocked"
+    state.acceptanceState.reviewStatus === "review-blocked" ||
+    contextRecovery?.status === "recover"
   ) {
     level = "risky";
   } else if (
     verificationDebtCount > 0 ||
     topRisks.length > 0 ||
+    contextRecovery?.status === "watch" ||
     latestContinuationState.freshness === "stale"
   ) {
     level = "watch";
@@ -89,6 +96,7 @@ export function deriveHealth(
 
   const combinedText = topRisks.join(" ").toLowerCase();
   const threadHealth: ThreadHealth =
+    contextRecovery?.action === "create-handoff" ||
     latestContinuationState.freshness === "stale" ||
     (state.acceptanceState.finalState === "accepted" &&
       latestContinuationState.kind !== "handoff") ||
