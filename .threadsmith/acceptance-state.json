@@ -1,34 +1,34 @@
 {
-  "currentClaim": "Threadsmith v0.1.1 onboarding polish is locally verified on release/v0.1.1-onboarding-polish: tests, build, e2e, launcher verification, smoke checks, diff hygiene, and public-surface scan passed. GitHub Actions CI still requires PR/push confirmation.",
+  "currentClaim": "Threadsmith v0.2.0 Context Packet v1 is accepted locally: schema, builder, persistence API, runtime artifact boundary, full workspace tests, and build all pass.",
   "doneWhenChecklist": [
     {
-      "id": "branch-created",
-      "label": "从 main 开 release/v0.1.1-onboarding-polish 分支，不直接改 main",
+      "id": "plan-written",
+      "label": "v0.2.0 Context OS implementation plan 已写入 docs/plans",
       "status": "pass"
     },
     {
-      "id": "ci-green",
-      "label": "GitHub Actions 线上 CI 变绿",
-      "status": "unknown"
-    },
-    {
-      "id": "first-run",
-      "label": "首次使用说明清楚解释项目连接、.threadsmith 与 conductor 边界",
+      "id": "context-schema",
+      "label": "Context Packet v1 schema 已定义并从 domain 导出",
       "status": "pass"
     },
     {
-      "id": "refresh-truth",
-      "label": "刷新状态、上次读取时间和当前信息来源可见",
+      "id": "context-builder",
+      "label": "runtime 可以从 ProjectState 生成 context packet",
       "status": "pass"
     },
     {
-      "id": "demo-mode",
-      "label": "demo mode 能帮助新用户理解首页五块与工作台",
+      "id": "context-persistence",
+      "label": "fs-bridge 可以写入 .threadsmith/context/current-packet.json",
       "status": "pass"
     },
     {
-      "id": "release-surface",
-      "label": "README、usage guide、release note 和 release copy 对齐 v0.1.1",
+      "id": "targeted-tests",
+      "label": "domain/runtime/fs-bridge targeted tests 通过",
+      "status": "pass"
+    },
+    {
+      "id": "build-green",
+      "label": "npm run build 通过",
       "status": "pass"
     }
   ],
@@ -37,8 +37,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "multi-provider automatic execution is still out of scope.",
-    "GitHub Actions CI can only be confirmed after PR push."
+    ".threadsmith/context/current-packet.json is intentionally ignored as a regenerable runtime artifact, not committed truth.",
+    "Repo Map v1, Evidence Summary v1, Role-specific Packets v1, and Control Deck Context Surface are planned later slices, not part of Context Packet v1.",
+    "multi-provider automatic execution remains out of scope for this release line."
   ],
-  "finalState": "not-ready"
+  "finalState": "accepted"
 }

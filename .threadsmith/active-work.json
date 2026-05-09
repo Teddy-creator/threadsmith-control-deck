@@ -3,39 +3,39 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已收束 v0.1.1 onboarding polish 范围：CI、first-run、demo mode、refresh truth、skill/docs 与 release surface。",
+      "taskSummary": "已把 v0.2.0 Context OS 拆成 8 个实现 slice，并将第一刀收紧为 Context Packet v1。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已完成 v0.1.1 onboarding polish 实现：CI workflow、前门/来源说明、demo labels、startup message、docs 与 release copy 已更新。",
+      "taskSummary": "已实现 Context Packet v1 schema、builder、persistence，并生成当前项目的 current-packet.json。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核当前 diff 聚焦 onboarding polish，没有进入 multi-provider、desktop app 或大 UI redesign。",
+      "taskSummary": "已复核第一刀保持窄范围：未进入 repo map、evidence summary、UI surface、multi-provider 或桌面壳。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已运行 npm run test、npm run build、npm run test:e2e、npm run verify:launchers、smoke:autopilot、smoke:self-host、diff check 和公开扫描。",
+      "taskSummary": "已运行 targeted tests、runtime/fs-bridge/orchestrator 包测试、全量 npm run test 与 npm run build。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已清理误触发的 deck-route runtime 噪音，并准备提交/PR；线上 CI 待 PR 后确认。",
+      "taskSummary": "已完成第一刀 closeout：.threadsmith/context 被标记为 runtime artifact，当前 slice 准备提交/PR。",
       "requiresUserDecision": false
     },
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "已将旧的 blocked / 未同步叙事替换为 public release hygiene 当前状态。",
+      "taskSummary": "已将 .threadsmith committed truth 从 v0.1.1 onboarding polish 重锚到 v0.2.0 Context OS / Context Packet v1。",
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": "GitHub Actions CI 尚未在线确认；需要 push PR 后等待 Actions 回流。"
+  "blockerSummary": "当前无外部 blocker；Context Packet v1 已 accepted，下一步是提交 / PR，并在合并后进入 Repo Map v1。"
 }

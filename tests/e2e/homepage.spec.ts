@@ -87,7 +87,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Threadsmith", exact: true })).toBeVisible();
   await expect(
-    page.getByText("v0.1.1 onboarding polish", { exact: true }).first()
+    page.getByText("v0.2.0 Context OS", { exact: true }).first()
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "当前总命令" })).toBeVisible();
 
@@ -95,7 +95,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   const inspectorPanel = page.locator(".inspector-panel");
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText(/v0\.1\.1 发布质量修复/)
+    inspectorPanel.getByText(/v0\.2\.0 Context OS 主线/)
   ).toBeVisible();
   await expect(
     inspectorPanel.getByRole("combobox", { name: "指挥入口" })
@@ -104,14 +104,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await page.getByRole("button", { name: "阶段", exact: true }).click();
   await expect(inspectorPanel.getByText("阶段工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText("v0.1.1 onboarding polish").first()
+    inspectorPanel.getByText("Context Packet v1").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith v0.1.1 onboarding polish is locally verified on release/v0.1.1-onboarding-polish: tests, build, e2e, launcher verification, smoke checks, diff hygiene, and public-surface scan passed. GitHub Actions CI still requires PR/push confirmation."
+      "Threadsmith v0.2.0 Context Packet v1 is accepted locally: schema, builder, persistence API, runtime artifact boundary, full workspace tests, and build all pass."
     ).first()
   ).toBeVisible();
 });

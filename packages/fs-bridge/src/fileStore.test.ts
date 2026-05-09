@@ -8,6 +8,8 @@ import {
   loadProjectSupervisionState,
   loadProjectState,
   persistContinuationPreference,
+  readCurrentContextPacket,
+  writeCurrentContextPacket,
   writeStateFragment
 } from "./fileStore.ts";
 import {
@@ -16,6 +18,8 @@ import {
 } from "./actionQueue.ts";
 import {
   STATE_FILES,
+  CONTEXT_FILES,
+  getContextFilePath,
   getGlobalPreferencesPath,
   getProviderRoutingPath,
   getStatePath
@@ -474,6 +478,106 @@ describe("fileStore", () => {
     expect(state.projectRoadmap.milestones[2]?.state).toBe("done");
     expect(state.projectStatus.latestAcceptedSlice?.title).toBe("Build workflow loop");
     expect(state.projectStatus.overallState).toBe("stable");
+  });
+
+  it("writes and reads the current context packet under .threadsmith/context", async () => {
+    const projectRoot = await createProjectRoot();
+
+    const packet = {
+      packetId: "ctx-context-packet-v1-20260509T131500000Z",
+      generatedAt: "2026-05-09T13:15:00.000Z",
+      project: {
+        label: "Threadsmith",
+        track: "v0.2.0 Context OS",
+        overallState: "in-progress",
+        focus: "Build Context Packet v1",
+        summary: "Threadsmith is adding token-aware context packets."
+      },
+      goal: {
+        projectGoal: "Turn Threadsmith into a context operating layer",
+        successFrame: "Agents can continue from compact context packets.",
+        priorityOrder: ["Context packet"]
+      },
+      currentPhase: {
+        name: "Context Packet v1",
+        goal: "Generate a durable context packet from committed truth.",
+        deliverable: "Context Packet schema and builder",
+        stopCondition: "Packet generation is covered by tests.",
+        activeOwners: ["planner", "executor"]
+      },
+      scope: {
+        inScope: ["schema", "builder"],
+        outOfScope: ["repo map"],
+        constraints: ["Do not replay long chat history into packets"],
+        nonGoals: ["multi-provider automatic execution"]
+      },
+      acceptance: {
+        claim: "Context Packet v1 is being implemented.",
+        finalState: "not-ready",
+        implementationStatus: "implementing",
+        reviewStatus: "not-started",
+        verificationStatus: "not-started",
+        closeoutStatus: "not-started",
+        checklist: [
+          { id: "schema", label: "Schema is defined", status: "unknown" }
+        ],
+        knownGaps: ["Evidence summary is not connected yet"]
+      },
+      nextStep: {
+        label: "推进 Context Packet v1",
+        rationale: "Generate a durable context packet from committed truth.",
+        recommendedRole: "planner",
+        actionId: "advance-phase"
+      },
+      risks: [
+        { label: "Packet could become too large", source: "project" }
+      ],
+      relevantFiles: [
+        {
+          path: "packages/domain/src/contextPacket.ts",
+          reason: "Defines the packet schema.",
+          source: "phase"
+        }
+      ],
+      recentDiff: {
+        status: "unknown",
+        summary: "Diff summary is not connected yet.",
+        changedFiles: [],
+        command: null
+      },
+      evidence: {
+        status: "missing",
+        summary: "Evidence summary is not connected yet.",
+        commands: [
+          {
+            command: "npm run test --workspace @threadsmith/runtime",
+            status: "pending",
+            summary: "Not run yet."
+          }
+        ],
+        artifactRefs: []
+      },
+      sourceRefs: [
+        {
+          kind: "state",
+          path: ".threadsmith/current-phase.json",
+          title: "Current Phase"
+        }
+      ]
+    };
+
+    const written = await writeCurrentContextPacket(projectRoot, packet);
+    const read = await readCurrentContextPacket(projectRoot);
+    const rawContents = await readFile(
+      getContextFilePath(projectRoot, CONTEXT_FILES.currentPacket),
+      "utf8"
+    );
+
+    expect(written.packetId).toBe(packet.packetId);
+    expect(read.project.track).toBe("v0.2.0 Context OS");
+    expect(read.relevantFiles[0]?.source).toBe("phase");
+    expect(rawContents).toContain("\"packetId\"");
+    expect(rawContents.endsWith("\n")).toBe(true);
   });
 
   it("overlays roadmap states from project-status milestone pointers", async () => {

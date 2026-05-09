@@ -42,6 +42,7 @@ Threadsmith 同时维护两类信息：
 - `.threadsmith/runs/`
 - `.threadsmith/action-queue.ndjson`
 - `.threadsmith/events.ndjson`
+- `.threadsmith/context/`
 - `.threadsmith/evidence/`
 - `.threadsmith/packets/`
 - `.threadsmith/closeouts/`
@@ -50,6 +51,7 @@ Threadsmith 同时维护两类信息：
 这些路径主要保存：
 
 - executor run 的 packet / prompt / stdout / result
+- 当前 context packet、repo map、evidence summary 与 context budget 等可再生成上下文产物
 - 事件流和 action queue
 - verification / closeout / handoff 产物
 - smoke 或本地实验使用的临时 workspace

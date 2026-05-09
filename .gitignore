@@ -9,6 +9,7 @@ test-results/
 .threadsmith/runs/
 .threadsmith/action-queue.ndjson
 .threadsmith/events.ndjson
+.threadsmith/context/
 .threadsmith/evidence/
 .threadsmith/packets/
 .threadsmith/closeouts/

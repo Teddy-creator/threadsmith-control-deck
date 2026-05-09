@@ -33,6 +33,10 @@ export const PHASE_RUN_FILES = {
   pause: "pause.json"
 } as const;
 
+export const CONTEXT_FILES = {
+  currentPacket: "current-packet.json"
+} as const;
+
 export function getThreadsmithDir(projectRoot: string) {
   return join(projectRoot, THREADSMITH_DIR);
 }
@@ -62,6 +66,17 @@ export function getRunsDir(projectRoot: string) {
 
 export function getPhaseRunsDir(projectRoot: string) {
   return join(getThreadsmithDir(projectRoot), "phase-runs");
+}
+
+export function getContextDir(projectRoot: string) {
+  return join(getThreadsmithDir(projectRoot), "context");
+}
+
+export function getContextFilePath(
+  projectRoot: string,
+  fileName: (typeof CONTEXT_FILES)[keyof typeof CONTEXT_FILES]
+) {
+  return join(getContextDir(projectRoot), fileName);
 }
 
 export function getRunDir(projectRoot: string, runId: string) {

@@ -1,29 +1,31 @@
 {
-  "projectGoal": "交付 Threadsmith Codex-only v0.1.1：让 public web control deck 的首次上手、demo mode、状态刷新、文档和 CI 健康度足够适合公开传播。",
-  "currentVersionScope": "当前主线聚焦 v0.1.1 onboarding polish：修复 GitHub Actions 红灯，打磨 first-run / demo / refresh / skill docs / release surface。",
+  "projectGoal": "交付 Threadsmith Codex-only v0.2.0：把 public web control deck 升级为 token-aware 的 Context OS，让 AI coding 工作从长聊天记忆转向结构化 context packets。",
+  "currentVersionScope": "当前主线聚焦 v0.2.0 Context OS：先实现 Context Packet v1，再逐步推进 repo map、evidence summary、role-specific packets、skill v2、recovery/hygiene 与 context surface。",
   "nonGoals": [
     "把 deck 变成主聊天面",
     "在当前主线里加入 multi-provider automatic execution",
     "现在就进入 native desktop shell",
-    "在 v0.1.1 里实现 multi-provider automatic execution"
+    "在 v0.2.0 里实现 multi-provider automatic execution",
+    "引入 embedding / RAG / hosted backend",
+    "替代 Codex Desktop 或 Codex CLI 作为主聊天入口"
   ],
   "keyConstraints": [
     "继续保持 deck 是 mission control，而不是 primary command surface",
     "当前自动执行与 release hardening 仍以 Codex 为唯一 provider 基座",
-    "第一次接入项目时必须能靠产品本身走通，而不是依赖额外口头解释",
-    "v0.1.1 只修公开上手路径，不扩大产品边界"
+    "上下文能力必须来自 committed .threadsmith truth 和本地 repo signals，而不是旧聊天记忆",
+    "raw logs 只作为 artifact path 引用，不直接塞进 context packet",
+    "v0.2.0 强调 context packet / token-aware workflow，不扩大到 multi-provider 或桌面壳"
   ],
-  "successFrame": "第一次使用者可以打开 Threadsmith、试用 demo mode、连接真实项目、理解刷新状态和 truth 来源，并回到 Codex conductor surface 继续推进；GitHub Actions 线上 CI 变绿。",
+  "successFrame": "使用者可以从 .threadsmith truth 生成简洁的 context packet，并理解不同角色应该读取不同上下文；中断、验收和恢复不再依赖长聊天回放。",
   "priorityOrder": [
     "保持 .threadsmith 只记录 durable truth，不记录普通聊天流水",
-    "让 phase/task/bug/closeout 边界自动写回 accepted truth",
-    "让前门入口、真实项目页和刷新状态入口的语义保持一致",
-    "先修 GitHub Actions 红灯",
-    "再让 first-run / demo / refresh / docs 说人话",
-    "最后发 v0.1.1 release"
+    "先定义 Context Packet v1，作为 skill v2 和 recovery/hygiene 的地基",
+    "让 context packet 从 Project Brief / Current Phase / Acceptance State 派生",
+    "再引入 repo map、evidence summary 与 role-specific packets",
+    "最后把 context health 清楚展示在 control deck"
   ],
   "openStrategicQuestions": [
-    "v0.1.1 合并后是否立即发布 GitHub Release。",
-    "是否需要录制一个短 GIF 展示 demo mode 与真实项目连接。"
+    "Context Budget Ledger 是否进入 v0.2.0 必选范围，还是作为可选 polish。",
+    "Role-specific packets 是否先以 markdown artifacts 形式落地，再进入 UI。"
   ]
 }

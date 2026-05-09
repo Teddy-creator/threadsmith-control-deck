@@ -6,6 +6,8 @@ import {
   commandBridgeStateSchema,
   type ContinuationBehavior,
   type PreferenceScope,
+  contextPacketSchema,
+  type ContextPacket,
   type ProjectSupervisionState,
   type ProjectState,
   activeWorkSchema,
@@ -24,7 +26,10 @@ import {
 } from "@threadsmith/domain";
 import {
   STATE_FILES,
+  CONTEXT_FILES,
   getPhaseRunsDir,
+  getContextDir,
+  getContextFilePath,
   getGlobalPreferencesPath,
   getProviderRoutingPath,
   getRunsDir,
@@ -76,6 +81,7 @@ export async function ensureStateDir(projectRoot: string) {
   await mkdir(getThreadsmithDir(projectRoot), { recursive: true });
   await mkdir(getRunsDir(projectRoot), { recursive: true });
   await mkdir(getPhaseRunsDir(projectRoot), { recursive: true });
+  await mkdir(getContextDir(projectRoot), { recursive: true });
 }
 
 function formatStateFileContents(value: unknown) {
@@ -580,6 +586,27 @@ export async function loadProjectState(
       globalPreferences.continuationBehavior
     )
   });
+}
+
+export async function writeCurrentContextPacket(
+  projectRoot: string,
+  packet: ContextPacket
+) {
+  await ensureStateDir(projectRoot);
+  const parsedPacket = contextPacketSchema.parse(packet);
+  await writeFile(
+    getContextFilePath(projectRoot, CONTEXT_FILES.currentPacket),
+    formatStateFileContents(parsedPacket),
+    "utf8"
+  );
+  return parsedPacket;
+}
+
+export async function readCurrentContextPacket(projectRoot: string) {
+  return readParsedFile(
+    getContextFilePath(projectRoot, CONTEXT_FILES.currentPacket),
+    contextPacketSchema
+  );
 }
 
 export async function persistContinuationPreference(

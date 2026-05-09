@@ -1,27 +1,28 @@
 {
-  "phaseName": "v0.1.1 onboarding polish",
-  "phaseGoal": "修复 GitHub Actions 红灯，并把 first-run、demo mode、状态刷新、skill/docs 与 release surface 打磨到可发布。",
-  "deliverable": "v0.1.1 onboarding polish PR",
+  "phaseName": "Context Packet v1",
+  "phaseGoal": "为 v0.2.0 Context OS 建立第一份可持久化的 context packet，让后续角色协议、恢复流程和 UI context surface 有统一输入。",
+  "deliverable": "Context Packet v1 schema, builder, persistence, and tests",
   "inScope": [
-    "CI zsh launcher verification fix",
-    "first-run guidance",
-    "refresh / truth source visibility",
-    "demo mode labels and docs",
-    "Threadsmith skill usage guidance",
-    "v0.1.1 release notes and release copy"
+    "context packet domain schema",
+    "runtime context packet builder",
+    "fs-bridge persistence under .threadsmith/context/current-packet.json",
+    "tests for normal, missing optional evidence, and blocked acceptance scenarios",
+    "v0.2.0 implementation plan document"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
     "native desktop shell",
-    "large UI redesign"
+    "large UI redesign",
+    "Repo Map v1",
+    "Evidence Summary v1",
+    "Role-specific Packets v1"
   ],
-  "stopCondition": "CI is green, local verification passes, and new users can understand how to start, demo, refresh, and hand control back to Codex/CLI.",
+  "stopCondition": "Context Packet v1 can be generated from ProjectState, persisted to .threadsmith/context/current-packet.json, and verified by targeted unit tests.",
   "verificationForThisPhase": [
-    "npm run test",
-    "npm run build",
-    "npm run verify:launchers",
-    "npm run test:e2e",
-    "GitHub Actions CI"
+    "npm run test --workspace @threadsmith/domain",
+    "npm run test --workspace @threadsmith/runtime -- src/contextPacket.test.ts",
+    "npm run test --workspace @threadsmith/fs-bridge -- src/fileStore.test.ts",
+    "npm run build"
   ],
   "activeOwners": [
     "planner",

@@ -1,23 +1,23 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "v0.1.1 onboarding polish",
+  "currentTrack": "v0.2.0 Context OS",
   "overallState": "in-progress",
-  "currentFocus": "修复 GitHub Actions 红灯，并补齐 first-run、demo mode、refresh truth、skill/docs 与 v0.1.1 release surface。",
-  "projectStatusSummary": "Threadsmith 正在做 v0.1.1 发布质量修复：保持 web-first / Codex-only 边界，只把公开上手路径和 CI 健康度收干净。",
+  "currentFocus": "实现 Context Packet v1：从 committed .threadsmith truth 生成可持久化、可复用、面向角色协作的简洁上下文包。",
+  "projectStatusSummary": "Threadsmith 正在进入 v0.2.0 Context OS 主线：先用 context packet 减少长聊天回放和全量上下文浪费，再强化 skill、恢复和 UI context surface。",
   "latestAcceptedSlice": {
-    "title": "Threadsmith v0.1.0 public release",
-    "recordedAt": "2026-05-09T07:11:46Z"
+    "title": "Threadsmith v0.1.1 public onboarding polish and CI maintenance",
+    "recordedAt": "2026-05-09T12:31:40Z"
   },
   "nextPlannedSlice": {
-    "title": "v0.1.1 onboarding polish PR",
+    "title": "Repo Map v1",
     "recordedAt": null
   },
-  "currentMilestoneId": "onboarding-polish",
-  "nextMilestoneId": "v0-1-1-release",
+  "currentMilestoneId": "context-packet-v1",
+  "nextMilestoneId": "repo-map-v1",
   "topRisks": [
-    "GitHub Actions 红灯会影响公开仓库观感。",
-    "首次使用者如果不理解 .threadsmith 和 conductor 边界，容易误以为页面是聊天入口。",
-    "v0.1.1 不应扩大到 multi-provider 或桌面壳。"
+    "Context Packet 如果太胖，会变成另一个长 prompt，而不是节省上下文。",
+    "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
+    "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T11:20:00Z"
+  "updatedAt": "2026-05-09T13:11:40Z"
 }
