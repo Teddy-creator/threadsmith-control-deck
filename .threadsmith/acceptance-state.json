@@ -1,44 +1,29 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Context Packet v1 is accepted on main: schema, builder, persistence API, runtime artifact boundary, PR review/merge, and main CI all pass.",
+  "currentClaim": "Threadsmith v0.2.0 Repo Map v1 is accepted locally: schema, builder, persistence API, runtime artifact generation, Context Packet relevantFiles enrichment, full workspace tests, and build all pass.",
   "doneWhenChecklist": [
     {
-      "id": "plan-written",
-      "label": "v0.2.0 Context OS implementation plan 已写入 docs/plans",
+      "id": "repo-map-schema",
+      "label": "Repo Map v1 schema 已定义并从 domain 导出",
       "status": "pass"
     },
     {
-      "id": "context-schema",
-      "label": "Context Packet v1 schema 已定义并从 domain 导出",
+      "id": "repo-map-builder",
+      "label": "runtime 可以从 package manifests、目录和 git status 生成 repo map",
       "status": "pass"
     },
     {
-      "id": "context-builder",
-      "label": "runtime 可以从 ProjectState 生成 context packet",
+      "id": "repo-map-persistence",
+      "label": "fs-bridge 可以写入 .threadsmith/context/repo-map.json",
       "status": "pass"
     },
     {
-      "id": "context-persistence",
-      "label": "fs-bridge 可以写入 .threadsmith/context/current-packet.json",
+      "id": "context-packet-enrichment",
+      "label": "Context Packet 可以从 repo map 补充 relevantFiles",
       "status": "pass"
     },
     {
       "id": "targeted-tests",
       "label": "domain/runtime/fs-bridge targeted tests 通过",
-      "status": "pass"
-    },
-    {
-      "id": "build-green",
-      "label": "npm run build 通过",
-      "status": "pass"
-    },
-    {
-      "id": "pr-merged",
-      "label": "Context Packet v1 foundation 已合入 main",
-      "status": "pass"
-    },
-    {
-      "id": "main-ci-green",
-      "label": "main CI 已通过",
       "status": "pass"
     }
   ],
@@ -47,9 +32,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    ".threadsmith/context/current-packet.json is intentionally ignored as a regenerable runtime artifact, not committed truth.",
-    "Repo Map v1, Evidence Summary v1, Role-specific Packets v1, and Control Deck Context Surface are planned later slices, not part of Context Packet v1.",
-    "multi-provider automatic execution remains out of scope for this release line."
+    ".threadsmith/context/repo-map.json is intentionally ignored as a regenerable runtime artifact, not committed truth.",
+    "Evidence Summary v1, Role-specific Packets v1, and Control Deck Context Surface are planned later slices, not part of Repo Map v1.",
+    "No embedding, vector DB, or remote indexing is in scope."
   ],
   "finalState": "accepted"
 }

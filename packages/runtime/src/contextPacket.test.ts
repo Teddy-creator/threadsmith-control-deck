@@ -136,6 +136,68 @@ describe("buildContextPacket", () => {
     expect(packet.recentDiff.status).toBe("unknown");
   });
 
+  it("can enrich relevant files from a repo map without replacing explicit files", () => {
+    const packet = buildContextPacket(baseState, {
+      generatedAt: "2026-05-09T13:16:30.000Z",
+      relevantFiles: [
+        {
+          path: "docs/plans/v0.2.0-context-operating-system.md",
+          reason: "Defines the release plan.",
+          source: "manual"
+        }
+      ],
+      repoMap: {
+        mapId: "repo-threadsmith-20260509T131630000Z",
+        generatedAt: "2026-05-09T13:16:30.000Z",
+        projectRootLabel: "Threadsmith",
+        packageManager: "npm@11.11.0",
+        rootPackage: {
+          name: "threadsmith",
+          path: "package.json",
+          private: true,
+          scripts: ["build", "test"],
+          workspaces: ["packages/*"]
+        },
+        workspacePackages: [
+          {
+            name: "@threadsmith/runtime",
+            path: "packages/runtime/package.json",
+            private: true,
+            scripts: ["test"],
+            workspaces: []
+          }
+        ],
+        topLevelDirectories: [
+          { path: "packages", role: "package" }
+        ],
+        sourceDirectories: [
+          { path: "packages/runtime/src", kind: "source" }
+        ],
+        entryPoints: [
+          {
+            path: "packages/runtime/package.json",
+            kind: "workspace-manifest",
+            reason: "Workspace manifest for @threadsmith/runtime."
+          }
+        ],
+        git: {
+          status: "dirty",
+          changedFiles: ["packages/runtime/src/repoMap.ts"],
+          command: "git status --short"
+        },
+        warnings: []
+      }
+    });
+
+    expect(packet.relevantFiles.map((file) => file.path)).toEqual([
+      "docs/plans/v0.2.0-context-operating-system.md",
+      "packages/runtime/src/repoMap.ts",
+      "packages/runtime/package.json",
+      "package.json"
+    ]);
+    expect(packet.relevantFiles[1]?.source).toBe("repo-map");
+  });
+
   it("routes blocked phases to hygiene instead of pretending execution is safe", () => {
     const packet = buildContextPacket({
       ...baseState,

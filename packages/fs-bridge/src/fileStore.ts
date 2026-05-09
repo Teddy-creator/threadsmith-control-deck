@@ -1,5 +1,7 @@
-import { access, mkdir, readFile, writeFile } from "node:fs/promises";
-import { basename, dirname } from "node:path";
+import { execFile } from "node:child_process";
+import { access, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { basename, dirname, join, relative } from "node:path";
+import { promisify } from "node:util";
 import type { ZodType } from "zod";
 import {
   alignProjectRoadmapToStatus,
@@ -8,6 +10,8 @@ import {
   type PreferenceScope,
   contextPacketSchema,
   type ContextPacket,
+  repoMapSchema,
+  type RepoMap,
   type ProjectSupervisionState,
   type ProjectState,
   activeWorkSchema,
@@ -24,6 +28,7 @@ import {
   projectStateSchema,
   storedPreferencesSchema
 } from "@threadsmith/domain";
+import { buildRepoMap } from "@threadsmith/runtime";
 import {
   STATE_FILES,
   CONTEXT_FILES,
@@ -36,6 +41,8 @@ import {
   getStatePath,
   getThreadsmithDir
 } from "./paths.ts";
+
+const execFileAsync = promisify(execFile);
 
 async function readParsedFile<T>(
   filePath: string,
@@ -86,6 +93,18 @@ export async function ensureStateDir(projectRoot: string) {
 
 function formatStateFileContents(value: unknown) {
   return `${JSON.stringify(value, null, 2)}\n`;
+}
+
+async function pathExists(filePath: string) {
+  try {
+    await access(filePath);
+    return true;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      return false;
+    }
+    throw error;
+  }
 }
 
 async function writeFileIfMissing(filePath: string, contents: string) {
@@ -607,6 +626,213 @@ export async function readCurrentContextPacket(projectRoot: string) {
     getContextFilePath(projectRoot, CONTEXT_FILES.currentPacket),
     contextPacketSchema
   );
+}
+
+function toRepoRelativePath(projectRoot: string, filePath: string) {
+  return relative(projectRoot, filePath).replace(/\\/g, "/");
+}
+
+async function collectTopLevelDirectories(projectRoot: string) {
+  const ignoredDirectories = new Set([
+    ".git",
+    ".threadsmith-runtime",
+    "coverage",
+    "dist",
+    "node_modules",
+    "playwright-report",
+    "test-results"
+  ]);
+  const entries = await readdir(projectRoot, { withFileTypes: true });
+  return entries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((name) => !ignoredDirectories.has(name))
+    .sort();
+}
+
+async function collectPackageManifests(projectRoot: string) {
+  const manifestPaths: string[] = [];
+  const queue = [projectRoot];
+  const ignoredDirectories = new Set([
+    ".git",
+    "node_modules",
+    "dist",
+    "coverage",
+    "playwright-report",
+    "test-results",
+    ".threadsmith-runtime"
+  ]);
+
+  while (queue.length > 0 && manifestPaths.length < 48) {
+    const currentDirectory = queue.shift() as string;
+    let entries: Awaited<ReturnType<typeof readdir>>;
+
+    try {
+      entries = await readdir(currentDirectory, { withFileTypes: true });
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+        continue;
+      }
+      throw error;
+    }
+
+    for (const entry of entries) {
+      const entryPath = join(currentDirectory, entry.name);
+      if (entry.isDirectory()) {
+        if (!ignoredDirectories.has(entry.name)) {
+          queue.push(entryPath);
+        }
+        continue;
+      }
+
+      if (entry.isFile() && entry.name === "package.json") {
+        manifestPaths.push(entryPath);
+      }
+    }
+  }
+
+  return Promise.all(
+    manifestPaths.sort().map(async (manifestPath) => ({
+      path: toRepoRelativePath(projectRoot, manifestPath),
+      contents: JSON.parse(await readFile(manifestPath, "utf8")) as unknown
+    }))
+  );
+}
+
+async function collectExistingContextPaths(projectRoot: string) {
+  const candidates = [
+    "src",
+    "test",
+    "tests",
+    "e2e",
+    "scripts",
+    ".github/workflows/ci.yml",
+    "apps",
+    "packages"
+  ];
+  const topLevelDirectories = await collectTopLevelDirectories(projectRoot);
+  const packageLikeDirectories = topLevelDirectories.filter((directoryName) =>
+    ["apps", "packages"].includes(directoryName)
+  );
+
+  for (const parent of packageLikeDirectories) {
+    const parentPath = join(projectRoot, parent);
+    const entries = await readdir(parentPath, { withFileTypes: true }).catch(() => []);
+
+    for (const entry of entries) {
+      if (!entry.isDirectory()) {
+        continue;
+      }
+
+      const packageRoot = `${parent}/${entry.name}`;
+      candidates.push(packageRoot);
+      candidates.push(`${packageRoot}/src`);
+      candidates.push(`${packageRoot}/test`);
+      candidates.push(`${packageRoot}/tests`);
+      candidates.push(`${packageRoot}/e2e`);
+      candidates.push(`${packageRoot}/server`);
+      candidates.push(`${packageRoot}/src/index.ts`);
+      candidates.push(`${packageRoot}/src/index.tsx`);
+      candidates.push(`${packageRoot}/src/main.ts`);
+      candidates.push(`${packageRoot}/src/main.tsx`);
+      candidates.push(`${packageRoot}/src/App.tsx`);
+      candidates.push(`${packageRoot}/server/index.ts`);
+      candidates.push(`${packageRoot}/server/app.ts`);
+    }
+  }
+
+  const existingPaths: string[] = [];
+  for (const candidate of candidates) {
+    const absolutePath = join(projectRoot, candidate);
+    if (await pathExists(absolutePath)) {
+      existingPaths.push(candidate);
+    }
+  }
+
+  return [...new Set(existingPaths)].sort();
+}
+
+async function readGitStatus(projectRoot: string) {
+  try {
+    const { stdout } = await execFileAsync("git", [
+      "status",
+      "--short",
+      "--untracked-files=all"
+    ], {
+      cwd: projectRoot,
+      maxBuffer: 1024 * 1024
+    });
+    const changedFiles = stdout
+      .split("\n")
+      .filter((line) => line.trim().length > 0)
+      .map((line) => line.slice(3).trim())
+      .map((line) => line.split(" -> ").at(-1) ?? line)
+      .filter(Boolean);
+
+    return {
+      git: {
+        status: changedFiles.length > 0 ? "dirty" as const : "clean" as const,
+        changedFiles,
+        command: "git status --short --untracked-files=all"
+      },
+      warning: null
+    };
+  } catch (error) {
+    return {
+      git: {
+        status: "unknown" as const,
+        changedFiles: [],
+        command: "git status --short --untracked-files=all"
+      },
+      warning: `git status unavailable: ${(error as Error).message}`
+    };
+  }
+}
+
+export async function buildRepoMapFromProject(projectRoot: string) {
+  const [
+    topLevelDirectories,
+    manifestFiles,
+    existingDirectories,
+    gitStatus
+  ] = await Promise.all([
+    collectTopLevelDirectories(projectRoot),
+    collectPackageManifests(projectRoot),
+    collectExistingContextPaths(projectRoot),
+    readGitStatus(projectRoot)
+  ]);
+
+  return buildRepoMap({
+    projectRootLabel: deriveProjectLabel(projectRoot),
+    topLevelDirectories,
+    manifestFiles,
+    existingDirectories,
+    git: gitStatus.git,
+    warnings: gitStatus.warning ? [gitStatus.warning] : []
+  });
+}
+
+export async function writeRepoMap(projectRoot: string, repoMap: RepoMap) {
+  await ensureStateDir(projectRoot);
+  const parsedRepoMap = repoMapSchema.parse(repoMap);
+  await writeFile(
+    getContextFilePath(projectRoot, CONTEXT_FILES.repoMap),
+    formatStateFileContents(parsedRepoMap),
+    "utf8"
+  );
+  return parsedRepoMap;
+}
+
+export async function readRepoMap(projectRoot: string) {
+  return readParsedFile(
+    getContextFilePath(projectRoot, CONTEXT_FILES.repoMap),
+    repoMapSchema
+  );
+}
+
+export async function refreshRepoMap(projectRoot: string) {
+  const repoMap = await buildRepoMapFromProject(projectRoot);
+  return writeRepoMap(projectRoot, repoMap);
 }
 
 export async function persistContinuationPreference(

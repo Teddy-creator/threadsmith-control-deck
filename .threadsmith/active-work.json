@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已把 v0.2.0 Context OS 拆成 8 个实现 slice；Context Packet v1 已完成并合入 main。",
+      "taskSummary": "已将下一刀收紧为 Repo Map v1：轻量代码地图，不进入 embedding/RAG 或 UI 大改。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现 Context Packet v1 schema、builder、persistence，并完成 run lifecycle 稳定性补丁。",
+      "taskSummary": "已实现 repo map schema、runtime builder、fs persistence，并接入 Context Packet relevantFiles。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核第一刀保持窄范围：未进入 repo map、evidence summary、UI surface、multi-provider 或桌面壳。",
+      "taskSummary": "已复核 Repo Map v1 保持 lightweight：未引入 embedding、RAG、远程索引或 UI 大改。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "PR #7 与 main CI 均已通过；workspace tests、build、launcher validation、smoke e2e 已在 main 验证。",
+      "taskSummary": "已运行 domain/runtime/fs-bridge 目标测试、全量 npm run test、npm run build、JSON 校验与 diff check。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已完成第一刀 closeout：Context Packet v1 foundation 与 lifecycle fix 均已合入 main。",
+      "taskSummary": "已完成 Repo Map v1 本地 closeout；等待提交 / PR / CI。",
       "requiresUserDecision": false
     },
     {
@@ -37,5 +37,5 @@
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": "当前无外部 blocker；下一步建议进入 Repo Map v1。"
+  "blockerSummary": "当前无外部 blocker；Repo Map v1 已本地验收，等待 PR/CI。"
 }

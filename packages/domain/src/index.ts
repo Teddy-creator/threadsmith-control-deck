@@ -12,3 +12,4 @@ export * from "./agentRuns.ts";
 export * from "./commandBridge.ts";
 export * from "./phaseRuns.ts";
 export * from "./contextPacket.ts";
+export * from "./repoMap.ts";
