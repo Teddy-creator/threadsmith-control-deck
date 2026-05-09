@@ -6,8 +6,10 @@ import {
   type ContextPacketRelevantFile,
   type ContextPacketRisk,
   type ProjectState,
+  type RepoMap,
   type VerificationCommandResult
 } from "@threadsmith/domain";
+import { deriveRepoMapRelevantFiles } from "./repoMap.ts";
 
 export interface BuildContextPacketOptions {
   generatedAt?: string;
@@ -15,6 +17,7 @@ export interface BuildContextPacketOptions {
   recentDiff?: Partial<ContextPacketRecentDiff>;
   evidence?: Partial<ContextPacketEvidence>;
   relevantFiles?: ContextPacketRelevantFile[];
+  repoMap?: RepoMap;
 }
 
 function slugify(value: string) {
@@ -177,6 +180,22 @@ function buildRecentDiff(
   };
 }
 
+function buildRelevantFiles(options: BuildContextPacketOptions) {
+  const explicitFiles = options.relevantFiles ?? [];
+  const repoMapFiles = options.repoMap
+    ? deriveRepoMapRelevantFiles(options.repoMap)
+    : [];
+  const seen = new Set<string>();
+
+  return [...explicitFiles, ...repoMapFiles].filter((file) => {
+    if (seen.has(file.path)) {
+      return false;
+    }
+    seen.add(file.path);
+    return true;
+  });
+}
+
 export function buildContextPacket(
   state: ProjectState,
   options: BuildContextPacketOptions = {}
@@ -223,7 +242,7 @@ export function buildContextPacket(
     },
     nextStep: buildNextStep(state),
     risks: buildRisks(state),
-    relevantFiles: options.relevantFiles ?? [],
+    relevantFiles: buildRelevantFiles(options),
     recentDiff: buildRecentDiff(options),
     evidence: buildEvidence(state, options),
     sourceRefs: [

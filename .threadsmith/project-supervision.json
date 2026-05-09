@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "v0.2.0 Context Packet v1 已完成并合入 main；当前多角色协作线可以转入 Repo Map v1。",
+  "summary": "v0.2.0 Repo Map v1 已本地验收：Context Packet 可以从轻量仓库地图获得结构与变更线索。",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,11 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "已完成 v0.2.0 Context OS 计划拆解，并确认下一刀为 Repo Map v1。",
+      "taskSummary": "已确认 Repo Map v1 范围：轻量 repo map，不进入 embedding/RAG 或 UI surface。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T13:48:11Z"
+      "latestEvidenceLabel": "phase contract 已刷新",
+      "updatedAt": "2026-05-09T14:10:01Z"
     },
     {
       "id": "builder-logical",
@@ -23,11 +23,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已交付 Context Packet v1 schema、builder、persistence 与 run lifecycle 稳定性修复。",
+      "taskSummary": "已实现 Repo Map v1 schema、builder、persistence 与 Context Packet relevantFiles enrichment。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "main CI 已通过",
-      "updatedAt": "2026-05-09T13:48:11Z"
+      "latestEvidenceLabel": "implementation 已完成",
+      "updatedAt": "2026-05-09T14:15:44Z"
     },
     {
       "id": "critic-logical",
@@ -36,11 +36,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已复核 Context Packet v1 未扩大到 repo map、UI surface、multi-provider 或桌面壳。",
+      "taskSummary": "已复核 Repo Map v1 未进入 embedding/RAG、远程服务或 UI 大改。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T13:48:11Z"
+      "updatedAt": "2026-05-09T14:15:44Z"
     },
     {
       "id": "verifier-logical",
@@ -49,11 +49,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "PR #7 与 main CI 均已通过，确认主线绿色。",
+      "taskSummary": "已完成本地目标测试、全量测试、build、JSON 校验和 diff check。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "CI run 25602621880 通过",
-      "updatedAt": "2026-05-09T13:48:11Z"
+      "latestEvidenceLabel": "verification 已通过",
+      "updatedAt": "2026-05-09T14:15:44Z"
     },
     {
       "id": "closeout-logical",
@@ -62,10 +62,10 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "Context Packet v1 已完成 closeout，下一步进入 Repo Map v1。",
+      "taskSummary": "Repo Map v1 已本地 closeout，下一步提交 / PR / CI。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "PR #6/#7 已合并",
+      "latestEvidenceLabel": "local closeout 已完成",
       "updatedAt": "2026-05-09T13:48:11Z"
     },
     {
@@ -82,5 +82,5 @@
       "updatedAt": "2026-05-07T09:30:00Z"
     }
   ],
-  "updatedAt": "2026-05-09T13:48:11Z"
+  "updatedAt": "2026-05-09T14:15:44Z"
 }

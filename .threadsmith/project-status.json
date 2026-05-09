@@ -2,22 +2,22 @@
   "projectLabel": "Threadsmith",
   "currentTrack": "v0.2.0 Context OS",
   "overallState": "in-progress",
-  "currentFocus": "Context Packet v1 已合入 main 且 CI 绿色；下一刀应进入 Repo Map v1，让 context packet 能携带更准确的代码结构线索。",
-  "projectStatusSummary": "Threadsmith 已完成 v0.2.0 Context OS 的第一块地基：Context Packet v1。主线现在可以继续推进 repo map、evidence summary、role-specific packets、skill v2、recovery/hygiene 与 context surface。",
+  "currentFocus": "Repo Map v1 已本地验收，下一步是提交/PR/CI；合并后进入 Evidence Summary v1。",
+  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1，并本地验收 Repo Map v1。Context Packet 现在可以从轻量 repo map 获得代码结构和变更线索。",
   "latestAcceptedSlice": {
-    "title": "Context Packet v1 foundation",
-    "recordedAt": "2026-05-09T13:46:17Z"
+    "title": "Repo Map v1",
+    "recordedAt": "2026-05-09T14:15:44Z"
   },
   "nextPlannedSlice": {
-    "title": "Repo Map v1",
+    "title": "Evidence Summary v1",
     "recordedAt": null
   },
-  "currentMilestoneId": "context-packet-v1",
-  "nextMilestoneId": "repo-map-v1",
+  "currentMilestoneId": "repo-map-v1",
+  "nextMilestoneId": "evidence-summary-v1",
   "topRisks": [
     "Context Packet 如果太胖，会变成另一个长 prompt，而不是节省上下文。",
     "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
     "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T13:48:11Z"
+  "updatedAt": "2026-05-09T14:15:44Z"
 }

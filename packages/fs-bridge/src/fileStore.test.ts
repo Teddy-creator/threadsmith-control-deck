@@ -1,15 +1,21 @@
-import { mkdtemp, readFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { promisify } from "node:util";
 import { afterEach, describe, expect, it } from "vitest";
 import {
+  buildRepoMapFromProject,
   ensureStateDir,
   initializeProjectState,
   loadProjectSupervisionState,
   loadProjectState,
   persistContinuationPreference,
   readCurrentContextPacket,
+  readRepoMap,
+  refreshRepoMap,
   writeCurrentContextPacket,
+  writeRepoMap,
   writeStateFragment
 } from "./fileStore.ts";
 import {
@@ -24,6 +30,8 @@ import {
   getProviderRoutingPath,
   getStatePath
 } from "./paths.ts";
+
+const execFileAsync = promisify(execFile);
 
 const createdRoots: string[] = [];
 
@@ -578,6 +586,107 @@ describe("fileStore", () => {
     expect(read.relevantFiles[0]?.source).toBe("phase");
     expect(rawContents).toContain("\"packetId\"");
     expect(rawContents.endsWith("\n")).toBe(true);
+  });
+
+  it("builds, writes, and reads a repo map under .threadsmith/context", async () => {
+    const projectRoot = await createBareProjectRoot();
+    await mkdir(join(projectRoot, "packages", "runtime", "src"), { recursive: true });
+    await mkdir(join(projectRoot, "tests", "e2e"), { recursive: true });
+    await writeFile(
+      join(projectRoot, "package.json"),
+      `${JSON.stringify({
+        name: "repo-map-fixture",
+        private: true,
+        packageManager: "npm@11.11.0",
+        workspaces: ["packages/*"],
+        scripts: {
+          test: "vitest run"
+        }
+      }, null, 2)}\n`,
+      "utf8"
+    );
+    await writeFile(
+      join(projectRoot, "packages", "runtime", "package.json"),
+      `${JSON.stringify({
+        name: "@fixture/runtime",
+        private: true,
+        scripts: {
+          test: "vitest run"
+        }
+      }, null, 2)}\n`,
+      "utf8"
+    );
+    await writeFile(
+      join(projectRoot, "packages", "runtime", "src", "index.ts"),
+      "export const value = 1;\n",
+      "utf8"
+    );
+    await execFileAsync("git", ["init"], { cwd: projectRoot });
+    await execFileAsync("git", ["add", "."], { cwd: projectRoot });
+    await execFileAsync("git", [
+      "-c",
+      "user.name=Threadsmith",
+      "-c",
+      "user.email=threadsmith@example.test",
+      "commit",
+      "-m",
+      "initial"
+    ], { cwd: projectRoot });
+    await writeFile(
+      join(projectRoot, "packages", "runtime", "src", "repoMap.ts"),
+      "export const repoMap = true;\n",
+      "utf8"
+    );
+    await mkdir(join(projectRoot, ".threadsmith"), { recursive: true });
+    await writeFile(
+      join(projectRoot, ".threadsmith", "current-phase.json"),
+      "{}\n",
+      "utf8"
+    );
+
+    const repoMap = await buildRepoMapFromProject(projectRoot);
+    const written = await writeRepoMap(projectRoot, repoMap);
+    const read = await readRepoMap(projectRoot);
+    const rawContents = await readFile(
+      getContextFilePath(projectRoot, CONTEXT_FILES.repoMap),
+      "utf8"
+    );
+
+    expect(written.rootPackage?.name).toBe("repo-map-fixture");
+    expect(read.workspacePackages[0]?.name).toBe("@fixture/runtime");
+    expect(read.sourceDirectories).toContainEqual({
+      path: "packages/runtime/src",
+      kind: "source"
+    });
+    expect(read.entryPoints).toContainEqual({
+      path: "packages/runtime/src/index.ts",
+      kind: "source-entry",
+      reason: "Likely source entry point for this workspace."
+    });
+    expect(read.git.status).toBe("dirty");
+    expect(read.git.changedFiles).toContain("packages/runtime/src/repoMap.ts");
+    expect(read.git.changedFiles).toContain(".threadsmith/current-phase.json");
+    expect(rawContents).toContain("\"mapId\"");
+    expect(rawContents.endsWith("\n")).toBe(true);
+  });
+
+  it("refreshes a repo map for a non-git project with an honest warning", async () => {
+    const projectRoot = await createBareProjectRoot();
+    await mkdir(join(projectRoot, "src"), { recursive: true });
+    await writeFile(
+      join(projectRoot, "package.json"),
+      `${JSON.stringify({
+        name: "non-git-fixture"
+      }, null, 2)}\n`,
+      "utf8"
+    );
+
+    const repoMap = await refreshRepoMap(projectRoot);
+
+    expect(repoMap.rootPackage?.name).toBe("non-git-fixture");
+    expect(repoMap.git.status).toBe("unknown");
+    expect(repoMap.warnings[0]).toContain("git status unavailable");
+    expect(await readRepoMap(projectRoot)).toEqual(repoMap);
   });
 
   it("overlays roadmap states from project-status milestone pointers", async () => {

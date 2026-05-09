@@ -1,6 +1,6 @@
 import type {
   AgentRunRecord,
-  type ProviderRouting,
+  ProviderRouting,
   ProjectState,
   ProjectSupervisionState
 } from "@threadsmith/domain";

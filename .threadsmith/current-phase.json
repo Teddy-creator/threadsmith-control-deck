@@ -1,26 +1,26 @@
 {
-  "phaseName": "Context Packet v1",
-  "phaseGoal": "为 v0.2.0 Context OS 建立第一份可持久化的 context packet，让后续角色协议、恢复流程和 UI context surface 有统一输入。",
-  "deliverable": "Context Packet v1 schema, builder, persistence, and tests",
+  "phaseName": "Repo Map v1",
+  "phaseGoal": "为 v0.2.0 Context OS 增加 lightweight repo map，让 context packet 能携带代码结构、入口、测试位置和当前变更线索。",
+  "deliverable": "Repo Map v1 schema, runtime builder, fs persistence, and Context Packet relevant-files integration",
   "inScope": [
-    "context packet domain schema",
-    "runtime context packet builder",
-    "fs-bridge persistence under .threadsmith/context/current-packet.json",
-    "tests for normal, missing optional evidence, and blocked acceptance scenarios",
-    "v0.2.0 implementation plan document"
+    "repo map domain schema",
+    "runtime repo map builder from package manifests and directory signals",
+    "fs-bridge persistence under .threadsmith/context/repo-map.json",
+    "git status changed-files capture with honest unknown fallback",
+    "Context Packet relevantFiles enrichment from repo map",
+    "targeted tests for normal and degraded repo map scenarios"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
     "native desktop shell",
     "large UI redesign",
-    "Repo Map v1",
     "Evidence Summary v1",
     "Role-specific Packets v1"
   ],
-  "stopCondition": "Context Packet v1 can be generated from ProjectState, persisted to .threadsmith/context/current-packet.json, and verified by targeted unit tests.",
+  "stopCondition": "Repo Map v1 can be generated from a local project, persisted to .threadsmith/context/repo-map.json, and used by Context Packet relevantFiles without embedding/RAG.",
   "verificationForThisPhase": [
     "npm run test --workspace @threadsmith/domain",
-    "npm run test --workspace @threadsmith/runtime -- src/contextPacket.test.ts",
+    "npm run test --workspace @threadsmith/runtime -- src/repoMap.test.ts src/contextPacket.test.ts",
     "npm run test --workspace @threadsmith/fs-bridge -- src/fileStore.test.ts",
     "npm run build"
   ],

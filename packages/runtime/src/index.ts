@@ -13,3 +13,4 @@ export * from "./supervision.ts";
 export * from "./providerRouting.ts";
 export * from "./phaseRun.ts";
 export * from "./contextPacket.ts";
+export * from "./repoMap.ts";
