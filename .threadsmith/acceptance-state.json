@@ -1,29 +1,29 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Context Budget Ledger v1 is accepted locally: Context Packet reports estimated size, budget level, heavy sections, and compression advice without real tokenizer dependency.",
+  "currentClaim": "Threadsmith v0.2.0 Role-specific Packets v1 is accepted locally: each role receives a focused packet derived from the main Context Packet, with fs persistence under role-packets.",
   "doneWhenChecklist": [
     {
-      "id": "budget-ledger-schema",
-      "label": "Context Budget Ledger v1 schema 已定义并从 domain 导出",
+      "id": "role-packet-schema",
+      "label": "RoleContextPacket schema 已定义并从 domain 导出",
       "status": "pass"
     },
     {
-      "id": "budget-ledger-builder",
-      "label": "runtime 可以从 Context Packet 内容生成 budget ledger",
+      "id": "role-packet-builder",
+      "label": "runtime 可以从主 Context Packet 派生六类 role packet",
       "status": "pass"
     },
     {
-      "id": "context-packet-budget",
-      "label": "Context Packet 自动携带 budget ledger",
+      "id": "role-packet-focus",
+      "label": "planner / executor / reviewer / verifier / closeout / hygiene 各自聚焦不同 payload",
       "status": "pass"
     },
     {
-      "id": "budget-warnings",
-      "label": "过大的 section 会产生明确 warnings 和 compression advice",
+      "id": "role-packet-persistence",
+      "label": "fs-bridge 可以写入和读取 .threadsmith/context/role-packets/<role>.json",
       "status": "pass"
     },
     {
       "id": "targeted-tests",
-      "label": "domain/runtime targeted tests 通过",
+      "label": "domain/runtime/fs-bridge targeted tests 通过",
       "status": "pass"
     }
   ],
@@ -32,9 +32,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "Budget estimates are intentionally heuristic in v1 and should not claim exact model token counts.",
-    "No tokenizer, embedding, RAG, UI surface, or model API integration is in scope.",
-    "Budget ledger should make oversized packets visible before role-specific packets are introduced."
+    "This slice does not change Threadsmith.skill behavior yet.",
+    "This slice does not render role packets in the Control Deck UI.",
+    "Role packet payloads should stay deterministic and derived from the main Context Packet."
   ],
   "finalState": "accepted"
 }

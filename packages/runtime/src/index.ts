@@ -16,3 +16,4 @@ export * from "./contextPacket.ts";
 export * from "./repoMap.ts";
 export * from "./evidenceSummary.ts";
 export * from "./contextBudget.ts";
+export * from "./roleContextPacket.ts";

@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收紧为 Context Budget Ledger v1：启发式预算监督，不做 tokenizer/UI/RAG。",
+      "taskSummary": "已将下一刀收紧为 Role-specific Packets v1：只做派生与持久化，不改 UI / skill / multi-provider。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现 budget ledger schema、runtime builder，并接入 Context Packet budget。",
+      "taskSummary": "已实现 role packet schema、runtime derivation 与 fs persistence。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核 budget ledger 使用 estimated / heuristic 表达，不声称精确 token。",
+      "taskSummary": "已复核六类 role packet 聚焦不同 payload，且均小于主 Context Packet。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已通过 targeted runtime/domain/fs-bridge tests、全量 test、build、JSON 校验与 diff check。",
+      "taskSummary": "已通过 domain/runtime/fs-bridge targeted tests、全量 test 与 build。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已完成 Context Budget Ledger v1 本地 closeout；等待提交 / PR / CI。",
+      "taskSummary": "已完成 Role-specific Packets v1 本地 closeout；等待提交 / PR / CI。",
       "requiresUserDecision": false
     },
     {
@@ -37,5 +37,5 @@
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": "当前无外部 blocker；Context Budget Ledger v1 已本地验收，等待 PR/CI。"
+  "blockerSummary": "当前无外部 blocker；Role-specific Packets v1 已本地验收，等待 PR/CI。"
 }
