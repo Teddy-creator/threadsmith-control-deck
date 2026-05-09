@@ -20,13 +20,17 @@ export function ObjectsInspector({
   phaseParticipants,
   acceptanceProgressLabel,
   lockedPhasePath,
-  resumeHint
+  resumeHint,
+  onOpenContextAction
 }: ObjectsInspectorProps) {
   return (
     <div className="space-y-8">
       <ObjectsInspectorHeader phaseGoal={projectState.currentPhase.phaseGoal} />
 
-      <ContextRecoverySection contextRecovery={contextRecovery} />
+      <ContextRecoverySection
+        contextRecovery={contextRecovery}
+        onOpenContextAction={onOpenContextAction}
+      />
 
       <PhaseContractSection
         projectState={projectState}

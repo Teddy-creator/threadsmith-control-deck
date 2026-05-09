@@ -337,6 +337,11 @@ describe("DeckScreen shell", () => {
     expect(objectsScope.getByText("Current Packet")).toBeInTheDocument();
     expect(objectsScope.getByText("规划 packet")).toBeInTheDocument();
     expect(objectsScope.getByText("为什么现在")).toBeInTheDocument();
+    expect(objectsScope.getByText("处理方式")).toBeInTheDocument();
+    expect(objectsScope.getByText("先等待运行结果回流")).toBeInTheDocument();
+    expect(
+      objectsScope.getByText("不要重复签发 context sync；先等最新运行完成，再刷新页面或回到指挥官继续。")
+    ).toBeInTheDocument();
     expect(objectsScope.getByText("阶段合同")).toBeInTheDocument();
     expect(objectsScope.getByText("当前推进方式")).toBeInTheDocument();
     expect(objectsScope.getByText("当前 slice")).toBeInTheDocument();
@@ -858,6 +863,71 @@ describe("DeckScreen shell", () => {
     expect(decisionScope.getAllByText("最新").length).toBeGreaterThanOrEqual(2);
     expect(decisionScope.getByText("规划")).toBeInTheDocument();
     expect(decisionScope.getByText("继续")).toBeInTheDocument();
+  });
+
+  it("opens a hygiene action preview from the context handling surface", () => {
+    const onRunAction = vi.fn(async () => {});
+
+    render(
+      <DeckScreen
+        projectRoot="/tmp/project"
+        currentProjectSourceId="custom-project"
+        currentProjectSourceLabel="自定义项目"
+        customProjectDraft="/tmp/project"
+        customProjectError={null}
+        customProjectErrorKind={null}
+        isConnectingCustomProject={false}
+        isInitializingCustomProject={false}
+        recentProjects={[]}
+        supervisorState={deriveSupervisorState(
+          state,
+          events,
+          null,
+          null,
+          projectSupervision,
+          null,
+          null,
+          null,
+          null,
+          [],
+          true
+        )}
+        loading={false}
+        error={null}
+        errorKind={null}
+        actionHistoryLength={0}
+        onSelectProjectSource={vi.fn()}
+        onCustomProjectDraftChange={vi.fn()}
+        onConnectCustomProject={vi.fn()}
+        onInitializeCustomProject={vi.fn()}
+        onPinRecentProject={vi.fn()}
+        onUnpinRecentProject={vi.fn()}
+        onRemoveRecentProject={vi.fn()}
+        onRunAction={onRunAction}
+        onApplyTransition={async () => {}}
+      />
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "阶段" }));
+    const objectsDrawer = screen
+      .getAllByText("当前阶段")
+      .find((element) => element.closest(".inspector-panel"))
+      ?.closest(".inspector-panel");
+    expect(objectsDrawer).not.toBeNull();
+    const objectsScope = within(objectsDrawer as HTMLElement);
+
+    expect(objectsScope.getByText("建议先生成 Context Packet")).toBeInTheDocument();
+    expect(objectsScope.getByText("打开 hygiene 处理动作")).toBeInTheDocument();
+    expect(
+      objectsScope.getByText(/当前版本还没有自动重写 current-packet\.json/)
+    ).toBeInTheDocument();
+
+    fireEvent.click(objectsScope.getByRole("button", { name: "打开 hygiene 处理动作" }));
+
+    expect(screen.getByText("动作确认")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "确认启动" }));
+    expect(onRunAction).toHaveBeenCalledWith("run-hygiene", undefined);
   });
 
   it("keeps action count and latest deck action visible after a workflow action", () => {

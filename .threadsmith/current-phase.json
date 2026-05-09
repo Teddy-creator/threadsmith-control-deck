@@ -1,13 +1,13 @@
 {
-  "phaseName": "Control Deck Context Surface v1",
-  "phaseGoal": "把 runtime contextRecovery signal 显示到 Control Deck，让用户能在首页和阶段工作台看懂 Context Packet / Role Packet 是否 fresh、stale、missing，以及为什么要 sync / hygiene / continue。",
-  "deliverable": "Compact homepage context summary plus detailed phase workbench Context 状态 section",
+  "phaseName": "Context sync action surface",
+  "phaseGoal": "把 Context 状态从可见推进到可处理：当 runtime contextRecovery 建议 sync / hygiene / handoff / wait / repair 时，阶段工作台能解释该怎么处理，并在已有 action flow 支持时打开对应动作预览。",
+  "deliverable": "Context recovery handling panel plus backed action preview entry for hygiene / handoff paths",
   "inScope": [
-    "homepage 推进判断卡片显示简洁 context 状态",
-    "阶段工作台显示 Context 状态详情",
-    "把 current packet / selected role packet / recovery action 翻译成人话",
-    "补充 context recovery gate reason 中文标签",
-    "补充前端渲染测试覆盖 fresh 与 watch/recover 状态"
+    "阶段工作台 Context 状态增加“处理方式”面板",
+    "把 sync-context 明确解释为当前版本可先通过 hygiene 重新锚定，而不假装自动生成 current-packet.json",
+    "run-hygiene / create-handoff 可打开现有动作预览",
+    "wait / resume / repair 类信号只给出人工处理说明，不展示虚假可执行按钮",
+    "补充前端渲染测试覆盖 context handling action surface"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
@@ -15,17 +15,19 @@
     "large UI redesign",
     "改变首页整体视觉骨架",
     "autopilot engine changes",
-    "prompt template generation",
     "embedding/RAG or model API calls",
     "automatic context packet regeneration",
+    "new runtime action id for sync-context",
     "changing $threadsmith skill docs again"
   ],
-  "stopCondition": "Control Deck homepage and phase workbench can clearly show context recovery status without changing the existing visual system.",
+  "stopCondition": "Context 状态详情能清楚说明下一步处理方式，并且已有 action flow 支持的处理入口可打开动作确认面板。",
   "verificationForThisPhase": [
     "npm run test --workspace @threadsmith/control-deck -- src/test/renderDeck.shell.test.tsx",
     "npm run test --workspace @threadsmith/control-deck",
     "npm run build",
-    "Playwright smoke: homepage context summary and phase workbench Context 状态 are visible"
+    "npm run test:e2e",
+    "git diff --check",
+    "jq empty .threadsmith/*.json .threadsmith/context/*.json"
   ],
   "activeOwners": [
     "planner",

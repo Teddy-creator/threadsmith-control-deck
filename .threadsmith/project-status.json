@@ -2,22 +2,22 @@
   "projectLabel": "Threadsmith",
   "currentTrack": "v0.2.0 Context OS",
   "overallState": "in-progress",
-  "currentFocus": "Control Deck Context Surface v1 已本地验收：contextRecovery 现在能在首页和阶段工作台被用户直接看懂。",
-  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1、Threadsmith.skill v2、Truth sync / recovery hygiene triggers 和 Control Deck Context Surface v1 本地验收。下一步建议进入 context sync action surface 或 context packet regeneration 入口。",
+  "currentFocus": "Context sync action surface 已本地验收：阶段工作台现在能解释 contextRecovery 的处理方式，并对已有 action flow 支持的 hygiene / handoff 打开动作确认面板。",
+  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1、Threadsmith.skill v2、Truth sync / recovery hygiene triggers、Control Deck Context Surface v1 和 Context sync action surface 本地验收。下一步建议进入 context packet regeneration engine 或 v0.2.0 release hardening。",
   "latestAcceptedSlice": {
-    "title": "Control Deck Context Surface v1",
-    "recordedAt": "2026-05-09T16:34:59Z"
+    "title": "Context sync action surface",
+    "recordedAt": "2026-05-09T17:01:28Z"
   },
   "nextPlannedSlice": {
-    "title": "Context sync action surface",
+    "title": "Context packet regeneration engine",
     "recordedAt": null
   },
-  "currentMilestoneId": "control-deck-context-surface-v1",
-  "nextMilestoneId": "context-sync-action-surface",
+  "currentMilestoneId": "context-sync-action-surface",
+  "nextMilestoneId": "context-packet-regeneration-engine",
   "topRisks": [
     "Context Packet 如果太胖，会变成另一个长 prompt，而不是节省上下文。",
     "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
     "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T16:34:59Z"
+  "updatedAt": "2026-05-09T17:01:28Z"
 }

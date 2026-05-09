@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收紧为 Control Deck Context Surface v1：只把 contextRecovery 展示到首页与阶段工作台，不改整体视觉骨架。",
+      "taskSummary": "已将下一刀收紧为 Context sync action surface：只做 Context 状态的处理说明与已有 action flow 入口，不实现真正 packet regeneration。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现首页 context 摘要、阶段工作台 Context 状态详情、中文标签与渲染测试。",
+      "taskSummary": "已实现阶段工作台“处理方式”面板，并把 run-hygiene / create-handoff 接到动作预览入口。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核改动没有重画前端骨架，信息层只追加在推进判断和阶段工作台中。",
+      "taskSummary": "已复核 sync-context 文案不会假装自动重写 current-packet.json；wait / resume / repair 也不会展示虚假按钮。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已通过 control-deck targeted tests、control-deck full tests、build 和 Playwright smoke。",
+      "taskSummary": "已通过 targeted shell test、control-deck 全量测试、build、e2e、diff check 和 .threadsmith JSON 校验。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "Control Deck Context Surface v1 已完成本地 closeout；下一步提交分支、创建 PR 并观察 CI。",
+      "taskSummary": "Context sync action surface 已完成本地 closeout；下一步提交分支、创建 PR 并观察 CI。",
       "requiresUserDecision": false
     },
     {

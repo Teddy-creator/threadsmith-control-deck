@@ -31,6 +31,14 @@ export interface ContextRecoveryModel {
   actionTone: string;
   detail: string;
   reasons: string[];
+  handling: {
+    title: string;
+    detail: string;
+    tone: string;
+    executableActionId: "run-hygiene" | "create-handoff" | null;
+    executableLabel: string | null;
+    manualHint: string | null;
+  };
   packetItems: Array<{
     label: string;
     value: string;
@@ -48,4 +56,7 @@ export interface ObjectsInspectorProps {
   acceptanceProgressLabel: string;
   lockedPhasePath: string | null;
   resumeHint: string | null;
+  onOpenContextAction: (
+    actionId: ContextRecoveryModel["handling"]["executableActionId"]
+  ) => void;
 }

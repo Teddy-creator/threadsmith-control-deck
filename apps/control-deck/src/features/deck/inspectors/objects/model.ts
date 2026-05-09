@@ -26,6 +26,87 @@ interface BuildObjectsInspectorModelArgs {
 
 export type ObjectsInspectorModel = Omit<ObjectsInspectorProps, "projectState">;
 
+function buildContextHandling(recovery: ContextRecoverySignal) {
+  if (recovery.action === "sync-context") {
+    return {
+      title:
+        recovery.currentPacketStatus === "missing"
+          ? "建议先生成 Context Packet"
+          : "建议先刷新 Context Packet",
+      detail:
+        "当前版本还没有自动重写 current-packet.json 的 regeneration engine；可先运行 hygiene，把 committed truth 重新锚定成可继续的恢复边界。",
+      tone: recovery.currentPacketStatus === "missing" ? "amber" : "red",
+      executableActionId: "run-hygiene" as const,
+      executableLabel: "打开 hygiene 处理动作",
+      manualHint: "如果你正在指挥官聊天里推进，也可以直接说：使用 $threadsmith sync，只同步 truth 与 context。"
+    };
+  }
+
+  if (recovery.action === "run-hygiene") {
+    return {
+      title: "建议运行 context hygiene",
+      detail: "角色 packet 或上下文边界已经不可靠，先让 hygiene 重新锚定当前 truth，再继续执行会更稳。",
+      tone: "red",
+      executableActionId: "run-hygiene" as const,
+      executableLabel: "打开 hygiene 处理动作",
+      manualHint: null
+    };
+  }
+
+  if (recovery.action === "create-handoff") {
+    return {
+      title: "建议创建 handoff",
+      detail: "当前 slice 已接受或需要继续点，先创建 handoff 可以避免下一轮从脏上下文继续。",
+      tone: "amber",
+      executableActionId: "create-handoff" as const,
+      executableLabel: "打开 handoff 处理动作",
+      manualHint: null
+    };
+  }
+
+  if (recovery.action === "wait-for-run") {
+    return {
+      title: "先等待运行结果回流",
+      detail: "已有运行中的角色或自动链路，当前最稳妥的是等待结果写回 committed truth。",
+      tone: "amber",
+      executableActionId: null,
+      executableLabel: null,
+      manualHint: "不要重复签发 context sync；先等最新运行完成，再刷新页面或回到指挥官继续。"
+    };
+  }
+
+  if (recovery.action === "resume-phase-run") {
+    return {
+      title: "先恢复暂停链路",
+      detail: "自动链路处于暂停状态，应先处理暂停原因，再显式 continue 当前 phase run。",
+      tone: "red",
+      executableActionId: null,
+      executableLabel: null,
+      manualHint: "回到指挥官入口，按暂停提示补齐条件后继续。"
+    };
+  }
+
+  if (recovery.action === "repair-run") {
+    return {
+      title: "先修复最新运行失败",
+      detail: "最新运行失败时不要直接刷新 packet；先把失败原因、truth 和修复目标对齐。",
+      tone: "red",
+      executableActionId: null,
+      executableLabel: null,
+      manualHint: "回到指挥官入口，要求根据最新失败结果进入 repair。"
+    };
+  }
+
+  return {
+    title: "可以继续推进",
+    detail: "Context Packet、角色 packet 与 committed truth 当前对齐，不需要额外处理。",
+    tone: "green",
+    executableActionId: null,
+    executableLabel: null,
+    manualHint: null
+  };
+}
+
 function buildContextRecoveryModel(recovery: ContextRecoverySignal) {
   const selectedRoleLabel = recovery.selectedRole
     ? `${formatRole(recovery.selectedRole)} packet`
@@ -39,6 +120,7 @@ function buildContextRecoveryModel(recovery: ContextRecoverySignal) {
     actionTone: recovery.action === "continue" ? "green" : tone,
     detail: recovery.detail,
     reasons: recovery.reasons.map(formatGateReason),
+    handling: buildContextHandling(recovery),
     packetItems: [
       {
         label: "Current Packet",

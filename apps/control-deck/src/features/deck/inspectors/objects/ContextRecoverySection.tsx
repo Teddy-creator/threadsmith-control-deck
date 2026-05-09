@@ -4,10 +4,14 @@ import type { ContextRecoveryModel } from "./types";
 
 interface ContextRecoverySectionProps {
   contextRecovery: ContextRecoveryModel;
+  onOpenContextAction: (
+    actionId: ContextRecoveryModel["handling"]["executableActionId"]
+  ) => void;
 }
 
 export function ContextRecoverySection({
-  contextRecovery
+  contextRecovery,
+  onOpenContextAction
 }: ContextRecoverySectionProps) {
   return (
     <div className="space-y-4">
@@ -35,6 +39,36 @@ export function ContextRecoverySection({
           <div className="mt-1 text-sm leading-6 text-zinc-300">
             {contextRecovery.detail}
           </div>
+        </div>
+
+        <div className="mt-4 rounded-lg border border-zinc-800/70 bg-zinc-950/30 p-3">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <div className="text-xs text-zinc-500">处理方式</div>
+              <div className={`mt-1 text-sm ${toneTextClass(contextRecovery.handling.tone)}`}>
+                {contextRecovery.handling.title}
+              </div>
+            </div>
+            {contextRecovery.handling.executableActionId ? (
+              <button
+                type="button"
+                className="rounded-lg bg-purple-500 px-3 py-2 text-xs text-zinc-950 transition-colors hover:bg-purple-400"
+                onClick={() =>
+                  onOpenContextAction(contextRecovery.handling.executableActionId)
+                }
+              >
+                {contextRecovery.handling.executableLabel}
+              </button>
+            ) : null}
+          </div>
+          <div className="text-sm leading-6 text-zinc-400">
+            {contextRecovery.handling.detail}
+          </div>
+          {contextRecovery.handling.manualHint ? (
+            <div className="mt-2 text-xs leading-5 text-zinc-500">
+              {contextRecovery.handling.manualHint}
+            </div>
+          ) : null}
         </div>
 
         {contextRecovery.reasons.length > 0 ? (
