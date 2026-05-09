@@ -3,37 +3,37 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已把本 slice 收束为 Context packet regeneration engine v1，并确认不进入 role packets / multi-provider / 桌面壳。",
+      "taskSummary": "已将下一刀收束为 v0.2.0 release hardening：先对齐公开文档、checklist、release notes 和验证面。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现 first-class sync-context action，复用 buildContextPacket 并写回 current-packet.json。",
+      "taskSummary": "已更新 README、usage guide、v0.2.0 release checklist、release notes、release copy、app-home 前门和 package version。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核 sync-context 与 run-hygiene 的语义边界：一个刷新 packet，一个做线程/恢复 hygiene。",
+      "taskSummary": "已复核发布文案仍保持 web-first / Codex-only 边界，未承诺 multi-provider 或桌面壳。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已通过 runtime、fs-bridge、control-deck、build、Playwright e2e、diff check 和 JSON 校验。",
+      "taskSummary": "已通过 test、build、e2e、launcher、self-host smoke、diff check 和 JSON 校验。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已清理临时测试产物并把 acceptance / supervision / context truth 写回 accepted。",
+      "taskSummary": "已写回 accepted truth；下一步提交 PR 并在 CI 绿后进入 GitHub Release publish。",
       "requiresUserDecision": false
     },
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "守住边界：本 slice 只生成 current-packet.json，不生成全部 role packets，也不进入 multi-provider。",
+      "taskSummary": "守住边界：本 slice 只做 release hardening，不做新功能、multi-provider 或桌面壳。",
       "requiresUserDecision": false
     }
   ],

@@ -1,29 +1,29 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Context packet regeneration engine v1 is implemented: sync-context is now a real deck/runtime action that regenerates .threadsmith/context/current-packet.json from committed truth and available context artifacts.",
+  "currentClaim": "Threadsmith v0.2.0 release hardening is implemented: public README, release checklist, release notes, package versions, and verification guidance now align with the completed Context OS lane before publishing.",
   "doneWhenChecklist": [
     {
-      "id": "sync-context-action",
-      "label": "sync-context 成为 first-class deck action",
+      "id": "readme-version-surface",
+      "label": "README 清楚区分 v0.2.0 Context OS 当前线与 v0.1.1 稳定发布",
       "status": "pass"
     },
     {
-      "id": "packet-regeneration",
-      "label": "执行 sync-context 会写回有效 current-packet.json",
+      "id": "release-checklist",
+      "label": "v0.2.0 release checklist 存在并包含当前验证命令",
       "status": "pass"
     },
     {
-      "id": "recommendation-routing",
-      "label": "missing/stale packet 的 next best step 指向 sync-context",
+      "id": "release-notes",
+      "label": "v0.2.0 release notes draft 概括 Context OS 能力与边界",
       "status": "pass"
     },
     {
-      "id": "deck-copy",
-      "label": "Control Deck 不再说 regeneration engine 不存在",
+      "id": "stale-doc-links",
+      "label": "公开入口不再只指向 v0.1.1 文档而忽略 v0.2.0",
       "status": "pass"
     },
     {
       "id": "verification-green",
-      "label": "runtime / fs-bridge / control-deck / e2e / build / JSON checks 全部通过",
+      "label": "release-level verification 通过",
       "status": "pass"
     }
   ],
@@ -32,9 +32,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "Role packet regeneration remains out of scope for this slice.",
     "multi-provider automation remains out of scope for v0.2.0.",
-    "v0.2.0 still needs release hardening before a public release."
+    "native desktop shell remains out of scope for this release.",
+    "GitHub Release publication itself is the next slice after this hardening PR."
   ],
   "finalState": "accepted"
 }

@@ -1,6 +1,6 @@
 {
-  "versionLabel": "Threadsmith Codex-only v0.1",
-  "finalGoal": "让 Threadsmith 的 Codex-only 自动链监督与 web 产品面稳定可交付，并能支撑真实项目的日常开发。",
+  "versionLabel": "Threadsmith v0.2.0 Context OS",
+  "finalGoal": "让 Threadsmith 的 Codex-only web control deck 具备可发布的 Context OS 能力：结构化 truth、context packets、证据摘要、恢复建议和可解释的监督界面。",
   "milestones": [
     {
       "id": "accepted-state-continuation-handoff-refresh-v1",
@@ -59,12 +59,26 @@
       "state": "done"
     },
     {
-      "id": "public-web-release-publish-v0-1",
+      "id": "context-packet-regeneration-engine",
+      "label": "Context 9",
+      "title": "Context packet regeneration engine v1",
+      "summary": "让 sync-context 成为真实动作，可以从 committed truth 和 context artifacts 重新生成 current-packet.json。",
+      "state": "done"
+    },
+    {
+      "id": "v0-2-0-release-hardening",
       "label": "Release 2",
-      "title": "Public web release publish v0.1",
-      "summary": "在 release hardening 完成后，先清理公开仓库卫生，再按检查表完成 tag、release 文案与公开发布动作。",
+      "title": "v0.2.0 release hardening",
+      "summary": "对齐公开 README、release notes、checklist 和验证命令，让 v0.2.0 Context OS 可以进入发布准备。",
+      "state": "done"
+    },
+    {
+      "id": "v0-2-0-github-release-publish",
+      "label": "Release 3",
+      "title": "v0.2.0 GitHub Release publish",
+      "summary": "在 hardening 完成后创建 tag、GitHub Release 和公开发布说明。",
       "state": "current"
     }
   ],
-  "updatedAt": "2026-05-07T09:30:00Z"
+  "updatedAt": "2026-05-09T18:39:39Z"
 }

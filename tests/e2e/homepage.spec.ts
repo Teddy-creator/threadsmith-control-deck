@@ -96,7 +96,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      /Threadsmith v0\.2\.0 Context OS 已完成.*Context packet regeneration engine v1.*下一步进入 v0\.2\.0 release hardening/
+      /Threadsmith v0\.2\.0 Context OS 已完成.*v0\.2\.0 release hardening.*下一步进入 v0\.2\.0 GitHub Release publish/
     )
   ).toBeVisible();
   await expect(
@@ -107,14 +107,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("阶段工作台", { exact: true })).toBeVisible();
   await expect(inspectorPanel.getByRole("heading", { name: "Context 状态" })).toBeVisible();
   await expect(
-    inspectorPanel.getByText("Context packet regeneration engine v1").first()
+    inspectorPanel.getByText("v0.2.0 release hardening").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith v0.2.0 Context packet regeneration engine v1 is implemented: sync-context is now a real deck/runtime action that regenerates .threadsmith/context/current-packet.json from committed truth and available context artifacts."
+      "Threadsmith v0.2.0 release hardening is implemented: public README, release checklist, release notes, package versions, and verification guidance now align with the completed Context OS lane before publishing."
     ).first()
   ).toBeVisible();
 });

@@ -2,22 +2,22 @@
   "projectLabel": "Threadsmith",
   "currentTrack": "v0.2.0 Context OS",
   "overallState": "stable",
-  "currentFocus": "Context packet regeneration engine v1 已本地验收：sync-context 现在能从 committed .threadsmith truth 和已有 context artifacts 重新生成 current-packet.json。",
-  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1、Threadsmith.skill v2、Truth sync / recovery hygiene triggers、Control Deck Context Surface v1、Context sync action surface 和 Context packet regeneration engine v1。本轮已补齐 actionable regeneration，下一步进入 v0.2.0 release hardening。",
+  "currentFocus": "v0.2.0 release hardening 已本地验收：README、release checklist、release notes、package versions 和公开验证面已经对齐 Context OS 能力。",
+  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1、Threadsmith.skill v2、Truth sync / recovery hygiene triggers、Control Deck Context Surface v1、Context sync action surface、Context packet regeneration engine v1 和 v0.2.0 release hardening。下一步进入 v0.2.0 GitHub Release publish。",
   "latestAcceptedSlice": {
-    "title": "Context packet regeneration engine v1",
-    "recordedAt": "2026-05-09T18:17:35Z"
+    "title": "v0.2.0 release hardening",
+    "recordedAt": "2026-05-09T18:39:39Z"
   },
   "nextPlannedSlice": {
-    "title": "v0.2.0 release hardening",
+    "title": "v0.2.0 GitHub Release publish",
     "recordedAt": null
   },
-  "currentMilestoneId": "context-packet-regeneration-engine",
-  "nextMilestoneId": "v0-2-0-release-hardening",
+  "currentMilestoneId": "v0-2-0-release-hardening",
+  "nextMilestoneId": "v0-2-0-github-release-publish",
   "topRisks": [
     "Context Packet 如果太胖，会变成另一个长 prompt，而不是节省上下文。",
     "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
     "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T18:17:35Z"
+  "updatedAt": "2026-05-09T18:39:39Z"
 }
