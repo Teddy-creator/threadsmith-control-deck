@@ -24,9 +24,24 @@ export interface PhaseParticipantCard {
   routeHint: string;
 }
 
+export interface ContextRecoveryModel {
+  statusLabel: string;
+  actionLabel: string;
+  tone: string;
+  actionTone: string;
+  detail: string;
+  reasons: string[];
+  packetItems: Array<{
+    label: string;
+    value: string;
+    tone: string;
+  }>;
+}
+
 export interface ObjectsInspectorProps {
   projectState: ProjectState;
   phaseCurrentSlice: string;
+  contextRecovery: ContextRecoveryModel;
   phaseBoundarySections: PhaseBoundarySection[];
   phaseRoutingOverviewItems: PhaseRoutingOverviewItem[];
   phaseParticipants: PhaseParticipantCard[];

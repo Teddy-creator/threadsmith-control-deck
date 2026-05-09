@@ -3,37 +3,37 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收紧为 Truth sync / recovery hygiene triggers：只做 runtime recovery signal 与 bridge artifacts 读取，不改 UI / multi-provider。",
+      "taskSummary": "已将下一刀收紧为 Control Deck Context Surface v1：只把 contextRecovery 展示到首页与阶段工作台，不改整体视觉骨架。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现 contextRecovery runtime signal，并接入 supervisor state / health / gate / next best step / control-deck bridge。",
+      "taskSummary": "已实现首页 context 摘要、阶段工作台 Context 状态详情、中文标签与渲染测试。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核 recovery signal 能区分 missing / stale / fresh，且不会把未加载 artifacts 误判为缺失。",
+      "taskSummary": "已复核改动没有重画前端骨架，信息层只追加在推进判断和阶段工作台中。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已通过 runtime targeted tests、control-deck bridge tests 与 build；等待全量 test/e2e。",
+      "taskSummary": "已通过 control-deck targeted tests、control-deck full tests、build 和 Playwright smoke。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "Truth sync / recovery hygiene triggers 已完成本地 closeout；下一步提交分支、创建 PR 并观察 CI。",
+      "taskSummary": "Control Deck Context Surface v1 已完成本地 closeout；下一步提交分支、创建 PR 并观察 CI。",
       "requiresUserDecision": false
     },
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "守住本 slice 边界：不加入 TypeScript runtime、autopilot engine、UI、prompt generation、multi-provider 或 RAG。",
+      "taskSummary": "守住本 slice 边界：不加入 packet regeneration、multi-provider、桌面壳或新的执行桥能力。",
       "requiresUserDecision": false
     }
   ],

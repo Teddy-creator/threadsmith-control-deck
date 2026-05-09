@@ -1,10 +1,18 @@
 import type { PhaseOwner, ProjectState } from "@threadsmith/domain";
-import type { SupervisorState } from "@threadsmith/runtime";
+import type { ContextRecoverySignal, SupervisorState } from "@threadsmith/runtime";
+import { formatGateReason, formatRole } from "../../../display/labels";
 import {
   buildPhaseParticipantRouteHint,
   buildPhaseRoutingOverviewItems,
   type LatestBridgeModel
 } from "../../deckViewModels";
+import {
+  formatContextRecoveryActionLong,
+  formatContextRecoveryStatus,
+  formatPacketStatus,
+  pickContextTone,
+  pickPacketTone
+} from "../../view-models/contextRecovery";
 import { compactText } from "../shared";
 import type { ObjectsInspectorProps } from "./types";
 
@@ -17,6 +25,39 @@ interface BuildObjectsInspectorModelArgs {
 }
 
 export type ObjectsInspectorModel = Omit<ObjectsInspectorProps, "projectState">;
+
+function buildContextRecoveryModel(recovery: ContextRecoverySignal) {
+  const selectedRoleLabel = recovery.selectedRole
+    ? `${formatRole(recovery.selectedRole)} packet`
+    : "角色 packet";
+  const tone = pickContextTone(recovery.status);
+
+  return {
+    statusLabel: `Context ${formatContextRecoveryStatus(recovery.status)}`,
+    actionLabel: formatContextRecoveryActionLong(recovery.action),
+    tone,
+    actionTone: recovery.action === "continue" ? "green" : tone,
+    detail: recovery.detail,
+    reasons: recovery.reasons.map(formatGateReason),
+    packetItems: [
+      {
+        label: "Current Packet",
+        value: formatPacketStatus(recovery.currentPacketStatus),
+        tone: pickPacketTone(recovery.currentPacketStatus)
+      },
+      {
+        label: selectedRoleLabel,
+        value: formatPacketStatus(recovery.rolePacketStatus),
+        tone: pickPacketTone(recovery.rolePacketStatus)
+      },
+      {
+        label: "选择角色",
+        value: recovery.selectedRole ? formatRole(recovery.selectedRole) : "未指定",
+        tone: "purple"
+      }
+    ]
+  };
+}
 
 export function buildObjectsInspectorModel(
   args: BuildObjectsInspectorModelArgs
@@ -42,6 +83,7 @@ export function buildObjectsInspectorModel(
       : ("zinc" as const);
 
   return {
+    contextRecovery: buildContextRecoveryModel(args.supervisorState.contextRecovery),
     phaseCurrentSlice: compactText(
       args.supervisorState.latestPhaseRunSummary.currentSliceLabel
         ?? args.executionPreviewTaskSummary

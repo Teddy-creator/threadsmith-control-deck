@@ -1,4 +1,5 @@
 import {
+  ContextRecoverySection,
   ObjectsInspectorHeader,
   PhaseContractSection,
   PhaseExitSection,
@@ -13,6 +14,7 @@ export type { ObjectsInspectorProps } from "./objects";
 export function ObjectsInspector({
   projectState,
   phaseCurrentSlice,
+  contextRecovery,
   phaseBoundarySections,
   phaseRoutingOverviewItems,
   phaseParticipants,
@@ -23,6 +25,8 @@ export function ObjectsInspector({
   return (
     <div className="space-y-8">
       <ObjectsInspectorHeader phaseGoal={projectState.currentPhase.phaseGoal} />
+
+      <ContextRecoverySection contextRecovery={contextRecovery} />
 
       <PhaseContractSection
         projectState={projectState}
