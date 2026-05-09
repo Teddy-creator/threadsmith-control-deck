@@ -3,13 +3,13 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已把 v0.2.0 Context OS 拆成 8 个实现 slice，并将第一刀收紧为 Context Packet v1。",
+      "taskSummary": "已把 v0.2.0 Context OS 拆成 8 个实现 slice；Context Packet v1 已完成并合入 main。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现 Context Packet v1 schema、builder、persistence，并生成当前项目的 current-packet.json。",
+      "taskSummary": "已实现 Context Packet v1 schema、builder、persistence，并完成 run lifecycle 稳定性补丁。",
       "requiresUserDecision": false
     },
     {
@@ -21,13 +21,13 @@
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已运行 targeted tests、runtime/fs-bridge/orchestrator 包测试、全量 npm run test 与 npm run build。",
+      "taskSummary": "PR #7 与 main CI 均已通过；workspace tests、build、launcher validation、smoke e2e 已在 main 验证。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已完成第一刀 closeout：.threadsmith/context 被标记为 runtime artifact，当前 slice 准备提交/PR。",
+      "taskSummary": "已完成第一刀 closeout：Context Packet v1 foundation 与 lifecycle fix 均已合入 main。",
       "requiresUserDecision": false
     },
     {
@@ -37,5 +37,5 @@
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": "当前无外部 blocker；Context Packet v1 已 accepted，下一步是提交 / PR，并在合并后进入 Repo Map v1。"
+  "blockerSummary": "当前无外部 blocker；下一步建议进入 Repo Map v1。"
 }

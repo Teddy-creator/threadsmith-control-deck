@@ -2,11 +2,11 @@
   "projectLabel": "Threadsmith",
   "currentTrack": "v0.2.0 Context OS",
   "overallState": "in-progress",
-  "currentFocus": "实现 Context Packet v1：从 committed .threadsmith truth 生成可持久化、可复用、面向角色协作的简洁上下文包。",
-  "projectStatusSummary": "Threadsmith 正在进入 v0.2.0 Context OS 主线：先用 context packet 减少长聊天回放和全量上下文浪费，再强化 skill、恢复和 UI context surface。",
+  "currentFocus": "Context Packet v1 已合入 main 且 CI 绿色；下一刀应进入 Repo Map v1，让 context packet 能携带更准确的代码结构线索。",
+  "projectStatusSummary": "Threadsmith 已完成 v0.2.0 Context OS 的第一块地基：Context Packet v1。主线现在可以继续推进 repo map、evidence summary、role-specific packets、skill v2、recovery/hygiene 与 context surface。",
   "latestAcceptedSlice": {
-    "title": "Threadsmith v0.1.1 public onboarding polish and CI maintenance",
-    "recordedAt": "2026-05-09T12:31:40Z"
+    "title": "Context Packet v1 foundation",
+    "recordedAt": "2026-05-09T13:46:17Z"
   },
   "nextPlannedSlice": {
     "title": "Repo Map v1",
@@ -19,5 +19,5 @@
     "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
     "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T13:11:40Z"
+  "updatedAt": "2026-05-09T13:48:11Z"
 }

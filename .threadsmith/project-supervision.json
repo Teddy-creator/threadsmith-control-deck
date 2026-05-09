@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "public-release-hygiene v0.1 已完成：公开仓库卫生、运行痕迹清理、本地路径清理和公开文案边界已经收口。",
+  "summary": "v0.2.0 Context Packet v1 已完成并合入 main；当前多角色协作线可以转入 Repo Map v1。",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,11 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "已收束公开发布前的仓库卫生边界与检查清单。",
+      "taskSummary": "已完成 v0.2.0 Context OS 计划拆解，并确认下一刀为 Repo Map v1。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-07T09:30:00Z"
+      "updatedAt": "2026-05-09T13:48:11Z"
     },
     {
       "id": "builder-logical",
@@ -23,11 +23,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已清理内部计划文档、运行 bridge 草稿和公开文案噪音。",
+      "taskSummary": "已交付 Context Packet v1 schema、builder、persistence 与 run lifecycle 稳定性修复。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "public hygiene 已验证",
-      "updatedAt": "2026-05-07T09:30:00Z"
+      "latestEvidenceLabel": "main CI 已通过",
+      "updatedAt": "2026-05-09T13:48:11Z"
     },
     {
       "id": "critic-logical",
@@ -36,11 +36,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已复核公开面不再跟踪内部计划、本地路径或过期 bridge truth。",
+      "taskSummary": "已复核 Context Packet v1 未扩大到 repo map、UI surface、multi-provider 或桌面壳。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-07T09:30:00Z"
+      "updatedAt": "2026-05-09T13:48:11Z"
     },
     {
       "id": "verifier-logical",
@@ -49,11 +49,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "release-facing verification 已通过。",
+      "taskSummary": "PR #7 与 main CI 均已通过，确认主线绿色。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "verification 已通过",
-      "updatedAt": "2026-05-07T09:30:00Z"
+      "latestEvidenceLabel": "CI run 25602621880 通过",
+      "updatedAt": "2026-05-09T13:48:11Z"
     },
     {
       "id": "closeout-logical",
@@ -62,11 +62,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "release hygiene closeout 已完成，等待 commit / PR / publish 动作。",
+      "taskSummary": "Context Packet v1 已完成 closeout，下一步进入 Repo Map v1。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "closeout 已完成",
-      "updatedAt": "2026-05-07T09:30:00Z"
+      "latestEvidenceLabel": "PR #6/#7 已合并",
+      "updatedAt": "2026-05-09T13:48:11Z"
     },
     {
       "id": "hygiene-logical",
@@ -82,5 +82,5 @@
       "updatedAt": "2026-05-07T09:30:00Z"
     }
   ],
-  "updatedAt": "2026-05-07T09:59:52Z"
+  "updatedAt": "2026-05-09T13:48:11Z"
 }

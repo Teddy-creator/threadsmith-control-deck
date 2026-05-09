@@ -1,5 +1,5 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Context Packet v1 is accepted locally: schema, builder, persistence API, runtime artifact boundary, full workspace tests, and build all pass.",
+  "currentClaim": "Threadsmith v0.2.0 Context Packet v1 is accepted on main: schema, builder, persistence API, runtime artifact boundary, PR review/merge, and main CI all pass.",
   "doneWhenChecklist": [
     {
       "id": "plan-written",
@@ -29,6 +29,16 @@
     {
       "id": "build-green",
       "label": "npm run build 通过",
+      "status": "pass"
+    },
+    {
+      "id": "pr-merged",
+      "label": "Context Packet v1 foundation 已合入 main",
+      "status": "pass"
+    },
+    {
+      "id": "main-ci-green",
+      "label": "main CI 已通过",
       "status": "pass"
     }
   ],
