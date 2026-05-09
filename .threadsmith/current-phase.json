@@ -1,25 +1,26 @@
 {
-  "phaseName": "Evidence Summary v1",
-  "phaseGoal": "为 v0.2.0 Context OS 增加结构化验证摘要，让 context packet 引用 concise evidence 而不是 raw logs。",
-  "deliverable": "Evidence Summary v1 schema, runtime builder, fs persistence, and Context Packet evidence integration",
+  "phaseName": "Context Budget Ledger v1",
+  "phaseGoal": "为 v0.2.0 Context OS 增加轻量 context budget ledger，让 Context Packet 能诚实标记体量、风险 section 和压缩建议。",
+  "deliverable": "Context Budget Ledger v1 schema, runtime budget builder, and Context Packet budget integration",
   "inScope": [
-    "evidence summary domain schema",
-    "runtime evidence summary builder from verification command results and artifact refs",
-    "fs-bridge persistence under .threadsmith/context/evidence-summary.json",
-    "Context Packet evidence enrichment from evidence summary",
-    "targeted tests for pass, fail, skipped, and empty evidence scenarios"
+    "budget ledger domain schema",
+    "runtime budget builder using heuristic JSON character and section-size estimates",
+    "Context Packet budget field integration",
+    "warnings for oversized packet sections and long text payloads",
+    "targeted tests for small, warning, and over-budget packet scenarios"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
     "native desktop shell",
     "large UI redesign",
-    "Role-specific Packets v1"
+    "Role-specific Packets v1",
+    "real tokenizer integration",
+    "embedding/RAG or model API calls"
   ],
-  "stopCondition": "Evidence Summary v1 can summarize command outcomes and artifact refs, persist to .threadsmith/context/evidence-summary.json, and feed Context Packet evidence without storing raw logs.",
+  "stopCondition": "Context Packet includes a budget ledger that identifies estimated size, budget level, heaviest sections, and compression advice without requiring tokenizer or model APIs.",
   "verificationForThisPhase": [
     "npm run test --workspace @threadsmith/domain",
-    "npm run test --workspace @threadsmith/runtime -- src/evidenceSummary.test.ts src/contextPacket.test.ts",
-    "npm run test --workspace @threadsmith/fs-bridge -- src/fileStore.test.ts",
+    "npm run test --workspace @threadsmith/runtime -- src/contextBudget.test.ts src/contextPacket.test.ts",
     "npm run build"
   ],
   "activeOwners": [

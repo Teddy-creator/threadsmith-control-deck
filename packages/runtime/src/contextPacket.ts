@@ -12,6 +12,10 @@ import {
 } from "@threadsmith/domain";
 import { deriveRepoMapRelevantFiles } from "./repoMap.ts";
 import { toContextPacketEvidence } from "./evidenceSummary.ts";
+import {
+  buildContextBudgetLedger,
+  type BuildContextBudgetOptions
+} from "./contextBudget.ts";
 
 export interface BuildContextPacketOptions {
   generatedAt?: string;
@@ -21,6 +25,7 @@ export interface BuildContextPacketOptions {
   evidenceSummary?: EvidenceSummary;
   relevantFiles?: ContextPacketRelevantFile[];
   repoMap?: RepoMap;
+  budget?: BuildContextBudgetOptions;
 }
 
 function slugify(value: string) {
@@ -208,8 +213,7 @@ export function buildContextPacket(
   options: BuildContextPacketOptions = {}
 ): ContextPacket {
   const generatedAt = options.generatedAt ?? new Date().toISOString();
-
-  return contextPacketSchema.parse({
+  const packetBody = {
     packetId: options.packetId ?? buildPacketId(state, generatedAt),
     generatedAt,
     project: {
@@ -269,5 +273,10 @@ export function buildContextPacket(
         title: "Acceptance State"
       }
     ]
+  };
+
+  return contextPacketSchema.parse({
+    ...packetBody,
+    budget: buildContextBudgetLedger(packetBody, options.budget)
   });
 }

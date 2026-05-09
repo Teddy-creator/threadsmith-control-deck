@@ -120,8 +120,48 @@ describe("buildContextPacket", () => {
       "packages/domain/src/contextPacket.ts"
     );
     expect(packet.recentDiff.status).toBe("dirty");
+    expect(packet.budget.method).toBe("heuristic-json-char-estimate-v1");
+    expect(packet.budget.budgetLevel).toBe("compact");
+    expect(packet.budget.heaviestSections.map((section) => section.section))
+      .toContain("scope");
     expect(packet.sourceRefs.map((ref) => ref.path)).toContain(
       ".threadsmith/current-phase.json"
+    );
+  });
+
+  it("surfaces budget warnings when packet sections grow too large", () => {
+    const packet = buildContextPacket({
+      ...baseState,
+      acceptanceState: {
+        ...baseState.acceptanceState,
+        knownGaps: Array.from({ length: 20 }, (_, index) =>
+          `Known gap ${index}: this needs to be compressed before handoff.`
+        )
+      }
+    }, {
+      generatedAt: "2026-05-09T13:15:30.000Z",
+      relevantFiles: Array.from({ length: 18 }, (_, index) => ({
+        path: `packages/example-${index}.ts`,
+        reason: "Changed file from current git status.",
+        source: "repo-map" as const
+      })),
+      budget: {
+        watchChars: 1_000,
+        heavyChars: 2_000,
+        overBudgetChars: 3_000,
+        sectionItemWatch: 4,
+        sectionItemHeavy: 10
+      }
+    });
+
+    expect(packet.budget.budgetLevel).toBe("over-budget");
+    expect(packet.budget.heaviestSections.map((section) => section.section))
+      .toEqual(expect.arrayContaining(["acceptance", "relevantFiles"]));
+    expect(packet.budget.compressionAdvice).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("acceptance:"),
+        expect.stringContaining("relevantFiles:")
+      ])
     );
   });
 
