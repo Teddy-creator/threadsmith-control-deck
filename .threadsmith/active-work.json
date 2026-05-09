@@ -3,39 +3,39 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收紧为 Role-specific Packets v1：只做派生与持久化，不改 UI / skill / multi-provider。",
+      "taskSummary": "已将下一刀收紧为 Threadsmith.skill v2：只升级 skill 协议、引用文档、truth 同步与本地安装副本，不改 UI / runtime / multi-provider。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现 role packet schema、runtime derivation 与 fs persistence。",
+      "taskSummary": "已升级 codex/skills/threadsmith：明确 sync / drive / recover、Role Packet 优先级、角色写入边界和 writeback 失败处理。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核六类 role packet 聚焦不同 payload，且均小于主 Context Packet。",
+      "taskSummary": "已复核 skill v2 只描述协议边界，没有越界承诺 runtime/autopilot/UI 行为。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已通过 domain/runtime/fs-bridge targeted tests、全量 test 与 build。",
+      "taskSummary": "已验证 repo skill 与本机 installed skill 一致，JSON truth 合法，diff hygiene 通过。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已完成 Role-specific Packets v1 本地 closeout；等待提交 / PR / CI。",
+      "taskSummary": "Threadsmith.skill v2 已完成本地 closeout；下一步是提交分支、创建 PR 并观察 CI。",
       "requiresUserDecision": false
     },
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "守住 v1 边界：不加入 tokenizer、UI、RAG 或 model API。",
+      "taskSummary": "守住本 slice 边界：不加入 TypeScript runtime、autopilot engine、UI、prompt generation、multi-provider 或 RAG。",
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": "当前无外部 blocker；Role-specific Packets v1 已本地验收，等待 PR/CI。"
+  "blockerSummary": "当前无外部 blocker；Threadsmith.skill v2 已本地验收，等待 PR/CI。"
 }

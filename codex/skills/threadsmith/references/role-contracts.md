@@ -1,81 +1,186 @@
 # Role Contracts
 
-Threadsmith uses role-first orchestration.
+Threadsmith uses role-first orchestration. Each role should prefer its matching role packet when present:
+
+```text
+.threadsmith/context/role-packets/<role>.json
+```
+
+If the packet is missing or stale, use committed truth and the main Context Packet.
 
 ## Planner
 
-Responsible for:
+Role packet: `.threadsmith/context/role-packets/planner.json`
 
-- tightening project truth
-- tightening phase truth
-- narrowing the next slice
+Required inputs:
 
-Must not:
+- Project Brief
+- Current Phase
+- project status
+- scope
+- risks
+- next step
 
-- silently broaden scope
+Allowed writes:
+
+- `.threadsmith/current-phase.json`
+- `.threadsmith/project-status.json`
+- `.threadsmith/active-work.json`
+- `.threadsmith/project-supervision.json`
+
+Forbidden writes:
+
+- source code implementation
+- marking verification passed
+- marking final acceptance
+
+Completion artifact:
+
+- narrowed phase contract or explicit stop reason
 
 ## Executor
 
-Responsible for:
+Role packet: `.threadsmith/context/role-packets/executor.json`
 
-- implementing the current narrow slice
+Required inputs:
 
-May move acceptance only to:
+- Current Phase
+- in-scope and out-of-scope lists
+- relevant files
+- recent diff
+- implementation constraints
 
-- `ready-for-review`
+Allowed writes:
 
-Must not:
+- source code and tests in the current slice
+- `.threadsmith/active-work.json`
+- `.threadsmith/acceptance-state.json` only to move implementation toward `ready-for-review`
 
-- claim acceptance
-- skip review
-- rewrite unrelated areas
+Forbidden writes:
+
+- marking review passed
+- marking verification passed
+- marking final acceptance
+- broad unrelated refactors
+
+Completion artifact:
+
+- implementation summary, changed files, and verification commands that should be run next
 
 ## Reviewer
 
-Responsible for:
+Role packet: `.threadsmith/context/role-packets/reviewer.json`
 
-- checking work against Project Brief and Current Phase
-- finding blocking and non-blocking issues
+Required inputs:
 
-May move acceptance only to:
+- acceptance claim
+- Current Phase
+- scope
+- recent diff
+- risks
+- relevant files
 
-- `ready-for-verification`
-- `review-blocked`
+Allowed writes:
 
-Must not:
+- `.threadsmith/acceptance-state.json` to `ready-for-verification` or `review-blocked`
+- `.threadsmith/active-work.json`
+- review notes or issue artifacts when needed
 
-- self-certify verification
+Forbidden writes:
+
+- running the final verification claim as if independent
+- marking final acceptance
+- rewriting implementation except for explicitly approved tiny fixes
+
+Completion artifact:
+
+- review finding list or explicit no-findings note with residual risks
 
 ## Verifier
 
-Responsible for:
+Role packet: `.threadsmith/context/role-packets/verifier.json`
 
-- deciding whether the current claim is actually supported
+Required inputs:
 
-May move acceptance only to:
+- acceptance checklist
+- verification commands
+- evidence summary
+- artifact refs
+- current claim
 
-- `verification-failed`
-- `accepted-with-closeout-pending`
+Allowed writes:
 
-Must not:
+- `.threadsmith/acceptance-state.json` to `verification-failed` or `accepted-with-closeout-pending`
+- `.threadsmith/context/evidence-summary.json`
+- evidence artifacts under runtime/artifact paths
 
-- convert missing evidence into a pass
+Forbidden writes:
+
+- converting missing evidence into a pass
+- changing implementation to make tests pass unless routed to repair
+- marking final acceptance before closeout
+
+Completion artifact:
+
+- verification result with exact commands and evidence refs
 
 ## Closeout
 
-Responsible for:
+Role packet: `.threadsmith/context/role-packets/closeout.json`
 
-- cleanup
-- residual risk recording
-- documentation and hygiene follow-through
+Required inputs:
 
-Only after closeout may the supervisor mark:
+- accepted-with-closeout-pending claim
+- known gaps
+- residual risks
+- evidence refs
+- source refs
 
-- `accepted`
+Allowed writes:
+
+- `.threadsmith/acceptance-state.json` to `accepted`
+- `.threadsmith/project-status.json`
+- `.threadsmith/active-work.json`
+- `.threadsmith/project-supervision.json`
+- docs or changelog updates if required by the slice
+
+Forbidden writes:
+
+- new implementation scope
+- hiding residual risk
+- accepting without verification evidence
+
+Completion artifact:
+
+- closeout summary, cleanup result, residual risks, and next planned slice
 
 ## Hygiene
 
-Responsible for:
+Role packet: `.threadsmith/context/role-packets/hygiene.json`
 
-- re-anchoring the thread to current truth
-- producing handoff when continuation should move to a cleaner path
+Required inputs:
+
+- committed truth
+- recent diff
+- evidence summary
+- budget warnings
+- blockers
+- source refs
+
+Allowed writes:
+
+- `.threadsmith/current-phase.json` only when re-anchoring is required
+- `.threadsmith/acceptance-state.json` only to correct stale status
+- `.threadsmith/project-status.json`
+- `.threadsmith/active-work.json`
+- handoff or recovery artifacts
+
+Forbidden writes:
+
+- normal feature implementation
+- claiming verification
+- silently discarding contradictory evidence
+
+Completion artifact:
+
+- hygiene summary with verified facts, stale assumptions, contradictions, and next safe action

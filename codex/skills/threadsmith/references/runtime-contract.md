@@ -2,49 +2,83 @@
 
 Threadsmith uses the active project's `.threadsmith/` directory as the source of truth.
 
-## Required files
+## Required Committed Truth
 
-- `project-brief.json`
-- `current-phase.json`
-- `acceptance-state.json`
-- `active-work.json`
-- `preferences.json`
-- `action-queue.ndjson`  (file name kept for compatibility, but contents are append-only action history)
+Read these before deciding the next move:
 
-## Operating rule
+- `.threadsmith/project-brief.json`
+- `.threadsmith/current-phase.json`
+- `.threadsmith/acceptance-state.json`
+- `.threadsmith/project-status.json`
+- `.threadsmith/active-work.json`
+- `.threadsmith/project-supervision.json`
+- `.threadsmith/preferences.json`
 
-Read these files before deciding the next Threadsmith move.
+`action-queue.ndjson` is append-only action history. Do not treat it as the main state object.
 
-Do not treat stale chat memory as primary truth when `.threadsmith/` state exists.
+## Context Artifacts
 
-## Primary objects
+Use these when present:
 
-### Project Brief
+- `.threadsmith/context/current-packet.json`
+- `.threadsmith/context/role-packets/planner.json`
+- `.threadsmith/context/role-packets/executor.json`
+- `.threadsmith/context/role-packets/reviewer.json`
+- `.threadsmith/context/role-packets/verifier.json`
+- `.threadsmith/context/role-packets/closeout.json`
+- `.threadsmith/context/role-packets/hygiene.json`
+- `.threadsmith/context/repo-map.json`
+- `.threadsmith/context/evidence-summary.json`
 
-Use to answer:
+Context artifacts are derived from committed truth and repo signals. They are useful working context, but committed truth remains the authority if there is a conflict.
 
-- what the project is trying to do
-- what the current version includes
-- what is explicitly out of scope
+## Freshness Rules
 
-### Current Phase
+A context artifact is fresh enough when:
 
-Use to answer:
+- its parent phase matches `.threadsmith/current-phase.json`
+- its acceptance claim matches `.threadsmith/acceptance-state.json`
+- its role matches the selected role
+- its evidence is not older than the latest implementation change when verification is being claimed
 
-- what this current slice is supposed to deliver
-- what is in scope
-- what is out of scope
-- what stop condition ends the phase
+If freshness cannot be proven, say so and fall back to committed truth.
 
-### Acceptance State
+## Read Priority
 
-Use to answer:
+1. Committed truth
+2. Matching role packet
+3. Main Context Packet
+4. Repo map and evidence summary
+5. Chat memory
 
-- what claim is currently being tested
-- whether work is only implemented vs reviewed vs verified vs accepted
-- what gaps remain
+Chat memory may explain intent, but must not override committed truth.
 
-## Deck relationship
+## Writeback Rules
+
+Write `.threadsmith/` only for durable boundary changes:
+
+- phase drafted, narrowed, blocked, reset, or accepted
+- acceptance status changes
+- active role or blocker changes
+- verification evidence changes the claim
+- closeout records residual risks or next step
+- recovery identifies stale or contradictory truth
+
+Do not write casual discussion, tentative options, or private reasoning.
+
+## Writeback Failure Handling
+
+If a required write fails:
+
+- stop before claiming success
+- report which file should have changed
+- report the intended durable update
+- report whether code changes landed without truth changes
+- recommend retry, manual repair, or handoff
+
+Do not silently continue with stale truth after a failed write.
+
+## Deck Relationship
 
 The control deck is a view over this state.
 

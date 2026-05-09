@@ -1,29 +1,29 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Role-specific Packets v1 is accepted locally: each role receives a focused packet derived from the main Context Packet, with fs persistence under role-packets.",
+  "currentClaim": "Threadsmith v0.2.0 Threadsmith.skill v2 is being implemented: $threadsmith should prefer context packets and role packets while enforcing explicit sync / drive / recover behavior.",
   "doneWhenChecklist": [
     {
-      "id": "role-packet-schema",
-      "label": "RoleContextPacket schema 已定义并从 domain 导出",
+      "id": "skill-v2-entry",
+      "label": "SKILL.md 明确 sync / drive / recover 三种入口",
       "status": "pass"
     },
     {
-      "id": "role-packet-builder",
-      "label": "runtime 可以从主 Context Packet 派生六类 role packet",
+      "id": "runtime-contract",
+      "label": "runtime contract 明确 Context Packet / Role Packet 优先级",
       "status": "pass"
     },
     {
-      "id": "role-packet-focus",
-      "label": "planner / executor / reviewer / verifier / closeout / hygiene 各自聚焦不同 payload",
+      "id": "role-contracts",
+      "label": "role contracts 声明 required inputs / allowed writes / forbidden writes / completion artifacts",
       "status": "pass"
     },
     {
-      "id": "role-packet-persistence",
-      "label": "fs-bridge 可以写入和读取 .threadsmith/context/role-packets/<role>.json",
+      "id": "action-contracts",
+      "label": "action contracts 覆盖 sync / drive / recover / stop-and-ask / writeback failure",
       "status": "pass"
     },
     {
-      "id": "targeted-tests",
-      "label": "domain/runtime/fs-bridge targeted tests 通过",
+      "id": "installed-skill-sync",
+      "label": "repo skill 已同步到本机 /Users/cloud/.codex/skills/threadsmith",
       "status": "pass"
     }
   ],
@@ -32,9 +32,18 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "This slice does not change Threadsmith.skill behavior yet.",
+    "This slice does not change TypeScript runtime or autopilot engine behavior.",
     "This slice does not render role packets in the Control Deck UI.",
-    "Role packet payloads should stay deterministic and derived from the main Context Packet."
+    "This slice upgrades the skill protocol only; real execution remains Codex-only."
+  ],
+  "verificationEvidence": [
+    "test -f codex/skills/threadsmith/SKILL.md",
+    "test -f codex/skills/threadsmith/references/runtime-contract.md",
+    "test -f codex/skills/threadsmith/references/role-contracts.md",
+    "test -f codex/skills/threadsmith/references/action-contracts.md",
+    "diff -qr codex/skills/threadsmith /Users/cloud/.codex/skills/threadsmith",
+    "git diff --check",
+    "for f in .threadsmith/*.json .threadsmith/context/*.json; do jq empty \"$f\" || exit 1; done"
   ],
   "finalState": "accepted"
 }

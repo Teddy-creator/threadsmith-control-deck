@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "v0.2.0 Role-specific Packets v1 已本地验收：六类角色上下文可从主 Context Packet 派生并持久化。",
+  "summary": "v0.2.0 Threadsmith.skill v2 已本地验收：$threadsmith 现在明确使用 committed truth、Context Packet 和 Role Packet 协议。",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,11 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "已确认 Role-specific Packets v1 范围：只做派生与持久化，不改 UI / skill / multi-provider。",
+      "taskSummary": "已确认 Threadsmith.skill v2 范围：只升级 skill 协议、引用文档、truth 同步与本地安装副本。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "phase contract 已刷新",
-      "updatedAt": "2026-05-09T15:14:07Z"
+      "updatedAt": "2026-05-09T15:42:42Z"
     },
     {
       "id": "builder-logical",
@@ -23,11 +23,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已实现 role packet schema、runtime derivation 与 fs persistence。",
+      "taskSummary": "已升级 $threadsmith v2 文档协议：模式、读序、角色边界与 writeback 失败处理。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "implementation 已完成",
-      "updatedAt": "2026-05-09T15:20:44Z"
+      "latestEvidenceLabel": "skill docs 已更新",
+      "updatedAt": "2026-05-09T15:43:45Z"
     },
     {
       "id": "critic-logical",
@@ -36,11 +36,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已复核六类 role packet 聚焦不同 payload，且均小于主 Context Packet。",
+      "taskSummary": "已复核 v2 协议覆盖 sync / drive / recover、角色包优先和禁止越界承诺。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T15:20:44Z"
+      "updatedAt": "2026-05-09T15:43:45Z"
     },
     {
       "id": "verifier-logical",
@@ -49,11 +49,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已通过 domain/runtime/fs-bridge targeted tests、全量 test 与 build。",
+      "taskSummary": "已验证 repo skill 与 installed skill 一致、JSON truth 合法、diff hygiene 通过。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "verification 已通过",
-      "updatedAt": "2026-05-09T15:20:44Z"
+      "latestEvidenceLabel": "local verification 已通过",
+      "updatedAt": "2026-05-09T15:43:45Z"
     },
     {
       "id": "closeout-logical",
@@ -62,11 +62,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "Role-specific Packets v1 已本地 closeout，等待 PR/CI。",
+      "taskSummary": "Threadsmith.skill v2 已本地 closeout；下一步提交分支、创建 PR 并观察 CI。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "local closeout 已完成",
-      "updatedAt": "2026-05-09T15:20:44Z"
+      "latestEvidenceLabel": "acceptance 已更新",
+      "updatedAt": "2026-05-09T15:43:45Z"
     },
     {
       "id": "hygiene-logical",
@@ -75,12 +75,12 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "守住 v1 边界：不加入 tokenizer、UI、RAG 或 model API。",
+      "taskSummary": "守住本 slice 边界：不加入 runtime、autopilot、UI、multi-provider、prompt generation 或 RAG。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T14:45:43Z"
+      "updatedAt": "2026-05-09T15:42:42Z"
     }
   ],
-  "updatedAt": "2026-05-09T15:20:44Z"
+  "updatedAt": "2026-05-09T15:43:45Z"
 }

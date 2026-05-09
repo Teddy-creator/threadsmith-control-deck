@@ -1,29 +1,33 @@
 {
-  "phaseName": "Role-specific Packets v1",
-  "phaseGoal": "从主 Context Packet 派生 planner / executor / reviewer / verifier / closeout / hygiene 六类更小 role packet，让每个角色只拿到自己需要的上下文。",
-  "deliverable": "RoleContextPacket schema, runtime role packet derivation, fs persistence under .threadsmith/context/role-packets",
+  "phaseName": "Threadsmith.skill v2",
+  "phaseGoal": "升级 $threadsmith 协议，让它优先使用 Context Packet 与 Role-specific Packets，并明确 sync / drive / recover 三种入口、角色读写边界和 writeback 失败处理。",
+  "deliverable": "Threadsmith skill v2 docs and references in repo plus installed local skill sync",
   "inScope": [
-    "role packet domain schema",
-    "runtime deriveRoleContextPacket and deriveRoleContextPackets",
-    "role-specific section selection for planner, executor, reviewer, verifier, closeout, and hygiene",
-    "fs-bridge persistence for role packets under .threadsmith/context/role-packets/<role>.json",
-    "targeted tests proving role packets are focused and smaller than the main packet"
+    "codex/skills/threadsmith/SKILL.md v2 protocol",
+    "runtime contract updates for Context Packet and role packet usage",
+    "role contracts with required inputs, allowed writes, forbidden writes, and completion artifacts",
+    "action contracts for sync, drive, recover, stop-and-ask, and writeback failure handling",
+    "sync repo skill changes to /Users/cloud/.codex/skills/threadsmith",
+    "README / usage guide note that $threadsmith v2 prefers role packets when present"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
     "native desktop shell",
     "large UI redesign",
-    "Threadsmith.skill v2 execution protocol",
     "Control Deck UI changes",
+    "autopilot engine changes",
+    "TypeScript runtime changes",
     "prompt template generation",
     "embedding/RAG or model API calls"
   ],
-  "stopCondition": "All six role packets can be derived from a main Context Packet, persisted as context artifacts, and verified to contain role-focused payloads without UI or skill protocol changes.",
+  "stopCondition": "The repo and installed Threadsmith skill both describe v2 behavior: sync / drive / recover modes, role packet preference, role write boundaries, completion artifacts, and explicit writeback failure handling.",
   "verificationForThisPhase": [
-    "npm run test --workspace @threadsmith/domain",
-    "npm run test --workspace @threadsmith/runtime -- src/roleContextPacket.test.ts src/contextPacket.test.ts",
-    "npm run test --workspace @threadsmith/fs-bridge -- src/fileStore.test.ts",
-    "npm run build"
+    "test -f codex/skills/threadsmith/SKILL.md",
+    "test -f codex/skills/threadsmith/references/runtime-contract.md",
+    "test -f codex/skills/threadsmith/references/role-contracts.md",
+    "test -f codex/skills/threadsmith/references/action-contracts.md",
+    "diff -qr codex/skills/threadsmith /Users/cloud/.codex/skills/threadsmith",
+    "git diff --check"
   ],
   "activeOwners": [
     "planner",

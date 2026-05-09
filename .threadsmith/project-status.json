@@ -2,22 +2,22 @@
   "projectLabel": "Threadsmith",
   "currentTrack": "v0.2.0 Context OS",
   "overallState": "in-progress",
-  "currentFocus": "Role-specific Packets v1 已本地验收，下一步是提交/PR/CI；合并后建议进入 Threadsmith.skill v2。",
-  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1，并本地验收 Role-specific Packets v1。每个角色现在可以读取从主 packet 派生的聚焦上下文。",
+  "currentFocus": "Threadsmith.skill v2 已本地验收：$threadsmith 现在优先使用 Context Packet / Role Packet，并明确 sync / drive / recover 协议。",
+  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1 和 Threadsmith.skill v2 本地验收。下一步是 PR/CI，然后继续 truth sync / recovery hygiene triggers。",
   "latestAcceptedSlice": {
-    "title": "Role-specific Packets v1",
-    "recordedAt": "2026-05-09T15:20:44Z"
+    "title": "Threadsmith.skill v2",
+    "recordedAt": "2026-05-09T15:43:45Z"
   },
   "nextPlannedSlice": {
-    "title": "Threadsmith.skill v2",
+    "title": "Truth sync / recovery hygiene triggers",
     "recordedAt": null
   },
-  "currentMilestoneId": "role-specific-packets-v1",
-  "nextMilestoneId": "threadsmith-skill-v2",
+  "currentMilestoneId": "threadsmith-skill-v2",
+  "nextMilestoneId": "truth-sync-recovery-hygiene-triggers",
   "topRisks": [
     "Context Packet 如果太胖，会变成另一个长 prompt，而不是节省上下文。",
     "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
     "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T15:20:44Z"
+  "updatedAt": "2026-05-09T15:43:45Z"
 }
