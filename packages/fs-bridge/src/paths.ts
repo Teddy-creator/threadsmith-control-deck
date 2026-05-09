@@ -81,6 +81,14 @@ export function getContextFilePath(
   return join(getContextDir(projectRoot), fileName);
 }
 
+export function getRolePacketsDir(projectRoot: string) {
+  return join(getContextDir(projectRoot), "role-packets");
+}
+
+export function getRolePacketPath(projectRoot: string, role: string) {
+  return join(getRolePacketsDir(projectRoot), `${role}.json`);
+}
+
 export function getRunDir(projectRoot: string, runId: string) {
   return join(getRunsDir(projectRoot), runId);
 }

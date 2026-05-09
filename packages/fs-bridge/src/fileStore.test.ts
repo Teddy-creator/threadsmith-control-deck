@@ -14,11 +14,14 @@ import {
   readCurrentContextPacket,
   readEvidenceSummary,
   readRepoMap,
+  readRoleContextPacket,
   refreshEvidenceSummary,
   refreshRepoMap,
   writeCurrentContextPacket,
   writeEvidenceSummary,
   writeRepoMap,
+  writeRoleContextPackets,
+  writeRoleContextPacket,
   writeStateFragment
 } from "./fileStore.ts";
 import {
@@ -31,6 +34,7 @@ import {
   getContextFilePath,
   getGlobalPreferencesPath,
   getProviderRoutingPath,
+  getRolePacketPath,
   getStatePath
 } from "./paths.ts";
 
@@ -619,6 +623,100 @@ describe("fileStore", () => {
     expect(read.project.track).toBe("v0.2.0 Context OS");
     expect(read.relevantFiles[0]?.source).toBe("phase");
     expect(rawContents).toContain("\"packetId\"");
+    expect(rawContents.endsWith("\n")).toBe(true);
+  });
+
+  it("writes and reads role context packets under .threadsmith/context/role-packets", async () => {
+    const projectRoot = await createProjectRoot();
+    const executorPacket = {
+      packetId: "ctx-context-packet-v1-20260509T131500000Z-executor",
+      parentPacketId: "ctx-context-packet-v1-20260509T131500000Z",
+      generatedAt: "2026-05-09T13:15:00.000Z",
+      role: "executor",
+      focus: "Implement the current slice within scope and constraints.",
+      purpose: "Give the executor implementation boundaries, relevant files, diff context, and the immediate next step.",
+      includedSections: [
+        "project",
+        "currentPhase",
+        "scope",
+        "nextStep",
+        "risks",
+        "relevantFiles",
+        "recentDiff",
+        "budget",
+        "sourceRefs"
+      ],
+      omittedSections: ["goal", "acceptance", "evidence"],
+      payload: {
+        project: {
+          label: "Threadsmith",
+          track: "v0.2.0 Context OS",
+          overallState: "in-progress",
+          focus: "Build role packets",
+          summary: "Threadsmith is adding role-specific context packets."
+        },
+        relevantFiles: [
+          {
+            path: "packages/runtime/src/roleContextPacket.ts",
+            reason: "Derives role packets.",
+            source: "phase"
+          }
+        ],
+        sourceRefs: [
+          {
+            kind: "state",
+            path: ".threadsmith/current-phase.json",
+            title: "Current Phase"
+          }
+        ]
+      }
+    } as const;
+    const verifierPacket = {
+      ...executorPacket,
+      packetId: "ctx-context-packet-v1-20260509T131500000Z-verifier",
+      role: "verifier" as const,
+      focus: "Prove or reject the acceptance claim with command-backed evidence.",
+      purpose: "Give the verifier acceptance criteria, verification commands, evidence summaries, and artifact refs.",
+      includedSections: ["project", "acceptance", "evidence", "sourceRefs"],
+      omittedSections: ["scope", "relevantFiles", "recentDiff"],
+      payload: {
+        project: executorPacket.payload.project,
+        evidence: {
+          status: "missing",
+          summary: "Verification has not run yet.",
+          commands: [
+            {
+              command: "npm run test --workspace @threadsmith/runtime",
+              status: "pending",
+              summary: "Not run yet."
+            }
+          ],
+          artifactRefs: []
+        },
+        sourceRefs: executorPacket.payload.sourceRefs
+      }
+    } as const;
+
+    const written = await writeRoleContextPacket(projectRoot, executorPacket);
+    const read = await readRoleContextPacket(projectRoot, "executor");
+    const bulkWritten = await writeRoleContextPackets(projectRoot, [
+      executorPacket,
+      verifierPacket
+    ]);
+    const rawContents = await readFile(
+      getRolePacketPath(projectRoot, "executor"),
+      "utf8"
+    );
+
+    expect(written.role).toBe("executor");
+    expect(read.payload.relevantFiles?.[0]?.path).toBe(
+      "packages/runtime/src/roleContextPacket.ts"
+    );
+    expect(bulkWritten.map((packet) => packet.role)).toEqual([
+      "executor",
+      "verifier"
+    ]);
+    expect(rawContents).toContain("\"role\": \"executor\"");
     expect(rawContents.endsWith("\n")).toBe(true);
   });
 

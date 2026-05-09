@@ -12,8 +12,11 @@ import {
   type ContextPacket,
   evidenceSummarySchema,
   type EvidenceSummary,
+  phaseOwnerSchema,
   repoMapSchema,
   type RepoMap,
+  roleContextPacketSchema,
+  type RoleContextPacket,
   type ProjectSupervisionState,
   type ProjectState,
   activeWorkSchema,
@@ -39,6 +42,8 @@ import {
   getContextFilePath,
   getGlobalPreferencesPath,
   getProviderRoutingPath,
+  getRolePacketPath,
+  getRolePacketsDir,
   getRunsDir,
   getStatePath,
   getThreadsmithDir
@@ -628,6 +633,42 @@ export async function readCurrentContextPacket(projectRoot: string) {
     getContextFilePath(projectRoot, CONTEXT_FILES.currentPacket),
     contextPacketSchema
   );
+}
+
+export async function writeRoleContextPacket(
+  projectRoot: string,
+  packet: RoleContextPacket
+) {
+  await ensureStateDir(projectRoot);
+  const parsedPacket = roleContextPacketSchema.parse(packet);
+  await mkdir(getRolePacketsDir(projectRoot), { recursive: true });
+  await writeFile(
+    getRolePacketPath(projectRoot, parsedPacket.role),
+    formatStateFileContents(parsedPacket),
+    "utf8"
+  );
+  return parsedPacket;
+}
+
+export async function readRoleContextPacket(projectRoot: string, role: string) {
+  const parsedRole = phaseOwnerSchema.parse(role);
+  return readParsedFile(
+    getRolePacketPath(projectRoot, parsedRole),
+    roleContextPacketSchema
+  );
+}
+
+export async function writeRoleContextPackets(
+  projectRoot: string,
+  packets: RoleContextPacket[]
+) {
+  const parsedPackets = packets.map((packet) =>
+    roleContextPacketSchema.parse(packet)
+  );
+  await Promise.all(parsedPackets.map((packet) =>
+    writeRoleContextPacket(projectRoot, packet)
+  ));
+  return parsedPackets;
 }
 
 function toRepoRelativePath(projectRoot: string, filePath: string) {
