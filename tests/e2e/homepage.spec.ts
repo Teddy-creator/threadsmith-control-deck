@@ -95,7 +95,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   const inspectorPanel = page.locator(".inspector-panel");
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText(/本地验收 Repo Map v1/)
+    inspectorPanel.getByText(/本地验收 Evidence Summary v1/)
   ).toBeVisible();
   await expect(
     inspectorPanel.getByRole("combobox", { name: "指挥入口" })
@@ -104,14 +104,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await page.getByRole("button", { name: "阶段", exact: true }).click();
   await expect(inspectorPanel.getByText("阶段工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText("Repo Map v1").first()
+    inspectorPanel.getByText("Evidence Summary v1").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith v0.2.0 Repo Map v1 is accepted locally: schema, builder, persistence API, runtime artifact generation, Context Packet relevantFiles enrichment, full workspace tests, and build all pass."
+      "Threadsmith v0.2.0 Evidence Summary v1 is accepted locally: schema, builder, persistence API, runtime artifact generation, Context Packet evidence integration, full workspace tests, build, launchers, and e2e all pass."
     ).first()
   ).toBeVisible();
 });

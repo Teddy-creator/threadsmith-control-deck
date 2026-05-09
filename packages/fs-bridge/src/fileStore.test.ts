@@ -12,9 +12,12 @@ import {
   loadProjectState,
   persistContinuationPreference,
   readCurrentContextPacket,
+  readEvidenceSummary,
   readRepoMap,
+  refreshEvidenceSummary,
   refreshRepoMap,
   writeCurrentContextPacket,
+  writeEvidenceSummary,
   writeRepoMap,
   writeStateFragment
 } from "./fileStore.ts";
@@ -687,6 +690,63 @@ describe("fileStore", () => {
     expect(repoMap.git.status).toBe("unknown");
     expect(repoMap.warnings[0]).toContain("git status unavailable");
     expect(await readRepoMap(projectRoot)).toEqual(repoMap);
+  });
+
+  it("writes and reads an evidence summary under .threadsmith/context", async () => {
+    const projectRoot = await createBareProjectRoot();
+    const evidenceSummary = {
+      summaryId: "ev-verification-20260509T143000000Z",
+      generatedAt: "2026-05-09T14:30:00.000Z",
+      status: "passed" as const,
+      headline: "Verification evidence passed",
+      detail: "2 passed, 0 failed, 0 pending, 0 skipped. 1 artifact reference(s) available.",
+      commands: [
+        {
+          command: "npm run test",
+          status: "passed" as const,
+          summary: "All tests passed.",
+          exitCode: 0,
+          durationMs: 1200,
+          failureFocus: null,
+          artifactRefs: [".threadsmith/evidence/test-summary.md"]
+        }
+      ],
+      artifactRefs: [
+        {
+          path: "playwright-report/index.html",
+          kind: "report" as const,
+          description: "Playwright report."
+        }
+      ],
+      failureFocus: null,
+      source: "verification" as const,
+      warnings: []
+    };
+
+    const written = await writeEvidenceSummary(projectRoot, evidenceSummary);
+    const read = await readEvidenceSummary(projectRoot);
+    const rawContents = await readFile(
+      getContextFilePath(projectRoot, CONTEXT_FILES.evidenceSummary),
+      "utf8"
+    );
+
+    expect(written.summaryId).toBe(evidenceSummary.summaryId);
+    expect(read.commands[0]?.command).toBe("npm run test");
+    expect(read.artifactRefs[0]?.path).toBe("playwright-report/index.html");
+    expect(rawContents).toContain("\"summaryId\"");
+    expect(rawContents.endsWith("\n")).toBe(true);
+  });
+
+  it("refreshes an empty evidence summary when no verification evidence exists", async () => {
+    const projectRoot = await createBareProjectRoot();
+
+    const evidenceSummary = await refreshEvidenceSummary(projectRoot, {
+      generatedAt: "2026-05-09T14:31:00.000Z"
+    });
+
+    expect(evidenceSummary.status).toBe("empty");
+    expect(evidenceSummary.source).toBe("empty");
+    expect(await readEvidenceSummary(projectRoot)).toEqual(evidenceSummary);
   });
 
   it("overlays roadmap states from project-status milestone pointers", async () => {
