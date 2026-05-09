@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { expect, type Page } from "@playwright/test";
 
@@ -53,6 +53,18 @@ export async function connectAndInitializeCustomProject(
     onboardingCard.getByRole("button", { name: "初始化 Threadsmith" })
   ).toBeVisible();
   await onboardingCard.getByRole("button", { name: "初始化 Threadsmith" }).click();
+  await expect
+    .poll(async () => {
+      try {
+        await access(join(projectRoot, ".threadsmith", "project-brief.json"));
+        await access(join(projectRoot, ".threadsmith", "current-phase.json"));
+        await access(join(projectRoot, ".threadsmith", "acceptance-state.json"));
+        return true;
+      } catch {
+        return false;
+      }
+    })
+    .toBe(true);
 }
 
 export async function seedBootstrappableProject(projectRoot: string, args: {

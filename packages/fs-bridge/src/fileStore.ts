@@ -10,6 +10,8 @@ import {
   type PreferenceScope,
   contextPacketSchema,
   type ContextPacket,
+  evidenceSummarySchema,
+  type EvidenceSummary,
   repoMapSchema,
   type RepoMap,
   type ProjectSupervisionState,
@@ -28,7 +30,7 @@ import {
   projectStateSchema,
   storedPreferencesSchema
 } from "@threadsmith/domain";
-import { buildRepoMap } from "@threadsmith/runtime";
+import { buildEvidenceSummary, buildRepoMap } from "@threadsmith/runtime";
 import {
   STATE_FILES,
   CONTEXT_FILES,
@@ -833,6 +835,35 @@ export async function readRepoMap(projectRoot: string) {
 export async function refreshRepoMap(projectRoot: string) {
   const repoMap = await buildRepoMapFromProject(projectRoot);
   return writeRepoMap(projectRoot, repoMap);
+}
+
+export async function writeEvidenceSummary(
+  projectRoot: string,
+  evidenceSummary: EvidenceSummary
+) {
+  await ensureStateDir(projectRoot);
+  const parsedEvidenceSummary = evidenceSummarySchema.parse(evidenceSummary);
+  await writeFile(
+    getContextFilePath(projectRoot, CONTEXT_FILES.evidenceSummary),
+    formatStateFileContents(parsedEvidenceSummary),
+    "utf8"
+  );
+  return parsedEvidenceSummary;
+}
+
+export async function readEvidenceSummary(projectRoot: string) {
+  return readParsedFile(
+    getContextFilePath(projectRoot, CONTEXT_FILES.evidenceSummary),
+    evidenceSummarySchema
+  );
+}
+
+export async function refreshEvidenceSummary(
+  projectRoot: string,
+  options: Parameters<typeof buildEvidenceSummary>[0] = {}
+) {
+  const evidenceSummary = buildEvidenceSummary(options);
+  return writeEvidenceSummary(projectRoot, evidenceSummary);
 }
 
 export async function persistContinuationPreference(

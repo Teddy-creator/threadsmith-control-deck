@@ -35,7 +35,8 @@ export const PHASE_RUN_FILES = {
 
 export const CONTEXT_FILES = {
   currentPacket: "current-packet.json",
-  repoMap: "repo-map.json"
+  repoMap: "repo-map.json",
+  evidenceSummary: "evidence-summary.json"
 } as const;
 
 export function getThreadsmithDir(projectRoot: string) {

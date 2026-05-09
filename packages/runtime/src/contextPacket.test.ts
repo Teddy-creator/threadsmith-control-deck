@@ -198,6 +198,54 @@ describe("buildContextPacket", () => {
     expect(packet.relevantFiles[1]?.source).toBe("repo-map");
   });
 
+  it("can use an evidence summary instead of raw verification logs", () => {
+    const packet = buildContextPacket(baseState, {
+      generatedAt: "2026-05-09T13:16:45.000Z",
+      evidenceSummary: {
+        summaryId: "ev-verification-20260509T131645000Z",
+        generatedAt: "2026-05-09T13:16:45.000Z",
+        status: "failed",
+        headline: "Verification evidence failed",
+        detail: "0 passed, 1 failed, 0 pending, 0 skipped. 1 artifact reference(s) available.",
+        commands: [
+          {
+            command: "npm run test:e2e",
+            status: "failed",
+            summary: "homepage.spec.ts failed.",
+            exitCode: 1,
+            durationMs: null,
+            failureFocus: "Expected project summary text was not visible.",
+            artifactRefs: ["test-results/homepage/error-context.md"]
+          }
+        ],
+        artifactRefs: [
+          {
+            path: "playwright-report/index.html",
+            kind: "report",
+            description: "Playwright report."
+          }
+        ],
+        failureFocus: "Expected project summary text was not visible.",
+        source: "verification",
+        warnings: []
+      }
+    });
+
+    expect(packet.evidence.status).toBe("blocked");
+    expect(packet.evidence.summary).toContain(
+      "Expected project summary text was not visible."
+    );
+    expect(packet.evidence.commands[0]).toEqual({
+      command: "npm run test:e2e",
+      status: "failed",
+      summary: "homepage.spec.ts failed."
+    });
+    expect(packet.evidence.artifactRefs).toEqual([
+      "playwright-report/index.html",
+      "test-results/homepage/error-context.md"
+    ]);
+  });
+
   it("routes blocked phases to hygiene instead of pretending execution is safe", () => {
     const packet = buildContextPacket({
       ...baseState,

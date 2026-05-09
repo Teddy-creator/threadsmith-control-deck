@@ -13,3 +13,4 @@ export * from "./commandBridge.ts";
 export * from "./phaseRuns.ts";
 export * from "./contextPacket.ts";
 export * from "./repoMap.ts";
+export * from "./evidenceSummary.ts";

@@ -1,24 +1,24 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Repo Map v1 is accepted locally: schema, builder, persistence API, runtime artifact generation, Context Packet relevantFiles enrichment, full workspace tests, and build all pass.",
+  "currentClaim": "Threadsmith v0.2.0 Evidence Summary v1 is accepted locally: schema, builder, persistence API, runtime artifact generation, Context Packet evidence integration, full workspace tests, build, launchers, and e2e all pass.",
   "doneWhenChecklist": [
     {
-      "id": "repo-map-schema",
-      "label": "Repo Map v1 schema 已定义并从 domain 导出",
+      "id": "evidence-summary-schema",
+      "label": "Evidence Summary v1 schema 已定义并从 domain 导出",
       "status": "pass"
     },
     {
-      "id": "repo-map-builder",
-      "label": "runtime 可以从 package manifests、目录和 git status 生成 repo map",
+      "id": "evidence-summary-builder",
+      "label": "runtime 可以从验证命令结果和 artifact refs 生成 evidence summary",
       "status": "pass"
     },
     {
-      "id": "repo-map-persistence",
-      "label": "fs-bridge 可以写入 .threadsmith/context/repo-map.json",
+      "id": "evidence-summary-persistence",
+      "label": "fs-bridge 可以写入 .threadsmith/context/evidence-summary.json",
       "status": "pass"
     },
     {
-      "id": "context-packet-enrichment",
-      "label": "Context Packet 可以从 repo map 补充 relevantFiles",
+      "id": "context-packet-evidence",
+      "label": "Context Packet 可以从 evidence summary 补充 evidence",
       "status": "pass"
     },
     {
@@ -32,9 +32,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    ".threadsmith/context/repo-map.json is intentionally ignored as a regenerable runtime artifact, not committed truth.",
-    "Evidence Summary v1, Role-specific Packets v1, and Control Deck Context Surface are planned later slices, not part of Repo Map v1.",
-    "No embedding, vector DB, or remote indexing is in scope."
+    ".threadsmith/context/evidence-summary.json is intentionally ignored as a regenerable runtime artifact, not committed truth.",
+    "Role-specific Packets v1 and Control Deck Context Surface are planned later slices, not part of Evidence Summary v1.",
+    "Raw stdout/stderr logs should remain artifact refs, not be copied into context packet."
   ],
   "finalState": "accepted"
 }

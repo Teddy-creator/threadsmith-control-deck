@@ -5,17 +5,20 @@ import {
   type ContextPacketRecentDiff,
   type ContextPacketRelevantFile,
   type ContextPacketRisk,
+  type EvidenceSummary,
   type ProjectState,
   type RepoMap,
   type VerificationCommandResult
 } from "@threadsmith/domain";
 import { deriveRepoMapRelevantFiles } from "./repoMap.ts";
+import { toContextPacketEvidence } from "./evidenceSummary.ts";
 
 export interface BuildContextPacketOptions {
   generatedAt?: string;
   packetId?: string;
   recentDiff?: Partial<ContextPacketRecentDiff>;
   evidence?: Partial<ContextPacketEvidence>;
+  evidenceSummary?: EvidenceSummary;
   relevantFiles?: ContextPacketRelevantFile[];
   repoMap?: RepoMap;
 }
@@ -149,6 +152,10 @@ function buildEvidence(
   state: ProjectState,
   options: BuildContextPacketOptions
 ): ContextPacketEvidence {
+  if (options.evidenceSummary) {
+    return toContextPacketEvidence(options.evidenceSummary);
+  }
+
   const commands: VerificationCommandResult[] =
     options.evidence?.commands
     ?? state.currentPhase.verificationForThisPhase.map((command) => ({

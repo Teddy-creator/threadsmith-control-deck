@@ -1,26 +1,24 @@
 {
-  "phaseName": "Repo Map v1",
-  "phaseGoal": "为 v0.2.0 Context OS 增加 lightweight repo map，让 context packet 能携带代码结构、入口、测试位置和当前变更线索。",
-  "deliverable": "Repo Map v1 schema, runtime builder, fs persistence, and Context Packet relevant-files integration",
+  "phaseName": "Evidence Summary v1",
+  "phaseGoal": "为 v0.2.0 Context OS 增加结构化验证摘要，让 context packet 引用 concise evidence 而不是 raw logs。",
+  "deliverable": "Evidence Summary v1 schema, runtime builder, fs persistence, and Context Packet evidence integration",
   "inScope": [
-    "repo map domain schema",
-    "runtime repo map builder from package manifests and directory signals",
-    "fs-bridge persistence under .threadsmith/context/repo-map.json",
-    "git status changed-files capture with honest unknown fallback",
-    "Context Packet relevantFiles enrichment from repo map",
-    "targeted tests for normal and degraded repo map scenarios"
+    "evidence summary domain schema",
+    "runtime evidence summary builder from verification command results and artifact refs",
+    "fs-bridge persistence under .threadsmith/context/evidence-summary.json",
+    "Context Packet evidence enrichment from evidence summary",
+    "targeted tests for pass, fail, skipped, and empty evidence scenarios"
   ],
   "outOfScope": [
     "multi-provider automatic execution",
     "native desktop shell",
     "large UI redesign",
-    "Evidence Summary v1",
     "Role-specific Packets v1"
   ],
-  "stopCondition": "Repo Map v1 can be generated from a local project, persisted to .threadsmith/context/repo-map.json, and used by Context Packet relevantFiles without embedding/RAG.",
+  "stopCondition": "Evidence Summary v1 can summarize command outcomes and artifact refs, persist to .threadsmith/context/evidence-summary.json, and feed Context Packet evidence without storing raw logs.",
   "verificationForThisPhase": [
     "npm run test --workspace @threadsmith/domain",
-    "npm run test --workspace @threadsmith/runtime -- src/repoMap.test.ts src/contextPacket.test.ts",
+    "npm run test --workspace @threadsmith/runtime -- src/evidenceSummary.test.ts src/contextPacket.test.ts",
     "npm run test --workspace @threadsmith/fs-bridge -- src/fileStore.test.ts",
     "npm run build"
   ],

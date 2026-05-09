@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收紧为 Repo Map v1：轻量代码地图，不进入 embedding/RAG 或 UI 大改。",
+      "taskSummary": "已将下一刀收紧为 Evidence Summary v1：结构化验证摘要，不复制 raw logs。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现 repo map schema、runtime builder、fs persistence，并接入 Context Packet relevantFiles。",
+      "taskSummary": "已实现 evidence summary schema、runtime builder、fs persistence，并接入 Context Packet evidence。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核 Repo Map v1 保持 lightweight：未引入 embedding、RAG、远程索引或 UI 大改。",
+      "taskSummary": "已复核 Evidence Summary v1 只保存 concise evidence 与 artifact refs，不复制 raw logs。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已运行 domain/runtime/fs-bridge 目标测试、全量 npm run test、npm run build、JSON 校验与 diff check。",
+      "taskSummary": "已完成目标测试、全量测试、build、launcher、e2e、JSON 校验与 diff check。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已完成 Repo Map v1 本地 closeout；等待提交 / PR / CI。",
+      "taskSummary": "已完成 Evidence Summary v1 本地 closeout；等待提交 / PR / CI。",
       "requiresUserDecision": false
     },
     {
@@ -37,5 +37,5 @@
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": "当前无外部 blocker；Repo Map v1 已本地验收，等待 PR/CI。"
+  "blockerSummary": "当前无外部 blocker；Evidence Summary v1 已本地验收，等待 PR/CI。"
 }

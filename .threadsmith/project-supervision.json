@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "v0.2.0 Repo Map v1 已本地验收：Context Packet 可以从轻量仓库地图获得结构与变更线索。",
+  "summary": "v0.2.0 Evidence Summary v1 已本地验收：验证证据会以 concise artifact 输入 Context Packet，而不是 raw logs。",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,11 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "已确认 Repo Map v1 范围：轻量 repo map，不进入 embedding/RAG 或 UI surface。",
+      "taskSummary": "已确认 Evidence Summary v1 范围：结构化验证结果，不复制 raw stdout/stderr。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "phase contract 已刷新",
-      "updatedAt": "2026-05-09T14:10:01Z"
+      "updatedAt": "2026-05-09T14:25:32Z"
     },
     {
       "id": "builder-logical",
@@ -23,11 +23,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已实现 Repo Map v1 schema、builder、persistence 与 Context Packet relevantFiles enrichment。",
+      "taskSummary": "已实现 Evidence Summary v1 schema、builder、persistence 与 Context Packet evidence integration。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "implementation 已完成",
-      "updatedAt": "2026-05-09T14:15:44Z"
+      "updatedAt": "2026-05-09T14:31:06Z"
     },
     {
       "id": "critic-logical",
@@ -36,11 +36,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已复核 Repo Map v1 未进入 embedding/RAG、远程服务或 UI 大改。",
+      "taskSummary": "已复核 Evidence Summary v1 保持 concise evidence boundary，不复制 raw logs。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T14:15:44Z"
+      "updatedAt": "2026-05-09T14:31:06Z"
     },
     {
       "id": "verifier-logical",
@@ -49,11 +49,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已完成本地目标测试、全量测试、build、JSON 校验和 diff check。",
+      "taskSummary": "已完成 targeted tests、全量 test、build、launcher、e2e、JSON 校验与 diff check。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "verification 已通过",
-      "updatedAt": "2026-05-09T14:15:44Z"
+      "updatedAt": "2026-05-09T14:31:06Z"
     },
     {
       "id": "closeout-logical",
@@ -62,7 +62,7 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "Repo Map v1 已本地 closeout，下一步提交 / PR / CI。",
+      "taskSummary": "Evidence Summary v1 已本地 closeout，等待 PR/CI。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "local closeout 已完成",
@@ -82,5 +82,5 @@
       "updatedAt": "2026-05-07T09:30:00Z"
     }
   ],
-  "updatedAt": "2026-05-09T14:15:44Z"
+  "updatedAt": "2026-05-09T14:31:06Z"
 }
