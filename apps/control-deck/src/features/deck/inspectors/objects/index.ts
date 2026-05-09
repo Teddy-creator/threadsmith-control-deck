@@ -1,3 +1,4 @@
+export { ContextRecoverySection } from "./ContextRecoverySection";
 export { ObjectsInspectorHeader } from "./ObjectsInspectorHeader";
 export { PhaseContractSection } from "./PhaseContractSection";
 export { PhaseExitSection } from "./PhaseExitSection";

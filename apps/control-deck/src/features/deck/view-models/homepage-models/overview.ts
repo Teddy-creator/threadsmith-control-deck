@@ -12,6 +12,7 @@ import {
   buildHomepageAcceptanceItems
 } from "../acceptance";
 import { buildHomepageCollaborationModel } from "./collaboration";
+import { buildHomepageContextModel } from "./context";
 import {
   buildHomepageDecisionAlert,
   buildHomepageDecisionSignals,
@@ -159,6 +160,7 @@ export function buildHomepageOverviewModel(
     decisionAlert: args.supervisorState
       ? buildHomepageDecisionAlert(args.supervisorState, args.topProjectRisks)
       : "连接真实项目后，这里会显示当前最重要的一条推进提醒。",
+    context: buildHomepageContextModel(args.supervisorState),
     acceptanceItems: args.projectState
       ? buildHomepageAcceptanceItems(args.projectState.acceptanceState)
       : [

@@ -23,6 +23,7 @@ export function HomepageOverviewGrid({
   decisionStateLabel,
   decisionSignals,
   decisionAlert,
+  context,
   acceptanceItems,
   acceptanceAlert
 }: HomepageOverviewGridProps) {
@@ -49,6 +50,7 @@ export function HomepageOverviewGrid({
         decisionStateLabel={decisionStateLabel}
         decisionSignals={decisionSignals}
         decisionAlert={decisionAlert}
+        context={context}
       />
 
       <AcceptanceCard

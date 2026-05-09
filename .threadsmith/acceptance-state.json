@@ -1,29 +1,29 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Truth sync / recovery hygiene triggers are being implemented: runtime should detect stale or missing context artifacts and route to sync, hygiene, repair, handoff, or continue.",
+  "currentClaim": "Threadsmith v0.2.0 Control Deck Context Surface v1 is implemented: contextRecovery is visible on the homepage and phase workbench without changing the overall visual system.",
   "doneWhenChecklist": [
     {
-      "id": "context-recovery-signal",
-      "label": "runtime 暴露 contextRecovery signal",
+      "id": "homepage-context-summary",
+      "label": "首页推进判断卡片显示 context 状态摘要",
       "status": "pass"
     },
     {
-      "id": "packet-freshness",
-      "label": "可区分 current packet missing / stale / fresh",
+      "id": "phase-context-detail",
+      "label": "阶段工作台显示 Context 状态详情",
       "status": "pass"
     },
     {
-      "id": "role-packet-freshness",
-      "label": "可区分 role packet missing / stale / fresh",
+      "id": "human-readable-labels",
+      "label": "current packet / role packet / recovery action 已翻译成人话",
       "status": "pass"
     },
     {
-      "id": "supervisor-wiring",
-      "label": "supervisor state / health / gate / next best step 已接入 recovery signal",
+      "id": "render-tests",
+      "label": "前端渲染测试覆盖 context surface",
       "status": "pass"
     },
     {
-      "id": "bridge-artifacts",
-      "label": "control-deck bridge 可以读取 context artifacts 并传给 supervisor",
+      "id": "visual-smoke",
+      "label": "Playwright smoke 确认首页与阶段侧栏可见",
       "status": "pass"
     }
   ],
@@ -33,13 +33,14 @@
   "closeoutStatus": "done",
   "knownGaps": [
     "This slice does not auto-regenerate context packets yet.",
-    "This slice does not redesign the Control Deck UI.",
-    "This slice does not add multi-provider automation."
+    "This slice does not add multi-provider automation.",
+    "This slice does not add new manual controls for context sync."
   ],
   "verificationEvidence": [
-    "npm run test --workspace @threadsmith/runtime -- src/contextRecovery.test.ts src/nextBestStep.test.ts src/health.test.ts src/gates.test.ts src/supervisorState.test.ts",
-    "npm run test --workspace @threadsmith/control-deck -- src/features/deck/useProjectBridge.test.tsx src/features/deck/projectConnection.load.test.ts src/features/deck/projectConnection.mutations.test.ts",
-    "npm run build"
+    "npm run test --workspace @threadsmith/control-deck -- src/test/renderDeck.shell.test.tsx",
+    "npm run test --workspace @threadsmith/control-deck",
+    "npm run build",
+    "Playwright smoke: homepage context summary and phase workbench Context 状态 are visible"
   ],
   "finalState": "accepted"
 }

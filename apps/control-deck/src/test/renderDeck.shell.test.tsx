@@ -7,7 +7,11 @@ import type {
   ProjectSupervisionState,
   WorkflowEvent
 } from "@threadsmith/domain";
-import { deriveSupervisorState } from "@threadsmith/runtime";
+import {
+  buildContextPacket,
+  deriveRoleContextPacket,
+  deriveSupervisorState
+} from "@threadsmith/runtime";
 import { describe, expect, it, vi } from "vitest";
 import { DeckScreen } from "../App";
 import {
@@ -266,6 +270,12 @@ describe("DeckScreen shell", () => {
     expect(decisionCard).not.toBeNull();
     const decisionScope = within(decisionCard as HTMLElement);
     expect(decisionScope.getAllByText("等待回流").length).toBeGreaterThan(1);
+    expect(decisionScope.getByText("上下文")).toBeInTheDocument();
+    expect(decisionScope.getByText("等待运行结果回流")).toBeInTheDocument();
+    expect(decisionScope.getByText("主 packet")).toBeInTheDocument();
+    expect(decisionScope.getByText("规划")).toBeInTheDocument();
+    expect(decisionScope.getByText("建议动作")).toBeInTheDocument();
+    expect(decisionScope.getByText("等待")).toBeInTheDocument();
     expect(decisionScope.getByText("通过")).toBeInTheDocument();
     expect(decisionScope.getByText("中")).toBeInTheDocument();
     expect(
@@ -321,6 +331,12 @@ describe("DeckScreen shell", () => {
     const objectsDrawer = objectsDrawerHeading?.closest(".inspector-panel");
     expect(objectsDrawer).not.toBeNull();
     const objectsScope = within(objectsDrawer as HTMLElement);
+    expect(objectsScope.getByText("Context 状态")).toBeInTheDocument();
+    expect(objectsScope.getByText("Context 关注")).toBeInTheDocument();
+    expect(objectsScope.getByText("等待回流")).toBeInTheDocument();
+    expect(objectsScope.getByText("Current Packet")).toBeInTheDocument();
+    expect(objectsScope.getByText("规划 packet")).toBeInTheDocument();
+    expect(objectsScope.getByText("为什么现在")).toBeInTheDocument();
     expect(objectsScope.getByText("阶段合同")).toBeInTheDocument();
     expect(objectsScope.getByText("当前推进方式")).toBeInTheDocument();
     expect(objectsScope.getByText("当前 slice")).toBeInTheDocument();
@@ -786,6 +802,62 @@ describe("DeckScreen shell", () => {
     expect(
       screen.getByText("当前关键结果还在回流，先等待 committed truth 更新，再决定下一步更稳。")
     ).toBeInTheDocument();
+  });
+
+  it("renders fresh context status when current and role packets match truth", () => {
+    const currentPacket = buildContextPacket(state, {
+      generatedAt: "2026-04-04T00:10:00.000Z"
+    });
+    const rolePacket = deriveRoleContextPacket(currentPacket, "planner");
+
+    render(
+      <DeckScreen
+        projectRoot="/tmp/project"
+        currentProjectSourceId="fresh-demo"
+        currentProjectSourceLabel="最新 packet 示例"
+        customProjectDraft=""
+        customProjectError={null}
+        customProjectErrorKind={null}
+        isConnectingCustomProject={false}
+        isInitializingCustomProject={false}
+        recentProjects={[]}
+        supervisorState={deriveSupervisorState(
+          state,
+          events,
+          null,
+          null,
+          projectSupervision,
+          null,
+          null,
+          null,
+          currentPacket,
+          [rolePacket],
+          true
+        )}
+        loading={false}
+        error={null}
+        errorKind={null}
+        actionHistoryLength={0}
+        onSelectProjectSource={vi.fn()}
+        onCustomProjectDraftChange={vi.fn()}
+        onConnectCustomProject={vi.fn()}
+        onInitializeCustomProject={vi.fn()}
+        onPinRecentProject={vi.fn()}
+        onUnpinRecentProject={vi.fn()}
+        onRemoveRecentProject={vi.fn()}
+        onRunAction={async () => {}}
+        onApplyTransition={async () => {}}
+      />
+    );
+
+    const decisionCard = screen.getByRole("heading", { name: "推进判断" }).closest("article");
+    expect(decisionCard).not.toBeNull();
+    const decisionScope = within(decisionCard as HTMLElement);
+
+    expect(decisionScope.getByText("Context truth 可继续使用")).toBeInTheDocument();
+    expect(decisionScope.getAllByText("最新").length).toBeGreaterThanOrEqual(2);
+    expect(decisionScope.getByText("规划")).toBeInTheDocument();
+    expect(decisionScope.getByText("继续")).toBeInTheDocument();
   });
 
   it("keeps action count and latest deck action visible after a workflow action", () => {

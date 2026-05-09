@@ -2,22 +2,22 @@
   "projectLabel": "Threadsmith",
   "currentTrack": "v0.2.0 Context OS",
   "overallState": "in-progress",
-  "currentFocus": "Truth sync / recovery hygiene triggers 已本地验收：runtime 可以识别 context artifacts 过期/缺失，并在继续前推荐 sync、hygiene、repair、handoff 或 continue。",
-  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1、Threadsmith.skill v2 和 Truth sync / recovery hygiene triggers 本地验收。下一步建议进入 Control Deck Context Surface v1。",
+  "currentFocus": "Control Deck Context Surface v1 已本地验收：contextRecovery 现在能在首页和阶段工作台被用户直接看懂。",
+  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1、Threadsmith.skill v2、Truth sync / recovery hygiene triggers 和 Control Deck Context Surface v1 本地验收。下一步建议进入 context sync action surface 或 context packet regeneration 入口。",
   "latestAcceptedSlice": {
-    "title": "Truth sync / recovery hygiene triggers",
-    "recordedAt": "2026-05-09T16:15:18Z"
+    "title": "Control Deck Context Surface v1",
+    "recordedAt": "2026-05-09T16:34:59Z"
   },
   "nextPlannedSlice": {
-    "title": "Control Deck Context Surface v1",
+    "title": "Context sync action surface",
     "recordedAt": null
   },
-  "currentMilestoneId": "threadsmith-skill-v2",
-  "nextMilestoneId": "truth-sync-recovery-hygiene-triggers",
+  "currentMilestoneId": "control-deck-context-surface-v1",
+  "nextMilestoneId": "context-sync-action-surface",
   "topRisks": [
     "Context Packet 如果太胖，会变成另一个长 prompt，而不是节省上下文。",
     "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
     "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T16:15:18Z"
+  "updatedAt": "2026-05-09T16:34:59Z"
 }

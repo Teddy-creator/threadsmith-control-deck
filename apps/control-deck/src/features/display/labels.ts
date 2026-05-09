@@ -192,6 +192,22 @@ export function formatGateReason(reason: string) {
       return "continuation packet 已过期";
     case "handoff-recommended":
       return "建议创建 handoff";
+    case "context-artifact-invalid":
+      return "context artifact 不兼容";
+    case "context-packet-missing":
+      return "缺少 Context Packet";
+    case "context-packet-stale":
+      return "Context Packet 已过期";
+    case "role-packet-missing":
+      return "缺少角色 packet";
+    case "role-packet-stale":
+      return "角色 packet 已过期";
+    case "accepted-needs-continuation":
+      return "已接受，需要继续点";
+    case "phase-run-paused":
+      return "自动链路已暂停";
+    case "run-in-progress":
+      return "等待运行结果回流";
     default:
       return reason;
   }

@@ -66,6 +66,20 @@ export interface DecisionSignal {
   tone: Tone;
 }
 
+export interface ContextSignal {
+  label: string;
+  value: string;
+  tone: Tone;
+}
+
+export interface ContextModel {
+  visible: boolean;
+  label: string;
+  tone: Tone;
+  summary: string;
+  signals: ContextSignal[];
+}
+
 export interface AcceptanceItem {
   label: string;
   status: AcceptanceStatus;
@@ -86,6 +100,7 @@ export interface HomepageOverviewGridProps {
   decisionStateLabel: string;
   decisionSignals: DecisionSignal[];
   decisionAlert: string;
+  context: ContextModel;
   acceptanceItems: AcceptanceItem[];
   acceptanceAlert: string;
 }

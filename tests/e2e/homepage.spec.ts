@@ -95,23 +95,24 @@ test("current Threadsmith repo can be read as a real project from the source and
   const inspectorPanel = page.locator(".inspector-panel");
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
-    inspectorPanel.getByText(/Threadsmith v0\.2\.0 Context OS 已完成.*Truth sync \/ recovery hygiene triggers 本地验收/)
+    inspectorPanel.getByText(/Threadsmith v0\.2\.0 Context OS 已完成.*Control Deck Context Surface v1 本地验收/)
   ).toBeVisible();
   await expect(
     inspectorPanel.getByRole("combobox", { name: "指挥入口" })
   ).toHaveValue("codex-desktop");
 
   await page.getByRole("button", { name: "阶段", exact: true }).click();
-  await expect(inspectorPanel.getByText("阶段工作台")).toBeVisible();
+  await expect(inspectorPanel.getByText("阶段工作台", { exact: true })).toBeVisible();
+  await expect(inspectorPanel.getByRole("heading", { name: "Context 状态" })).toBeVisible();
   await expect(
-    inspectorPanel.getByText("Truth sync / recovery hygiene triggers").first()
+    inspectorPanel.getByText("Control Deck Context Surface v1").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith v0.2.0 Truth sync / recovery hygiene triggers are being implemented: runtime should detect stale or missing context artifacts and route to sync, hygiene, repair, handoff, or continue."
+      "Threadsmith v0.2.0 Control Deck Context Surface v1 is implemented: contextRecovery is visible on the homepage and phase workbench without changing the overall visual system."
     ).first()
   ).toBeVisible();
 });
