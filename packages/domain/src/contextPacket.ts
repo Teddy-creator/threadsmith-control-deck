@@ -4,6 +4,7 @@ import {
   verificationCommandResultSchema
 } from "./agentRuns.ts";
 import { acceptanceFinalStateSchema } from "./acceptanceState.ts";
+import { contextBudgetLedgerSchema } from "./contextBudget.ts";
 import { phaseOwnerSchema } from "./currentPhase.ts";
 import { projectOverallStateSchema } from "./projectStatus.ts";
 
@@ -105,11 +106,13 @@ export const contextPacketSchema = z.object({
   relevantFiles: z.array(contextPacketRelevantFileSchema),
   recentDiff: contextPacketRecentDiffSchema,
   evidence: contextPacketEvidenceSchema,
+  budget: contextBudgetLedgerSchema,
   sourceRefs: z.array(contextReferenceSchema)
 });
 
 export type ContextPacket = z.infer<typeof contextPacketSchema>;
 export type ContextPacketEvidence = z.infer<typeof contextPacketEvidenceSchema>;
+export type ContextPacketBudget = z.infer<typeof contextBudgetLedgerSchema>;
 export type ContextPacketRecentDiff = z.infer<typeof contextPacketRecentDiffSchema>;
 export type ContextPacketRelevantFile = z.infer<
   typeof contextPacketRelevantFileSchema

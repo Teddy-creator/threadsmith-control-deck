@@ -3,39 +3,39 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收紧为 Evidence Summary v1：结构化验证摘要，不复制 raw logs。",
+      "taskSummary": "已将下一刀收紧为 Context Budget Ledger v1：启发式预算监督，不做 tokenizer/UI/RAG。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已实现 evidence summary schema、runtime builder、fs persistence，并接入 Context Packet evidence。",
+      "taskSummary": "已实现 budget ledger schema、runtime builder，并接入 Context Packet budget。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已复核 Evidence Summary v1 只保存 concise evidence 与 artifact refs，不复制 raw logs。",
+      "taskSummary": "已复核 budget ledger 使用 estimated / heuristic 表达，不声称精确 token。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已完成目标测试、全量测试、build、launcher、e2e、JSON 校验与 diff check。",
+      "taskSummary": "已通过 targeted runtime/domain/fs-bridge tests、全量 test、build、JSON 校验与 diff check。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已完成 Evidence Summary v1 本地 closeout；等待提交 / PR / CI。",
+      "taskSummary": "已完成 Context Budget Ledger v1 本地 closeout；等待提交 / PR / CI。",
       "requiresUserDecision": false
     },
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "已将 .threadsmith committed truth 从 v0.1.1 onboarding polish 重锚到 v0.2.0 Context OS / Context Packet v1。",
+      "taskSummary": "守住 v1 边界：不加入 tokenizer、UI、RAG 或 model API。",
       "requiresUserDecision": false
     }
   ],
-  "blockerSummary": "当前无外部 blocker；Evidence Summary v1 已本地验收，等待 PR/CI。"
+  "blockerSummary": "当前无外部 blocker；Context Budget Ledger v1 已本地验收，等待 PR/CI。"
 }

@@ -568,6 +568,37 @@ describe("fileStore", () => {
         ],
         artifactRefs: []
       },
+      budget: {
+        estimatedChars: 1200,
+        estimatedTokens: 300,
+        budgetLevel: "compact",
+        method: "heuristic-json-char-estimate-v1",
+        limits: {
+          watchChars: 8000,
+          heavyChars: 16000,
+          overBudgetChars: 28000
+        },
+        sections: [
+          {
+            section: "project",
+            estimatedChars: 180,
+            itemCount: 5,
+            level: "compact",
+            advice: null
+          }
+        ],
+        heaviestSections: [
+          {
+            section: "project",
+            estimatedChars: 180,
+            itemCount: 5,
+            level: "compact",
+            advice: null
+          }
+        ],
+        warnings: [],
+        compressionAdvice: []
+      },
       sourceRefs: [
         {
           kind: "state",

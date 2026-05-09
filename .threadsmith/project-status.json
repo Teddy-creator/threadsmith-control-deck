@@ -2,22 +2,22 @@
   "projectLabel": "Threadsmith",
   "currentTrack": "v0.2.0 Context OS",
   "overallState": "in-progress",
-  "currentFocus": "Evidence Summary v1 已本地验收，下一步是提交/PR/CI；合并后建议进入 Context Budget Ledger v1。",
-  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1，并本地验收 Evidence Summary v1。Context Packet 现在可以引用 concise evidence，而不是 raw logs。",
+  "currentFocus": "Context Budget Ledger v1 已本地验收，下一步是提交/PR/CI；合并后建议进入 Role-specific Packets v1。",
+  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1，并本地验收 Context Budget Ledger v1。Context Packet 现在能报告启发式体量预算、重 section 与压缩建议。",
   "latestAcceptedSlice": {
-    "title": "Evidence Summary v1",
-    "recordedAt": "2026-05-09T14:31:06Z"
+    "title": "Context Budget Ledger v1",
+    "recordedAt": "2026-05-09T14:56:44Z"
   },
   "nextPlannedSlice": {
-    "title": "Context Budget Ledger v1",
+    "title": "Role-specific Packets v1",
     "recordedAt": null
   },
-  "currentMilestoneId": "evidence-summary-v1",
-  "nextMilestoneId": "context-budget-ledger-v1",
+  "currentMilestoneId": "context-budget-ledger-v1",
+  "nextMilestoneId": "role-specific-packets-v1",
   "topRisks": [
     "Context Packet 如果太胖，会变成另一个长 prompt，而不是节省上下文。",
     "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
     "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
   ],
-  "updatedAt": "2026-05-09T14:31:06Z"
+  "updatedAt": "2026-05-09T14:56:44Z"
 }

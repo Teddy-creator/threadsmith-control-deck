@@ -1,29 +1,29 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 Evidence Summary v1 is accepted locally: schema, builder, persistence API, runtime artifact generation, Context Packet evidence integration, full workspace tests, build, launchers, and e2e all pass.",
+  "currentClaim": "Threadsmith v0.2.0 Context Budget Ledger v1 is accepted locally: Context Packet reports estimated size, budget level, heavy sections, and compression advice without real tokenizer dependency.",
   "doneWhenChecklist": [
     {
-      "id": "evidence-summary-schema",
-      "label": "Evidence Summary v1 schema 已定义并从 domain 导出",
+      "id": "budget-ledger-schema",
+      "label": "Context Budget Ledger v1 schema 已定义并从 domain 导出",
       "status": "pass"
     },
     {
-      "id": "evidence-summary-builder",
-      "label": "runtime 可以从验证命令结果和 artifact refs 生成 evidence summary",
+      "id": "budget-ledger-builder",
+      "label": "runtime 可以从 Context Packet 内容生成 budget ledger",
       "status": "pass"
     },
     {
-      "id": "evidence-summary-persistence",
-      "label": "fs-bridge 可以写入 .threadsmith/context/evidence-summary.json",
+      "id": "context-packet-budget",
+      "label": "Context Packet 自动携带 budget ledger",
       "status": "pass"
     },
     {
-      "id": "context-packet-evidence",
-      "label": "Context Packet 可以从 evidence summary 补充 evidence",
+      "id": "budget-warnings",
+      "label": "过大的 section 会产生明确 warnings 和 compression advice",
       "status": "pass"
     },
     {
       "id": "targeted-tests",
-      "label": "domain/runtime/fs-bridge targeted tests 通过",
+      "label": "domain/runtime targeted tests 通过",
       "status": "pass"
     }
   ],
@@ -32,9 +32,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    ".threadsmith/context/evidence-summary.json is intentionally ignored as a regenerable runtime artifact, not committed truth.",
-    "Role-specific Packets v1 and Control Deck Context Surface are planned later slices, not part of Evidence Summary v1.",
-    "Raw stdout/stderr logs should remain artifact refs, not be copied into context packet."
+    "Budget estimates are intentionally heuristic in v1 and should not claim exact model token counts.",
+    "No tokenizer, embedding, RAG, UI surface, or model API integration is in scope.",
+    "Budget ledger should make oversized packets visible before role-specific packets are introduced."
   ],
   "finalState": "accepted"
 }
