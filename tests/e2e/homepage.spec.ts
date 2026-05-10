@@ -87,7 +87,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Threadsmith", exact: true })).toBeVisible();
   await expect(
-    page.getByText("v0.2.0 Context OS", { exact: true }).first()
+    page.getByText("v0.3.0 usability hardening", { exact: true }).first()
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "当前总命令" })).toBeVisible();
 
@@ -96,7 +96,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      /Threadsmith v0\.2\.0 Context OS 已完成.*v0\.2\.0 release hardening.*下一步进入 v0\.2\.0 GitHub Release publish/
+      /Threadsmith v0\.3\.0 has local release-readiness evidence.*curated PR boundary/
     )
   ).toBeVisible();
   await expect(
@@ -107,14 +107,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("阶段工作台", { exact: true })).toBeVisible();
   await expect(inspectorPanel.getByRole("heading", { name: "Context 状态" })).toBeVisible();
   await expect(
-    inspectorPanel.getByText("v0.2.0 release hardening").first()
+    inspectorPanel.getByText("v0.3.0 release-readiness review / curated PR boundary").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith v0.2.0 release hardening is implemented: public README, release checklist, release notes, package versions, startup copy, app-home front door state, and verification guidance now align with the completed Context OS lane before publishing."
+      "v0.3.0 release-readiness review passed locally; the worktree is ready for curated commit / PR boundary review, but v0.3.0 has not been published or tagged."
     ).first()
   ).toBeVisible();
 });
