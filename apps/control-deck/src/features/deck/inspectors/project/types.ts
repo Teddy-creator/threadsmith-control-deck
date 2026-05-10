@@ -34,6 +34,23 @@ export interface RoleRoutingCard {
   surfaceLabel: string;
 }
 
+export interface SkillRouteVisibilityItem {
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface SkillRoutingVisibilityModel {
+  discoveredLabel: string;
+  routePreferenceLabel: string;
+  disabledLabel: string;
+  fallbackLabel: string;
+  fallbackTone: string;
+  boundary: string;
+  selectedRoutes: SkillRouteVisibilityItem[];
+  notes: string[];
+}
+
 export interface ProviderRoutingStatusBadge {
   label: string;
   className: string;
@@ -67,6 +84,7 @@ export interface ProjectInspectorProps {
   currentSourceIsAppHome: boolean;
   providerRoutingStatusDetail: string;
   routingSupportSummaryText: string;
+  skillRoutingVisibility: SkillRoutingVisibilityModel;
   providerRoutingSaveState: "idle" | "saving" | "failed";
   routingSelectClassName: string;
   conductorSurfaceOptions: Array<SelectOption<ProviderRouting["conductorSurface"]>>;

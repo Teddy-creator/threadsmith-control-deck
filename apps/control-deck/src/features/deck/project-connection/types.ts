@@ -11,6 +11,7 @@ import type {
   ProjectSupervisionState,
   ProviderRouting,
   RoleContextPacket,
+  SkillRoutingConfig,
   WorkflowEvent
 } from "@threadsmith/domain";
 import type { RuntimeActionId } from "@threadsmith/runtime";
@@ -19,6 +20,7 @@ export interface BridgeResponse {
   projectRoot: string;
   state: ProjectState;
   providerRouting: ProviderRouting;
+  skillRouting: SkillRoutingConfig;
   projectSupervision: ProjectSupervisionState | null;
   recentEvents: WorkflowEvent[];
   latestRun: AgentRunRecord | null;

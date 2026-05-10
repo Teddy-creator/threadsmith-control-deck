@@ -1,9 +1,9 @@
 {
-  "currentClaim": "Threadsmith demo 基线已经接受，并且可以从这份贴近当前 truth 的 fixture 继续 handoff",
+  "currentClaim": "Threadsmith demo 基线已经接受，并且能展示 truth 可信、packet 最新、Codex-first 路由清晰的正常完成态",
   "doneWhenChecklist": [
     {
       "id": "workflow",
-      "label": "默认 deck 上能看到 workflow 主环",
+      "label": "默认 deck 上能看到 workflow 主环与当前阶段",
       "status": "pass"
     },
     {
@@ -19,6 +19,11 @@
     {
       "id": "packet",
       "label": "下一刀所需的 continuation packet 已存在",
+      "status": "pass"
+    },
+    {
+      "id": "route-boundary",
+      "label": "skill route 只作为发现与路由提示，不暗示外部自动执行",
       "status": "pass"
     }
   ],

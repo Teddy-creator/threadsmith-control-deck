@@ -3,7 +3,8 @@ import {
   classifyProjectLoadFailure,
   explainProjectLoadFailure,
   fetchProjectBridgeState,
-  fetchProviderRouting
+  fetchProviderRouting,
+  fetchSkillRouting
 } from "./projectConnection";
 import {
   buildBridgeResponseBody,
@@ -73,6 +74,8 @@ describe("projectConnection load helpers", () => {
     );
     expect(result.providerRouting.planner).toBe("codex");
     expect(result.providerRouting.conductorSurface).toBe("codex-desktop");
+    expect(result.skillRouting.generatedFrom.discoverySkillCount).toBe(25);
+    expect(result.skillRouting.routePreferences[0]?.adapterId).toBe("writing-plans");
   });
 
   it("fetches provider routing from the bridge api", async () => {
@@ -98,6 +101,62 @@ describe("projectConnection load helpers", () => {
     );
     expect(result.planner).toBe("claude");
     expect(result.conductorSurface).toBe("claude-cli");
+  });
+
+  it("fetches skill routing from the bridge api", async () => {
+    const responseBody = {
+      version: 1,
+      updatedAt: "2026-05-10T12:10:15.000Z",
+      generatedFrom: {
+        discoveryGeneratedAt: "2026-05-10T11:25:00.000Z",
+        discoverySkillCount: 25
+      },
+      routePreferences: [
+        {
+          role: "verifier",
+          capability: "verify",
+          adapterId: "independent-verification",
+          reason: "Use independent verification for acceptance."
+        }
+      ],
+      disabledAdapters: [
+        {
+          adapterId: "unsafe-demo",
+          reason: "Unsafe in this project."
+        }
+      ],
+      fallbackAvailability: "missing",
+      notes: [
+        "External skills are discovered and routed by Threadsmith v1, but not executed automatically."
+      ]
+    };
+
+    const fetchMock = vi.fn(async () => createJsonResponse(responseBody));
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    const result = await fetchSkillRouting("/tmp/live-project");
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining(
+        "/api/threadsmith/skill-routing?projectRoot=%2Ftmp%2Flive-project"
+      )
+    );
+    expect(result.routePreferences[0]?.adapterId).toBe("independent-verification");
+    expect(result.disabledAdapters[0]?.adapterId).toBe("unsafe-demo");
+  });
+
+  it("falls back to an empty skill routing config for older bridge responses", async () => {
+    const responseBody = buildBridgeResponseBody();
+    delete (responseBody as { skillRouting?: unknown }).skillRouting;
+    const fetchMock = vi.fn(async () => createJsonResponse(responseBody));
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    const result = await fetchProjectBridgeState("/tmp/live-project");
+
+    expect(result.skillRouting.generatedFrom.discoverySkillCount).toBe(0);
+    expect(result.skillRouting.routePreferences).toEqual([]);
   });
 
   it("normalizes latest phase-run and pause truth from bridge payloads", async () => {

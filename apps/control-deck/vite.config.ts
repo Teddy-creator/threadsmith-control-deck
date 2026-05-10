@@ -41,6 +41,9 @@ import {
   writeProviderRouting
 } from "../../packages/fs-bridge/src/providerRouting";
 import {
+  loadSkillRoutingConfig
+} from "../../packages/fs-bridge/src/skillRoutingConfig";
+import {
   acceptanceStateUpdateRequestSchema,
   currentPhaseUpdateRequestSchema,
   deckActionRequestSchema,
@@ -187,11 +190,13 @@ async function readAvailableRolePackets(projectRoot: string, roles: PhaseOwner[]
 async function buildBridgeResponse(projectRoot: string) {
   if (isAppHomeProjectRoot(projectRoot)) {
     const providerRouting = await loadProviderRouting(selfHostedProjectRoot);
-    return createAppHomeBridgeResponse(providerRouting);
+    const skillRouting = await loadSkillRoutingConfig(selfHostedProjectRoot);
+    return createAppHomeBridgeResponse(providerRouting, skillRouting);
   }
 
   const state = await loadProjectState(projectRoot);
   const providerRouting = await loadProviderRouting(projectRoot);
+  const skillRouting = await loadSkillRoutingConfig(projectRoot);
   const projectSupervision = await loadProjectSupervisionState(projectRoot, state);
   const actionHistory = await readActionHistory(projectRoot);
   const recentEvents = await readRecentEvents(projectRoot);
@@ -215,6 +220,7 @@ async function buildBridgeResponse(projectRoot: string) {
     projectRoot,
     state,
     providerRouting,
+    skillRouting,
     projectSupervision,
     recentEvents,
     latestRun,
@@ -266,6 +272,27 @@ const threadsmithApiPlugin = {
         json(res, 500, {
           message:
             error instanceof Error ? error.message : "Unknown provider routing error"
+        });
+      }
+    });
+
+    server.middlewares.use("/api/threadsmith/skill-routing", async (req, res) => {
+      try {
+        const projectRoot = getProjectRoot(req.url);
+        const routingProjectRoot = isAppHomeProjectRoot(projectRoot)
+          ? selfHostedProjectRoot
+          : projectRoot;
+
+        if (req.method === "GET") {
+          json(res, 200, await loadSkillRoutingConfig(routingProjectRoot));
+          return;
+        }
+
+        json(res, 405, { message: "Method not allowed" });
+      } catch (error) {
+        json(res, 500, {
+          message:
+            error instanceof Error ? error.message : "Unknown skill routing error"
         });
       }
     });

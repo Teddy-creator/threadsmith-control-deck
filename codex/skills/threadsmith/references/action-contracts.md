@@ -1,6 +1,6 @@
 # Action Contracts
 
-Threadsmith v2 supports three supervisor modes plus deck-facing actions.
+Threadsmith v2 supports four supervisor modes plus deck-facing actions.
 
 ## `sync`
 
@@ -48,6 +48,29 @@ Stop condition:
 - verification fails
 - writeback fails
 
+## `continuous`
+
+Meaning:
+
+- run the current phase through the existing autopilot chain instead of asking the user to approve every role transition
+- preserve all committed role gates: planner, executor, reviewer, verifier, repair, closeout, and hygiene
+- route through `npm run threadsmith:autopilot -- continue <project-root>` so the continuation decision can safely choose start, resume, wait, or reset-needed
+
+Use when:
+
+- the user says to keep going until the current phase is done
+- the user explicitly complains that manual gate-by-gate prompting is too slow
+- current truth is fresh enough and the project has a clear current phase
+- the next step can be represented as one locked phase run
+
+Stop condition:
+
+- the phase run reaches accepted
+- the phase run pauses on risk, missing information, unavailable credentials, infrastructure failure, or repair-loop limit
+- committed truth says the current phase is already accepted and needs a new phase reset
+- writeback fails
+- destructive git or publishing action would be required
+
 ## `recover`
 
 Meaning:
@@ -75,6 +98,10 @@ Stop condition:
 ### `advance-phase`
 
 Route through planner/executor/reviewer depending on acceptance state.
+
+### `continue-autopilot`
+
+Route through the autopilot continuation decision. It may start a new phase run, resume a paused one, wait for an already-running one, or request phase reset when committed truth is already accepted.
 
 ### `open-current-phase`
 
@@ -113,6 +140,8 @@ Before any execution-like action, provide a short preview:
 - role packet status
 - why now
 - expected stop condition
+
+For `continuous`, the selected role may be `phase-runner`; include whether the runner will use `continue`, `start`, `resume`, `wait`, or `reset-needed`.
 
 ## Preference Rule
 

@@ -11,5 +11,7 @@ export type {
   RoadmapMilestone,
   RoleRoutingCard,
   RoutingOverviewItem,
-  SelectOption
+  SelectOption,
+  SkillRouteVisibilityItem,
+  SkillRoutingVisibilityModel
 } from "./types";

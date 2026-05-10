@@ -38,6 +38,18 @@ Behavior:
 - update `.threadsmith/` at material boundaries
 - do not skip review, verification, or closeout gates
 
+### `continuous`
+
+Use when the user asks to keep going, reduce manual approvals, run the current phase until done, or avoid gate-by-gate prompting.
+
+Behavior:
+
+- prefer `npm run threadsmith:autopilot -- continue <project-root>`
+- let the autopilot continuation decision resolve safely to start, resume, wait, or reset-needed
+- preserve planner, executor, reviewer, verifier, repair, and closeout gates
+- stop on user decisions, destructive actions, scope expansion, unavailable credentials, writeback failure, risk pauses, infrastructure pauses, or repair-loop limits
+- summarize the whole chain at the end instead of pausing after every role transition
+
 ### `recover`
 
 Use when the user reports interruption, stale state, failed verification, stuck run, bad handoff, unexpected drift, or a dead/dirty thread.
@@ -75,8 +87,8 @@ If a role packet exists and is consistent with the current phase, use it as the 
 8. If writeback fails, report the intended write, affected files, and residual risk before continuing.
 9. If truth and repo state disagree, route to hygiene before new execution.
 10. If the user asks for the automatic single-phase chain, prefer:
-    - `npm run threadsmith:autopilot -- start <project-root>`
-    - `npm run threadsmith:autopilot -- resume <project-root>`
+    - `npm run threadsmith:autopilot -- continue <project-root>`
+    - use `start` or `resume` only when the decision is already known
 
 ## Contracts
 
@@ -91,7 +103,7 @@ Read these before acting:
 When active, start with:
 
 ### Threadsmith Decision
-- mode: `sync`, `drive`, or `recover`
+- mode: `sync`, `drive`, `continuous`, or `recover`
 - project state
 - current phase state
 - acceptance state

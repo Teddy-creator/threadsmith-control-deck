@@ -1,22 +1,22 @@
 {
-  "projectGoal": "交付 Threadsmith v1",
-  "currentVersionScope": "以 workflow 为先的 control deck demo，附带最新 handoff packet",
+  "projectGoal": "展示 Threadsmith 如何把 AI coding 项目的 truth、context、skill routing 和验收状态放到同一个控制台里",
+  "currentVersionScope": "Context OS + Skill Orchestrator learning demo，附带最新 handoff packet",
   "nonGoals": [
-    "多项目编排",
-    "组织级权限体系"
+    "自动执行外部 skill",
+    "multi-provider 自动化",
+    "替代主聊天入口"
   ],
   "keyConstraints": [
     "保持 Codex-first",
-    "让 v1 具备 app-ready 潜力，但以 workflow 为主线"
+    "demo 只展示 control deck 与 truth，不承诺外部 skill 自动执行",
+    "主开发对话仍然发生在 conductor surface"
   ],
-  "successFrame": "用户打开默认 deck 后，能立刻看到一个已接受的 slice，且 packet truth 是最新的",
+  "successFrame": "用户打开默认 demo 后，能立刻看懂一个已接受 slice 的目标、证据、路由和最新 continuation packet",
   "priorityOrder": [
-    "workflow 主环",
-    "demo truth",
-    "continuation packets",
-    "偏好设置"
+    "first-run 理解",
+    "context packet",
+    "skill route visibility",
+    "acceptance 与 closeout"
   ],
-  "openStrategicQuestions": [
-    "原生壳的具体封装方式"
-  ]
+  "openStrategicQuestions": []
 }

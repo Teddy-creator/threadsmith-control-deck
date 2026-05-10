@@ -1,14 +1,16 @@
 {
   "phaseName": "刷新过期 demo packet",
-  "phaseGoal": "在已接受 slice 发生变化后重建 continuation packet",
-  "deliverable": "一个最新 packet 与 closeout 后 truth 对齐的已接受 workflow slice",
+  "phaseGoal": "在项目 truth 已前进但 continuation packet 落后时，展示 Threadsmith 如何要求先同步 context",
+  "deliverable": "一个 truth 可信但 packet 需要刷新的恢复教学 slice",
   "inScope": [
     "示例 .threadsmith truth",
     "packet 新鲜度演示",
-    "刷新建议路径"
+    "刷新建议路径",
+    "truth confidence 提醒"
   ],
   "outOfScope": [
-    "多项目指挥中心",
+    "multi-provider 自动化",
+    "外部 skill 自动执行",
     "原生封装打磨"
   ],
   "stopCondition": "deck 能看出当前 packet 已过期，并推荐刷新它",

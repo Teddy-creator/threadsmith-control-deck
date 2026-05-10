@@ -1,22 +1,22 @@
 {
-  "projectGoal": "交付 Threadsmith v1",
-  "currentVersionScope": "以 workflow 为先的 control deck demo，附带一个已经过期的 handoff packet",
+  "projectGoal": "展示 Threadsmith 如何发现 truth 已前进但 continuation packet 落后的恢复场景",
+  "currentVersionScope": "Context OS + Truth Confidence stale packet demo",
   "nonGoals": [
-    "多项目编排",
-    "组织级权限体系"
+    "自动执行外部 skill",
+    "multi-provider 自动化",
+    "替代主聊天入口"
   ],
   "keyConstraints": [
     "保持 Codex-first",
-    "让 v1 具备 app-ready 潜力，但以 workflow 为主线"
+    "demo 只展示 stale truth / packet 风险，不自动修复外部系统",
+    "主开发对话仍然发生在 conductor surface"
   ],
-  "successFrame": "用户切到过期 packet demo 后，能立刻看出 packet 需要刷新",
+  "successFrame": "用户切到过期 packet demo 后，能立刻看出当前 truth 可信但 packet 需要刷新",
   "priorityOrder": [
-    "workflow 主环",
-    "demo truth",
+    "truth confidence",
     "packet 新鲜度",
-    "偏好设置"
+    "recovery guidance",
+    "route 边界"
   ],
-  "openStrategicQuestions": [
-    "原生壳的具体封装方式"
-  ]
+  "openStrategicQuestions": []
 }

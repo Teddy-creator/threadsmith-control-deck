@@ -3,9 +3,7 @@ import type { Tone } from "../../homepage-overview";
 import { formatRole } from "../../../display/labels";
 import {
   formatContextRecoveryAction,
-  formatContextRecoveryStatus,
   formatPacketStatus,
-  pickContextTone,
   pickPacketTone
 } from "../contextRecovery";
 
@@ -37,18 +35,19 @@ export function buildHomepageContextModel(
   }
 
   const recovery = supervisorState.contextRecovery;
+  const confidence = supervisorState.truthConfidence;
   const selectedRole = recovery.selectedRole ? formatRole(recovery.selectedRole) : "当前角色";
 
   return {
     visible: true,
-    label: formatContextRecoveryStatus(recovery.status),
-    tone: pickContextTone(recovery.status),
-    summary: recovery.headline,
+    label: confidence.label,
+    tone: confidence.tone,
+    summary: confidence.headline,
     signals: [
       {
-        label: "主 packet",
-        value: formatPacketStatus(recovery.currentPacketStatus),
-        tone: pickPacketTone(recovery.currentPacketStatus)
+        label: "首要原因",
+        value: confidence.primaryReason.label,
+        tone: confidence.tone
       },
       {
         label: selectedRole,
@@ -56,9 +55,9 @@ export function buildHomepageContextModel(
         tone: pickPacketTone(recovery.rolePacketStatus)
       },
       {
-        label: "建议动作",
-        value: formatContextRecoveryAction(recovery.action),
-        tone: recovery.status === "fresh" ? "green" : pickContextTone(recovery.status)
+        label: "安全动作",
+        value: formatContextRecoveryAction(confidence.safeAction),
+        tone: confidence.tone
       }
     ]
   };

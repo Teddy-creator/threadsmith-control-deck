@@ -56,7 +56,7 @@ macOS 显式打开某个项目：
 
 ## 当前默认工作方式
 
-当前公开主线仍然是 `Codex-only`：
+当前最新稳定线和 v0.3.0 release-candidate 线仍然是 `Codex-only`：
 
 - `planner / executor / reviewer / verifier / closeout` 默认都由 `Codex` 承担
 - 主 conductor surface 默认是 `Codex Desktop`
@@ -85,7 +85,7 @@ npm run smoke:self-host
 npm run verify:release
 ```
 
-发布检查面见 [docs/checklists/release-v0.1.0.md](docs/checklists/release-v0.1.0.md)。
+发布检查面见对应版本 checklist；当前 release-candidate 工作优先参考 [docs/checklists/release-v0.3.0.md](docs/checklists/release-v0.3.0.md)。
 
 ## 改动建议
 
@@ -122,6 +122,7 @@ npm run verify:release
 - onboarding、launcher、docs honesty 的打磨
 - self-host smoke 与真实 dogfood 稳定性
 - acceptance、evidence、truth surface 的打磨
+- v0.3.0 Skill Orchestrator / mini protocol / stop-recovery / context routing 的验证与文档收口
 
 ## 行为边界
 

@@ -3,13 +3,13 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "定义已接受的 v1 slice 与 closeout 边界",
+      "taskSummary": "定义已接受的 demo slice 与 closeout 边界",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "完成 runtime、deck 与文件系统桥接",
+      "taskSummary": "完成 Context OS demo truth 与 deck 可见性",
       "requiresUserDecision": false
     },
     {
@@ -33,7 +33,7 @@
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "为下一刀写出最新 continuation packet",
+      "taskSummary": "为下一刀写出最新 continuation packet，并确认 route 边界不夸大",
       "requiresUserDecision": false
     }
   ],

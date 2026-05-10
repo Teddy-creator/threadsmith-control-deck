@@ -3,37 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "已将下一刀收束为 v0.2.0 release hardening：先对齐公开文档、checklist、release notes 和验证面。",
-      "requiresUserDecision": false
-    },
-    {
-      "role": "executor",
-      "status": "done",
-      "taskSummary": "已更新 README、usage guide、v0.2.0 release checklist、release notes、release copy、app-home 前门和 package version。",
-      "requiresUserDecision": false
-    },
-    {
-      "role": "reviewer",
-      "status": "done",
-      "taskSummary": "已复核发布文案仍保持 web-first / Codex-only 边界，未承诺 multi-provider 或桌面壳。",
+      "taskSummary": "Confirmed the next phase is release-readiness review / curated PR boundary, not new feature work.",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已通过 test、build、e2e、launcher、self-host smoke、diff check 和 JSON 校验。",
+      "taskSummary": "Ran the full local release-readiness matrix: workspace tests, build, launchers, self-host smoke, autopilot smoke, deck-route smoke, JSON parse, and diff hygiene.",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "reviewer",
+      "status": "done",
+      "taskSummary": "Reviewed release-facing docs and checklist for stable-vs-RC boundaries and external-skill overpromising.",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "已写回 accepted truth；下一步提交 PR 并在 CI 绿后进入 GitHub Release publish。",
+      "taskSummary": "Recorded local release-readiness as accepted and pointed the next step to curated commit / PR packaging.",
       "requiresUserDecision": false
     },
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "守住边界：本 slice 只做 release hardening 与发布前一致性 polish，不做新功能、multi-provider 或桌面壳。",
+      "taskSummary": "Kept publish/tag/global skill mutation out of scope; the dirty worktree still needs curated commit boundaries.",
       "requiresUserDecision": false
     }
   ],

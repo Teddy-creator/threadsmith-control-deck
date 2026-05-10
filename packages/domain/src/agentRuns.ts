@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { phaseOwnerSchema } from "./currentPhase.ts";
+import { miniProtocolInstructionSchema } from "./miniProtocols.ts";
 import { phaseRunPauseTypeSchema } from "./phaseRuns.ts";
 
 export const providerIdSchema = z.enum(["codex", "claude"]);
@@ -46,6 +47,7 @@ export const executionPacketSchema = z.object({
   scope: z.array(z.string().min(1)).min(1),
   doneWhen: z.array(z.string().min(1)).min(1),
   verification: z.array(z.string().min(1)),
+  protocolInstruction: miniProtocolInstructionSchema.optional(),
   contextRefs: z.array(contextReferenceSchema),
   output: z.object({
     resultPath: z.string().min(1),

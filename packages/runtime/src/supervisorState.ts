@@ -6,11 +6,12 @@ import type {
   ProviderRouting,
   ProjectState,
   ProjectSupervisionState,
+  SkillRoutingConfig,
   ContextPacket,
   RoleContextPacket,
   WorkflowEvent
 } from "@threadsmith/domain";
-import { providerRoutingSchema } from "@threadsmith/domain";
+import { providerRoutingSchema, skillRoutingConfigSchema } from "@threadsmith/domain";
 import {
   deriveLatestVerificationEvidence,
   type VerificationEvidenceSummary
@@ -58,6 +59,10 @@ import {
   deriveContextRecovery,
   type ContextRecoverySignal
 } from "./contextRecovery.ts";
+import {
+  deriveTruthConfidence,
+  type TruthConfidenceSummary
+} from "./truthConfidence.ts";
 
 export interface PhaseTrackItem {
   label: string;
@@ -78,6 +83,7 @@ export interface AcceptanceSummary {
 export interface SupervisorState {
   projectState: ProjectState;
   providerRouting: ProviderRouting;
+  skillRouting: SkillRoutingConfig;
   projectSupervision: ProjectSupervisionSummary;
   phaseParticipants: PhaseParticipantSummary[];
   recentEvents: WorkflowEvent[];
@@ -91,6 +97,7 @@ export interface SupervisorState {
   latestCloseoutRecord: CloseoutRecordSummary;
   latestContinuationState: LatestContinuationState;
   contextRecovery: ContextRecoverySignal;
+  truthConfidence: TruthConfidenceSummary;
   supervisionTimeline: SupervisionTimelineEntry[];
   phaseReadiness: PhaseReadinessSummary;
   nextBestStep: NextBestStepDecision;
@@ -168,7 +175,8 @@ export function deriveSupervisorState(
   currentPacket: ContextPacket | null = null,
   rolePackets: RoleContextPacket[] = [],
   contextArtifactsLoaded = false,
-  contextArtifactProblem: string | null = null
+  contextArtifactProblem: string | null = null,
+  skillRouting: SkillRoutingConfig | null = null
 ): SupervisorState {
   const latestContinuationState = deriveLatestContinuationState(recentEvents);
   const latestPhasePauseSummary = deriveLatestPhasePauseSummary(latestPhasePause);
@@ -184,6 +192,11 @@ export function deriveSupervisorState(
     latestRun,
     latestPhaseRun: latestPhaseRunSummary,
     latestPhasePause: latestPhasePauseSummary
+  });
+  const truthConfidence = deriveTruthConfidence(contextRecovery, {
+    currentPacket,
+    latestRun,
+    latestPhaseRun: latestPhaseRunSummary
   });
   const gateSignal = deriveGateSignal(
     state,
@@ -202,10 +215,12 @@ export function deriveSupervisorState(
     contextRecovery
   );
   const resolvedProviderRouting = providerRouting ?? providerRoutingSchema.parse({});
+  const resolvedSkillRouting = skillRouting ?? skillRoutingConfigSchema.parse({});
 
   return {
     projectState: state,
     providerRouting: resolvedProviderRouting,
+    skillRouting: resolvedSkillRouting,
     projectSupervision: deriveProjectSupervisionSummary(
       state,
       projectSupervisionState,
@@ -234,6 +249,7 @@ export function deriveSupervisorState(
     latestCloseoutRecord: deriveLatestCloseoutRecord(state, recentEvents),
     latestContinuationState,
     contextRecovery,
+    truthConfidence,
     supervisionTimeline: deriveSupervisionTimeline(
       state,
       gateSignal,

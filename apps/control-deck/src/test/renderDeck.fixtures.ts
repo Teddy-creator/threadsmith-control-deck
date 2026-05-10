@@ -6,6 +6,7 @@ import type {
   ProviderRouting,
   ProjectState,
   ProjectSupervisionState,
+  SkillRoutingConfig,
   WorkflowEvent
 } from "@threadsmith/domain";
 
@@ -164,6 +165,40 @@ export const state: ProjectState = {
       continuationBehaviorSource: "project-default"
     }
   }
+};
+
+export const skillRoutingConfig: SkillRoutingConfig = {
+  version: 1,
+  updatedAt: "2026-05-10T12:10:15.000Z",
+  generatedFrom: {
+    discoveryGeneratedAt: "2026-05-10T11:25:00.000Z",
+    discoverySkillCount: 25
+  },
+  routePreferences: [
+    {
+      role: null,
+      capability: "brief",
+      adapterId: "task-brief-drafter",
+      reason: "Use a purpose-built brief drafter before planning."
+    },
+    {
+      role: null,
+      capability: "plan",
+      adapterId: "writing-plans",
+      reason: "Use the planning skill before implementation."
+    },
+    {
+      role: "verifier",
+      capability: "verify",
+      adapterId: "independent-verification",
+      reason: "Use independent verification for acceptance passes."
+    }
+  ],
+  disabledAdapters: [],
+  fallbackAvailability: "missing",
+  notes: [
+    "External skills are discovered and routed by Threadsmith v1, but not executed automatically."
+  ]
 };
 
 export const events: WorkflowEvent[] = [

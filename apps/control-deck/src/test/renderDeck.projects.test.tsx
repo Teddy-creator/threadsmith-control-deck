@@ -67,7 +67,7 @@ describe("DeckScreen projects", () => {
     fireEvent.click(projectsScope.getByRole("button", { name: /自定义项目/i }));
     expect(projectsScope.getByText("推荐进入路径")).toBeInTheDocument();
     expect(projectsScope.getByText("日常进入项目")).toBeInTheDocument();
-    expect(screen.getByText("这是一个已收口项目的学习示例")).toBeInTheDocument();
+    expect(screen.getByText("这是一个 Context OS 完成态学习示例")).toBeInTheDocument();
     expect(screen.getByText("Demo mode")).toBeInTheDocument();
     expect(screen.getByText("examples/project-state/.threadsmith")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "打开 /tmp/recent-alpha" })).toBeInTheDocument();

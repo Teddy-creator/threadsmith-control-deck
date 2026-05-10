@@ -31,6 +31,57 @@ describe("executionPacketSchema", () => {
     expect(parsed.output.resultPath).toContain("result.json");
     expect(parsed.workflowEffect).toBe("artifact-only");
   });
+
+  it("accepts a protocol-guided packet", () => {
+    const parsed = executionPacketSchema.parse({
+      runId: "018f8b96-f802-73fd-a4aa-44d9eb1b6fa2",
+      projectRoot: "/tmp/threadsmith-project",
+      role: "verifier",
+      provider: "codex",
+      objective: "独立检查当前 claim 是否已被证据支持。",
+      scope: ["复核当前 claim 与 done when"],
+      doneWhen: ["只给出 verification-failed 或 accepted-with-closeout-pending"],
+      verification: ["npm test"],
+      protocolInstruction: {
+        protocol: {
+          id: "verify",
+          label: "Verify",
+          owningRole: "verifier",
+          purpose: "Prove or reject the acceptance claim with command-backed evidence.",
+          requiredInputs: ["currentPhase", "acceptanceState", "evidenceSummary"],
+          requiredOutputs: ["verificationResult", "truthWritebackProposal"],
+          evidenceRequired: true,
+          stopReasons: ["accepted-with-closeout-pending", "blocked"],
+          continuationHint: "Route to closeout when required checks pass.",
+          guardrails: ["Never convert missing evidence into a pass."]
+        },
+        role: "verifier",
+        objective: "Prove or reject the acceptance claim with command-backed evidence.",
+        inputChecklist: ["currentPhase", "acceptanceState", "evidenceSummary"],
+        outputChecklist: ["verificationResult", "truthWritebackProposal"],
+        guardrails: ["Never convert missing evidence into a pass."],
+        stopCondition: "Stop when one of these reasons is reached: accepted-with-closeout-pending, blocked.",
+        continuationHint: "Route to closeout when required checks pass.",
+        route: {
+          source: "built-in",
+          selectedAdapterId: null,
+          availability: "missing",
+          reason: "No external adapter is configured for verify; using built-in verify.",
+          safetyWarnings: []
+        }
+      },
+      contextRefs: [
+        { kind: "state", path: ".threadsmith/current-phase.json" }
+      ],
+      output: {
+        resultPath: ".threadsmith/runs/run-1/result.json",
+        summaryPath: ".threadsmith/runs/run-1/result.md"
+      }
+    });
+
+    expect(parsed.protocolInstruction?.protocol.id).toBe("verify");
+    expect(parsed.protocolInstruction?.route.source).toBe("built-in");
+  });
 });
 
 describe("executionResultSchema", () => {

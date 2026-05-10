@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-10T12:10:15.000Z",
+  "generatedFrom": {
+    "discoveryGeneratedAt": "2026-05-10T11:25:00.000Z",
+    "discoverySkillCount": 25
+  },
+  "routePreferences": [
+    {
+      "role": null,
+      "capability": "brief",
+      "adapterId": "task-brief-drafter",
+      "reason": "Use the purpose-built brief drafter when a task needs scope, non-goals, done-when, and verification."
+    },
+    {
+      "role": null,
+      "capability": "plan",
+      "adapterId": "writing-plans",
+      "reason": "Use the planning skill for implementation plans before execution."
+    },
+    {
+      "role": null,
+      "capability": "debug",
+      "adapterId": "systematic-debugging",
+      "reason": "Use systematic debugging before patching failures."
+    },
+    {
+      "role": "verifier",
+      "capability": "verify",
+      "adapterId": "independent-verification",
+      "reason": "Use independent verification for verifier-owned acceptance passes."
+    },
+    {
+      "role": null,
+      "capability": "closeout",
+      "adapterId": "task-closeout",
+      "reason": "Use task closeout for cleanup, residual risks, and durable next-step recording."
+    },
+    {
+      "role": "hygiene",
+      "capability": "recover",
+      "adapterId": "session-hygiene",
+      "reason": "Use session hygiene when context is stale, interrupted, or contradictory."
+    }
+  ],
+  "disabledAdapters": [],
+  "fallbackAvailability": "missing",
+  "notes": [
+    "External skills are discovered and routed by Threadsmith v1, but not executed automatically.",
+    "Project-level route preferences are now committed in .threadsmith/skill-routing.json.",
+    "Control Deck UI visibility for discovery health and selected adapter status remains a follow-up slice."
+  ]
+}

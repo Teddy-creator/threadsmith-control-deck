@@ -67,6 +67,27 @@ export function buildBridgeResponseBody(actionHistoryLength = 0) {
         }
       }
     },
+    skillRouting: {
+      version: 1,
+      updatedAt: "2026-05-10T12:10:15.000Z",
+      generatedFrom: {
+        discoveryGeneratedAt: "2026-05-10T11:25:00.000Z",
+        discoverySkillCount: 25
+      },
+      routePreferences: [
+        {
+          role: null,
+          capability: "plan",
+          adapterId: "writing-plans",
+          reason: "Use the planning skill before implementation."
+        }
+      ],
+      disabledAdapters: [],
+      fallbackAvailability: "missing",
+      notes: [
+        "External skills are discovered and routed by Threadsmith v1, but not executed automatically."
+      ]
+    },
     recentEvents: [],
     latestPhaseRun: null,
     latestPhasePause: null,

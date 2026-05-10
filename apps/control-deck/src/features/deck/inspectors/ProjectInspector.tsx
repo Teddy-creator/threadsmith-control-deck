@@ -31,6 +31,7 @@ export function ProjectInspector({
   currentSourceIsAppHome,
   providerRoutingStatusDetail,
   routingSupportSummaryText,
+  skillRoutingVisibility,
   providerRoutingSaveState,
   routingSelectClassName,
   conductorSurfaceOptions,
@@ -73,6 +74,7 @@ export function ProjectInspector({
         currentSourceIsAppHome={currentSourceIsAppHome}
         providerRoutingStatusDetail={providerRoutingStatusDetail}
         routingSupportSummaryText={routingSupportSummaryText}
+        skillRoutingVisibility={skillRoutingVisibility}
         providerRoutingSaveState={providerRoutingSaveState}
         routingSelectClassName={routingSelectClassName}
         conductorSurfaceOptions={conductorSurfaceOptions}

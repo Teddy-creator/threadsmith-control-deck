@@ -21,6 +21,23 @@ export type RoleRoutingCardModel = {
   surfaceLabel: string;
 };
 
+export type SkillRouteVisibilityItem = {
+  label: string;
+  value: string;
+  detail: string;
+};
+
+export type SkillRoutingVisibilityModel = {
+  discoveredLabel: string;
+  routePreferenceLabel: string;
+  disabledLabel: string;
+  fallbackLabel: string;
+  fallbackTone: Tone;
+  boundary: string;
+  selectedRoutes: SkillRouteVisibilityItem[];
+  notes: string[];
+};
+
 export type PhaseRoutingOverviewItem = {
   label: string;
   value: string;

@@ -164,6 +164,20 @@ describe("rolePackets", () => {
 
     expect(packet.role).toBe("planner");
     expect(packet.objective).toContain("primary slice");
+    expect(packet.contextRefs).toEqual(
+      expect.arrayContaining([
+        {
+          kind: "state",
+          path: ".threadsmith/context/current-packet.json",
+          title: "current context packet"
+        },
+        {
+          kind: "state",
+          path: ".threadsmith/context/role-packets/planner.json",
+          title: "planner role context packet"
+        }
+      ])
+    );
     expect(packet.contextRefs.some((ref) => ref.path === ".threadsmith/project-roadmap.json")).toBe(
       true
     );
@@ -174,6 +188,10 @@ describe("rolePackets", () => {
     expect(prompt).toContain("slice-ready");
     expect(prompt).toContain("pause-recommended");
     expect(prompt).toContain("不要改写 locked phase contract");
+    expect(packet.protocolInstruction?.protocol.id).toBe("plan");
+    expect(prompt).toContain("Mini Protocol Instruction:");
+    expect(prompt).toContain("Stop condition:");
+    expect(prompt).toContain("Required inputs:");
   });
 
   it("keeps executor packets compatible while using the role-aware prompt", async () => {
@@ -183,12 +201,33 @@ describe("rolePackets", () => {
     const prompt = renderRolePrompt(packet);
 
     expect(packet.role).toBe("executor");
+    expect(packet.contextRefs).toEqual(
+      expect.arrayContaining([
+        {
+          kind: "state",
+          path: ".threadsmith/context/current-packet.json",
+          title: "current context packet"
+        },
+        {
+          kind: "state",
+          path: ".threadsmith/context/role-packets/executor.json",
+          title: "executor role context packet"
+        }
+      ])
+    );
+    expect(
+      packet.contextRefs.some(
+        (ref) => ref.path === ".threadsmith/context/role-packets/reviewer.json"
+      )
+    ).toBe(false);
     expect(packet.verification.length).toBeGreaterThan(0);
     expect(packet.output.resultPath).toBe(
       ".threadsmith/runs/executor-run/result.json"
     );
     expect(prompt).toContain("ready-for-review");
     expect(prompt).toContain("如果不适用请显式填 `null`");
+    expect(packet.protocolInstruction?.protocol.id).toBe("plan");
+    expect(prompt).toContain("Protocol guardrails:");
   });
 
   it("attaches latest phase-run continuity artifacts when a paused repair exists", async () => {
@@ -244,17 +283,22 @@ describe("rolePackets", () => {
     ).toBe(true);
     expect(reviewerPrompt).toContain("ready-for-verification");
     expect(reviewerPrompt).toContain("review-blocked");
+    expect(reviewerPacket.protocolInstruction?.protocol.id).toBe("review");
+    expect(reviewerPrompt).toContain("Do not convert review confidence into verification pass.");
 
     expect(verifierPacket.verification).toEqual(
       expect.arrayContaining(["项目可以从 deck 正常加载"])
     );
     expect(verifierPrompt).toContain("verification-failed");
     expect(verifierPrompt).toContain("accepted-with-closeout-pending");
+    expect(verifierPacket.protocolInstruction?.protocol.id).toBe("verify");
+    expect(verifierPrompt).toContain("Never convert missing evidence into a pass.");
 
     expect(closeoutPacket.contextRefs.some((ref) => ref.path.includes("run-prev"))).toBe(
       true
     );
     expect(closeoutPrompt).toContain("accepted");
     expect(closeoutPrompt).toContain("清理临时痕迹");
+    expect(closeoutPacket.protocolInstruction?.protocol.id).toBe("closeout");
   });
 });

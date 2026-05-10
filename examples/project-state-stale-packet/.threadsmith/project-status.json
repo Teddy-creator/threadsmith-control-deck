@@ -1,19 +1,19 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "workflow 为先的 control deck demo",
+  "currentTrack": "Context OS + Truth Confidence demo",
   "overallState": "at-risk",
   "currentFocus": "当前项目真相已经前进，但 handoff packet 还停留在旧边界",
-  "projectStatusSummary": "这个示例代表一个已接受但 packet 过期的项目状态，目标是让用户立刻明白需要刷新 continuation packet。",
+  "projectStatusSummary": "这个示例代表一个已接受但 packet 过期的项目状态：项目 truth 已前进，deck 应该推荐先同步 packet，而不是继续扩大实现范围。",
   "latestAcceptedSlice": {
     "title": "刷新过期 demo packet",
     "recordedAt": "2026-04-04T09:12:00.000Z"
   },
   "nextPlannedSlice": {
-    "title": "刷新 continuation packet",
+    "title": "同步 current packet 后再继续",
     "recordedAt": null
   },
   "topRisks": [
-    "最新 continuation packet 已经过期。"
+    "最新 continuation packet 已经过期，需要先同步 context。"
   ],
   "updatedAt": "2026-04-04T09:16:00.000Z"
 }

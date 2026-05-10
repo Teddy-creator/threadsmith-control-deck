@@ -1,17 +1,19 @@
 {
-  "phaseName": "收口 v1 demo 基线",
-  "phaseGoal": "把已接受的 Threadsmith 基线整理成可 handoff 的 demo 状态",
-  "deliverable": "一个带真实事件和可复用 continuation packet 的已接受 workflow slice",
+  "phaseName": "收口 Context OS demo 基线",
+  "phaseGoal": "把 Threadsmith 的正常完成态整理成一个能解释 truth、packet、skill routing 和 acceptance 的 demo",
+  "deliverable": "一个带真实事件、最新 continuation packet 和清晰路由边界的已接受 workflow slice",
   "inScope": [
     "示例 .threadsmith truth",
     "最近的 workflow 事件",
-    "continuation packet 可见性"
+    "continuation packet 可见性",
+    "Codex-first route 与 built-in fallback 边界"
   ],
   "outOfScope": [
-    "多项目指挥中心",
+    "multi-provider 自动化",
+    "外部 skill 自动执行",
     "原生封装打磨"
   ],
-  "stopCondition": "默认 deck 打开后就是一个已接受、可 handoff、且历史真实的 slice",
+  "stopCondition": "默认 deck 打开后就是一个已接受、可 handoff、truth 可信且不夸大自动化能力的 slice",
   "verificationForThisPhase": [
     "npm run test 通过",
     "npm run build 通过",

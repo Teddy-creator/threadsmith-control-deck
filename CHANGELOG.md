@@ -24,11 +24,13 @@ All notable changes to Threadsmith will be documented in this file.
 - README and contributing guide links for open-source feedback and security reporting.
 - v0.2.0 Context OS release docs, checklist, and GitHub Release copy.
 - Context Packet, Repo Map, Evidence Summary, Context Budget Ledger, Role-specific Packets, context recovery, and `sync-context` regeneration surfaces for the v0.2.0 line.
+- v0.3.0 Harness Skill Orchestrator planning, mini protocol, autopilot role loop, stop/recovery, context routing, and self-hosting safety release-candidate artifacts.
 
 ### Changed
 
 - README and usage docs now describe the v0.2.0 Context OS line while keeping multi-provider and desktop app work out of scope.
-- Startup, app-home, and social draft copy now align with the v0.2.0 Context OS release-candidate state instead of older v0.1.1 or in-progress release-hardening language.
+- Startup and current-entry copy now separate stable and development tracks instead of implying one stale current line.
+- README, usage docs, and startup copy now separate latest stable `v0.2.0 Context OS` from the current `v0.3.0 Harness Skill Orchestrator` development / release-candidate track.
 
 ## v0.1.1 - 2026-05-09
 

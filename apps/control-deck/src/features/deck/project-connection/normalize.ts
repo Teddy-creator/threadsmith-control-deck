@@ -10,7 +10,8 @@ import {
   providerRoutingSchema,
   projectRoadmapSchema,
   projectStatusSchema,
-  roleContextPacketSchema
+  roleContextPacketSchema,
+  skillRoutingConfigSchema
 } from "@threadsmith/domain";
 import type { BridgeResponse, BridgeResponsePayload, BridgeStatePayload } from "./types";
 
@@ -94,6 +95,13 @@ export function normalizeBridgeResponse(
           (response as { providerRouting?: unknown }).providerRouting
         )
       : providerRoutingSchema.parse({}),
+    skillRouting: skillRoutingConfigSchema.safeParse(
+      (response as { skillRouting?: unknown }).skillRouting
+    ).success
+      ? skillRoutingConfigSchema.parse(
+          (response as { skillRouting?: unknown }).skillRouting
+        )
+      : skillRoutingConfigSchema.parse({}),
     projectSupervision: projectSupervisionStateSchema.safeParse(
       (response as { projectSupervision?: unknown }).projectSupervision
     ).success

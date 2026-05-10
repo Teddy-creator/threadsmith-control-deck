@@ -2,6 +2,7 @@ export { ProjectLoadError, classifyProjectLoadFailure, explainProjectLoadFailure
 export {
   fetchProjectBridgeState,
   fetchProviderRouting,
+  fetchSkillRouting,
   initializeProjectBridgeState
 } from "./load";
 export {

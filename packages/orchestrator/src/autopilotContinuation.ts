@@ -15,6 +15,21 @@ export interface AutopilotContinuationDecision {
   phaseRunId: string | null;
 }
 
+export function describeAutopilotContinuationDecision(
+  decision: AutopilotContinuationDecision
+) {
+  switch (decision.action) {
+    case "start":
+      return "continue 将启动新的 locked phase run，并连续推进 planner -> executor -> reviewer -> verifier -> closeout，除非触发安全暂停。";
+    case "resume":
+      return "continue 将从 paused phase run 恢复，沿原有 locked phase 继续，不会新开重复自动链。";
+    case "wait":
+      return "continue 不会重复启动；当前已有 running phase run，先等待结果写回 committed truth。";
+    case "reset-needed":
+      return "continue 不会从旧 truth 硬跑；需要先补齐 bootstrap 或重置新的 current phase。";
+  }
+}
+
 function formatRoleLabel(role: PhaseRunRecord["currentRole"]) {
   switch (role) {
     case "planner":
@@ -64,12 +79,14 @@ function acceptedResetDecision(
   state: ProjectState,
   latestPhaseRun: PhaseRunRecord | null
 ): AutopilotContinuationDecision {
+  const phaseRunDetail = latestPhaseRun
+    ? `最近一轮 phase run（${latestPhaseRun.phaseRunId}）状态为 ${latestPhaseRun.status}。`
+    : "";
+
   return {
     action: "reset-needed",
     headline: "当前 phase 已 accepted，先重置下一刀",
-    detail: latestPhaseRun
-      ? `最近一轮 phase run（${latestPhaseRun.phaseRunId}）已经 ${latestPhaseRun.status}；当前 claim 也已经 accepted。请先写回新的 current phase / acceptance truth，再继续 autopilot。`
-      : `当前 claim「${state.acceptanceState.currentClaim}」已经 accepted。请先写回新的 current phase / acceptance truth，再继续 autopilot。`,
+    detail: `${phaseRunDetail}当前 claim「${state.acceptanceState.currentClaim}」已经 accepted。请先写回新的 current phase / acceptance truth，再继续 autopilot；如果 phase run 仍显示 running/paused，请先检查最近 artifact，避免从旧 truth 恢复。`,
     recommendedCommand: buildAutopilotCliCommand(projectRoot, "status"),
     phaseRunId: latestPhaseRun?.phaseRunId ?? null
   };
@@ -135,11 +152,7 @@ export function decideAutopilotContinuation(input: {
     return bootstrapBlockedDecision(input.projectRoot, input.bootstrap);
   }
 
-  if (
-    input.bootstrap.state.acceptanceState.finalState === "accepted" &&
-    input.latestPhaseRun?.status !== "paused" &&
-    input.latestPhaseRun?.status !== "running"
-  ) {
+  if (input.bootstrap.state.acceptanceState.finalState === "accepted") {
     return acceptedResetDecision(
       input.projectRoot,
       input.bootstrap.state,

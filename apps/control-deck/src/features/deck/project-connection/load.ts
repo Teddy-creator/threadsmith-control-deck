@@ -1,4 +1,4 @@
-import { providerRoutingSchema } from "@threadsmith/domain";
+import { providerRoutingSchema, skillRoutingConfigSchema } from "@threadsmith/domain";
 import { ProjectLoadError, classifyProjectLoadFailure, explainProjectLoadFailure } from "./errors";
 import { normalizeBridgeResponse } from "./normalize";
 import { buildApiUrl, buildJsonPostRequest, readBridgeErrorMessage } from "./request";
@@ -61,4 +61,21 @@ export async function fetchProviderRouting(projectRoot: string) {
   }
 
   return providerRoutingSchema.parse(await response.json());
+}
+
+export async function fetchSkillRouting(projectRoot: string) {
+  const response = await fetch(
+    buildApiUrl("/api/threadsmith/skill-routing", projectRoot)
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      await readBridgeErrorMessage(
+        response,
+        `加载 skill routing 失败（${response.status}）`
+      )
+    );
+  }
+
+  return skillRoutingConfigSchema.parse(await response.json());
 }

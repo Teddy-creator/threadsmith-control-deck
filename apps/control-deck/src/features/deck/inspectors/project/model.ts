@@ -3,6 +3,7 @@ import { isAllCodexRouting, type SupervisorState } from "@threadsmith/runtime";
 import {
   buildRoleRoutingCardModel,
   buildRoutingOverviewItems,
+  buildSkillRoutingVisibilityModel,
   type LatestBridgeModel
 } from "../../deckViewModels";
 import { formatProjectOverallState } from "../../../display/labels";
@@ -167,6 +168,9 @@ export function buildProjectInspectorViewModel(
     currentSourceIsAppHome: args.currentSourceIsAppHome,
     providerRoutingStatusDetail,
     routingSupportSummaryText: routingSupportSummary(allCodexRouting),
+    skillRoutingVisibility: buildSkillRoutingVisibilityModel(
+      args.supervisorState.skillRouting
+    ),
     providerRoutingSaveState: args.providerRoutingSaveState,
     routingSelectClassName: ROUTING_SELECT_CLASS_NAME,
     conductorSurfaceOptions: CONDUCTOR_SURFACE_OPTIONS,

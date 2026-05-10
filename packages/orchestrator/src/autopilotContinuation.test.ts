@@ -15,7 +15,8 @@ import {
 import type { BootstrapProjectStateResult } from "./bootstrap.ts";
 import {
   buildAutopilotCliCommand,
-  decideAutopilotContinuation
+  decideAutopilotContinuation,
+  describeAutopilotContinuationDecision
 } from "./autopilotContinuation.ts";
 
 const createdRoots: string[] = [];
@@ -89,6 +90,9 @@ describe("decideAutopilotContinuation", () => {
 
     expect(decision.action).toBe("start");
     expect(decision.recommendedCommand).toContain("-- continue");
+    expect(describeAutopilotContinuationDecision(decision)).toContain(
+      "启动新的 locked phase run"
+    );
   });
 
   it("resumes a paused phase run through the unified continue surface", async () => {
@@ -109,6 +113,9 @@ describe("decideAutopilotContinuation", () => {
     expect(decision.recommendedCommand).toBe(
       buildAutopilotCliCommand(projectRoot, "continue")
     );
+    expect(describeAutopilotContinuationDecision(decision)).toContain(
+      "不会新开重复自动链"
+    );
   });
 
   it("waits instead of launching a duplicate phase run", async () => {
@@ -126,6 +133,68 @@ describe("decideAutopilotContinuation", () => {
 
     expect(decision.action).toBe("wait");
     expect(decision.detail).toContain("不要重复启动");
+    expect(describeAutopilotContinuationDecision(decision)).toContain(
+      "不会重复启动"
+    );
+  });
+
+  it("refuses to wait on a running phase run when committed truth is already accepted", async () => {
+    const projectRoot = await createProjectRoot();
+    await writeStateFragment(projectRoot, STATE_FILES.acceptanceState, {
+      currentClaim: "当前 phase 已经 accepted。",
+      doneWhenChecklist: [],
+      implementationStatus: "ready-for-review",
+      reviewStatus: "ready-for-verification",
+      verificationStatus: "passed",
+      closeoutStatus: "done",
+      knownGaps: [],
+      finalState: "accepted"
+    });
+    const bootstrap = await makeBootstrapResult(projectRoot);
+    await seedLatestPhaseRun(projectRoot, "running");
+    const phaseRun = await readLatestPhaseRun(projectRoot);
+
+    const decision = decideAutopilotContinuation({
+      projectRoot,
+      bootstrap,
+      latestPhaseRun: phaseRun,
+      latestPhasePause: null
+    });
+
+    expect(decision.action).toBe("reset-needed");
+    expect(decision.detail).toContain("状态为 running");
+    expect(decision.detail).toContain("避免从旧 truth 恢复");
+  });
+
+  it("refuses to resume a paused phase run when committed truth is already accepted", async () => {
+    const projectRoot = await createProjectRoot();
+    await writeStateFragment(projectRoot, STATE_FILES.acceptanceState, {
+      currentClaim: "当前 phase 已经 accepted。",
+      doneWhenChecklist: [],
+      implementationStatus: "ready-for-review",
+      reviewStatus: "ready-for-verification",
+      verificationStatus: "passed",
+      closeoutStatus: "done",
+      knownGaps: [],
+      finalState: "accepted"
+    });
+    const bootstrap = await makeBootstrapResult(projectRoot);
+    await seedLatestPhaseRun(projectRoot, "paused");
+    const phaseRun = await readLatestPhaseRun(projectRoot);
+    const pause = phaseRun ? await readPhasePause(projectRoot, phaseRun.phaseRunId) : null;
+
+    const decision = decideAutopilotContinuation({
+      projectRoot,
+      bootstrap,
+      latestPhaseRun: phaseRun,
+      latestPhasePause: pause
+    });
+
+    expect(decision.action).toBe("reset-needed");
+    expect(decision.recommendedCommand).toBe(
+      buildAutopilotCliCommand(projectRoot, "status")
+    );
+    expect(decision.detail).toContain("状态为 paused");
   });
 
   it("reports reset-needed when the current phase is already accepted and no reset has happened", async () => {
@@ -153,6 +222,9 @@ describe("decideAutopilotContinuation", () => {
 
     expect(decision.action).toBe("reset-needed");
     expect(decision.detail).toContain("先写回新的 current phase");
+    expect(describeAutopilotContinuationDecision(decision)).toContain(
+      "不会从旧 truth 硬跑"
+    );
   });
 
   it("starts again when the previous phase run was accepted but current truth has been reset", async () => {

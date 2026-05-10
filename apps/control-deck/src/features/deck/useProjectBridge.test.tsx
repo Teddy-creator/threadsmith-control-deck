@@ -55,6 +55,7 @@ function buildBridgeResponse(projectRoot: string, actionHistoryLength = 0) {
     projectRoot,
     state: {} as never,
     providerRouting: {} as never,
+    skillRouting: {} as never,
     projectSupervision: null,
     recentEvents: [],
     latestRun: null,
@@ -269,7 +270,8 @@ describe("useProjectBridge", () => {
         response.currentPacket,
         response.rolePackets,
         response.contextArtifactsLoaded,
-        response.contextArtifactProblem
+        response.contextArtifactProblem,
+        response.skillRouting
       );
     });
   });
