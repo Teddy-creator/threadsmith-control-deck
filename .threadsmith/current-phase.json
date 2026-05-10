@@ -1,23 +1,23 @@
 {
-  "phaseName": "v0.3.0 release decision / final polish",
-  "phaseGoal": "在不直接发布、不 tag 的前提下，完成 v0.3.0 发布决策前的最终校准：release checklist、CHANGELOG、release copy、文档边界、truth 和验证矩阵必须一致。",
-  "deliverable": "一组发布前 final polish 改动：v0.3.0 release checklist、CHANGELOG、GitHub Release copy、.threadsmith truth，以及最新 release verification 证据。",
+  "phaseName": "v0.3.0 publish",
+  "phaseGoal": "把 v0.3.0 从 release-ready 状态正式发布：公开文案切到稳定版口径，创建 tag，并发布 GitHub Release。",
+  "deliverable": "v0.3.0 tag、GitHub Release，以及发布后 truth / README / usage / startup copy 对齐。",
   "inScope": [
-    "把 Threadsmith 自身 .threadsmith committed truth 切到 release decision / final polish",
-    "更新 v0.3.0 release checklist，反映 PR #21 / #22 已合并后的真实状态",
-    "把 CHANGELOG 中 v0.3.0 相关条目归入 v0.3.0 发布段，而不是留在 Unreleased 或 v0.2.0 段落",
-    "新增或更新 v0.3.0 GitHub Release copy，方便后续人工发布",
-    "运行 release verification，给出 ready / not ready 决策"
+    "把 README、usage guide、startup copy 和 .threadsmith truth 切到 v0.3.0 stable 口径",
+    "运行发布前轻量验证，确认当前项目状态可读",
+    "创建并推送 v0.3.0 tag",
+    "使用 docs/marketing/github-release-v0.3.0.md 创建 GitHub Release",
+    "发布后确认 tag 与 release 可见"
   ],
   "outOfScope": [
-    "本阶段直接发布或 tag v0.3.0",
+    "发布除 v0.3.0 以外的版本",
     "修改仓库可见性",
     "安装或覆盖 /Users/cloud/.codex/skills/threadsmith/SKILL.md",
     "实现 multi-provider 自动执行",
     "真实执行任意外部 skill",
     "大改 UI 视觉骨架或交互结构"
   ],
-  "stopCondition": "已满足：v0.3.0 发布面已校准，release verification 有新证据，并且下一步能明确进入 tag / GitHub Release 或继续打磨。",
+  "stopCondition": "v0.3.0 tag 和 GitHub Release 创建完成，发布态文案与 truth 一致，且发布后检查通过。",
   "verificationForThisPhase": [
     "npm run test --workspaces --if-present",
     "npm run build --workspaces --if-present",

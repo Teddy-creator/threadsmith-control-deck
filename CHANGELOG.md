@@ -17,7 +17,7 @@ All notable changes to Threadsmith will be documented in this file.
 ### Changed
 
 - Calibrated Threadsmith's post-merge project truth after PR #21 so the current track is `v0.3.0 post-merge polish`, not the old release-readiness / PR-boundary state.
-- Updated the App Home front door to describe itself as an entry surface, with `v0.2.1` as the stable line and `v0.3.0` as a merged but unpublished candidate baseline.
+- Updated the App Home front door to describe itself as an entry surface and align the public docs around `v0.3.0` as the stable Skill Orchestrator release.
 - Clarified `$threadsmith` skill install/upgrade guidance, continuous mode, and autopilot continuation usage in README and the usage guide.
 - Updated startup copy and homepage verification expectations to avoid implying that `v0.3.0` has already been tagged or released.
 - Kept v0.3.0 explicitly Codex-first: provider routing and skill routing are explainable workflow metadata, not a promise of fully automated multi-provider execution.

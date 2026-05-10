@@ -3,8 +3,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
 ![Node.js >= 22](https://img.shields.io/badge/node-%3E%3D22-3c873a.svg)
 ![npm >= 11](https://img.shields.io/badge/npm-%3E%3D11-cb3837.svg)
-![stable v0.2.1 Windows Launcher Parity](https://img.shields.io/badge/stable-v0.2.1%20Windows%20Launcher%20Parity-f59e0b.svg)
-![dev v0.3.0 Skill Orchestrator](https://img.shields.io/badge/dev-v0.3.0%20Skill%20Orchestrator-7c3aed.svg)
+![stable v0.3.0 Skill Orchestrator](https://img.shields.io/badge/stable-v0.3.0%20Skill%20Orchestrator-f59e0b.svg)
+![previous v0.2.1 Windows Launcher Parity](https://img.shields.io/badge/previous-v0.2.1%20Windows%20Launcher%20Parity-71717a.svg)
 ![Web control deck](https://img.shields.io/badge/surface-web%20control%20deck-2563eb.svg)
 
 > A local control deck for AI coding projects.
@@ -33,9 +33,7 @@ flowchart LR
 
 You still talk to your conductor. Threadsmith makes the durable project state visible.
 
-当前稳定线：`v0.2.1 Windows Launcher Parity`，基于 `v0.2.0 Context OS` 增补 Windows PowerShell 启动支持。最新已发布稳定标签仍以 GitHub Releases 为准。
-
-当前开发线：`v0.3.0 Harness Skill Orchestrator`，baseline 已合并到 `main`，但尚未 tag / GitHub Release，也尚未作为推荐稳定版发布。
+当前稳定线：`v0.3.0 Harness Skill Orchestrator`，在 `v0.2.1 Windows Launcher Parity` 和 `v0.2.0 Context OS` 基础上加入 workflow-kernel / mini protocol / skill routing / safer autopilot continuation 能力。
 
 ## Features
 
@@ -52,9 +50,7 @@ You still talk to your conductor. Threadsmith makes the durable project state vi
 
 ## Current Status
 
-Latest stable release: `v0.2.1 Windows Launcher Parity`.
-
-Active development line: `v0.3.0 Harness Skill Orchestrator`, merged to `main` as a candidate baseline but not tagged or published as the recommended public release.
+Latest stable release: `v0.3.0 Harness Skill Orchestrator`.
 
 Important boundary: v0.3.0 can discover and route local Codex skills as metadata, but it does **not** automatically execute arbitrary external skills or replace your conductor chat. The stable automatic execution path is still Codex-first.
 
@@ -63,10 +59,11 @@ Useful docs:
 - Usage and LLM configuration: [docs/guides/usage-and-llm-configuration.md](docs/guides/usage-and-llm-configuration.md)
 - Truth boundary: [docs/architecture/threadsmith-truth-boundary.md](docs/architecture/threadsmith-truth-boundary.md)
 - Changelog: [CHANGELOG.md](CHANGELOG.md)
+- v0.3.0 release notes: [docs/releases/threadsmith-v0.3.0.md](docs/releases/threadsmith-v0.3.0.md)
+- v0.3.0 release checklist: [docs/checklists/release-v0.3.0.md](docs/checklists/release-v0.3.0.md)
 - v0.2.1 release notes: [docs/releases/threadsmith-v0.2.1.md](docs/releases/threadsmith-v0.2.1.md)
 - v0.2.1 release checklist: [docs/checklists/release-v0.2.1.md](docs/checklists/release-v0.2.1.md)
 - v0.2.0 release notes: [docs/releases/threadsmith-v0.2.0.md](docs/releases/threadsmith-v0.2.0.md)
-- v0.3.0 internal notes: [docs/releases/threadsmith-v0.3.0.md](docs/releases/threadsmith-v0.3.0.md)
 
 ## 快速开始
 

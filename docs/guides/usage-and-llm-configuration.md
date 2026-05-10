@@ -2,7 +2,7 @@
 
 Threadsmith 是一个本地运行的 web control deck。它负责展示和维护项目的 workflow truth，不负责替代你和 AI 的主聊天入口。
 
-当前最新稳定线是 `v0.2.1 Windows Launcher Parity`，基于 `v0.2.0 Context OS` 增补 Windows PowerShell 启动支持。当前内部开发线是 `v0.3.0 Harness Skill Orchestrator`，baseline 已合并到 `main`，但尚未 tag / GitHub Release，也尚未作为推荐稳定版发布。
+当前最新稳定线是 `v0.3.0 Harness Skill Orchestrator`。它基于 `v0.2.1 Windows Launcher Parity` 和 `v0.2.0 Context OS`，加入 workflow-kernel、built-in mini protocols、skill routing metadata、protocol-guided role packets 和 safer autopilot continuation。
 
 最简单的心智模型是：
 

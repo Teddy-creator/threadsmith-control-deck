@@ -1,8 +1,8 @@
 {
   "projectGoal": "交付更完整的 Threadsmith v0.3.0：在 Context OS 与 Harness Skill Orchestrator 基础上，把本地 Codex skills 自动发现、健康检查、项目级路由配置、fallback 解释和 all-Codex 可用性打磨成真实可用闭环。",
-  "currentVersionScope": "v0.3.0 release decision / final polish：PR #21 与 #22 已合并到 main；当前不直接发布 tag，而是先校准 release checklist、CHANGELOG、release copy、truth 和验证矩阵。",
+  "currentVersionScope": "v0.3.0 publish：PR #21、#22、#23 已合并到 main；当前正在把公开文案切到 v0.3.0 stable 口径，并执行 tag / GitHub Release。",
   "nonGoals": [
-    "本阶段直接发布 v0.3.0 GitHub Release 或创建 tag",
+    "发布除 v0.3.0 以外的版本",
     "立即实现 multi-provider 自动执行",
     "真实执行任意外部 skill 或 CLI 插件",
     "修改或安装全局 /Users/cloud/.codex/skills/threadsmith/SKILL.md",
@@ -15,15 +15,15 @@
     "开发 Threadsmith 自身时，不允许污染正在使用的全局 installed $threadsmith skill",
     "每一刀保持 phase-bound，并用 evidence-backed verification 收尾"
   ],
-  "successFrame": "新用户能在本地启动 Threadsmith、绑定项目、理解页面真相来源、安装或升级 $threadsmith skill，并清楚知道 v0.3.0 目前是已合并但未发布的候选线。",
+  "successFrame": "新用户能在本地启动 Threadsmith、绑定项目、理解页面真相来源、安装或升级 $threadsmith skill，并清楚知道 v0.3.0 是当前稳定 Skill Orchestrator release。",
   "priorityOrder": [
     "校准 v0.3.0 release checklist 与 CHANGELOG",
     "准备 v0.3.0 GitHub Release copy",
     "运行 release verification matrix",
-    "给出 ready / not ready 决策，再决定是否进入发布动作"
+    "创建 v0.3.0 tag 与 GitHub Release"
   ],
   "openStrategicQuestions": [
-    "是否把 v0.3.0 作为正式 GitHub Release 发布，还是继续作为内部候选线打磨？",
+    "v0.3.0 发布后，下一条主线是继续强化 all-Codex 使用体验，还是重新评估 desktop shell？",
     "未来的 External skill invocation 应由 Codex skill prompt composition 驱动，还是由 CLI/adapter runner 驱动？"
   ]
 }

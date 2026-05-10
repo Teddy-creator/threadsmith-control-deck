@@ -20,7 +20,7 @@
       "id": "v0-3-0-pr-21-merged",
       "label": "PR 合并",
       "title": "PR #21 merged into main",
-      "summary": "The v0.3.0 release-candidate baseline is now on main with CI green.",
+      "summary": "The v0.3.0 Skill Orchestrator baseline reached main with CI green.",
       "state": "done"
     },
     {
@@ -35,15 +35,15 @@
       "label": "发布决策",
       "title": "v0.3.0 release decision / final polish",
       "summary": "Decide whether to tag and publish v0.3.0 or keep it as an internal candidate for more hardening.",
-      "state": "current"
+      "state": "done"
     },
     {
       "id": "v0-3-0-publish-decision",
       "label": "发布动作",
       "title": "v0.3.0 tag / GitHub Release decision",
-      "summary": "Only after explicit approval, create the tag and GitHub Release from the prepared release copy.",
-      "state": "later"
+      "summary": "Create the v0.3.0 tag and GitHub Release from the prepared release copy.",
+      "state": "current"
     }
   ],
-  "updatedAt": "2026-05-10T16:41:40.000Z"
+  "updatedAt": "2026-05-10T17:12:01.000Z"
 }

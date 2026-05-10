@@ -2,8 +2,8 @@ const url = "http://127.0.0.1:5173/?appHome=1";
 
 console.log("");
 console.log("Threadsmith");
-console.log("Stable: v0.2.1 Windows Launcher Parity");
-console.log("Candidate: v0.3.0 Skill Orchestrator baseline merged to main, not tagged/released");
+console.log("Stable: v0.3.0 Skill Orchestrator");
+console.log("Previous: v0.2.1 Windows Launcher Parity");
 console.log("");
 console.log(`Open: ${url}`);
 console.log("");
