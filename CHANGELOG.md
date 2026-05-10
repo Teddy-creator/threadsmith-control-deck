@@ -2,7 +2,17 @@
 
 All notable changes to Threadsmith will be documented in this file.
 
-## Unreleased
+## v0.3.0 - 2026-05-10
+
+### Added
+
+- Harness Skill Orchestrator foundation with built-in mini protocols for brief, plan, debug, review, verify, closeout, handoff, recover, and research.
+- External Skill Adapter schema and routing metadata for discovering local Codex skills, explaining route health, and falling back to built-in mini protocols when optional skills are unavailable.
+- Protocol-guided role packets and autopilot execution packets so role loops receive bounded inputs, outputs, guardrails, stop conditions, and route metadata.
+- Autopilot continuation hardening with safer start / resume / wait / reset-needed decisions across accepted, running, and paused phase-run states.
+- Context routing and budget checks that point roles to compact `.threadsmith/context` artifacts instead of replaying long thread history.
+- Self-hosting safety checks that keep repository skill source separate from the installed global `$threadsmith` controller.
+- First-run onboarding, demo polish, and clearer `$threadsmith` install/upgrade guidance.
 
 ### Changed
 
@@ -10,6 +20,13 @@ All notable changes to Threadsmith will be documented in this file.
 - Updated the App Home front door to describe itself as an entry surface, with `v0.2.1` as the stable line and `v0.3.0` as a merged but unpublished candidate baseline.
 - Clarified `$threadsmith` skill install/upgrade guidance, continuous mode, and autopilot continuation usage in README and the usage guide.
 - Updated startup copy and homepage verification expectations to avoid implying that `v0.3.0` has already been tagged or released.
+- Kept v0.3.0 explicitly Codex-first: provider routing and skill routing are explainable workflow metadata, not a promise of fully automated multi-provider execution.
+
+### Known Limits
+
+- `v0.3.0` does not execute arbitrary external skills automatically.
+- `v0.3.0` does not include fully automated multi-provider execution, native desktop packaging, hosted sync, embeddings, or RAG.
+- The main AI coding conversation still happens in Codex Desktop, Codex CLI, Claude Code, or another conductor surface.
 
 ## v0.2.1 - 2026-05-10
 
@@ -33,13 +50,11 @@ All notable changes to Threadsmith will be documented in this file.
 - README and contributing guide links for open-source feedback and security reporting.
 - v0.2.0 Context OS release docs, checklist, and GitHub Release copy.
 - Context Packet, Repo Map, Evidence Summary, Context Budget Ledger, Role-specific Packets, context recovery, and `sync-context` regeneration surfaces for the v0.2.0 line.
-- v0.3.0 Harness Skill Orchestrator planning, mini protocol, autopilot role loop, stop/recovery, context routing, and self-hosting safety release-candidate artifacts.
 
 ### Changed
 
 - README and usage docs now describe the v0.2.0 Context OS line while keeping multi-provider and desktop app work out of scope.
 - Startup and current-entry copy now separate stable and development tracks instead of implying one stale current line.
-- README, usage docs, and startup copy now separate latest stable `v0.2.0 Context OS` from the current `v0.3.0 Harness Skill Orchestrator` development / release-candidate track.
 
 ## v0.1.1 - 2026-05-09
 

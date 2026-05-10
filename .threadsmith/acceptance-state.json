@@ -1,29 +1,29 @@
 {
-  "currentClaim": "PR #21 合并后的 post-merge 用户路径 polish 已完成并通过本地验证；Threadsmith 现在会把 v0.2.1 稳定线、v0.3.0 已合并但未发布候选线、App Home 前门边界和 $threadsmith skill 安装/连续推进路径讲清楚。",
+  "currentClaim": "v0.3.0 release decision / final polish 已完成并通过本地 release verification；当前状态支持进入人工 tag / GitHub Release 决策，但本轮未创建 tag 或 release。",
   "doneWhenChecklist": [
     {
-      "id": "truth-post-merge",
-      "label": ".threadsmith committed truth 明确记录 PR #21 已合并，并指向 post-merge polish",
+      "id": "truth-release-decision",
+      "label": ".threadsmith committed truth 已切到 v0.3.0 release decision / final polish",
       "status": "pass"
     },
     {
-      "id": "front-door-current",
-      "label": "App Home 前门不再展示旧 v0.2.0 release review 快照",
+      "id": "release-checklist-current",
+      "label": "v0.3.0 release checklist 反映 PR #21 / #22 合并后的真实状态",
       "status": "pass"
     },
     {
-      "id": "docs-aligned",
-      "label": "README、usage guide 和启动提示统一 v0.2.1 稳定线 / v0.3.0 候选线边界",
+      "id": "changelog-current",
+      "label": "CHANGELOG 中 v0.3.0 条目归属清楚，不再混在 v0.2.0 或 Unreleased 的旧叙事里",
       "status": "pass"
     },
     {
-      "id": "skill-guidance",
-      "label": "$threadsmith skill 安装/升级与 continuous/autopilot 用法说明清楚",
+      "id": "release-copy-ready",
+      "label": "v0.3.0 GitHub Release copy 可供后续人工发布使用",
       "status": "pass"
     },
     {
       "id": "verification",
-      "label": "受影响测试、build、launcher 和 diff hygiene 通过",
+      "label": "release verification 有新证据，并支持 ready / not ready 决策",
       "status": "pass"
     }
   ],
@@ -32,8 +32,8 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "本轮没有自动安装或覆盖全局 /Users/cloud/.codex/skills/threadsmith/SKILL.md；用户仍需按 README / usage guide 手动复制或升级。",
-    "v0.3.0 是否 tag / GitHub Release 仍需后续明确决策。",
+    "本阶段没有创建 tag / GitHub Release；需要用户明确确认后再执行发布动作。",
+    "本阶段不会自动安装或覆盖全局 /Users/cloud/.codex/skills/threadsmith/SKILL.md。",
     "v0.3.0 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
   ],
   "finalState": "accepted"

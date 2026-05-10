@@ -1,6 +1,6 @@
 # Threadsmith v0.3.0
 
-Threadsmith `v0.3.0` is the Harness Skill Orchestrator release-candidate line.
+Threadsmith `v0.3.0` is the Harness Skill Orchestrator release.
 
 It builds on `v0.2.0 Context OS`: instead of only preserving project truth and compact context, Threadsmith can now describe which workflow protocol should run next, what each role receives, when the system must stop, and how optional external skills should fall back to built-in mini protocols.
 
@@ -73,7 +73,7 @@ Developing Threadsmith with Threadsmith is now safer:
 
 ## What v0.3.0 Does Not Promise
 
-This release candidate remains intentionally scoped:
+This release remains intentionally scoped:
 
 - no fully automated multi-provider execution
 - no real external skill invocation

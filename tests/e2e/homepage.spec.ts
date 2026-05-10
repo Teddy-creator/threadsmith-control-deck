@@ -87,7 +87,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Threadsmith", exact: true })).toBeVisible();
   await expect(
-    page.getByText("v0.3.0 post-merge polish", { exact: true }).first()
+    page.getByText("v0.3.0 release decision / final polish", { exact: true }).first()
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "当前总命令" })).toBeVisible();
 
@@ -96,7 +96,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      /Threadsmith v0\.3\.0 Skill Orchestrator 线已经通过 PR #21 合并到 main/
+      /Threadsmith v0\.3\.0 Skill Orchestrator baseline 已合并到 main/
     )
   ).toBeVisible();
   await expect(
@@ -107,14 +107,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("阶段工作台", { exact: true })).toBeVisible();
   await expect(inspectorPanel.getByRole("heading", { name: "Context 状态" })).toBeVisible();
   await expect(
-    inspectorPanel.getByText("v0.3.0 post-merge user-flow polish").first()
+    inspectorPanel.getByText("v0.3.0 release decision / final polish").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "PR #21 合并后的 post-merge 用户路径 polish 已完成并通过本地验证；Threadsmith 现在会把 v0.2.1 稳定线、v0.3.0 已合并但未发布候选线、App Home 前门边界和 $threadsmith skill 安装/连续推进路径讲清楚。"
+      "v0.3.0 release decision / final polish 已完成并通过本地 release verification；当前状态支持进入人工 tag / GitHub Release 决策，但本轮未创建 tag 或 release。"
     ).first()
   ).toBeVisible();
 });

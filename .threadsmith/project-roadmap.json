@@ -1,5 +1,5 @@
 {
-  "versionLabel": "Threadsmith v0.3.0 Post-merge Polish",
+  "versionLabel": "Threadsmith v0.3.0 Release Decision",
   "finalGoal": "Make Threadsmith usable as a practical Context OS and skill orchestrator for all-Codex workflows before considering multi-provider automation.",
   "milestones": [
     {
@@ -25,18 +25,25 @@
     },
     {
       "id": "v0-3-0-post-merge-polish",
-      "label": "当前打磨",
+      "label": "合并后打磨",
       "title": "Post-merge user-flow polish",
       "summary": "Refresh product truth, front door, start message, docs, and skill guidance so users do not see stale PR/release wording.",
-      "state": "current"
+      "state": "done"
     },
     {
       "id": "v0-3-0-release-decision",
       "label": "发布决策",
       "title": "v0.3.0 release decision / final polish",
       "summary": "Decide whether to tag and publish v0.3.0 or keep it as an internal candidate for more hardening.",
-      "state": "next"
+      "state": "current"
+    },
+    {
+      "id": "v0-3-0-publish-decision",
+      "label": "发布动作",
+      "title": "v0.3.0 tag / GitHub Release decision",
+      "summary": "Only after explicit approval, create the tag and GitHub Release from the prepared release copy.",
+      "state": "later"
     }
   ],
-  "updatedAt": "2026-05-10T16:14:45.000Z"
+  "updatedAt": "2026-05-10T16:41:40.000Z"
 }

@@ -1,28 +1,31 @@
 {
-  "phaseName": "v0.3.0 post-merge user-flow polish",
-  "phaseGoal": "把 PR #21 合并后的项目状态、产品前门、启动提示和用户文档校准到真实 main，消除旧 PR boundary / v0.2.0 release 候场残留。",
-  "deliverable": "一组小范围 polish 改动：post-merge .threadsmith truth、前门快照、README / usage guide / start message、以及对应测试更新。",
+  "phaseName": "v0.3.0 release decision / final polish",
+  "phaseGoal": "在不直接发布、不 tag 的前提下，完成 v0.3.0 发布决策前的最终校准：release checklist、CHANGELOG、release copy、文档边界、truth 和验证矩阵必须一致。",
+  "deliverable": "一组发布前 final polish 改动：v0.3.0 release checklist、CHANGELOG、GitHub Release copy、.threadsmith truth，以及最新 release verification 证据。",
   "inScope": [
-    "更新 Threadsmith 自身 .threadsmith committed truth，反映 PR #21 已合并",
-    "更新 app-home 前门内置状态，避免显示旧 v0.2.0 release review 快照",
-    "统一 README、usage guide 和 start message 的稳定线 / 开发线描述",
-    "补清楚 $threadsmith skill 安装/升级路径和 continuous/autopilot 用法",
-    "更新受影响的首页 / app-home 测试并跑必要验证"
+    "把 Threadsmith 自身 .threadsmith committed truth 切到 release decision / final polish",
+    "更新 v0.3.0 release checklist，反映 PR #21 / #22 已合并后的真实状态",
+    "把 CHANGELOG 中 v0.3.0 相关条目归入 v0.3.0 发布段，而不是留在 Unreleased 或 v0.2.0 段落",
+    "新增或更新 v0.3.0 GitHub Release copy，方便后续人工发布",
+    "运行 release verification，给出 ready / not ready 决策"
   ],
   "outOfScope": [
-    "发布或 tag v0.3.0",
+    "本阶段直接发布或 tag v0.3.0",
     "修改仓库可见性",
     "安装或覆盖 /Users/cloud/.codex/skills/threadsmith/SKILL.md",
     "实现 multi-provider 自动执行",
     "真实执行任意外部 skill",
     "大改 UI 视觉骨架或交互结构"
   ],
-  "stopCondition": "已满足：用户路径文案与真实 main 状态一致，测试通过，并且下一步能清楚进入 v0.3.0 release decision / final polish。",
+  "stopCondition": "已满足：v0.3.0 发布面已校准，release verification 有新证据，并且下一步能明确进入 tag / GitHub Release 或继续打磨。",
   "verificationForThisPhase": [
-    "npm run test --workspace @threadsmith/control-deck -- src/test/renderDeck.app-home.test.tsx src/test/renderDeck.shell.test.tsx",
-    "npm run test:e2e -- tests/e2e/homepage.spec.ts",
+    "npm run test --workspaces --if-present",
     "npm run build --workspaces --if-present",
     "npm run verify:launchers",
+    "npm run smoke:self-host",
+    "npm run smoke:autopilot",
+    "npm run smoke:deck-route",
+    "jq empty .threadsmith/*.json",
     "git diff --check"
   ],
   "activeOwners": [

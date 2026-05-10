@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "PR #21 合并后的 post-merge 用户路径 polish 已完成并通过本地验证；下一步是 v0.3.0 release decision / final polish。",
+  "summary": "v0.3.0 release decision / final polish 已完成并通过本地验证；下一步需要用户决定是否进入 tag / GitHub Release。",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,11 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "把本轮限定为 post-merge polish，而不是发布或新功能。",
+      "taskSummary": "把本轮限定为 release decision / final polish，而不是直接 tag 或发布。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "scope accepted",
-      "updatedAt": "2026-05-10T16:31:39.000Z"
+      "latestEvidenceLabel": "phase reset accepted",
+      "updatedAt": "2026-05-10T16:41:40.000Z"
     },
     {
       "id": "executor-logical",
@@ -23,11 +23,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已更新 truth、前门、启动提示、README、usage guide 与 homepage E2E。",
+      "taskSummary": "已更新 release checklist、CHANGELOG、GitHub Release copy 与 truth。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "post-merge copy aligned",
-      "updatedAt": "2026-05-10T16:31:39.000Z"
+      "latestEvidenceLabel": "release surface aligned",
+      "updatedAt": "2026-05-10T16:47:20.000Z"
     },
     {
       "id": "reviewer-logical",
@@ -36,11 +36,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已检查文案准确区分 v0.2.1 稳定线、v0.3.0 候选线和 non-goals。",
+      "taskSummary": "已检查发布叙事准确区分 ready decision、tag/release 动作和 non-goals。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "boundaries reviewed",
-      "updatedAt": "2026-05-10T16:31:39.000Z"
+      "latestEvidenceLabel": "release boundaries reviewed",
+      "updatedAt": "2026-05-10T16:47:20.000Z"
     },
     {
       "id": "verifier-logical",
@@ -49,11 +49,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已运行 targeted tests、homepage E2E、workspace build、launcher verification 和 diff hygiene。",
+      "taskSummary": "已运行 release verification matrix。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "verification passed",
-      "updatedAt": "2026-05-10T16:31:39.000Z"
+      "updatedAt": "2026-05-10T16:47:20.000Z"
     },
     {
       "id": "hygiene",
@@ -62,12 +62,12 @@
       "provider": null,
       "presence": "logical",
       "status": "done",
-      "taskSummary": "保持 global skill 安装、tag、release 和 multi-provider 自动化全部在本轮范围外。",
+      "taskSummary": "保持 global skill 安装、tag/release 和 multi-provider 自动化全部在本轮自动执行范围外。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "scope guardrails active",
-      "updatedAt": "2026-05-10T16:31:39.000Z"
+      "updatedAt": "2026-05-10T16:47:20.000Z"
     }
   ],
-  "updatedAt": "2026-05-10T16:31:39.000Z"
+  "updatedAt": "2026-05-10T16:47:20.000Z"
 }

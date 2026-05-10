@@ -1,23 +1,23 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "v0.3.0 post-merge polish",
+  "currentTrack": "v0.3.0 release decision / final polish",
   "overallState": "stable",
-  "currentFocus": "post-merge 用户路径 polish 已本地验收；下一步是决定是否进入 v0.3.0 release decision / final polish。",
-  "projectStatusSummary": "Threadsmith v0.3.0 Skill Orchestrator 线已经通过 PR #21 合并到 main。本轮已修正真实用户打开页面、阅读文档、调用 $threadsmith 时会遇到的旧 release / PR boundary 残留；v0.3.0 仍未 tag / GitHub Release。",
+  "currentFocus": "v0.3.0 release decision / final polish 已本地验收；下一步需要用户决定是否创建 tag / GitHub Release。",
+  "projectStatusSummary": "Threadsmith v0.3.0 Skill Orchestrator baseline 已合并到 main，post-merge 用户路径 polish 与 release decision / final polish 均已通过本地验证。当前状态支持进入人工 tag / GitHub Release 决策；本轮没有直接发布。",
   "latestAcceptedSlice": {
-    "title": "v0.3.0 post-merge user-flow polish",
-    "recordedAt": "2026-05-10T16:31:39.000Z"
+    "title": "v0.3.0 release decision / final polish",
+    "recordedAt": "2026-05-10T16:47:20.000Z"
   },
   "nextPlannedSlice": {
-    "title": "v0.3.0 release decision / final polish",
+    "title": "v0.3.0 tag / GitHub Release decision",
     "recordedAt": null
   },
-  "currentMilestoneId": "v0-3-0-post-merge-polish",
-  "nextMilestoneId": "v0-3-0-release-decision",
+  "currentMilestoneId": "v0-3-0-release-decision",
+  "nextMilestoneId": "v0-3-0-publish-decision",
   "topRisks": [
     "本机全局 $threadsmith skill 可能仍是旧版；本轮只更新仓库说明，不自动覆盖全局 skill。",
-    "v0.3.0 尚未发布 tag / GitHub Release，下一步必须先做明确 release decision。",
+    "v0.3.0 尚未发布 tag / GitHub Release，需要用户明确确认后再执行发布动作。",
     "v0.3.0 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
   ],
-  "updatedAt": "2026-05-10T16:31:39.000Z"
+  "updatedAt": "2026-05-10T16:47:20.000Z"
 }
