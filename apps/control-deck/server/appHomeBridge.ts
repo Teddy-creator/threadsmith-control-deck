@@ -8,7 +8,7 @@ import {
 import { APP_HOME_PROJECT_ROOT } from "../src/features/deck/appHomeSource";
 
 export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
-  const calibratedAt = "2026-05-09T11:20:00.000Z";
+  const calibratedAt = "2026-05-09T18:39:39.000Z";
   const state = projectStateSchema.parse({
     projectBrief: {
       projectGoal: "打开 Threadsmith 并进入今天的工作",
@@ -27,10 +27,10 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       successFrame:
         "用户打开 Threadsmith 前门后，能清楚知道这里是入口页，并能立刻进入真实项目查看实时 truth",
       priorityOrder: [
-        "对齐版本表述",
-        "解释 Context Packet 和 truth 来源",
+        "确认要进入的真实项目",
+        "解释 Context Packet 和 committed truth 来源",
         "让 sync-context 与 recovery 边界更清楚",
-        "补齐 v0.2.0 release notes"
+        "等待最终人工发布决定"
       ],
       openStrategicQuestions: [
         "什么时候正式开启 desktop shell / macOS wrapper v1",
@@ -39,23 +39,23 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
     },
     projectStatus: {
       projectLabel: "Threadsmith",
-      currentTrack: "v0.2.0 Context OS release hardening",
-      overallState: "in-progress",
-      currentFocus: "对齐 Context Packet、truth sync、context recovery 和 release docs 的公开发布面",
+      currentTrack: "v0.2.0 Context OS",
+      overallState: "stable",
+      currentFocus: "v0.2.0 release hardening 已本地验收，等待最终人工 review 与 GitHub Release 发布决定。",
       projectStatusSummary:
-        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。v0.2.0 的重点是让用户理解 Context Packet 从 committed truth 来、sync-context 何时刷新 packet、以及何时回到 Codex/CLI 继续对话。",
+        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。当前 v0.2.0 Context OS 发布面已经完成本地验收；最终 tag、GitHub Release 和公开发布仍需要人工确认。",
       latestAcceptedSlice: {
-        title: "v0.1.1 public release",
+        title: "v0.2.0 release hardening",
         recordedAt: calibratedAt
       },
       nextPlannedSlice: {
-        title: "v0.2.0 Context OS release hardening",
+        title: "v0.2.0 GitHub Release publish",
         recordedAt: null
       },
-      currentMilestoneId: "version-surface",
+      currentMilestoneId: "v0-2-0-release",
       nextMilestoneId: "v0-2-0-release",
       topRisks: [
-        "版本与文档表述不一致会让公开仓库显得不稳。",
+        "发布前仍需人工确认 README、release copy 和截图观感。",
         "如果不知道 Context Packet 与 committed truth 的边界，会误以为页面会读取聊天里的临时想法。",
         "v0.2.0 仍需避免把 provider routing 误读成 multi-provider 已完成。"
       ],
@@ -78,21 +78,21 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
           label: "版本对齐",
           title: "对齐公开版本与 README",
           summary: "README、usage guide、release docs 和 package version 需要一致。",
-          state: "current"
+          state: "done"
         },
         {
           id: "context-os-surface",
           label: "Context OS",
           title: "打磨 Context Packet、recovery 与 truth 来源",
           summary: "让用户知道 packet 从哪里来、何时刷新、何时回到 conductor。",
-          state: "next"
+          state: "done"
         },
         {
           id: "docs-skill",
           label: "release docs",
           title: "补齐 v0.2.0 release notes 与 checklist",
           summary: "讲清 Context OS 已交付能力与 deferred non-goals。",
-          state: "later"
+          state: "done"
         },
         {
           id: "v0-2-0-release",
@@ -112,22 +112,22 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       updatedAt: calibratedAt
     },
     currentPhase: {
-      phaseName: "v0.2.0 Context OS release hardening",
-      phaseGoal: "把 Threadsmith 的公开发布面打磨到版本表述一致、Context OS 能力清楚、验证路径可信",
-      deliverable: "v0.2.0 Context OS release hardening PR",
+      phaseName: "v0.2.0 final release review",
+      phaseGoal: "在真正创建 tag 和 GitHub Release 前，人工复核公开页面、release copy、启动路径和 Context OS 边界是否都清楚。",
+      deliverable: "v0.2.0 final release decision",
       inScope: [
-        "README / usage guide / release note 版本表述对齐",
-        "Context Packet / sync-context / truth source 说明",
-        "release checklist 与验证命令对齐",
-        "Threadsmith skill 和 conductor 边界保持清楚",
-        "v0.2.0 release surface"
+        "人工复核 README / release notes / release copy",
+        "确认 start message、front door 和 social copy 不再停留在旧版本",
+        "确认 Context Packet / sync-context / truth source 说明清楚",
+        "确认 Threadsmith skill 和 conductor 边界保持清楚",
+        "确认是否进入 v0.2.0 GitHub Release publish"
       ],
       outOfScope: [
         "multi-provider 自动执行",
         "native desktop shell",
         "替代 Codex Desktop / Codex CLI 的主聊天入口"
       ],
-      stopCondition: "公开文档能清楚解释 v0.2.0 Context OS，验证命令通过，并且不承诺 multi-provider 或桌面壳。",
+      stopCondition: "用户完成最终人工验收，并明确同意进入 tag / GitHub Release 发布动作。",
       verificationForThisPhase: [
         "npm run test",
         "npm run build",
@@ -146,43 +146,44 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
       blockedBy: []
     },
     acceptanceState: {
-      currentClaim: "Threadsmith v0.2.0 正在打磨 Context OS 发布面；当前前门仍只是入口快照，真实进度以进入项目后的 `.threadsmith` 为准。",
+      currentClaim: "Threadsmith v0.2.0 Context OS 的 release hardening 已本地验收；当前前门是入口快照，真实项目进度以进入项目后的 `.threadsmith` 为准。",
       doneWhenChecklist: [
         {
           id: "ci-green",
           label: "release verification 和 GitHub Actions CI 变绿",
-          status: "unknown"
+          status: "pass"
         },
         {
           id: "first-run",
           label: "公开说明清楚解释 .threadsmith、Context Packet 与 conductor 边界",
-          status: "unknown"
+          status: "pass"
         },
         {
           id: "refresh-truth",
           label: "sync-context、刷新状态和 truth 来源边界清楚",
-          status: "unknown"
+          status: "pass"
         },
         {
           id: "demo-mode",
           label: "前门和 demo mode 不会伪装成真实项目进度",
-          status: "unknown"
+          status: "pass"
         },
         {
           id: "release-surface",
           label: "README、usage guide、release note 和 share 文案对齐 v0.2.0",
-          status: "unknown"
+          status: "pass"
         }
       ],
-      implementationStatus: "implementing",
-      reviewStatus: "not-started",
-      verificationStatus: "not-started",
-      closeoutStatus: "not-started",
+      implementationStatus: "ready-for-review",
+      reviewStatus: "ready-for-verification",
+      verificationStatus: "passed",
+      closeoutStatus: "done",
       knownGaps: [
+        "最终 tag 和 GitHub Release 尚未发布，需要用户明确确认。",
         "multi-provider automatic execution 仍不属于 v0.2.0 交付范围。",
         "desktop shell 仍在后续 backlog，不作为当前发布 blocker。"
       ],
-      finalState: "not-ready"
+      finalState: "accepted"
     },
     activeWork: {
       items: [
@@ -194,27 +195,27 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
         },
         {
           role: "executor",
-          status: "running",
-          taskSummary: "对齐版本、release docs、Context OS 说明和验证路径",
+          status: "done",
+          taskSummary: "已对齐版本、release docs、Context OS 说明和验证路径",
           requiresUserDecision: false
         },
         {
           role: "reviewer",
-          status: "waiting",
-          taskSummary: "等待实现完成后检查公开发布 claims 是否准确",
+          status: "done",
+          taskSummary: "已检查公开发布 claims 仍保持 web-first / Codex-only 边界",
           requiresUserDecision: false
         },
         {
           role: "verifier",
-          status: "waiting",
-          taskSummary: "等待本地验证与 GitHub Actions 回流",
+          status: "done",
+          taskSummary: "已通过本地验证与 GitHub Actions 回流",
           requiresUserDecision: false
         },
         {
           role: "closeout",
           status: "waiting",
-          taskSummary: "等待 v0.2.0 PR closeout 与 release notes",
-          requiresUserDecision: false
+          taskSummary: "等待用户最终确认是否进入 v0.2.0 GitHub Release publish",
+          requiresUserDecision: true
         }
       ],
       blockerSummary: null
@@ -224,9 +225,9 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
 
   const projectSupervision = projectSupervisionStateSchema.parse({
     mode: "multi-thread",
-    modeLabel: "发布打磨",
+    modeLabel: "发布候场",
     summary:
-      "当前是 Threadsmith 前门，不直接承载某个真实项目的编码执行；v0.2.0 正在对齐 Context OS 发布面。",
+      "当前是 Threadsmith 前门，不直接承载某个真实项目的编码执行；v0.2.0 Context OS 已完成本地发布准备，等待最终人工发布决定。",
     lines: [
       {
         id: "planner",
@@ -238,7 +239,7 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
         taskSummary: "v0.2.0 聚焦 Context Packet、recovery、docs、checklist 与 release surface。",
         requiresUserDecision: false,
         blockerSummary: null,
-        latestEvidenceLabel: "scope accepted by user",
+        latestEvidenceLabel: "release scope accepted",
         updatedAt: calibratedAt
       },
       {
@@ -247,11 +248,24 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
         threadLabel: "Release Surface",
         provider: providerRouting.executor,
         presence: "logical",
-        status: "running",
-        taskSummary: "正在把 Context OS 发布面做成可发布的 v0.2.0 版本。",
+        status: "done",
+        taskSummary: "已把 Context OS 发布面收口到可人工复核的 v0.2.0 候场状态。",
         requiresUserDecision: false,
         blockerSummary: null,
-        latestEvidenceLabel: "Context OS release surface in progress",
+        latestEvidenceLabel: "local release verification passed",
+        updatedAt: calibratedAt
+      },
+      {
+        id: "closeout",
+        role: "closeout",
+        threadLabel: "Release Decision",
+        provider: providerRouting.closeout,
+        presence: "logical",
+        status: "waiting",
+        taskSummary: "等待用户确认是否创建 v0.2.0 tag 和 GitHub Release。",
+        requiresUserDecision: true,
+        blockerSummary: null,
+        latestEvidenceLabel: "manual publish decision pending",
         updatedAt: calibratedAt
       }
     ],

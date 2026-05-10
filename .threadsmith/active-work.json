@@ -33,7 +33,7 @@
     {
       "role": "hygiene",
       "status": "done",
-      "taskSummary": "守住边界：本 slice 只做 release hardening，不做新功能、multi-provider 或桌面壳。",
+      "taskSummary": "守住边界：本 slice 只做 release hardening 与发布前一致性 polish，不做新功能、multi-provider 或桌面壳。",
       "requiresUserDecision": false
     }
   ],

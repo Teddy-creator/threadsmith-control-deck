@@ -14,6 +14,7 @@ All notable changes to Threadsmith will be documented in this file.
 ### Changed
 
 - README and usage docs now describe the v0.2.0 Context OS line while keeping multi-provider and desktop app work out of scope.
+- Startup, app-home, and social draft copy now align with the v0.2.0 Context OS release-candidate state instead of older v0.1.1 or in-progress release-hardening language.
 
 ## v0.1.1 - 2026-05-09
 

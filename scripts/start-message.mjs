@@ -1,7 +1,7 @@
 const url = "http://127.0.0.1:5173/?appHome=1";
 
 console.log("");
-console.log("Threadsmith v0.1.1");
+console.log("Threadsmith v0.2.0 Context OS");
 console.log("");
 console.log(`Open: ${url}`);
 console.log("");

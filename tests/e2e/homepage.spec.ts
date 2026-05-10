@@ -114,7 +114,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "Threadsmith v0.2.0 release hardening is implemented: public README, release checklist, release notes, package versions, and verification guidance now align with the completed Context OS lane before publishing."
+      "Threadsmith v0.2.0 release hardening is implemented: public README, release checklist, release notes, package versions, startup copy, app-home front door state, and verification guidance now align with the completed Context OS lane before publishing."
     ).first()
   ).toBeVisible();
 });
