@@ -1,6 +1,6 @@
 {
   "projectGoal": "交付更完整的 Threadsmith v0.3.0：在 Context OS 与 Harness Skill Orchestrator 基础上，把本地 Codex skills 自动发现、健康检查、项目级路由配置、fallback 解释和 all-Codex 可用性打磨成真实可用闭环。",
-  "currentVersionScope": "v0.3.0 usability hardening：本地 release-readiness 已通过，暂不公开发布；下一步是整理 broad dirty worktree 的 curated commit / PR boundary，然后再由用户决定是否 tag / publish。",
+  "currentVersionScope": "v0.3.0 post-merge polish：PR #21 已合并到 main；当前不发布 tag，而是先修正用户会迷糊的 truth、前门、文档和 skill 接入说明。",
   "nonGoals": [
     "现在发布 v0.3.0 GitHub Release",
     "立即实现 multi-provider 自动执行",
@@ -15,15 +15,15 @@
     "开发 Threadsmith 自身时，不允许污染正在使用的全局 installed $threadsmith skill",
     "每一刀保持 phase-bound，并用 evidence-backed verification 收尾"
   ],
-  "successFrame": "新用户能在本地启动 Threadsmith、绑定项目、自动发现可用 skills、理解每个角色的 route/fallback，并在失败或中断时看到明确恢复动作。",
+  "successFrame": "新用户能在本地启动 Threadsmith、绑定项目、理解页面真相来源、安装或升级 $threadsmith skill，并清楚知道 v0.3.0 目前是已合并但未发布的候选线。",
   "priorityOrder": [
-    "Curate v0.3.0 commit / PR boundary",
-    "Run CI / review feedback after PR is opened",
-    "Only then decide whether to tag and publish v0.3.0",
-    "Keep multi-provider automation out of this release line"
+    "修正 PR #21 合并后的 .threadsmith truth",
+    "统一 README、usage guide、启动提示和前门快照的版本叙事",
+    "补清楚 $threadsmith skill 安装/升级与 continuous/autopilot 用法",
+    "验证用户路径，再决定是否进入 v0.3.0 发布动作"
   ],
   "openStrategicQuestions": [
-    "项目级 skill route 配置应该先用 JSON truth 文件，还是先只作为 runtime discovery summary？",
-    "External skill invocation 未来应由 Codex skill prompt composition 驱动，还是由 CLI/adapter runner 驱动？"
+    "是否把 v0.3.0 作为正式 GitHub Release 发布，还是继续作为内部候选线打磨？",
+    "未来的 External skill invocation 应由 Codex skill prompt composition 驱动，还是由 CLI/adapter runner 驱动？"
   ]
 }

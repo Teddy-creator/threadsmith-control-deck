@@ -35,7 +35,7 @@ You still talk to your conductor. Threadsmith makes the durable project state vi
 
 当前稳定线：`v0.2.1 Windows Launcher Parity`，基于 `v0.2.0 Context OS` 增补 Windows PowerShell 启动支持。最新已发布稳定标签仍以 GitHub Releases 为准。
 
-当前开发线：`v0.3.0 Harness Skill Orchestrator`，已经通过本地 release-readiness review，但尚未作为推荐稳定版发布。
+当前开发线：`v0.3.0 Harness Skill Orchestrator`，baseline 已合并到 `main`，但尚未 tag / GitHub Release，也尚未作为推荐稳定版发布。
 
 ## Features
 
@@ -44,7 +44,7 @@ You still talk to your conductor. Threadsmith makes the durable project state vi
 - **Single-screen supervision**: see command, roadmap, judgement, collaboration, and acceptance without digging through logs.
 - **Context OS**: use Context Packet, Repo Map, Evidence Summary, Context Budget Ledger, and Role-specific Packets to reduce long-thread context drag.
 - **Skill Orchestrator foundation**: discover local Codex skills, explain route health, and fall back to built-in mini protocols when external skills are unavailable.
-- **Threadsmith skill protocol**: `$threadsmith` can sync, drive, or recover from committed truth instead of replaying a huge chat history.
+- **Threadsmith skill protocol**: `$threadsmith` can sync, drive, continue, or recover from committed truth instead of replaying a huge chat history.
 - **Windows and macOS launchers**: open the local web deck from PowerShell or shell launchers.
 - **Local-first web app**: run it against your own project folder; no hosted backend is required.
 
@@ -54,7 +54,7 @@ You still talk to your conductor. Threadsmith makes the durable project state vi
 
 Latest stable release: `v0.2.1 Windows Launcher Parity`.
 
-Active development line: `v0.3.0 Harness Skill Orchestrator`, locally release-ready but not yet published as the recommended public release.
+Active development line: `v0.3.0 Harness Skill Orchestrator`, merged to `main` as a candidate baseline but not tagged or published as the recommended public release.
 
 Important boundary: v0.3.0 can discover and route local Codex skills as metadata, but it does **not** automatically execute arbitrary external skills or replace your conductor chat. The stable automatic execution path is still Codex-first.
 
@@ -213,6 +213,17 @@ Windows:
 
 如果你把 `codex/skills/threadsmith` 安装到本机 Codex skills 目录，可以在 Codex Desktop 中显式调用：
 
+```bash
+mkdir -p ~/.codex/skills/threadsmith
+cp -R codex/skills/threadsmith/. ~/.codex/skills/threadsmith/
+```
+
+如果你已经手动改过本机全局 skill，覆盖前先备份：
+
+```bash
+cp -R ~/.codex/skills/threadsmith ~/.codex/skills/threadsmith.backup
+```
+
 ```text
 使用 $threadsmith，先同步当前项目状态，不开始实现，只汇报 current phase / acceptance / next best step。
 ```
@@ -221,6 +232,18 @@ Windows:
 
 ```text
 使用 $threadsmith，按当前 Project Brief / Current Phase / Acceptance State 推进下一刀。
+```
+
+如果目标、范围、Done when 和验证命令已经清楚，也可以要求连续推进：
+
+```text
+使用 $threadsmith，连续推进当前 phase，直到 accepted、paused、需要我决策、或遇到安全 stop condition。
+```
+
+CLI 侧可以使用 autopilot continuation：
+
+```bash
+npm run threadsmith:autopilot -- continue "/path/to/your-project"
 ```
 
 `$threadsmith` v2 会优先读取 `.threadsmith` committed truth；如果项目已经生成 Context Packet 和 Role-specific Packets，它会用这些 packet 压缩工作上下文，但不会让 packet 覆盖 committed truth。

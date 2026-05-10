@@ -1,23 +1,23 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "v0.3.0 usability hardening",
+  "currentTrack": "v0.3.0 post-merge polish",
   "overallState": "stable",
-  "currentFocus": "v0.3.0 release-readiness review passed locally; next focus is curated commit / PR packaging, not additional feature scope.",
-  "projectStatusSummary": "Threadsmith v0.3.0 has local release-readiness evidence across tests, build, launchers, self-host smoke, autopilot smoke, deck-route smoke, JSON, and diff hygiene. It is ready for curated PR boundary review, while GitHub release/tag actions remain explicitly gated.",
+  "currentFocus": "post-merge 用户路径 polish 已本地验收；下一步是决定是否进入 v0.3.0 release decision / final polish。",
+  "projectStatusSummary": "Threadsmith v0.3.0 Skill Orchestrator 线已经通过 PR #21 合并到 main。本轮已修正真实用户打开页面、阅读文档、调用 $threadsmith 时会遇到的旧 release / PR boundary 残留；v0.3.0 仍未 tag / GitHub Release。",
   "latestAcceptedSlice": {
-    "title": "v0.3.0 release-readiness review / curated PR boundary",
-    "recordedAt": "2026-05-10T13:53:31.000Z"
+    "title": "v0.3.0 post-merge user-flow polish",
+    "recordedAt": "2026-05-10T16:31:39.000Z"
   },
   "nextPlannedSlice": {
-    "title": "curate v0.3.0 commit / PR boundary",
+    "title": "v0.3.0 release decision / final polish",
     "recordedAt": null
   },
-  "currentMilestoneId": "v0-3-0-release-readiness",
-  "nextMilestoneId": "v0-3-0-curated-pr-boundary",
+  "currentMilestoneId": "v0-3-0-post-merge-polish",
+  "nextMilestoneId": "v0-3-0-release-decision",
   "topRisks": [
-    "The worktree contains many accumulated v0.3.0 files, so commit and PR boundaries must be curated carefully.",
-    "GitHub CI has not been re-run in this turn; local verification is green.",
-    "v0.3.0 still does not promise multi-provider automation or real external skill invocation."
+    "本机全局 $threadsmith skill 可能仍是旧版；本轮只更新仓库说明，不自动覆盖全局 skill。",
+    "v0.3.0 尚未发布 tag / GitHub Release，下一步必须先做明确 release decision。",
+    "v0.3.0 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
   ],
-  "updatedAt": "2026-05-10T13:53:31.000Z"
+  "updatedAt": "2026-05-10T16:31:39.000Z"
 }

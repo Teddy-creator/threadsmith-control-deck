@@ -1,24 +1,29 @@
 {
-  "currentClaim": "v0.3.0 release-readiness review passed locally; the worktree is ready for curated commit / PR boundary review, but v0.3.0 has not been published or tagged.",
+  "currentClaim": "PR #21 合并后的 post-merge 用户路径 polish 已完成并通过本地验证；Threadsmith 现在会把 v0.2.1 稳定线、v0.3.0 已合并但未发布候选线、App Home 前门边界和 $threadsmith skill 安装/连续推进路径讲清楚。",
   "doneWhenChecklist": [
     {
-      "id": "scope-check",
-      "label": "README, usage guide, release notes, and checklist clearly separate stable v0.2.0 from internal v0.3.0 RC work",
+      "id": "truth-post-merge",
+      "label": ".threadsmith committed truth 明确记录 PR #21 已合并，并指向 post-merge polish",
       "status": "pass"
     },
     {
-      "id": "verification-matrix",
-      "label": "Release-readiness verification matrix passed locally",
+      "id": "front-door-current",
+      "label": "App Home 前门不再展示旧 v0.2.0 release review 快照",
       "status": "pass"
     },
     {
-      "id": "truth-boundary",
-      "label": "Committed truth and runtime smoke artifacts remain separated",
+      "id": "docs-aligned",
+      "label": "README、usage guide 和启动提示统一 v0.2.1 稳定线 / v0.3.0 候选线边界",
       "status": "pass"
     },
     {
-      "id": "publish-boundary",
-      "label": "Publish, tag, repository visibility, and GitHub Release actions remain gated behind explicit user approval",
+      "id": "skill-guidance",
+      "label": "$threadsmith skill 安装/升级与 continuous/autopilot 用法说明清楚",
+      "status": "pass"
+    },
+    {
+      "id": "verification",
+      "label": "受影响测试、build、launcher 和 diff hygiene 通过",
       "status": "pass"
     }
   ],
@@ -27,9 +32,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "done",
   "knownGaps": [
-    "GitHub CI has not been re-run in this turn; local verification is green.",
-    "The worktree is intentionally broad and should be curated carefully before commit / PR.",
-    "v0.3.0 still does not promise multi-provider automation or real external skill invocation."
+    "本轮没有自动安装或覆盖全局 /Users/cloud/.codex/skills/threadsmith/SKILL.md；用户仍需按 README / usage guide 手动复制或升级。",
+    "v0.3.0 是否 tag / GitHub Release 仍需后续明确决策。",
+    "v0.3.0 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
   ],
   "finalState": "accepted"
 }

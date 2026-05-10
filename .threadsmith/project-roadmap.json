@@ -1,5 +1,5 @@
 {
-  "versionLabel": "Threadsmith v0.3.0 Usability Hardening",
+  "versionLabel": "Threadsmith v0.3.0 Post-merge Polish",
   "finalGoal": "Make Threadsmith usable as a practical Context OS and skill orchestrator for all-Codex workflows before considering multi-provider automation.",
   "milestones": [
     {
@@ -10,33 +10,33 @@
       "state": "done"
     },
     {
-      "id": "v0-3-0-onboarding-demo-polish",
-      "label": "上手",
-      "title": "First-run onboarding / copy / demo polish",
-      "summary": "First-run and demo surfaces are accepted and verified.",
-      "state": "done"
-    },
-    {
-      "id": "v0-3-0-phase-autopilot-continuous-gate-runner",
+      "id": "v0-3-0-autopilot-usability",
       "label": "连续推进",
-      "title": "Phase autopilot / continuous gate runner v1",
-      "summary": "Reduce manual gate-by-gate prompts while preserving safe role gates.",
+      "title": "Autopilot and usability hardening",
+      "summary": "First-run polish, stop/recovery rules, continuous role loop, and verification gaps are accepted.",
       "state": "done"
     },
     {
-      "id": "v0-3-0-release-readiness",
-      "label": "发布准备",
-      "title": "v0.3.0 release readiness review",
-      "summary": "Local release-readiness gates passed; v0.3.0 is ready for curated PR boundary review, not yet published.",
+      "id": "v0-3-0-pr-21-merged",
+      "label": "PR 合并",
+      "title": "PR #21 merged into main",
+      "summary": "The v0.3.0 release-candidate baseline is now on main with CI green.",
+      "state": "done"
+    },
+    {
+      "id": "v0-3-0-post-merge-polish",
+      "label": "当前打磨",
+      "title": "Post-merge user-flow polish",
+      "summary": "Refresh product truth, front door, start message, docs, and skill guidance so users do not see stale PR/release wording.",
       "state": "current"
     },
     {
-      "id": "v0-3-0-curated-pr-boundary",
-      "label": "PR 边界",
-      "title": "Curated commit / PR boundary",
-      "summary": "Group the broad v0.3.0 worktree into reviewable commit or PR boundaries before any tag/release decision.",
-      "state": "later"
+      "id": "v0-3-0-release-decision",
+      "label": "发布决策",
+      "title": "v0.3.0 release decision / final polish",
+      "summary": "Decide whether to tag and publish v0.3.0 or keep it as an internal candidate for more hardening.",
+      "state": "next"
     }
   ],
-  "updatedAt": "2026-05-10T13:53:31.000Z"
+  "updatedAt": "2026-05-10T16:14:45.000Z"
 }

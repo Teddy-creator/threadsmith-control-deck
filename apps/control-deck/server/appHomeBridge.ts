@@ -13,169 +13,148 @@ export function createAppHomeBridgeResponse(
   providerRouting: ProviderRouting,
   skillRouting: SkillRoutingConfig = skillRoutingConfigSchema.parse({})
 ) {
-  const calibratedAt = "2026-05-09T18:39:39.000Z";
+  const calibratedAt = "2026-05-10T16:14:45.000Z";
   const state = projectStateSchema.parse({
     projectBrief: {
       projectGoal: "打开 Threadsmith 并进入今天的工作",
       currentVersionScope:
-        "Threadsmith 前门只负责选择今天要进入的真实项目；实时进度以进入后的项目 `.threadsmith` 为准",
+        "Threadsmith 前门只负责选择今天要进入的真实项目；实时进度以进入后的项目 `.threadsmith` 为准。当前公开稳定线是 v0.2.1，v0.3.0 是已合并但未发布的候选线。",
       nonGoals: [
         "替代主聊天面",
         "把现有 web control deck 重写成桌面应用",
-        "在 v0.2.0 里引入 multi-provider 自动执行"
+        "把 v0.3.0 误读成已经发布的稳定版本",
+        "在前门里直接启动真实项目执行"
       ],
       keyConstraints: [
         "保持 web + launcher 为稳定基座",
         "主要开发对话继续留在外部 conductor surface",
-        "v0.2.0 只发布 Context OS 能力，不扩大到桌面壳"
+        "前门只展示入口快照；真实项目状态进入项目后再读取"
       ],
       successFrame:
-        "用户打开 Threadsmith 前门后，能清楚知道这里是入口页，并能立刻进入真实项目查看实时 truth",
+        "用户打开 Threadsmith 前门后，能清楚知道这里是入口页，并能立刻进入真实项目查看实时 truth。",
       priorityOrder: [
         "确认要进入的真实项目",
-        "解释 Context Packet 和 committed truth 来源",
-        "让 sync-context 与 recovery 边界更清楚",
-        "等待最终人工发布决定"
+        "解释 committed truth 与 Context Packet 来源",
+        "进入真实项目后再查看 phase、验收、证据和路由",
+        "需要推进时回到 conductor surface 或显式调用 $threadsmith"
       ],
       openStrategicQuestions: [
-        "什么时候正式开启 desktop shell / macOS wrapper v1",
-        "何时重启 multi-provider 自动执行路线"
+        "是否把 v0.3.0 作为正式 GitHub Release 发布，还是继续作为内部候选线打磨？",
+        "什么时候正式开启 desktop shell / macOS wrapper v1"
       ]
     },
     projectStatus: {
       projectLabel: "Threadsmith",
-      currentTrack: "v0.2.0 Context OS",
+      currentTrack: "Front door / project entry",
       overallState: "stable",
-      currentFocus: "v0.2.0 release hardening 已本地验收，等待最终人工 review 与 GitHub Release 发布决定。",
+      currentFocus: "选择今天要进入的真实项目；进入后再读取该项目的实时 .threadsmith truth。",
       projectStatusSummary:
-        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。当前 v0.2.0 Context OS 发布面已经完成本地验收；最终 tag、GitHub Release 和公开发布仍需要人工确认。",
+        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。最新稳定线是 v0.2.1 Windows Launcher Parity；v0.3.0 Skill Orchestrator baseline 已合并到 main，但尚未 tag / GitHub Release。",
       latestAcceptedSlice: {
-        title: "v0.2.0 release hardening",
-        recordedAt: calibratedAt
+        title: "v0.2.1 Windows Launcher Parity",
+        recordedAt: "2026-05-10T00:00:00.000Z"
       },
       nextPlannedSlice: {
-        title: "v0.2.0 GitHub Release publish",
+        title: "进入真实项目或评估 v0.3.0 release decision",
         recordedAt: null
       },
-      currentMilestoneId: "v0-2-0-release",
-      nextMilestoneId: "v0-2-0-release",
+      currentMilestoneId: "front-door-entry",
+      nextMilestoneId: "real-project-truth",
       topRisks: [
-        "发布前仍需人工确认 README、release copy 和截图观感。",
-        "如果不知道 Context Packet 与 committed truth 的边界，会误以为页面会读取聊天里的临时想法。",
-        "v0.2.0 仍需避免把 provider routing 误读成 multi-provider 已完成。"
+        "前门只是入口快照，不代表任何真实项目的实时进度。",
+        "如果 conductor 没有写回 `.threadsmith`，页面只能显示旧 truth。",
+        "v0.3.0 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
       ],
       updatedAt: calibratedAt
     },
     projectRoadmap: {
-      versionLabel: "Threadsmith v0.2.0",
+      versionLabel: "Threadsmith Entry Surface",
       finalGoal:
-        "让 Threadsmith v0.2.0 成为一个 Context OS 清楚、packet 可恢复、文档可发布的 public web release。",
+        "让用户先从一个清楚的前门进入真实项目，再在项目控制台查看 durable workflow truth。",
       milestones: [
         {
-          id: "v0-1-1-release",
-          label: "v0.1.1",
-          title: "发布 onboarding polish 版本",
-          summary: "public repo、README、release note、CI 与首次上手路径已公开。",
+          id: "web-control-deck",
+          label: "Web deck",
+          title: "打开本地 Threadsmith 控制台",
+          summary: "通过 npm、macOS command 或 Windows PowerShell 启动本地 web deck。",
           state: "done"
         },
         {
-          id: "version-surface",
-          label: "版本对齐",
-          title: "对齐公开版本与 README",
-          summary: "README、usage guide、release docs 和 package version 需要一致。",
+          id: "launcher-parity",
+          label: "跨平台入口",
+          title: "v0.2.1 Windows / macOS launcher parity",
+          summary: "macOS 和 Windows 都有前门与项目直达启动脚本。",
           state: "done"
         },
         {
-          id: "context-os-surface",
-          label: "Context OS",
-          title: "打磨 Context Packet、recovery 与 truth 来源",
-          summary: "让用户知道 packet 从哪里来、何时刷新、何时回到 conductor。",
-          state: "done"
+          id: "front-door-entry",
+          label: "前门",
+          title: "确认今天进入哪个真实项目",
+          summary: "前门帮助选择默认项目、最近项目或连接新项目。",
+          state: "current"
         },
         {
-          id: "docs-skill",
-          label: "release docs",
-          title: "补齐 v0.2.0 release notes 与 checklist",
-          summary: "讲清 Context OS 已交付能力与 deferred non-goals。",
-          state: "done"
+          id: "real-project-truth",
+          label: "真实项目",
+          title: "进入项目并查看 `.threadsmith` truth",
+          summary: "进入真实项目后，首页和工作台才展示该项目的 phase、验收、证据和路由。",
+          state: "next"
         },
         {
-          id: "v0-2-0-release",
-          label: "v0.2.0",
-          title: "发布 Context OS 版本",
-          summary: "创建 tag、GitHub Release 和公开发布说明。",
-          state: "later"
-        },
-        {
-          id: "desktop-shell",
-          label: "桌面壳",
-          title: "评估并落地一个很薄的 macOS wrapper",
-          summary: "先做独立窗口与稳定启动，不提前跳进签名、更新和重度原生能力。",
+          id: "release-decision",
+          label: "发布决策",
+          title: "决定是否发布 v0.3.0",
+          summary: "v0.3.0 baseline 已合并，但是否 tag / GitHub Release 仍需人工确认。",
           state: "later"
         }
       ],
       updatedAt: calibratedAt
     },
     currentPhase: {
-      phaseName: "v0.2.0 final release review",
-      phaseGoal: "在真正创建 tag 和 GitHub Release 前，人工复核公开页面、release copy、启动路径和 Context OS 边界是否都清楚。",
-      deliverable: "v0.2.0 final release decision",
+      phaseName: "选择真实项目入口",
+      phaseGoal: "先确认今天要查看或推进哪个真实项目，避免把前门快照误读成项目实时状态。",
+      deliverable: "进入一个真实项目，或完成首次项目连接与初始化。",
       inScope: [
-        "人工复核 README / release notes / release copy",
-        "确认 start message、front door 和 social copy 不再停留在旧版本",
-        "确认 Context Packet / sync-context / truth source 说明清楚",
-        "确认 Threadsmith skill 和 conductor 边界保持清楚",
-        "确认是否进入 v0.2.0 GitHub Release publish"
+        "打开默认项目或最近项目",
+        "连接新的项目根目录",
+        "解释前门、真实项目 truth、conductor surface 的边界"
       ],
       outOfScope: [
-        "multi-provider 自动执行",
-        "native desktop shell",
+        "在前门直接执行真实项目任务",
+        "发布或 tag v0.3.0",
         "替代 Codex Desktop / Codex CLI 的主聊天入口"
       ],
-      stopCondition: "用户完成最终人工验收，并明确同意进入 tag / GitHub Release 发布动作。",
+      stopCondition: "已经进入一个真实项目，或完成首次项目连接与初始化。",
       verificationForThisPhase: [
-        "npm run test",
-        "npm run build",
-        "npm run test:e2e",
-        "npm run verify:launchers",
-        "npm run smoke:self-host",
-        "CI run on PR"
+        "前门能打开",
+        "真实项目能连接或初始化",
+        "进入真实项目后能读取其 `.threadsmith` truth"
       ],
-      activeOwners: [
-        "planner",
-        "executor",
-        "reviewer",
-        "verifier",
-        "closeout"
-      ],
+      activeOwners: ["planner"],
       blockedBy: []
     },
     acceptanceState: {
-      currentClaim: "Threadsmith v0.2.0 Context OS 的 release hardening 已本地验收；当前前门是入口快照，真实项目进度以进入项目后的 `.threadsmith` 为准。",
+      currentClaim:
+        "当前前门是入口快照，不是真实项目进度；进入项目后才会展示该项目的 phase、验收、证据和路由。",
       doneWhenChecklist: [
         {
-          id: "ci-green",
-          label: "release verification 和 GitHub Actions CI 变绿",
+          id: "front-door-clear",
+          label: "前门清楚说明自己只是入口页",
           status: "pass"
         },
         {
-          id: "first-run",
-          label: "公开说明清楚解释 .threadsmith、Context Packet 与 conductor 边界",
+          id: "project-entry",
+          label: "用户可以打开默认项目、最近项目或连接新项目",
           status: "pass"
         },
         {
-          id: "refresh-truth",
-          label: "sync-context、刷新状态和 truth 来源边界清楚",
+          id: "truth-boundary",
+          label: "进入真实项目后才读取项目 `.threadsmith` truth",
           status: "pass"
         },
         {
-          id: "demo-mode",
-          label: "前门和 demo mode 不会伪装成真实项目进度",
-          status: "pass"
-        },
-        {
-          id: "release-surface",
-          label: "README、usage guide、release note 和 share 文案对齐 v0.2.0",
+          id: "version-boundary",
+          label: "稳定线 v0.2.1 与候选线 v0.3.0 的边界不混淆",
           status: "pass"
         }
       ],
@@ -184,9 +163,8 @@ export function createAppHomeBridgeResponse(
       verificationStatus: "passed",
       closeoutStatus: "done",
       knownGaps: [
-        "最终 tag 和 GitHub Release 尚未发布，需要用户明确确认。",
-        "multi-provider automatic execution 仍不属于 v0.2.0 交付范围。",
-        "desktop shell 仍在后续 backlog，不作为当前发布 blocker。"
+        "v0.3.0 尚未发布 tag / GitHub Release。",
+        "前门不会自动读取聊天线程里的临时讨论；只有写回 `.threadsmith` 的 truth 才会稳定出现。"
       ],
       finalState: "accepted"
     },
@@ -194,32 +172,8 @@ export function createAppHomeBridgeResponse(
       items: [
         {
           role: "planner",
-          status: "done",
-          taskSummary: "定义 v0.2.0 Context OS release hardening 的发布修复范围",
-          requiresUserDecision: false
-        },
-        {
-          role: "executor",
-          status: "done",
-          taskSummary: "已对齐版本、release docs、Context OS 说明和验证路径",
-          requiresUserDecision: false
-        },
-        {
-          role: "reviewer",
-          status: "done",
-          taskSummary: "已检查公开发布 claims 仍保持 web-first / Codex-only 边界",
-          requiresUserDecision: false
-        },
-        {
-          role: "verifier",
-          status: "done",
-          taskSummary: "已通过本地验证与 GitHub Actions 回流",
-          requiresUserDecision: false
-        },
-        {
-          role: "closeout",
           status: "waiting",
-          taskSummary: "等待用户最终确认是否进入 v0.2.0 GitHub Release publish",
+          taskSummary: "等待用户选择默认项目、最近项目或连接新项目。",
           requiresUserDecision: true
         }
       ],
@@ -229,48 +183,22 @@ export function createAppHomeBridgeResponse(
   });
 
   const projectSupervision = projectSupervisionStateSchema.parse({
-    mode: "multi-thread",
-    modeLabel: "发布候场",
+    mode: "single-thread",
+    modeLabel: "入口选择",
     summary:
-      "当前是 Threadsmith 前门，不直接承载某个真实项目的编码执行；v0.2.0 Context OS 已完成本地发布准备，等待最终人工发布决定。",
+      "当前是 Threadsmith 前门，不直接承载真实项目编码执行；请选择项目后进入真实控制台。",
     lines: [
       {
-        id: "planner",
+        id: "front-door-planner",
         role: "planner",
-        threadLabel: "Release Planner",
+        threadLabel: "Front Door",
         provider: providerRouting.planner,
         presence: "logical",
-        status: "done",
-        taskSummary: "v0.2.0 聚焦 Context Packet、recovery、docs、checklist 与 release surface。",
-        requiresUserDecision: false,
-        blockerSummary: null,
-        latestEvidenceLabel: "release scope accepted",
-        updatedAt: calibratedAt
-      },
-      {
-        id: "executor",
-        role: "executor",
-        threadLabel: "Release Surface",
-        provider: providerRouting.executor,
-        presence: "logical",
-        status: "done",
-        taskSummary: "已把 Context OS 发布面收口到可人工复核的 v0.2.0 候场状态。",
-        requiresUserDecision: false,
-        blockerSummary: null,
-        latestEvidenceLabel: "local release verification passed",
-        updatedAt: calibratedAt
-      },
-      {
-        id: "closeout",
-        role: "closeout",
-        threadLabel: "Release Decision",
-        provider: providerRouting.closeout,
-        presence: "logical",
         status: "waiting",
-        taskSummary: "等待用户确认是否创建 v0.2.0 tag 和 GitHub Release。",
+        taskSummary: "等待用户选择默认项目、最近项目或连接新项目。",
         requiresUserDecision: true,
         blockerSummary: null,
-        latestEvidenceLabel: "manual publish decision pending",
+        latestEvidenceLabel: "entry surface ready",
         updatedAt: calibratedAt
       }
     ],

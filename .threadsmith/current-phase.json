@@ -1,37 +1,35 @@
 {
-  "phaseName": "v0.3.0 release-readiness review / curated PR boundary",
-  "phaseGoal": "Decide whether the accumulated v0.3.0 work is locally release-ready and safe to move into a curated commit / PR boundary without publishing or tagging.",
-  "deliverable": "A checked release-readiness decision with fresh verification evidence, an updated v0.3.0 checklist, and a clear next step for curated PR packaging.",
+  "phaseName": "v0.3.0 post-merge user-flow polish",
+  "phaseGoal": "把 PR #21 合并后的项目状态、产品前门、启动提示和用户文档校准到真实 main，消除旧 PR boundary / v0.2.0 release 候场残留。",
+  "deliverable": "一组小范围 polish 改动：post-merge .threadsmith truth、前门快照、README / usage guide / start message、以及对应测试更新。",
   "inScope": [
-    "Review v0.3.0 release docs, README, CHANGELOG, usage guide, and release checklist for misleading stable-vs-RC claims",
-    "Run the v0.3.0 release-readiness verification matrix",
-    "Confirm committed truth and runtime artifacts remain separated",
-    "Record whether the dirty v0.3.0 worktree is ready for curated commit / PR boundary review"
+    "更新 Threadsmith 自身 .threadsmith committed truth，反映 PR #21 已合并",
+    "更新 app-home 前门内置状态，避免显示旧 v0.2.0 release review 快照",
+    "统一 README、usage guide 和 start message 的稳定线 / 开发线描述",
+    "补清楚 $threadsmith skill 安装/升级路径和 continuous/autopilot 用法",
+    "更新受影响的首页 / app-home 测试并跑必要验证"
   ],
   "outOfScope": [
-    "Publishing or tagging v0.3.0",
-    "Changing repository visibility",
-    "Installing or mutating /Users/cloud/.codex/skills/threadsmith/SKILL.md",
-    "Implementing multi-provider automation",
-    "Adding real external skill invocation",
-    "Native desktop app, hosted backend, embeddings, or RAG",
-    "Large UI redesign or new product scope"
+    "发布或 tag v0.3.0",
+    "修改仓库可见性",
+    "安装或覆盖 /Users/cloud/.codex/skills/threadsmith/SKILL.md",
+    "实现 multi-provider 自动执行",
+    "真实执行任意外部 skill",
+    "大改 UI 视觉骨架或交互结构"
   ],
-  "stopCondition": "Stop after release-readiness is backed by fresh local evidence and written into .threadsmith truth; do not publish/tag without explicit user approval.",
+  "stopCondition": "已满足：用户路径文案与真实 main 状态一致，测试通过，并且下一步能清楚进入 v0.3.0 release decision / final polish。",
   "verificationForThisPhase": [
-    "npm run test --workspaces --if-present",
+    "npm run test --workspace @threadsmith/control-deck -- src/test/renderDeck.app-home.test.tsx src/test/renderDeck.shell.test.tsx",
+    "npm run test:e2e -- tests/e2e/homepage.spec.ts",
     "npm run build --workspaces --if-present",
     "npm run verify:launchers",
-    "npm run smoke:self-host",
-    "npm run smoke:autopilot",
-    "npm run smoke:deck-route",
-    "jq empty .threadsmith/*.json .threadsmith/context/*.json .threadsmith/context/role-packets/*.json",
     "git diff --check"
   ],
   "activeOwners": [
     "planner",
-    "verifier",
+    "executor",
     "reviewer",
+    "verifier",
     "closeout",
     "hygiene"
   ],

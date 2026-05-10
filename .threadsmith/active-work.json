@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "Confirmed the next phase is release-readiness review / curated PR boundary, not new feature work.",
+      "taskSummary": "确认本轮只处理 post-merge 用户路径 polish，不进入发布或新功能。",
       "requiresUserDecision": false
     },
     {
-      "role": "verifier",
+      "role": "executor",
       "status": "done",
-      "taskSummary": "Ran the full local release-readiness matrix: workspace tests, build, launchers, self-host smoke, autopilot smoke, deck-route smoke, JSON parse, and diff hygiene.",
+      "taskSummary": "已更新 .threadsmith truth、前门快照、启动提示、README、usage guide 和首页 E2E 断言。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "Reviewed release-facing docs and checklist for stable-vs-RC boundaries and external-skill overpromising.",
+      "taskSummary": "已检查版本叙事、skill 接入说明和产品边界；v0.3.0 仍明确为已合并但未发布候选线。",
+      "requiresUserDecision": false
+    },
+    {
+      "role": "verifier",
+      "status": "done",
+      "taskSummary": "已通过 targeted component tests、homepage E2E、workspace build、launcher verification 和 git diff --check。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "done",
-      "taskSummary": "Recorded local release-readiness as accepted and pointed the next step to curated commit / PR packaging.",
-      "requiresUserDecision": false
-    },
-    {
-      "role": "hygiene",
-      "status": "done",
-      "taskSummary": "Kept publish/tag/global skill mutation out of scope; the dirty worktree still needs curated commit boundaries.",
+      "taskSummary": "已记录剩余风险：不自动覆盖全局 skill、不发布 v0.3.0、不承诺 multi-provider 自动执行；下一步进入 release decision / final polish。",
       "requiresUserDecision": false
     }
   ],

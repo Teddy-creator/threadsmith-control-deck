@@ -2,6 +2,15 @@
 
 All notable changes to Threadsmith will be documented in this file.
 
+## Unreleased
+
+### Changed
+
+- Calibrated Threadsmith's post-merge project truth after PR #21 so the current track is `v0.3.0 post-merge polish`, not the old release-readiness / PR-boundary state.
+- Updated the App Home front door to describe itself as an entry surface, with `v0.2.1` as the stable line and `v0.3.0` as a merged but unpublished candidate baseline.
+- Clarified `$threadsmith` skill install/upgrade guidance, continuous mode, and autopilot continuation usage in README and the usage guide.
+- Updated startup copy and homepage verification expectations to avoid implying that `v0.3.0` has already been tagged or released.
+
 ## v0.2.1 - 2026-05-10
 
 ### Added

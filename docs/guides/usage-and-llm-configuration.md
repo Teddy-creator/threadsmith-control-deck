@@ -2,7 +2,7 @@
 
 Threadsmith 是一个本地运行的 web control deck。它负责展示和维护项目的 workflow truth，不负责替代你和 AI 的主聊天入口。
 
-当前最新稳定线是 `v0.2.0 Context OS`。当前内部开发线是 `v0.3.0 Harness Skill Orchestrator`。
+当前最新稳定线是 `v0.2.1 Windows Launcher Parity`，基于 `v0.2.0 Context OS` 增补 Windows PowerShell 启动支持。当前内部开发线是 `v0.3.0 Harness Skill Orchestrator`，baseline 已合并到 `main`，但尚未 tag / GitHub Release，也尚未作为推荐稳定版发布。
 
 最简单的心智模型是：
 
@@ -26,6 +26,23 @@ git clone https://github.com/Teddy-creator/Threadsmith-control-deck.git
 cd Threadsmith-control-deck
 npm ci
 ```
+
+### 安装或升级 `$threadsmith` skill
+
+如果你希望 Codex Desktop 能显式调用 `$threadsmith`，把仓库里的 skill 复制到本机 Codex skills 目录：
+
+```bash
+mkdir -p ~/.codex/skills/threadsmith
+cp -R codex/skills/threadsmith/. ~/.codex/skills/threadsmith/
+```
+
+如果你已经手动改过全局 skill，覆盖前先备份：
+
+```bash
+cp -R ~/.codex/skills/threadsmith ~/.codex/skills/threadsmith.backup
+```
+
+然后重启 Codex Desktop 或开启新会话，让 skill 列表重新加载。
 
 ## 2. 启动方式
 
@@ -345,7 +362,7 @@ Threadsmith 的架构为 multi-provider 预留了 provider routing 和 role boun
 - 当前稳定自动执行路径仍然是 Codex。
 - 非 Codex provider adapter / routing 后续会作为独立版本推进。
 
-## 9. 验证
+## 10. 验证
 
 开发或发布前常用验证：
 
@@ -365,7 +382,7 @@ npm run verify:release
 
 `npm run smoke:self-host` 默认会在隔离 runtime workspace 里运行，避免把当前项目 truth 弄脏。
 
-## 10. 常见问题
+## 11. 常见问题
 
 ### 页面看起来没更新
 
