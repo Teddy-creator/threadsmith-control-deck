@@ -4,9 +4,12 @@ export {
   buildPhaseRoutingOverviewItems
 } from "./phase";
 export { buildRoutingOverviewItems } from "./overview";
+export { buildSkillRoutingVisibilityModel } from "./skillRoutes";
 export type {
   PhaseRoutingOverviewItem,
   RoleRoutingCardModel,
   RoutingOverviewItem,
-  RoutingRole
+  RoutingRole,
+  SkillRouteVisibilityItem,
+  SkillRoutingVisibilityModel
 } from "./types";

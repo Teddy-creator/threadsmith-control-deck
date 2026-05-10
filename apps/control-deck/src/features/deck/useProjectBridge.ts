@@ -216,7 +216,8 @@ export function useProjectBridge(projectRoot: string) {
             response.currentPacket ?? null,
             response.rolePackets ?? [],
             Boolean(response.contextArtifactsLoaded),
-            response.contextArtifactProblem ?? null
+            response.contextArtifactProblem ?? null,
+            response.skillRouting
           )
         : null,
     [response]

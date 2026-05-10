@@ -1,12 +1,12 @@
 {
-  "versionLabel": "Threadsmith Demo v1",
-  "finalGoal": "展示一个项目真相已前进，但 continuation packet 已经过期的高风险示例。",
+  "versionLabel": "Threadsmith Truth Confidence Demo",
+  "finalGoal": "展示一个项目 truth 已前进，但 continuation packet 已经过期的恢复示例。",
   "milestones": [
     {
       "id": "demo-baseline",
       "label": "项目基线",
-      "title": "建立 workflow 为先的 control deck demo 基线",
-      "summary": "确保示例项目已经具备最小的工作流状态与界面骨架。",
+      "title": "建立 Threadsmith control deck demo 基线",
+      "summary": "确保示例项目已经具备最小的 workflow truth 与界面骨架。",
       "state": "done"
     },
     {
@@ -26,7 +26,7 @@
     {
       "id": "resume-flow",
       "label": "恢复继续",
-      "title": "恢复可继续的 handoff 与 continuation 流程",
+      "title": "恢复可继续的 context 与 continuation 流程",
       "summary": "刷新 packet 后，项目才能重新回到正常的继续点。",
       "state": "next"
     },

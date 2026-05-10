@@ -29,6 +29,15 @@ export interface ContextRecoveryModel {
   actionLabel: string;
   tone: string;
   actionTone: string;
+  confidence: {
+    label: string;
+    headline: string;
+    detail: string;
+    primaryReasonLabel: string;
+    safeActionLabel: string;
+    safeActionDetail: string;
+    tone: string;
+  };
   detail: string;
   reasons: string[];
   handling: {

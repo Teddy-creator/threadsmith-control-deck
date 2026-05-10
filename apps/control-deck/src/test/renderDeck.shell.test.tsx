@@ -18,6 +18,7 @@ import {
   events,
   projectSupervision,
   runningLatestRun,
+  skillRoutingConfig,
   state
 } from "./renderDeck.fixtures";
 import {
@@ -155,7 +156,15 @@ describe("DeckScreen shell", () => {
           events,
           runningLatestRun,
           null,
-          projectSupervision
+          projectSupervision,
+          null,
+          null,
+          null,
+          null,
+          [],
+          false,
+          null,
+          skillRoutingConfig
         )}
         loading={false}
         error={null}
@@ -226,6 +235,17 @@ describe("DeckScreen shell", () => {
     expect(projectScope.getByText("全部里程碑")).toBeInTheDocument();
     expect(projectScope.getByText("当前指挥入口")).toBeInTheDocument();
     expect(projectScope.getByText("当前使用方式")).toBeInTheDocument();
+    expect(projectScope.getByText("Skill 路由健康")).toBeInTheDocument();
+    expect(projectScope.getByText("25 个 skill")).toBeInTheDocument();
+    expect(projectScope.getByText("3 条偏好")).toBeInTheDocument();
+    expect(projectScope.getByText("回退到内置协议")).toBeInTheDocument();
+    expect(
+      projectScope.getByText("只做发现与路由提示，不自动执行外部 skill。")
+    ).toBeInTheDocument();
+    expect(projectScope.getByText("全局 · 计划")).toBeInTheDocument();
+    expect(projectScope.getByText("writing-plans")).toBeInTheDocument();
+    expect(projectScope.getByText("验证 · 验证")).toBeInTheDocument();
+    expect(projectScope.getByText("independent-verification")).toBeInTheDocument();
     expect(projectScope.getByText("全 Codex")).toBeInTheDocument();
     expect(projectScope.getByText("角色路由")).toBeInTheDocument();
     expect(projectScope.getAllByText("Codex Desktop").length).toBeGreaterThan(0);
@@ -271,10 +291,12 @@ describe("DeckScreen shell", () => {
     const decisionScope = within(decisionCard as HTMLElement);
     expect(decisionScope.getAllByText("等待回流").length).toBeGreaterThan(1);
     expect(decisionScope.getByText("上下文")).toBeInTheDocument();
-    expect(decisionScope.getByText("等待运行结果回流")).toBeInTheDocument();
-    expect(decisionScope.getByText("主 packet")).toBeInTheDocument();
+    expect(decisionScope.getByText("当前 truth 可读，但需要观察")).toBeInTheDocument();
+    expect(decisionScope.getByText("需观察")).toBeInTheDocument();
+    expect(decisionScope.getByText("首要原因")).toBeInTheDocument();
+    expect(decisionScope.getByText("运行结果尚未回流")).toBeInTheDocument();
     expect(decisionScope.getByText("规划")).toBeInTheDocument();
-    expect(decisionScope.getByText("建议动作")).toBeInTheDocument();
+    expect(decisionScope.getByText("安全动作")).toBeInTheDocument();
     expect(decisionScope.getByText("等待")).toBeInTheDocument();
     expect(decisionScope.getByText("通过")).toBeInTheDocument();
     expect(decisionScope.getByText("中")).toBeInTheDocument();
@@ -365,7 +387,7 @@ describe("DeckScreen shell", () => {
     expect(objectsScope.getByText("Done when 进度")).toBeInTheDocument();
     expect(objectsScope.getByText("Run tests")).toBeInTheDocument();
     expect(objectsScope.getByText("当前没有记录缺口。")).toBeInTheDocument();
-    expect(objectsScope.getByText("等待结果回流")).toBeInTheDocument();
+    expect(objectsScope.getAllByText("等待结果回流").length).toBeGreaterThan(0);
     expect(
       objectsScope.getByText("当前 phase 已有一轮 executor 自动执行在跑，先等待结果回写后再继续更稳。")
     ).toBeInTheDocument();
@@ -475,7 +497,7 @@ describe("DeckScreen shell", () => {
     expect(projectsDrawer).not.toBeNull();
     const projectsScope = within(projectsDrawer as HTMLElement);
     expect(projectsScope.getByText("推荐进入路径")).toBeInTheDocument();
-    expect(projectsScope.getByText("这是一个已收口项目的学习示例")).toBeInTheDocument();
+    expect(projectsScope.getByText("这是一个 Context OS 完成态学习示例")).toBeInTheDocument();
     expect(projectsScope.getByRole("button", { name: /前门入口/i })).toBeInTheDocument();
     expect(projectsScope.getByRole("button", { name: /Demo：过期交接点/i })).toBeInTheDocument();
     expect(projectsScope.getByRole("button", { name: /自定义项目/i })).toBeInTheDocument();
@@ -859,9 +881,12 @@ describe("DeckScreen shell", () => {
     expect(decisionCard).not.toBeNull();
     const decisionScope = within(decisionCard as HTMLElement);
 
-    expect(decisionScope.getByText("Context truth 可继续使用")).toBeInTheDocument();
-    expect(decisionScope.getAllByText("最新").length).toBeGreaterThanOrEqual(2);
+    expect(decisionScope.getByText("当前 truth 可以信任")).toBeInTheDocument();
+    expect(decisionScope.getByText("可信")).toBeInTheDocument();
+    expect(decisionScope.getByText("truth 与 packet 对齐")).toBeInTheDocument();
+    expect(decisionScope.getAllByText("最新").length).toBeGreaterThanOrEqual(1);
     expect(decisionScope.getByText("规划")).toBeInTheDocument();
+    expect(decisionScope.getByText("安全动作")).toBeInTheDocument();
     expect(decisionScope.getByText("继续")).toBeInTheDocument();
   });
 

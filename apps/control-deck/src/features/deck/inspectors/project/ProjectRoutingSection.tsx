@@ -1,4 +1,4 @@
-import { Users } from "lucide-react";
+import { Route, Users } from "lucide-react";
 import type { ProviderRouting } from "@threadsmith/domain";
 import { pill, purpleMetaTagClass } from "../shared";
 import type {
@@ -6,7 +6,8 @@ import type {
   ProviderRoutingStatusBadge,
   RoleRoutingCard,
   RoutingOverviewItem,
-  SelectOption
+  SelectOption,
+  SkillRoutingVisibilityModel
 } from "./types";
 
 interface ProjectRoutingSectionProps {
@@ -18,6 +19,7 @@ interface ProjectRoutingSectionProps {
   currentSourceIsAppHome: boolean;
   providerRoutingStatusDetail: string;
   routingSupportSummaryText: string;
+  skillRoutingVisibility: SkillRoutingVisibilityModel;
   providerRoutingSaveState: "idle" | "saving" | "failed";
   routingSelectClassName: string;
   conductorSurfaceOptions: Array<SelectOption<ProviderRouting["conductorSurface"]>>;
@@ -42,6 +44,7 @@ export function ProjectRoutingSection({
   currentSourceIsAppHome,
   providerRoutingStatusDetail,
   routingSupportSummaryText,
+  skillRoutingVisibility,
   providerRoutingSaveState,
   routingSelectClassName,
   conductorSurfaceOptions,
@@ -140,6 +143,71 @@ export function ProjectRoutingSection({
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="rounded-xl border border-zinc-800/60 bg-zinc-900/40 p-4">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2 text-xs text-zinc-500">
+              <Route className="h-4 w-4 text-purple-400" />
+              <span>Skill 路由健康</span>
+            </div>
+            {pill("purple", skillRoutingVisibility.boundary)}
+          </div>
+          <div className="grid gap-3 sm:grid-cols-4">
+            <div className="rounded-lg border border-zinc-800/60 bg-zinc-950/30 p-3">
+              <div className="text-xs text-zinc-500">发现结果</div>
+              <div className="mt-2 text-sm text-zinc-100">
+                {skillRoutingVisibility.discoveredLabel}
+              </div>
+            </div>
+            <div className="rounded-lg border border-zinc-800/60 bg-zinc-950/30 p-3">
+              <div className="text-xs text-zinc-500">路由偏好</div>
+              <div className="mt-2 text-sm text-zinc-100">
+                {skillRoutingVisibility.routePreferenceLabel}
+              </div>
+            </div>
+            <div className="rounded-lg border border-zinc-800/60 bg-zinc-950/30 p-3">
+              <div className="text-xs text-zinc-500">禁用 adapter</div>
+              <div className="mt-2 text-sm text-zinc-100">
+                {skillRoutingVisibility.disabledLabel}
+              </div>
+            </div>
+            <div className="rounded-lg border border-zinc-800/60 bg-zinc-950/30 p-3">
+              <div className="text-xs text-zinc-500">fallback</div>
+              <div className="mt-2">
+                {pill(skillRoutingVisibility.fallbackTone, skillRoutingVisibility.fallbackLabel)}
+              </div>
+            </div>
+          </div>
+          <div className="mt-3 space-y-2">
+            {skillRoutingVisibility.selectedRoutes.length > 0 ? (
+              skillRoutingVisibility.selectedRoutes.map((route) => (
+                <div
+                  key={`${route.label}-${route.value}`}
+                  className="rounded-lg border border-zinc-800/60 bg-zinc-950/30 p-3"
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className={purpleMetaTagClass}>{route.label}</span>
+                    <span className="text-sm text-zinc-100">{route.value}</span>
+                  </div>
+                  <div className="mt-2 text-sm leading-6 text-zinc-300">
+                    {route.detail}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="rounded-lg border border-zinc-800/60 bg-zinc-950/30 p-3 text-sm text-zinc-400">
+                当前没有项目级 skill route preference；会使用内置 mini protocol。
+              </div>
+            )}
+          </div>
+          {skillRoutingVisibility.notes.length > 0 ? (
+            <div className="mt-3 space-y-1 text-xs leading-5 text-zinc-500">
+              {skillRoutingVisibility.notes.map((note) => (
+                <div key={note}>· {note}</div>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         <div className="rounded-xl border border-zinc-800/60 bg-zinc-900/40 p-4">

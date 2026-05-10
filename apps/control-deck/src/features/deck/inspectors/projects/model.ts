@@ -185,11 +185,11 @@ function buildStartupGuide(args: BuildProjectsInspectorViewModelArgs): StartupGu
       title:
         currentProjectSourceId === "stale-packet-demo"
           ? "这是一个交接点过期的学习示例"
-          : "这是一个已收口项目的学习示例",
+          : "这是一个 Context OS 完成态学习示例",
       detail:
         currentProjectSourceId === "stale-packet-demo"
-          ? "这个 demo 用来展示：项目 truth 已经继续前进，但最新 handoff packet 落后了。它适合理解为什么 Threadsmith 要区分 fresh / stale。"
-          : "这个 demo 用来展示：一个已完成验收和 closeout 的项目，在首页五块和四个工作台里分别会呈现什么。",
+          ? "这个 demo 用来展示：项目 truth 已经继续前进，但最新 packet 落后了。它适合理解为什么 Threadsmith 要区分 trusted / watch / recover。"
+          : "这个 demo 用来展示：一个已完成验收、closeout 和最新 packet 的项目，在首页五块和四个工作台里分别会呈现什么。",
       nextStep:
         "先用 demo 看懂页面结构；准备真实开发时，再切到自定义项目并连接你的项目根目录。",
       command:

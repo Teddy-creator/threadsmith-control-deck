@@ -3,11 +3,16 @@ import {
   createPreferences,
   projectStateSchema,
   projectSupervisionStateSchema,
-  type ProviderRouting
+  skillRoutingConfigSchema,
+  type ProviderRouting,
+  type SkillRoutingConfig
 } from "@threadsmith/domain";
 import { APP_HOME_PROJECT_ROOT } from "../src/features/deck/appHomeSource";
 
-export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
+export function createAppHomeBridgeResponse(
+  providerRouting: ProviderRouting,
+  skillRouting: SkillRoutingConfig = skillRoutingConfigSchema.parse({})
+) {
   const calibratedAt = "2026-05-09T18:39:39.000Z";
   const state = projectStateSchema.parse({
     projectBrief: {
@@ -276,6 +281,7 @@ export function createAppHomeBridgeResponse(providerRouting: ProviderRouting) {
     projectRoot: APP_HOME_PROJECT_ROOT,
     state,
     providerRouting,
+    skillRouting,
     projectSupervision,
     recentEvents: [],
     latestRun: null,

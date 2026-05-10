@@ -22,7 +22,39 @@ export function ContextRecoverySection({
       <div className="rounded-xl border border-zinc-800/60 bg-zinc-900/40 p-4">
         <div className="mb-4 flex flex-wrap items-center gap-2">
           {pill(contextRecovery.tone, contextRecovery.statusLabel)}
+          {pill(contextRecovery.confidence.tone, contextRecovery.confidence.label)}
           {pill(contextRecovery.actionTone, contextRecovery.actionLabel)}
+        </div>
+
+        <div className="mb-4 rounded-lg border border-zinc-800/70 bg-zinc-950/30 p-3">
+          <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="text-xs text-zinc-500">Truth confidence</div>
+              <div className={`mt-1 text-sm ${toneTextClass(contextRecovery.confidence.tone)}`}>
+                {contextRecovery.confidence.headline}
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-xs text-zinc-500">安全动作</div>
+              <div className={`mt-1 text-sm ${toneTextClass(contextRecovery.confidence.tone)}`}>
+                {contextRecovery.confidence.safeActionLabel}
+              </div>
+            </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div>
+              <div className="text-xs text-zinc-500">首要原因</div>
+              <div className="mt-1 text-sm leading-6 text-zinc-300">
+                {contextRecovery.confidence.primaryReasonLabel}
+              </div>
+            </div>
+            <div>
+              <div className="text-xs text-zinc-500">下一步边界</div>
+              <div className="mt-1 text-sm leading-6 text-zinc-300">
+                {contextRecovery.confidence.safeActionDetail}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3">

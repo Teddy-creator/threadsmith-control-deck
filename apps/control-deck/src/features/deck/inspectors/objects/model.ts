@@ -1,5 +1,9 @@
 import type { PhaseOwner, ProjectState } from "@threadsmith/domain";
-import type { ContextRecoverySignal, SupervisorState } from "@threadsmith/runtime";
+import type {
+  ContextRecoverySignal,
+  SupervisorState,
+  TruthConfidenceSummary
+} from "@threadsmith/runtime";
 import { formatGateReason, formatRole } from "../../../display/labels";
 import {
   buildPhaseParticipantRouteHint,
@@ -107,7 +111,10 @@ function buildContextHandling(recovery: ContextRecoverySignal) {
   };
 }
 
-function buildContextRecoveryModel(recovery: ContextRecoverySignal) {
+function buildContextRecoveryModel(
+  recovery: ContextRecoverySignal,
+  confidence: TruthConfidenceSummary
+) {
   const selectedRoleLabel = recovery.selectedRole
     ? `${formatRole(recovery.selectedRole)} packet`
     : "角色 packet";
@@ -118,6 +125,15 @@ function buildContextRecoveryModel(recovery: ContextRecoverySignal) {
     actionLabel: formatContextRecoveryActionLong(recovery.action),
     tone,
     actionTone: recovery.action === "continue" ? "green" : tone,
+    confidence: {
+      label: `Truth ${confidence.label}`,
+      headline: confidence.headline,
+      detail: confidence.detail,
+      primaryReasonLabel: confidence.primaryReason.label,
+      safeActionLabel: confidence.safeActionLabel,
+      safeActionDetail: confidence.safeActionDetail,
+      tone: confidence.tone
+    },
     detail: recovery.detail,
     reasons: recovery.reasons.map(formatGateReason),
     handling: buildContextHandling(recovery),
@@ -165,7 +181,10 @@ export function buildObjectsInspectorModel(
       : ("zinc" as const);
 
   return {
-    contextRecovery: buildContextRecoveryModel(args.supervisorState.contextRecovery),
+    contextRecovery: buildContextRecoveryModel(
+      args.supervisorState.contextRecovery,
+      args.supervisorState.truthConfidence
+    ),
     phaseCurrentSlice: compactText(
       args.supervisorState.latestPhaseRunSummary.currentSliceLabel
         ?? args.executionPreviewTaskSummary

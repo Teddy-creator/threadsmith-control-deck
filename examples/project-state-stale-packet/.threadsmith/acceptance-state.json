@@ -1,5 +1,5 @@
 {
-  "currentClaim": "Threadsmith 这份过期 demo 基线已经接受，但最新 continuation packet 落后于当前 truth",
+  "currentClaim": "Threadsmith 这份过期 demo 基线已经接受，但最新 continuation packet 落后于当前 truth，需要先同步 context 再继续",
   "doneWhenChecklist": [
     {
       "id": "workflow",
@@ -19,6 +19,11 @@
     {
       "id": "packet",
       "label": "过期 packet 状态可见且可采取行动",
+      "status": "pass"
+    },
+    {
+      "id": "recovery-guidance",
+      "label": "页面不会把旧 packet 误当成最新 truth",
       "status": "pass"
     }
   ],

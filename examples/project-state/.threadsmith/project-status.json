@@ -1,15 +1,15 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "workflow 为先的 control deck demo",
+  "currentTrack": "Context OS + Skill Orchestrator demo",
   "overallState": "stable",
-  "currentFocus": "默认 demo 已收口为一个带最新 handoff packet 的已接受切片",
-  "projectStatusSummary": "这个示例代表一个已经收口完成的 demo 基线，用户打开后应该先理解当前项目与最新 handoff 边界。",
+  "currentFocus": "默认 demo 展示一个已收口、truth 可信、packet 最新的 AI coding slice",
+  "projectStatusSummary": "这个示例代表 Threadsmith 的正常完成态：项目 truth 已被接受，context packet 最新，skill route 只是可解释路由而不是外部自动执行。",
   "latestAcceptedSlice": {
-    "title": "收口 v1 demo 基线",
+    "title": "收口 Context OS demo 基线",
     "recordedAt": "2026-04-04T08:16:00.000Z"
   },
   "nextPlannedSlice": {
-    "title": "从最新 handoff packet 继续下一条窄切片",
+    "title": "从最新 packet 继续下一条 onboarding polish slice",
     "recordedAt": null
   },
   "topRisks": [],
