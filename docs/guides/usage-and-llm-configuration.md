@@ -54,6 +54,46 @@ npm run dev --workspace @threadsmith/control-deck -- --host 127.0.0.1 --port 517
 http://127.0.0.1:5174/?appHome=1
 ```
 
+### Windows：打开 Threadsmith 前门
+
+PowerShell 用户可以用 Windows 启动器打开产品前门：
+
+```powershell
+.\Open-Threadsmith-App.ps1
+```
+
+这个入口会进入 Threadsmith 的 front door，适合第一次使用、切换项目、或确认默认打开方式。
+
+### Windows：按默认设置打开
+
+```powershell
+.\Launch-Threadsmith.ps1
+```
+
+如果你已经在产品里设置过默认项目，它会优先进入默认项目；否则会回到前门。
+
+### Windows：直达某个真实项目
+
+```powershell
+.\Launch-Threadsmith.ps1 "C:\path\to\your-project"
+```
+
+也可以用环境变量：
+
+```powershell
+$env:THREADSMITH_PROJECT_ROOT = "C:\path\to\your-project"
+.\Launch-Threadsmith.ps1
+```
+
+### Windows：换端口
+
+默认端口是 `5173`。如果端口被占用：
+
+```powershell
+$env:THREADSMITH_PORT = "5174"
+.\Launch-Threadsmith.ps1
+```
+
 ### macOS：打开 Threadsmith 前门
 
 如果你想先选择今天要看的项目：
@@ -94,7 +134,7 @@ THREADSMITH_PORT=5174 ./Launch-Threadsmith.command
 
 ## 3. 第一次连接项目
 
-1. 打开 `Open-Threadsmith-App.command`。
+1. 打开 `Open-Threadsmith-App.ps1`、`Open-Threadsmith-App.command`，或运行 `npm run start`。
 2. 进入 `项目与来源`。
 3. 选择或输入真实项目根目录。
 4. 如果项目还没有 `.threadsmith/`，点击初始化。
@@ -288,6 +328,13 @@ macOS `.command` 可以这样换端口：
 
 ```bash
 THREADSMITH_PORT=5174 ./Launch-Threadsmith.command
+```
+
+Windows PowerShell 可以这样换端口：
+
+```powershell
+$env:THREADSMITH_PORT = "5174"
+.\Launch-Threadsmith.ps1
 ```
 
 跨平台 npm 启动可以这样换端口：

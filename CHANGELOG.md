@@ -2,7 +2,21 @@
 
 All notable changes to Threadsmith will be documented in this file.
 
-## Unreleased
+## v0.2.1 - 2026-05-10
+
+### Added
+
+- Windows PowerShell launchers: `Launch-Threadsmith.ps1` and `Open-Threadsmith-App.ps1`.
+- Cross-platform launcher verification scripts for macOS `.command` and Windows `.ps1` entrypoints.
+- GitHub Actions Windows launcher job on `windows-latest`.
+- Windows startup instructions in README, usage guide, release checklist, and GitHub Release copy.
+
+### Fixed
+
+- `npm run verify:launchers` now works as a cross-platform launcher check instead of assuming `zsh` is always available.
+- Windows launcher now prefers `npm.cmd` to avoid common PowerShell execution-policy issues around `npm.ps1`.
+
+## v0.2.0 - 2026-05-09
 
 ### Added
 

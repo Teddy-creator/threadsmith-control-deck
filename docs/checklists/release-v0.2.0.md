@@ -15,12 +15,13 @@ Use this checklist before tagging or publishing `v0.2.0`.
 - [ ] `npm run smoke:self-host`
 - [ ] `git diff --check`
 - [ ] `jq empty .threadsmith/*.json .threadsmith/context/*.json`
-- [ ] GitHub Actions CI is green on the release PR
+- [ ] GitHub Actions CI is green on the release PR, including the Windows launcher job
 
 ## Manual Product Checks
 
 - [ ] Fresh clone the public repository and confirm `npm ci`, `npm run test`, `npm run build`, and `npm run verify:launchers` pass
 - [ ] Run `npm run start` and confirm the startup message points to `http://127.0.0.1:5173/?appHome=1`
+- [ ] On Windows, run `.\Open-Threadsmith-App.ps1` or `.\Launch-Threadsmith.ps1` and confirm the front door opens
 - [ ] Open the front door and connect a real project
 - [ ] Confirm the homepage can show current project truth, current phase, acceptance, latest run, and context status
 - [ ] Remove or stale `.threadsmith/context/current-packet.json` in a disposable project and confirm `sync-context` can regenerate it

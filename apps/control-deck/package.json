@@ -1,7 +1,7 @@
 {
   "name": "@threadsmith/control-deck",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React/Vite control deck UI for Threadsmith.",
   "license": "MIT",
   "repository": {
@@ -19,8 +19,8 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@threadsmith/domain": "0.2.0",
-    "@threadsmith/runtime": "0.2.0",
+    "@threadsmith/domain": "0.2.1",
+    "@threadsmith/runtime": "0.2.1",
     "lucide-react": "^1.7.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
