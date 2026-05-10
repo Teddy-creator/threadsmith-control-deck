@@ -1,7 +1,7 @@
 {
   "name": "@threadsmith/runtime",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Runtime selectors and supervision derivations for Threadsmith.",
   "license": "MIT",
   "repository": {
@@ -18,7 +18,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@threadsmith/domain": "0.2.1"
+    "@threadsmith/domain": "0.3.0"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "v0.2.0 release hardening 已本地验收：公开文档、release notes、checklist、package versions、启动文案、app-home 前门和验证面已对齐 Context OS 能力。",
+  "summary": "v0.3.0 release-readiness review passed locally; next work is curated commit / PR boundary, not feature expansion.",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,38 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "已确认并收口 release hardening 范围：只做公开发布 surface，不新增产品功能或 multi-provider。",
-      "requiresUserDecision": false,
-      "blockerSummary": null,
-      "latestEvidenceLabel": "phase contract 已刷新",
-      "updatedAt": "2026-05-09T18:39:39Z"
-    },
-    {
-      "id": "builder-logical",
-      "role": "executor",
-      "threadLabel": "Builder",
-      "provider": "codex",
-      "presence": "logical",
-      "status": "done",
-      "taskSummary": "已更新 README、usage guide、v0.2.0 release checklist、release notes、release copy、package versions、启动文案和 app-home 前门。",
-      "requiresUserDecision": false,
-      "blockerSummary": null,
-      "latestEvidenceLabel": "release surface 已更新",
-      "updatedAt": "2026-05-09T18:39:39Z"
-    },
-    {
-      "id": "critic-logical",
-      "role": "reviewer",
-      "threadLabel": "Critic",
-      "provider": "codex",
-      "presence": "logical",
-      "status": "done",
-      "status": "done",
-      "taskSummary": "已复核 v0.2.0 文案保持 web-first / Codex-only 边界，multi-provider 与桌面壳仍明确 deferred。",
+      "taskSummary": "Scoped this phase to release-readiness review and PR boundary planning.",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T18:39:39Z"
+      "updatedAt": "2026-05-10T13:53:31.000Z"
     },
     {
       "id": "verifier-logical",
@@ -50,12 +23,24 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "status": "done",
-      "taskSummary": "已通过 test、build、e2e、launcher、self-host smoke、diff check 和 JSON 校验。",
+      "taskSummary": "All local release-readiness checks passed.",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "release verification 已通过",
-      "updatedAt": "2026-05-09T18:39:39Z"
+      "latestEvidenceLabel": "release-readiness matrix passed",
+      "updatedAt": "2026-05-10T13:53:31.000Z"
+    },
+    {
+      "id": "critic-logical",
+      "role": "reviewer",
+      "threadLabel": "Critic",
+      "provider": "codex",
+      "presence": "logical",
+      "status": "done",
+      "taskSummary": "Docs and release checklist preserve the stable-vs-RC and no-multi-provider boundaries.",
+      "requiresUserDecision": false,
+      "blockerSummary": null,
+      "latestEvidenceLabel": "release docs reviewed",
+      "updatedAt": "2026-05-10T13:53:31.000Z"
     },
     {
       "id": "closeout-logical",
@@ -64,27 +49,25 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "status": "done",
-      "taskSummary": "已写回 accepted truth；下一步提交 PR，CI 绿后进入 v0.2.0 GitHub Release publish。",
+      "taskSummary": "Truth, checklist, evidence, and closeout now record the local ready-for-PR-boundary decision.",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "acceptance 已更新",
-      "updatedAt": "2026-05-09T18:39:39Z"
+      "latestEvidenceLabel": "closeout recorded",
+      "updatedAt": "2026-05-10T13:53:31.000Z"
     },
     {
-      "id": "hygiene-logical",
+      "id": "hygiene",
       "role": "hygiene",
       "threadLabel": "Hygiene",
-      "provider": "codex",
+      "provider": null,
       "presence": "logical",
       "status": "done",
-      "status": "done",
-      "taskSummary": "守住边界：本 slice 不发布 GitHub Release 本身，不做桌面壳，不做 multi-provider。",
+      "taskSummary": "Publishing, tagging, repository visibility, and global skill mutation remain out of scope.",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": null,
-      "updatedAt": "2026-05-09T18:39:39Z"
+      "updatedAt": "2026-05-10T13:53:31.000Z"
     }
   ],
-  "updatedAt": "2026-05-09T18:39:39Z"
+  "updatedAt": "2026-05-10T13:53:31.000Z"
 }

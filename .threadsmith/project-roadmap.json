@@ -1,84 +1,42 @@
 {
-  "versionLabel": "Threadsmith v0.2.0 Context OS",
-  "finalGoal": "让 Threadsmith 的 Codex-only web control deck 具备可发布的 Context OS 能力：结构化 truth、context packets、证据摘要、恢复建议和可解释的监督界面。",
+  "versionLabel": "Threadsmith v0.3.0 Usability Hardening",
+  "finalGoal": "Make Threadsmith usable as a practical Context OS and skill orchestrator for all-Codex workflows before considering multi-provider automation.",
   "milestones": [
     {
-      "id": "accepted-state-continuation-handoff-refresh-v1",
-      "label": "Polish 4",
-      "title": "Accepted-state continuation / handoff refresh v1",
-      "summary": "让 closeout 完成后自动写出 fresh handoff packet，accepted slice 不再停在缺少继续点或 stale continuation。",
+      "id": "v0-3-0-skill-orchestrator-foundation",
+      "label": "基础",
+      "title": "Skill Orchestrator foundation",
+      "summary": "Mini protocols, skill discovery, route config, and self-hosting-safe skill development are in place.",
       "state": "done"
     },
     {
-      "id": "phase-reset-next-slice-drafting-v1",
-      "label": "Polish 5",
-      "title": "Phase reset + next-slice drafting v1",
-      "summary": "把刚 accepted 的 continuation 基线正式重置为下一轮 current phase，并写回 project status / roadmap / supervision truth。",
+      "id": "v0-3-0-onboarding-demo-polish",
+      "label": "上手",
+      "title": "First-run onboarding / copy / demo polish",
+      "summary": "First-run and demo surfaces are accepted and verified.",
       "state": "done"
     },
     {
-      "id": "command-bridge-control-actions-polish-v1",
-      "label": "Polish 6",
-      "title": "Command bridge / control actions polish v1",
-      "summary": "继续减少 operator friction，把缺失的 control-action bridge surface 补成 formal entry。",
+      "id": "v0-3-0-phase-autopilot-continuous-gate-runner",
+      "label": "连续推进",
+      "title": "Phase autopilot / continuous gate runner v1",
+      "summary": "Reduce manual gate-by-gate prompts while preserving safe role gates.",
       "state": "done"
     },
     {
-      "id": "accepted-handoff-next-slice-guidance-v1",
-      "label": "Polish 7",
-      "title": "Accepted handoff next-slice guidance v1",
-      "summary": "把 accepted + fresh handoff 的下一步 guidance 收紧成 conductor-ready 的下一刀 drafting / phase reset 准备命令。",
-      "state": "done"
-    },
-    {
-      "id": "phase-reset-draft-artifact-v1",
-      "label": "Polish 8",
-      "title": "Phase reset draft artifact v1",
-      "summary": "把 accepted handoff 落成 committed 的 phase reset draft artifact，作为下一轮 formal phase reset 的正式起点。",
-      "state": "done"
-    },
-    {
-      "id": "autopilot-operator-polish-recovery-clarity-v1",
-      "label": "Polish 9",
-      "title": "Autopilot operator polish / recovery clarity v1",
-      "summary": "让 paused、bootstrap blocked、waiting for result 三类状态清楚说出是否需要 operator 介入以及如何恢复。",
-      "state": "done"
-    },
-    {
-      "id": "autopilot-operator-polish-live-truth-refresh-v2",
-      "label": "Polish 10",
-      "title": "Autopilot operator polish / live truth refresh v2",
-      "summary": "用 formal phase reset + repo-root self-host dogfood 刷新 Threadsmith 自己的 current slice、latest run 与 latest bridge 诚实表达。",
-      "state": "done"
-    },
-    {
-      "id": "codex-only-release-hardening-v1",
-      "label": "Release 1",
-      "title": "Codex-only release hardening v1",
-      "summary": "把前门、launcher、文档、真实项目 dogfood 与 release verification 收口成稳定的 Codex-only 交付面。",
-      "state": "done"
-    },
-    {
-      "id": "context-packet-regeneration-engine",
-      "label": "Context 9",
-      "title": "Context packet regeneration engine v1",
-      "summary": "让 sync-context 成为真实动作，可以从 committed truth 和 context artifacts 重新生成 current-packet.json。",
-      "state": "done"
-    },
-    {
-      "id": "v0-2-0-release-hardening",
-      "label": "Release 2",
-      "title": "v0.2.0 release hardening",
-      "summary": "对齐公开 README、release notes、checklist 和验证命令，让 v0.2.0 Context OS 可以进入发布准备。",
-      "state": "done"
-    },
-    {
-      "id": "v0-2-0-github-release-publish",
-      "label": "Release 3",
-      "title": "v0.2.0 GitHub Release publish",
-      "summary": "在 hardening 完成后创建 tag、GitHub Release 和公开发布说明。",
+      "id": "v0-3-0-release-readiness",
+      "label": "发布准备",
+      "title": "v0.3.0 release readiness review",
+      "summary": "Local release-readiness gates passed; v0.3.0 is ready for curated PR boundary review, not yet published.",
       "state": "current"
+    },
+    {
+      "id": "v0-3-0-curated-pr-boundary",
+      "label": "PR 边界",
+      "title": "Curated commit / PR boundary",
+      "summary": "Group the broad v0.3.0 worktree into reviewable commit or PR boundaries before any tag/release decision.",
+      "state": "later"
     }
   ],
-  "updatedAt": "2026-05-09T18:39:39Z"
+  "updatedAt": "2026-05-10T13:53:31.000Z"
 }

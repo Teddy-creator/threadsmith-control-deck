@@ -1,31 +1,29 @@
 {
-  "projectGoal": "交付 Threadsmith Codex-only v0.2.0：把 public web control deck 升级为 token-aware 的 Context OS，让 AI coding 工作从长聊天记忆转向结构化 context packets。",
-  "currentVersionScope": "当前主线聚焦 v0.2.0 Context OS：先实现 Context Packet v1，再逐步推进 repo map、evidence summary、role-specific packets、skill v2、recovery/hygiene 与 context surface。",
+  "projectGoal": "交付更完整的 Threadsmith v0.3.0：在 Context OS 与 Harness Skill Orchestrator 基础上，把本地 Codex skills 自动发现、健康检查、项目级路由配置、fallback 解释和 all-Codex 可用性打磨成真实可用闭环。",
+  "currentVersionScope": "v0.3.0 usability hardening：本地 release-readiness 已通过，暂不公开发布；下一步是整理 broad dirty worktree 的 curated commit / PR boundary，然后再由用户决定是否 tag / publish。",
   "nonGoals": [
-    "把 deck 变成主聊天面",
-    "在当前主线里加入 multi-provider automatic execution",
-    "现在就进入 native desktop shell",
-    "在 v0.2.0 里实现 multi-provider automatic execution",
-    "引入 embedding / RAG / hosted backend",
-    "替代 Codex Desktop 或 Codex CLI 作为主聊天入口"
+    "现在发布 v0.3.0 GitHub Release",
+    "立即实现 multi-provider 自动执行",
+    "真实执行任意外部 skill 或 CLI 插件",
+    "修改或安装全局 /Users/cloud/.codex/skills/threadsmith/SKILL.md",
+    "native desktop app、hosted backend、embeddings 或 RAG",
+    "把 Threadsmith 网页变成主聊天入口"
   ],
   "keyConstraints": [
-    "继续保持 deck 是 mission control，而不是 primary command surface",
-    "当前自动执行与 release hardening 仍以 Codex 为唯一 provider 基座",
-    "上下文能力必须来自 committed .threadsmith truth 和本地 repo signals，而不是旧聊天记忆",
-    "raw logs 只作为 artifact path 引用，不直接塞进 context packet",
-    "v0.2.0 强调 context packet / token-aware workflow，不扩大到 multi-provider 或桌面壳"
+    "Threadsmith 应该是 workflow kernel / skill orchestrator，不是吞掉所有 skills 的超级大 prompt",
+    "External Skill Adapter v1 先做 discovery、health、routing config 与 fallback，不做真实外部执行",
+    "开发 Threadsmith 自身时，不允许污染正在使用的全局 installed $threadsmith skill",
+    "每一刀保持 phase-bound，并用 evidence-backed verification 收尾"
   ],
-  "successFrame": "使用者可以从 .threadsmith truth 生成简洁的 context packet，并理解不同角色应该读取不同上下文；中断、验收和恢复不再依赖长聊天回放。",
+  "successFrame": "新用户能在本地启动 Threadsmith、绑定项目、自动发现可用 skills、理解每个角色的 route/fallback，并在失败或中断时看到明确恢复动作。",
   "priorityOrder": [
-    "保持 .threadsmith 只记录 durable truth，不记录普通聊天流水",
-    "先定义 Context Packet v1，作为 skill v2 和 recovery/hygiene 的地基",
-    "让 context packet 从 Project Brief / Current Phase / Acceptance State 派生",
-    "再引入 repo map、evidence summary 与 role-specific packets",
-    "最后把 context health 清楚展示在 control deck"
+    "Curate v0.3.0 commit / PR boundary",
+    "Run CI / review feedback after PR is opened",
+    "Only then decide whether to tag and publish v0.3.0",
+    "Keep multi-provider automation out of this release line"
   ],
   "openStrategicQuestions": [
-    "Context Budget Ledger 是否进入 v0.2.0 必选范围，还是作为可选 polish。",
-    "Role-specific packets 是否先以 markdown artifacts 形式落地，再进入 UI。"
+    "项目级 skill route 配置应该先用 JSON truth 文件，还是先只作为 runtime discovery summary？",
+    "External skill invocation 未来应由 Codex skill prompt composition 驱动，还是由 CLI/adapter runner 驱动？"
   ]
 }

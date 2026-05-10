@@ -22,7 +22,7 @@ Threadsmith is a local-first web control deck for AI coding projects. It sits be
 
 It does not replace the coding agent. It gives the work a dashboard and a memory boundary.
 
-The current public line is intentionally scoped:
+The latest stable public line is intentionally scoped:
 
 - web app, not native desktop yet
 - Codex-only automation lane
@@ -30,6 +30,8 @@ The current public line is intentionally scoped:
 - project front door
 - phase / evidence / acceptance workbenches
 - Context Packet / Repo Map / Evidence Summary for long-running AI coding context
+
+The current development / release-candidate line adds the Harness Skill Orchestrator layer: built-in mini protocols, protocol-guided role loops, stop/recovery hardening, context routing budget tests, and self-hosting safety. It still does not promise fully automated multi-provider execution.
 
 Repo:
 
@@ -53,7 +55,7 @@ Agent 说做完了，但到底：
 
 所以 Threadsmith 不做新的聊天窗口，也不替代 Codex / Claude / CLI。它只是放在旁边，当一个本地 web control deck，把项目的 truth、阶段、证据、验收和下一步放在一个地方。
 
-现在的 v0.2.0 Context OS 仍然是 Codex-only、web-first 的版本：
+最新稳定线 v0.2.0 Context OS 仍然是 Codex-only、web-first 的版本：
 
 - 可以连接真实项目目录
 - 可以初始化 `.threadsmith`
@@ -61,6 +63,8 @@ Agent 说做完了，但到底：
 - 可以区分“聊天里说了”和“项目 truth 里真的记录了”
 - 可以用 Context Packet、Repo Map、Evidence Summary 把长线程上下文压成结构化 packet
 - 也补清楚了 sync-context、刷新状态和首次连接真实项目的路径
+
+当前开发 / release-candidate 线是 v0.3.0 Harness Skill Orchestrator：在 Context OS 上继续加入 built-in mini protocols、协议化角色循环、停机/恢复规则、context routing budget tests 和 self-hosting safety，但仍不把 multi-provider 全自动执行当成当前承诺。
 
 GitHub:
 

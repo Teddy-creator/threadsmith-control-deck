@@ -1,23 +1,23 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "v0.2.0 Context OS",
+  "currentTrack": "v0.3.0 usability hardening",
   "overallState": "stable",
-  "currentFocus": "v0.2.0 release hardening 已本地验收：README、release checklist、release notes、package versions、启动文案、app-home 前门和公开验证面已经对齐 Context OS 能力。",
-  "projectStatusSummary": "Threadsmith v0.2.0 Context OS 已完成 Context Packet v1、Repo Map v1、Evidence Summary v1、Context Budget Ledger v1、Role-specific Packets v1、Threadsmith.skill v2、Truth sync / recovery hygiene triggers、Control Deck Context Surface v1、Context sync action surface、Context packet regeneration engine v1 和 v0.2.0 release hardening polish。下一步进入 v0.2.0 GitHub Release publish。",
+  "currentFocus": "v0.3.0 release-readiness review passed locally; next focus is curated commit / PR packaging, not additional feature scope.",
+  "projectStatusSummary": "Threadsmith v0.3.0 has local release-readiness evidence across tests, build, launchers, self-host smoke, autopilot smoke, deck-route smoke, JSON, and diff hygiene. It is ready for curated PR boundary review, while GitHub release/tag actions remain explicitly gated.",
   "latestAcceptedSlice": {
-    "title": "v0.2.0 release hardening",
-    "recordedAt": "2026-05-09T18:39:39Z"
+    "title": "v0.3.0 release-readiness review / curated PR boundary",
+    "recordedAt": "2026-05-10T13:53:31.000Z"
   },
   "nextPlannedSlice": {
-    "title": "v0.2.0 GitHub Release publish",
+    "title": "curate v0.3.0 commit / PR boundary",
     "recordedAt": null
   },
-  "currentMilestoneId": "v0-2-0-release-hardening",
-  "nextMilestoneId": "v0-2-0-github-release-publish",
+  "currentMilestoneId": "v0-3-0-release-readiness",
+  "nextMilestoneId": "v0-3-0-curated-pr-boundary",
   "topRisks": [
-    "Context Packet 如果太胖，会变成另一个长 prompt，而不是节省上下文。",
-    "如果 packet 与 acceptance / git diff 不对齐，会误导后续角色判断。",
-    "v0.2.0 不应扩大到 multi-provider、桌面壳或 embedding/RAG。"
+    "The worktree contains many accumulated v0.3.0 files, so commit and PR boundaries must be curated carefully.",
+    "GitHub CI has not been re-run in this turn; local verification is green.",
+    "v0.3.0 still does not promise multi-provider automation or real external skill invocation."
   ],
-  "updatedAt": "2026-05-09T18:39:39Z"
+  "updatedAt": "2026-05-10T13:53:31.000Z"
 }

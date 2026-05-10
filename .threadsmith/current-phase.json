@@ -1,39 +1,38 @@
 {
-  "phaseName": "v0.2.0 release hardening",
-  "phaseGoal": "把 Threadsmith v0.2.0 Context OS 的公开 web release surface 收口：版本表述、README、release notes、checklist 和验证命令都要对齐当前已完成的 Context OS 能力。",
-  "deliverable": "v0.2.0-ready public release docs, checklist, and verification surface",
+  "phaseName": "v0.3.0 release-readiness review / curated PR boundary",
+  "phaseGoal": "Decide whether the accumulated v0.3.0 work is locally release-ready and safe to move into a curated commit / PR boundary without publishing or tagging.",
+  "deliverable": "A checked release-readiness decision with fresh verification evidence, an updated v0.3.0 checklist, and a clear next step for curated PR packaging.",
   "inScope": [
-    "对齐 README 中 v0.2.0 / v0.1.1 的版本表述",
-    "新增或更新 v0.2.0 release checklist",
-    "新增或更新 v0.2.0 release notes draft",
-    "检查公开文档中明显过期的 v0.1.1-only 指向",
-    "运行 release-level 本地验证",
-    "更新 .threadsmith truth 到当前 release-hardening phase"
+    "Review v0.3.0 release docs, README, CHANGELOG, usage guide, and release checklist for misleading stable-vs-RC claims",
+    "Run the v0.3.0 release-readiness verification matrix",
+    "Confirm committed truth and runtime artifacts remain separated",
+    "Record whether the dirty v0.3.0 worktree is ready for curated commit / PR boundary review"
   ],
   "outOfScope": [
-    "multi-provider automatic execution",
-    "native desktop shell",
-    "large UI redesign",
-    "embedding/RAG or model API calls",
-    "改变 conductor/chat boundary",
-    "新增产品功能",
-    "发布 GitHub Release 本身"
+    "Publishing or tagging v0.3.0",
+    "Changing repository visibility",
+    "Installing or mutating /Users/cloud/.codex/skills/threadsmith/SKILL.md",
+    "Implementing multi-provider automation",
+    "Adding real external skill invocation",
+    "Native desktop app, hosted backend, embeddings, or RAG",
+    "Large UI redesign or new product scope"
   ],
-  "stopCondition": "公开 README / release docs / checklist 与 v0.2.0 Context OS 当前能力一致，并且 release verification 通过。",
+  "stopCondition": "Stop after release-readiness is backed by fresh local evidence and written into .threadsmith truth; do not publish/tag without explicit user approval.",
   "verificationForThisPhase": [
-    "npm run test",
-    "npm run build",
-    "npm run test:e2e",
+    "npm run test --workspaces --if-present",
+    "npm run build --workspaces --if-present",
     "npm run verify:launchers",
     "npm run smoke:self-host",
-    "git diff --check",
-    "jq empty .threadsmith/*.json .threadsmith/context/*.json"
+    "npm run smoke:autopilot",
+    "npm run smoke:deck-route",
+    "jq empty .threadsmith/*.json .threadsmith/context/*.json .threadsmith/context/role-packets/*.json",
+    "git diff --check"
   ],
   "activeOwners": [
     "planner",
-    "executor",
-    "reviewer",
     "verifier",
+    "reviewer",
+    "closeout",
     "hygiene"
   ],
   "blockedBy": []

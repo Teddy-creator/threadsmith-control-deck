@@ -3,88 +3,70 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
 ![Node.js >= 22](https://img.shields.io/badge/node-%3E%3D22-3c873a.svg)
 ![npm >= 11](https://img.shields.io/badge/npm-%3E%3D11-cb3837.svg)
-![v0.2.1 Windows Launcher Parity](https://img.shields.io/badge/line-v0.2.1%20Windows%20Launcher%20Parity-f59e0b.svg)
+![stable v0.2.1 Windows Launcher Parity](https://img.shields.io/badge/stable-v0.2.1%20Windows%20Launcher%20Parity-f59e0b.svg)
+![dev v0.3.0 Skill Orchestrator](https://img.shields.io/badge/dev-v0.3.0%20Skill%20Orchestrator-7c3aed.svg)
 ![Web control deck](https://img.shields.io/badge/surface-web%20control%20deck-2563eb.svg)
 
-> A control deck for AI coding projects.
-> Keep project truth, workflow state, evidence, and acceptance in one place.
+> A local control deck for AI coding projects.
+> Keep project truth, workflow state, evidence, and acceptance out of the long chat fog.
 
-Threadsmith 是一个面向 AI coding workflow 的 **web control deck**。
+Threadsmith 是一个面向 AI coding workflow 的 **local web control deck**。
 
-它不替代你的主聊天面，也不假装自己是新的 AI IDE。当前公开主线里，它主要和 Codex Desktop、Codex CLI 这类 conductor surface 并排工作，专门把项目真相、推进状态、执行结果、证据和验收收口到一个独立界面里，让你在长任务、多轮推进、多角色协作时，始终知道项目现在到底走到了哪里。
+它不替代 Codex Desktop、Codex CLI、Claude Code 或你的主聊天窗口。它站在旁边，读取项目里的 `.threadsmith` truth，把目标、阶段、执行、证据、路由和验收状态整理成一个可看的控制台。
 
-如果你已经在用 vibe coding / agentic coding，Threadsmith 主要帮你回答这几个问题：
+如果你已经在用 vibe coding / agentic coding，Threadsmith 主要回答四个问题：
 
-- 当前项目真正的目标和阶段目标是什么
-- 为什么下一步是现在这一步
-- 最近一次执行到底产出了什么
-- 验收究竟卡在哪一关
-- 哪些内容已经写回 truth，哪些还只是线程里的话
+- 当前项目的真实目标、阶段和验收标准是什么？
+- 下一步为什么是这一步，应该由哪个角色推进？
+- 最近一次执行、证据、失败或 closeout 到底写回了吗？
+- 哪些结论已经进入 `.threadsmith` truth，哪些还只是聊天里的临时想法？
 
-它尤其适合这些场景：
+## How It Fits Your Coding Loop
 
-- 主聊天线程越来越长，项目状态越来越难讲清
-- 多线程 / 多角色推进后，不知道谁在做什么
-- agent 说“做完了”，但你不确定结果有没有真正落到项目 truth
-- 到验收时才发现一堆当时没暴露出来的问题
+```mermaid
+flowchart LR
+  A["Conductor chat<br/>Codex / CLI / Claude"] --> B["Your project"]
+  B --> C[".threadsmith truth"]
+  C --> D["Threadsmith Control Deck"]
+  D --> A
+```
 
-当前主线：`v0.2.1 Windows Launcher Parity`，基于 `v0.2.0 Context OS` 增补 Windows PowerShell 启动支持。最新已发布稳定标签仍以 GitHub Releases 为准。
+You still talk to your conductor. Threadsmith makes the durable project state visible.
+
+当前稳定线：`v0.2.1 Windows Launcher Parity`，基于 `v0.2.0 Context OS` 增补 Windows PowerShell 启动支持。最新已发布稳定标签仍以 GitHub Releases 为准。
+
+当前开发线：`v0.3.0 Harness Skill Orchestrator`，已经通过本地 release-readiness review，但尚未作为推荐稳定版发布。
 
 ## Features
 
-- **Project front door**: choose a real project before diving into the deck.
-- **Truth-first workflow**: read and write `.threadsmith` project truth instead of relying on a long chat thread.
-- **Single-screen supervision**: see command, roadmap, judgement, collaboration, and acceptance without hunting through logs.
-- **Evidence and acceptance workbenches**: inspect what was actually run, verified, accepted, or still blocked.
-- **Context OS lane**: use Context Packet, Repo Map, Evidence Summary, Context Budget Ledger, and Role-specific Packets to keep long AI coding work compact.
-- **Threadsmith skill protocol**: `$threadsmith` can sync, drive, or recover from committed `.threadsmith` truth instead of replaying a long chat thread.
-- **Codex-only release lane**: stable default routing for Codex Desktop / Codex CLI based workflows, with provider-routing truth prepared for later expansion.
-- **Local-first web app**: run it against your own project folder; no hosted backend is required for the current release.
-
-- Changelog: [CHANGELOG.md](CHANGELOG.md)
-- v0.2.1 release notes draft: [docs/releases/threadsmith-v0.2.1.md](docs/releases/threadsmith-v0.2.1.md)
-- v0.2.1 release checklist: [docs/checklists/release-v0.2.1.md](docs/checklists/release-v0.2.1.md)
-- v0.2.1 release copy: [docs/marketing/github-release-v0.2.1.md](docs/marketing/github-release-v0.2.1.md)
-- v0.2.0 Context OS baseline: [docs/releases/threadsmith-v0.2.0.md](docs/releases/threadsmith-v0.2.0.md)
-- Social post draft: [docs/marketing/social-post-draft.md](docs/marketing/social-post-draft.md)
-- Public sync strategy: [docs/releases/public-sync-strategy.md](docs/releases/public-sync-strategy.md)
-- Usage and LLM configuration: [docs/guides/usage-and-llm-configuration.md](docs/guides/usage-and-llm-configuration.md)
-- Truth boundary: [docs/architecture/threadsmith-truth-boundary.md](docs/architecture/threadsmith-truth-boundary.md)
+- **Project front door**: choose a real project before entering the deck.
+- **Truth-first workflow**: keep Project Brief, Current Phase, Acceptance State, roadmap, runs, events, and closeout in `.threadsmith`.
+- **Single-screen supervision**: see command, roadmap, judgement, collaboration, and acceptance without digging through logs.
+- **Context OS**: use Context Packet, Repo Map, Evidence Summary, Context Budget Ledger, and Role-specific Packets to reduce long-thread context drag.
+- **Skill Orchestrator foundation**: discover local Codex skills, explain route health, and fall back to built-in mini protocols when external skills are unavailable.
+- **Threadsmith skill protocol**: `$threadsmith` can sync, drive, or recover from committed truth instead of replaying a huge chat history.
+- **Windows and macOS launchers**: open the local web deck from PowerShell or shell launchers.
+- **Local-first web app**: run it against your own project folder; no hosted backend is required.
 
 ![Threadsmith control deck screenshot](docs/assets/threadsmith-open-source-surface.png)
 
-## Share / Demo
+## Current Status
 
-- Screenshot: [docs/assets/threadsmith-open-source-surface.png](docs/assets/threadsmith-open-source-surface.png)
-- GitHub Release copy: [docs/marketing/github-release-v0.2.0.md](docs/marketing/github-release-v0.2.0.md)
-- Social post draft: [docs/marketing/social-post-draft.md](docs/marketing/social-post-draft.md)
+Latest stable release: `v0.2.1 Windows Launcher Parity`.
 
-## 它解决什么问题
+Active development line: `v0.3.0 Harness Skill Orchestrator`, locally release-ready but not yet published as the recommended public release.
 
-当 AI coding 进入长任务、多轮推进、多个角色协作时，主聊天线程往往会越来越难回答这些问题：
+Important boundary: v0.3.0 can discover and route local Codex skills as metadata, but it does **not** automatically execute arbitrary external skills or replace your conductor chat. The stable automatic execution path is still Codex-first.
 
-- 当前真正的项目目标和阶段目标是什么
-- 下一步为什么是现在这一步
-- 最近一次执行到底产出了什么
-- 验收卡在哪一关
-- 哪些结论已经写回 truth，哪些还只是线程里的话
+Useful docs:
 
-Threadsmith 把这些信息拆成一个独立的 control deck，让主聊天面继续负责“对话与指挥”，而让监督界面负责“看清真相与流程”。
-
-## 当前 v0.2.0 Context OS 表面
-
-目前仓库已经收口到一条可真实运行的 web app 路径，包含：
-
-- Threadsmith 前门：先决定今天进入哪个真实项目
-- 自定义项目接入：连接真实项目目录，必要时初始化最小 `.threadsmith`
-- 首页监督界面：当前总命令、项目地图、推进判断、协作现场、验收雷达
-- 侧边工作台：项目、阶段、证据、验收
-- install surface：安装 / 固定 / 日常打开方式说明
-- first-run onboarding：首次使用、初始化、设为默认进入、修复恢复路径
-- `Codex-only` 默认路由：`planner / executor / reviewer / verifier / closeout` 当前默认都由 Codex 承担，主 conductor surface 默认是 `Codex Desktop`
-- Context Packet / Repo Map / Evidence Summary / Context Budget Ledger：把长线程状态压成可复用的结构化 context
-- Role-specific Packets：为 planner、executor、reviewer、verifier、closeout、hygiene 提供更窄的上下文包
-- Context recovery：检测 missing/stale/invalid packet，并可通过 `sync-context` 重新生成 current packet
+- Usage and LLM configuration: [docs/guides/usage-and-llm-configuration.md](docs/guides/usage-and-llm-configuration.md)
+- Truth boundary: [docs/architecture/threadsmith-truth-boundary.md](docs/architecture/threadsmith-truth-boundary.md)
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
+- v0.2.1 release notes: [docs/releases/threadsmith-v0.2.1.md](docs/releases/threadsmith-v0.2.1.md)
+- v0.2.1 release checklist: [docs/checklists/release-v0.2.1.md](docs/checklists/release-v0.2.1.md)
+- v0.2.0 release notes: [docs/releases/threadsmith-v0.2.0.md](docs/releases/threadsmith-v0.2.0.md)
+- v0.3.0 internal notes: [docs/releases/threadsmith-v0.3.0.md](docs/releases/threadsmith-v0.3.0.md)
 
 ## 快速开始
 
@@ -283,12 +265,12 @@ flowchart LR
 
 ## 当前默认路由
 
-当前 `v0.2.0` 公开主线仍然是 `Codex-only`：
+当前稳定线和 v0.3.0 内部开发线都仍然是 `Codex-only`：
 
 - `planner / executor / reviewer / verifier / closeout` 的默认 provider 都是 `codex`
 - 主 conductor surface 的默认值是 `codex-desktop`
 - 当前自动执行桥真正稳定支持的是 `Codex` 路径，尤其是 executor run
-- 项目工作台里的 provider routing 主要用于把项目当前 truth 讲清楚，并为后续扩展预留；它不代表 `multi-provider` 已经是 `v0.2.0` 的交付承诺
+- 项目工作台里的 provider routing 主要用于把项目当前 truth 讲清楚，并为后续扩展预留；它不代表 `multi-provider` 已经是当前交付承诺
 
 ## Codex / `$threadsmith` 接入边界
 
@@ -368,7 +350,7 @@ npm run smoke:self-host -- .
 
 Threadsmith 当前优先是一个可长期使用、可安装、可公开发布的 web control deck。
 
-当前 v0.2.0 明确不追求：
+当前稳定线和 v0.3.0 内部开发线明确不追求：
 
 - 原生桌面壳
 - 完整替代主聊天入口
