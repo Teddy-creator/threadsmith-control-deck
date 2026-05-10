@@ -22,13 +22,14 @@ Threadsmith is a local-first web control deck for AI coding projects. It sits be
 
 It does not replace the coding agent. It gives the work a dashboard and a memory boundary.
 
-The current public version is intentionally simple:
+The current public line is intentionally scoped:
 
 - web app, not native desktop yet
 - Codex-only automation lane
 - local `.threadsmith` truth files
 - project front door
 - phase / evidence / acceptance workbenches
+- Context Packet / Repo Map / Evidence Summary for long-running AI coding context
 
 Repo:
 
@@ -52,13 +53,14 @@ Agent 说做完了，但到底：
 
 所以 Threadsmith 不做新的聊天窗口，也不替代 Codex / Claude / CLI。它只是放在旁边，当一个本地 web control deck，把项目的 truth、阶段、证据、验收和下一步放在一个地方。
 
-现在的 v0.1.1 是 Codex-only、web-first 的版本：
+现在的 v0.2.0 Context OS 仍然是 Codex-only、web-first 的版本：
 
 - 可以连接真实项目目录
 - 可以初始化 `.threadsmith`
 - 可以查看当前阶段、项目地图、协作现场和验收雷达
 - 可以区分“聊天里说了”和“项目 truth 里真的记录了”
-- 也补清楚了 demo mode、刷新状态和首次连接真实项目的路径
+- 可以用 Context Packet、Repo Map、Evidence Summary 把长线程上下文压成结构化 packet
+- 也补清楚了 sync-context、刷新状态和首次连接真实项目的路径
 
 GitHub:
 

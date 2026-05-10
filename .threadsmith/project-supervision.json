@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "v0.2.0 release hardening 已本地验收：公开文档、release notes、checklist、package versions 和验证面已对齐 Context OS 能力。",
+  "summary": "v0.2.0 release hardening 已本地验收：公开文档、release notes、checklist、package versions、启动文案、app-home 前门和验证面已对齐 Context OS 能力。",
   "lines": [
     {
       "id": "conductor-main",
@@ -23,10 +23,10 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已更新 README、usage guide、v0.2.0 release checklist、release notes、release copy、package versions 和 app-home 前门。",
+      "taskSummary": "已更新 README、usage guide、v0.2.0 release checklist、release notes、release copy、package versions、启动文案和 app-home 前门。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "release docs 已更新",
+      "latestEvidenceLabel": "release surface 已更新",
       "updatedAt": "2026-05-09T18:39:39Z"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "currentClaim": "Threadsmith v0.2.0 release hardening is implemented: public README, release checklist, release notes, package versions, and verification guidance now align with the completed Context OS lane before publishing.",
+  "currentClaim": "Threadsmith v0.2.0 release hardening is implemented: public README, release checklist, release notes, package versions, startup copy, app-home front door state, and verification guidance now align with the completed Context OS lane before publishing.",
   "doneWhenChecklist": [
     {
       "id": "readme-version-surface",
@@ -19,6 +19,11 @@
     {
       "id": "stale-doc-links",
       "label": "公开入口不再只指向 v0.1.1 文档而忽略 v0.2.0",
+      "status": "pass"
+    },
+    {
+      "id": "front-door-release-state",
+      "label": "启动文案、app-home 前门和传播草稿不再停留在 v0.1.1 或 release-hardening 进行中状态",
       "status": "pass"
     },
     {
