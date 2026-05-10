@@ -38,6 +38,12 @@ macOS users can also run:
 ./Open-Threadsmith-App.command
 ```
 
+Windows PowerShell users can run:
+
+```powershell
+.\Open-Threadsmith-App.ps1
+```
+
 ## Current Scope
 
 This remains a web-first, Codex-only release.
@@ -56,6 +62,8 @@ The public release path should be verified with:
 - `npm run verify:launchers`
 - `npm run smoke:self-host`
 - GitHub Actions CI
+
+CI includes a Windows launcher job for the PowerShell entrypoints.
 
 ## Links
 
