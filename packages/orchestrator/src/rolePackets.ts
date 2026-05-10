@@ -3,8 +3,14 @@ import {
   type ExecutionPacket,
   type PhaseOwner,
   type ProviderId,
+  type SkillCapability,
+  type SkillOrchestratorConfig,
   executionPacketSchema
 } from "@threadsmith/domain";
+import {
+  buildMiniProtocolInstruction,
+  resolveSkillRoute
+} from "@threadsmith/runtime";
 import {
   loadProjectState,
   readLatestAgentRuns,
@@ -60,6 +66,22 @@ function eventRefs(
     path: ".threadsmith/events.ndjson",
     title: `${event.createdAt} ${event.title}`
   }));
+}
+
+function currentContextPacketRef(): ContextReference {
+  return {
+    kind: "state",
+    path: ".threadsmith/context/current-packet.json",
+    title: "current context packet"
+  };
+}
+
+function roleContextPacketRef(role: PhaseOwner): ContextReference {
+  return {
+    kind: "state",
+    path: `.threadsmith/context/role-packets/${role}.json`,
+    title: `${role} role context packet`
+  };
 }
 
 function latestRunRefs(
@@ -142,12 +164,85 @@ function defaultOutput(runId: string) {
   };
 }
 
+function builtInOnlyOrchestratorConfig(): SkillOrchestratorConfig {
+  return {
+    version: 1,
+    builtInProtocols: [
+      "brief",
+      "plan",
+      "debug",
+      "review",
+      "verify",
+      "closeout",
+      "handoff",
+      "recover",
+      "research"
+    ],
+    adapters: [],
+    routePreferences: [],
+    defaultFallback: "plan",
+    selfHosting: {
+      activeController: "installed-skill",
+      repositorySkillPath: "codex/skills/threadsmith/SKILL.md",
+      installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+      allowGlobalSkillMutation: false
+    }
+  };
+}
+
+function protocolCapabilityForRole(role: PhaseOwner): SkillCapability {
+  switch (role) {
+    case "planner":
+    case "executor":
+      return "plan";
+    case "reviewer":
+      return "review";
+    case "verifier":
+      return "verify";
+    case "closeout":
+      return "closeout";
+    case "hygiene":
+      return "recover";
+  }
+}
+
 function packetContextLines(contextRefs: ContextReference[]) {
   return contextRefs.length > 0
     ? contextRefs
         .map((ref) => `- [${ref.kind}] ${ref.path}${ref.title ? ` (${ref.title})` : ""}`)
         .join("\n")
     : "- 无额外上下文引用";
+}
+
+function packetProtocolLines(packet: ExecutionPacket) {
+  const instruction = packet.protocolInstruction;
+
+  if (!instruction) {
+    return ["- 未附加 mini protocol instruction"];
+  }
+
+  const route = instruction.route;
+  return [
+    `- Protocol: ${instruction.protocol.id} (${instruction.protocol.label})`,
+    `- Source: ${route.source}`,
+    `- Adapter: ${route.selectedAdapterId ?? "none"}`,
+    `- Availability: ${route.availability}`,
+    `- Route reason: ${route.reason}`,
+    `- Stop condition: ${instruction.stopCondition}`,
+    `- Continuation hint: ${instruction.continuationHint}`,
+    "- Required inputs:",
+    ...instruction.inputChecklist.map((item) => `  - ${item}`),
+    "- Required outputs:",
+    ...instruction.outputChecklist.map((item) => `  - ${item}`),
+    "- Protocol guardrails:",
+    ...instruction.guardrails.map((item) => `  - ${item}`),
+    ...(route.safetyWarnings.length > 0
+      ? [
+          "- Safety warnings:",
+          ...route.safetyWarnings.map((item) => `  - ${item}`)
+        ]
+      : [])
+  ];
 }
 
 function packetListLines(items: string[], emptyText: string) {
@@ -275,6 +370,9 @@ export function renderRolePrompt(packet: ExecutionPacket) {
     "Context Refs:",
     packetContextLines(packet.contextRefs),
     "",
+    "Mini Protocol Instruction:",
+    ...packetProtocolLines(packet),
+    "",
     "Allowed decision values:",
     ...decisionLines,
     "",
@@ -306,6 +404,12 @@ function buildRolePacket(input: {
   verification: string[];
   contextRefs: ContextReference[];
 }): ExecutionPacket {
+  const route = resolveSkillRoute({
+    role: input.role,
+    requestedCapability: protocolCapabilityForRole(input.role),
+    config: builtInOnlyOrchestratorConfig()
+  });
+
   return executionPacketSchema.parse({
     runId: input.runId,
     projectRoot: input.projectRoot,
@@ -315,7 +419,16 @@ function buildRolePacket(input: {
     scope: input.scope,
     doneWhen: input.doneWhen,
     verification: input.verification,
-    contextRefs: input.contextRefs,
+    protocolInstruction: buildMiniProtocolInstruction({
+      route,
+      role: input.role,
+      objective: input.objective
+    }),
+    contextRefs: [
+      currentContextPacketRef(),
+      roleContextPacketRef(input.role),
+      ...input.contextRefs
+    ],
     output: defaultOutput(input.runId)
   });
 }

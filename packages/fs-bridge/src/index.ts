@@ -13,3 +13,5 @@ export * from "./workflow.ts";
 export * from "./phaseRuns.ts";
 export * from "./phaseReset.ts";
 export * from "./phaseResetDraftArtifacts.ts";
+export * from "./skillDiscovery.ts";
+export * from "./skillRoutingConfig.ts";

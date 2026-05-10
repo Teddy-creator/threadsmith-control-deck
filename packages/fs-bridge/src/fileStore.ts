@@ -31,7 +31,8 @@ import {
   projectSupervisionStateSchema,
   projectStatusSchema,
   projectStateSchema,
-  storedPreferencesSchema
+  storedPreferencesSchema,
+  skillRoutingConfigSchema
 } from "@threadsmith/domain";
 import { buildEvidenceSummary, buildRepoMap } from "@threadsmith/runtime";
 import {
@@ -44,6 +45,7 @@ import {
   getProviderRoutingPath,
   getRolePacketPath,
   getRolePacketsDir,
+  getSkillRoutingPath,
   getRunsDir,
   getStatePath,
   getThreadsmithDir
@@ -501,6 +503,14 @@ export async function initializeProjectState(
     writeFileIfMissing(
       getProviderRoutingPath(projectRoot),
       formatStateFileContents(providerRoutingSchema.parse({}))
+    ),
+    writeFileIfMissing(
+      getSkillRoutingPath(projectRoot),
+      formatStateFileContents(skillRoutingConfigSchema.parse({
+        notes: [
+          "External skills are discovered and routed by Threadsmith v1, but not executed automatically."
+        ]
+      }))
     ),
     writeFileIfMissing(
       getStatePath(projectRoot, STATE_FILES.commandBridge),

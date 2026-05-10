@@ -21,9 +21,9 @@ describe("example project fixture", () => {
     const recentEvents = await readRecentEvents(freshFixtureRoot);
     const latestPacket = await readLatestContinuationPacket(freshFixtureRoot);
 
-    expect(state.projectRoadmap.versionLabel).toBe("Threadsmith Demo v1");
+    expect(state.projectRoadmap.versionLabel).toBe("Threadsmith Context OS Demo");
     expect(state.projectRoadmap.milestones[3]?.state).toBe("current");
-    expect(state.currentPhase.phaseName).toBe("收口 v1 demo 基线");
+    expect(state.currentPhase.phaseName).toBe("收口 Context OS demo 基线");
     expect(state.acceptanceState.finalState).toBe("accepted");
     expect(state.acceptanceState.doneWhenChecklist.every((item) => item.status === "pass")).toBe(true);
     expect(state.activeWork.items.every((item) => item.status === "done")).toBe(true);
@@ -42,7 +42,9 @@ describe("example project fixture", () => {
     const recentEvents = await readRecentEvents(staleFixtureRoot);
     const latestPacket = await readLatestContinuationPacket(staleFixtureRoot);
 
-    expect(state.projectRoadmap.versionLabel).toBe("Threadsmith Demo v1");
+    expect(state.projectRoadmap.versionLabel).toBe(
+      "Threadsmith Truth Confidence Demo"
+    );
     expect(state.projectRoadmap.milestones[2]?.state).toBe("blocked");
     expect(state.currentPhase.phaseName).toBe("刷新过期 demo packet");
     expect(state.acceptanceState.finalState).toBe("accepted");

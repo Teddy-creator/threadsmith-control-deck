@@ -109,6 +109,10 @@ export function getProviderRoutingPath(projectRoot: string) {
   return join(getThreadsmithDir(projectRoot), "provider-routing.json");
 }
 
+export function getSkillRoutingPath(projectRoot: string) {
+  return join(getThreadsmithDir(projectRoot), "skill-routing.json");
+}
+
 export function getCommandBridgeArtifactsDir(projectRoot: string) {
   return join(getThreadsmithDir(projectRoot), "bridges");
 }

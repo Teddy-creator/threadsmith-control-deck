@@ -7,6 +7,7 @@ import {
   buildAutopilotCliCommand,
   bootstrapProjectState,
   decideAutopilotContinuation,
+  describeAutopilotContinuationDecision,
   resumeAutopilotPhaseRun,
   startAutopilotPhaseRun
 } from "@threadsmith/orchestrator";
@@ -39,6 +40,7 @@ function printBridgeStatus(args: {
   console.log(`Recommended action: ${decision.action}`);
   console.log(`Summary: ${decision.headline}`);
   console.log(`Detail: ${decision.detail}`);
+  console.log(`Continuous mode: ${describeAutopilotContinuationDecision(decision)}`);
   if (decision.recommendedCommand) {
     console.log(`Recommended command: ${decision.recommendedCommand}`);
   }

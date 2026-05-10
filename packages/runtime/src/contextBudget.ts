@@ -146,6 +146,16 @@ function buildWarnings(
     }
   }
 
+  const middleSections = sections.slice(1, -1);
+  const heavyMiddleSection = middleSections.find(
+    (section) => section.level === "heavy" || section.level === "over-budget"
+  );
+  if (heavyMiddleSection) {
+    warnings.push(
+      `Lost-in-the-middle risk: ${heavyMiddleSection.section} is ${heavyMiddleSection.level} in the middle of the packet; route only the role-specific subset.`
+    );
+  }
+
   return warnings;
 }
 

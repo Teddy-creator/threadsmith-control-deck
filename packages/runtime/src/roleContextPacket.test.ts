@@ -148,6 +148,7 @@ describe("deriveRoleContextPackets", () => {
     expect(packet.payload.acceptance).toBeUndefined();
     expect(packet.includedSections).toContain("recentDiff");
     expect(packet.omittedSections).toContain("acceptance");
+    expect(packet.omittedSections).toContain("evidence");
   });
 
   it("keeps verifier packet focused on acceptance and evidence", () => {
@@ -160,6 +161,7 @@ describe("deriveRoleContextPackets", () => {
     expect(packet.payload.relevantFiles).toBeUndefined();
     expect(packet.includedSections).toContain("evidence");
     expect(packet.omittedSections).toContain("recentDiff");
+    expect(packet.omittedSections).toContain("scope");
   });
 
   it("keeps hygiene packet focused on freshness and context risks", () => {
@@ -171,6 +173,19 @@ describe("deriveRoleContextPackets", () => {
       ".threadsmith/current-phase.json"
     );
     expect(packet.payload.relevantFiles).toBeUndefined();
+  });
+
+  it("keeps planner packet free of noisy diff and evidence sections", () => {
+    const packet = deriveRoleContextPacket(mainPacket, "planner");
+
+    expect(packet.payload.goal?.projectGoal).toContain("context operating layer");
+    expect(packet.payload.nextStep?.label).toContain("Role-specific Packets v1");
+    expect(packet.payload.recentDiff).toBeUndefined();
+    expect(packet.payload.evidence).toBeUndefined();
+    expect(packet.payload.relevantFiles).toBeUndefined();
+    expect(packet.omittedSections).toEqual(
+      expect.arrayContaining(["recentDiff", "evidence", "relevantFiles"])
+    );
   });
 
   it("is smaller than the parent packet for each role", () => {

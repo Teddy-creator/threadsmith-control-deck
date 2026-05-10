@@ -114,4 +114,29 @@ describe("decidePhaseRunNextStep", () => {
     }
     expect(secondAttempt.pause.type).toBe("infra-failure");
   });
+
+  it("honors planner pause recommendations as missing-info stops", () => {
+    const decision = decidePhaseRunNextStep({
+      role: "planner",
+      repairCount: 0,
+      transientRetryCount: 0,
+      result: makeResult("planner", {
+        decision: "pause-recommended",
+        pauseRecommendation: {
+          type: "missing-info",
+          summary: "需要用户确认范围。",
+          detail: "当前 phase 的 done when 与非目标还不一致。",
+          resumeRequirements: ["确认 done when", "确认非目标"]
+        }
+      })
+    });
+
+    expect(decision.kind).toBe("pause");
+    if (decision.kind !== "pause") {
+      throw new Error("expected pause decision");
+    }
+    expect(decision.resumeRole).toBe("planner");
+    expect(decision.pause.type).toBe("missing-info");
+    expect(decision.pause.resumeRequirements).toContain("确认 done when");
+  });
 });

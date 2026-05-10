@@ -88,4 +88,31 @@ describe("buildContextBudgetLedger", () => {
       ])
     );
   });
+
+  it("warns about lost-in-the-middle risk when middle sections get heavy", () => {
+    const ledger = buildContextBudgetLedger(
+      {
+        project: { label: "Threadsmith" },
+        acceptance: {
+          knownGaps: Array.from({ length: 12 }, (_, index) =>
+            `Known gap ${index}: keep only decision-changing acceptance truth in role packets.`
+          )
+        },
+        nextStep: { label: "Continue" }
+      },
+      {
+        watchChars: 300,
+        heavyChars: 650,
+        overBudgetChars: 2_000,
+        sectionItemWatch: 4,
+        sectionItemHeavy: 10
+      }
+    );
+
+    expect(ledger.sections.find((section) => section.section === "acceptance")?.level)
+      .toBe("heavy");
+    expect(ledger.warnings).toContain(
+      "Lost-in-the-middle risk: acceptance is heavy in the middle of the packet; route only the role-specific subset."
+    );
+  });
 });

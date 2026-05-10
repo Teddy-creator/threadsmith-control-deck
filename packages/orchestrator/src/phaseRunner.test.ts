@@ -190,14 +190,20 @@ afterEach(async () => {
 describe("PhaseRunner", () => {
   it("runs planner through closeout on the success path", async () => {
     const projectRoot = await createProjectRoot();
+    const launchedProtocolIds: string[] = [];
+    const queuedLauncher = createQueuedRoleLauncher([
+      { role: "planner", result: { decision: "slice-ready", summary: "Primary slice selected." } },
+      { role: "executor", result: { decision: "ready-for-review", summary: "Execution completed." } },
+      { role: "reviewer", result: { decision: "ready-for-verification", summary: "Review passed." } },
+      { role: "verifier", result: { decision: "accepted-with-closeout-pending", summary: "Verification passed." } },
+      { role: "closeout", result: { decision: "accepted", summary: "Closeout completed." } }
+    ]);
     const runner = new PhaseRunner({
-      roleLauncher: createQueuedRoleLauncher([
-        { role: "planner", result: { decision: "slice-ready", summary: "Primary slice selected." } },
-        { role: "executor", result: { decision: "ready-for-review", summary: "Execution completed." } },
-        { role: "reviewer", result: { decision: "ready-for-verification", summary: "Review passed." } },
-        { role: "verifier", result: { decision: "accepted-with-closeout-pending", summary: "Verification passed." } },
-        { role: "closeout", result: { decision: "accepted", summary: "Closeout completed." } }
-      ])
+      roleLauncher: async (packet, options) => {
+        expect(packet.protocolInstruction).toBeDefined();
+        launchedProtocolIds.push(packet.protocolInstruction!.protocol.id);
+        return queuedLauncher(packet, options);
+      }
     });
 
     const phaseRun = await runner.start({ projectRoot });
@@ -210,6 +216,13 @@ describe("PhaseRunner", () => {
     expect(latest?.latestSuccessfulRole).toBe("closeout");
     expect(latest?.currentSliceId).toBe("primary-1");
     expect(state.acceptanceState.finalState).toBe("accepted");
+    expect(launchedProtocolIds).toEqual([
+      "plan",
+      "plan",
+      "review",
+      "verify",
+      "closeout"
+    ]);
     expect(
       events.some(
         (event) => event.kind === "phase-run" && event.title.includes("accepted")

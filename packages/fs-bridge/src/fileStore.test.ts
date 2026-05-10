@@ -35,6 +35,7 @@ import {
   getGlobalPreferencesPath,
   getProviderRoutingPath,
   getRolePacketPath,
+  getSkillRoutingPath,
   getStatePath
 } from "./paths.ts";
 
@@ -275,6 +276,10 @@ describe("fileStore", () => {
       getProviderRoutingPath(projectRoot),
       "utf8"
     );
+    const skillRoutingContents = await readFile(
+      getSkillRoutingPath(projectRoot),
+      "utf8"
+    );
 
     expect(state.projectBrief.projectGoal).toBe("Keep existing project brief");
     expect(state.projectStatus.projectLabel).toBeTruthy();
@@ -293,6 +298,8 @@ describe("fileStore", () => {
     expect(providerRoutingContents).toContain(
       "\"conductorSurface\": \"codex-desktop\""
     );
+    expect(skillRoutingContents).toContain("\"version\": 1");
+    expect(skillRoutingContents).toContain("not executed automatically");
   });
 
   it("derives a stable fallback supervision truth when project-supervision.json is missing", async () => {
