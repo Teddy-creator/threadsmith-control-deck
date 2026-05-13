@@ -2,6 +2,24 @@
 
 All notable changes to Threadsmith will be documented in this file.
 
+## v0.3.1 - 2026-05-13
+
+### Added
+
+- Public README, usage guide, and release notes now document the advisory
+  risk-review route for `critical-decision-review`.
+- Public release documentation now clarifies that risk review is advisory-only:
+  no hidden auto-run and no hard blocking gate.
+
+### Changed
+
+- Low-risk, reversible changes are now described as returning to the normal
+  workflow instead of triggering ritualized critical-decision-review friction.
+- Public repository examples and tests now use neutral Codex skill paths instead
+  of maintainer-local absolute paths.
+- Public scan guidance now avoids treating ordinary token-budget product copy as
+  a credential finding.
+
 ## v0.3.0 - 2026-05-10
 
 ### Added

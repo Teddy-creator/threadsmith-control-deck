@@ -1,31 +1,30 @@
 {
-  "phaseName": "v0.3.0 publish",
-  "phaseGoal": "把 v0.3.0 从 release-ready 状态正式发布：公开文案切到稳定版口径，创建 tag，并发布 GitHub Release。",
-  "deliverable": "v0.3.0 tag、GitHub Release，以及发布后 truth / README / usage / startup copy 对齐。",
+  "phaseName": "v0.3.1 patch release",
+  "phaseGoal": "把 v0.3.1 作为 v0.3.x Skill Orchestrator 线的补丁发布：公开文档、truth、release checklist、tag 和 GitHub Release 全部对齐。",
+  "deliverable": "v0.3.1 tag、GitHub Release，以及发布后 truth / README / usage / release docs 对齐。",
   "inScope": [
-    "把 README、usage guide、startup copy 和 .threadsmith truth 切到 v0.3.0 stable 口径",
-    "运行发布前轻量验证，确认当前项目状态可读",
-    "创建并推送 v0.3.0 tag",
-    "使用 docs/marketing/github-release-v0.3.0.md 创建 GitHub Release",
+    "把 README、usage guide、CONTRIBUTING 和 .threadsmith truth 切到 v0.3.1 patch release 口径",
+    "运行发布前验证，确认当前项目状态可读",
+    "创建并推送 v0.3.1 tag",
+    "使用 docs/marketing/github-release-v0.3.1.md 创建 GitHub Release",
     "发布后确认 tag 与 release 可见"
   ],
   "outOfScope": [
-    "发布除 v0.3.0 以外的版本",
+    "发布除 v0.3.1 以外的版本",
     "修改仓库可见性",
     "安装或覆盖 ~/.codex/skills/threadsmith/SKILL.md",
     "实现 multi-provider 自动执行",
     "真实执行任意外部 skill",
     "大改 UI 视觉骨架或交互结构"
   ],
-  "stopCondition": "v0.3.0 tag 和 GitHub Release 创建完成，发布态文案与 truth 一致，且发布后检查通过。",
+  "stopCondition": "v0.3.1 tag 和 GitHub Release 创建完成，发布态文案与 truth 一致，且发布后检查通过。",
   "verificationForThisPhase": [
-    "npm run test --workspaces --if-present",
-    "npm run build --workspaces --if-present",
+    "npm ci",
+    "npm run test",
+    "npm run build",
     "npm run verify:launchers",
-    "npm run smoke:self-host",
-    "npm run smoke:autopilot",
-    "npm run smoke:deck-route",
-    "jq empty .threadsmith/*.json",
+    "npm audit --audit-level=moderate",
+    "public scan",
     "git diff --check"
   ],
   "activeOwners": [

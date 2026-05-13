@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "确认本轮进入 v0.3.0 release decision / final polish，但不直接 tag 或 GitHub Release。",
+      "taskSummary": "确认本轮进入 v0.3.1 patch release 收口，不扩大到新功能。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "已更新 release checklist、CHANGELOG、GitHub Release copy 和 .threadsmith truth。",
+      "taskSummary": "更新 v0.3.1 版本号、README、usage guide、CONTRIBUTING、release docs 和 .threadsmith truth。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已检查发布叙事：ready decision、tag/release 动作、全局 skill 与 multi-provider non-goals 均保持边界清楚。",
+      "taskSummary": "已检查发布叙事：v0.3.1 是 patch release，risk review 是 advisory，global skill 与 multi-provider non-goals 均保持边界清楚。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已运行 release verification matrix：tests、build、launchers、self-host、autopilot、deck-route、JSON 与 diff hygiene。",
+      "taskSummary": "已运行 release verification matrix：npm ci、test、build、launchers、audit、public scan 与 diff hygiene。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
-      "status": "done",
-      "taskSummary": "已记录 v0.3.0 final polish accepted；下一步需要用户决定是否创建 tag / GitHub Release。",
+      "status": "in-progress",
+      "taskSummary": "验证通过后记录 v0.3.1 release closeout，并创建 tag / GitHub Release。",
       "requiresUserDecision": false
     }
   ],

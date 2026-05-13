@@ -1,7 +1,7 @@
 {
   "mode": "multi-thread",
   "modeLabel": "多角色协作",
-  "summary": "v0.3.0 release decision / final polish 已完成并通过本地验证；下一步需要用户决定是否进入 tag / GitHub Release。",
+  "summary": "v0.3.1 patch release 本地验证已通过；下一步是提交、打 tag、推送并确认 GitHub Release / CI。",
   "lines": [
     {
       "id": "conductor-main",
@@ -10,11 +10,11 @@
       "provider": "codex",
       "presence": "live",
       "status": "done",
-      "taskSummary": "把本轮限定为 release decision / final polish，而不是直接 tag 或发布。",
+      "taskSummary": "把本轮限定为 v0.3.1 patch release，不扩大到新功能。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "phase reset accepted",
-      "updatedAt": "2026-05-10T16:41:40.000Z"
+      "latestEvidenceLabel": "patch scope accepted",
+      "updatedAt": "2026-05-13T00:00:00.000Z"
     },
     {
       "id": "executor-logical",
@@ -23,7 +23,7 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已更新 release checklist、CHANGELOG、GitHub Release copy 与 truth。",
+      "taskSummary": "已更新 README、usage guide、CONTRIBUTING、release checklist、GitHub Release copy 与 truth。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "release surface aligned",
@@ -36,11 +36,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已检查发布叙事准确区分 ready decision、tag/release 动作和 non-goals。",
+      "taskSummary": "已检查 v0.3.1 patch release 是否准确区分文档修复、risk-review advisory 边界和 non-goals。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "release boundaries reviewed",
-      "updatedAt": "2026-05-10T16:47:20.000Z"
+      "updatedAt": "2026-05-13T00:00:00.000Z"
     },
     {
       "id": "verifier-logical",
@@ -49,11 +49,11 @@
       "provider": "codex",
       "presence": "logical",
       "status": "done",
-      "taskSummary": "已运行 release verification matrix。",
+      "taskSummary": "已运行 v0.3.1 release verification matrix。",
       "requiresUserDecision": false,
       "blockerSummary": null,
-      "latestEvidenceLabel": "verification passed",
-      "updatedAt": "2026-05-10T16:47:20.000Z"
+      "latestEvidenceLabel": "local verification passed",
+      "updatedAt": "2026-05-13T00:00:00.000Z"
     },
     {
       "id": "hygiene",
@@ -62,12 +62,12 @@
       "provider": null,
       "presence": "logical",
       "status": "done",
-      "taskSummary": "保持 global skill 安装、tag/release 和 multi-provider 自动化全部在本轮自动执行范围外。",
+      "taskSummary": "保持 global skill 安装、multi-provider 自动化和任意外部 skill auto-run 在本轮范围外。",
       "requiresUserDecision": false,
       "blockerSummary": null,
       "latestEvidenceLabel": "scope guardrails active",
       "updatedAt": "2026-05-10T16:47:20.000Z"
     }
   ],
-  "updatedAt": "2026-05-10T16:47:20.000Z"
+  "updatedAt": "2026-05-13T00:00:00.000Z"
 }

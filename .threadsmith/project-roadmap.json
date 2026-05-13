@@ -1,5 +1,5 @@
 {
-  "versionLabel": "Threadsmith v0.3.0 Release Decision",
+  "versionLabel": "Threadsmith v0.3.x Public Release",
   "finalGoal": "Make Threadsmith usable as a practical Context OS and skill orchestrator for all-Codex workflows before considering multi-provider automation.",
   "milestones": [
     {
@@ -42,8 +42,15 @@
       "label": "发布动作",
       "title": "v0.3.0 tag / GitHub Release decision",
       "summary": "Create the v0.3.0 tag and GitHub Release from the prepared release copy.",
+      "state": "done"
+    },
+    {
+      "id": "v0-3-1-patch-release",
+      "label": "补丁发布",
+      "title": "v0.3.1 public documentation and hygiene patch",
+      "summary": "Publish the v0.3.1 patch release for advisory risk-review documentation, public repo hygiene, and release truth alignment.",
       "state": "current"
     }
   ],
-  "updatedAt": "2026-05-10T17:12:01.000Z"
+  "updatedAt": "2026-05-13T00:00:00.000Z"
 }

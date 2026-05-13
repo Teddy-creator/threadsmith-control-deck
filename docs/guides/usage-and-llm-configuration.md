@@ -2,7 +2,7 @@
 
 Threadsmith 是一个本地运行的 web control deck。它负责展示和维护项目的 workflow truth，不负责替代你和 AI 的主聊天入口。
 
-当前最新稳定线是 `v0.3.0 Harness Skill Orchestrator`。它基于 `v0.2.1 Windows Launcher Parity` 和 `v0.2.0 Context OS`，加入 workflow-kernel、built-in mini protocols、skill routing metadata、protocol-guided role packets 和 safer autopilot continuation。
+当前最新稳定线是 `v0.3.1 Harness Skill Orchestrator patch release`。它沿用 `v0.3.0` 的 Skill Orchestrator 功能基线，并补齐 public docs、risk-review route 说明和仓库卫生边界。
 
 最简单的心智模型是：
 
@@ -10,7 +10,7 @@ Threadsmith 是一个本地运行的 web control deck。它负责展示和维护
 - 在 Threadsmith 页面里看项目状态、证据、路由、验收和恢复建议。
 - 在重要边界用 `$threadsmith` 或明确指令把 durable truth 写回 `.threadsmith/`。
 
-当前稳定自动执行路径仍然是 Codex-first。`v0.3.0` 会发现和路由本地 Codex skills，但这里的 route 是可解释的 workflow metadata，不等于自动执行任意外部 skill。
+当前稳定自动执行路径仍然是 Codex-first。`v0.3.x` 会发现和路由本地 Codex skills，但这里的 route 是可解释的 workflow metadata，不等于自动执行任意外部 skill。
 
 Threadsmith 也会在高成本承诺前显示 advisory risk-review signal，例如发布、公开宣传、跳过验证、大架构改动、provider/tooling 变更或破坏性操作。这个信号可以建议显式调用 `critical-decision-review`，但它不会隐藏自动执行，也不是 blocking gate。
 
@@ -285,7 +285,7 @@ Runtime artifacts：
 
 ## 6. Skill Routing 配置
 
-`v0.3.0` 的 External Skill Adapter v1 会发现本地 / 项目内 Codex skills，并把它们转换成可解释的 adapter candidates。项目级配置存在：
+`v0.3.x` 的 External Skill Adapter v1 会发现本地 / 项目内 Codex skills，并把它们转换成可解释的 adapter candidates。项目级配置存在：
 
 ```text
 .threadsmith/skill-routing.json
@@ -306,7 +306,7 @@ Risk review 也遵守同样边界：Threadsmith 可以把 `critical-decision-rev
 
 ## 7. LLM / Provider 配置
 
-当前公开稳定线和 v0.3.0 内部开发线都仍然是 `Codex-only` 主线。
+当前公开稳定线仍然是 `Codex-only` 主线。
 
 默认角色路由：
 
@@ -358,7 +358,7 @@ npm run threadsmith:autopilot -- status "/path/to/your-project"
 
 ## 9. Claude / Gemini / Other Providers
 
-Threadsmith 的架构为 multi-provider 预留了 provider routing 和 role boundary，但当前稳定线和 v0.3.0 内部开发线不把 fully automated multi-provider execution 作为交付承诺。
+Threadsmith 的架构为 multi-provider 预留了 provider routing 和 role boundary，但当前稳定线不把 fully automated multi-provider execution 作为交付承诺。
 
 这意味着：
 

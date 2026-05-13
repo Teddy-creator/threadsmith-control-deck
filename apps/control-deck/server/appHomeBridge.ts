@@ -13,16 +13,16 @@ export function createAppHomeBridgeResponse(
   providerRouting: ProviderRouting,
   skillRouting: SkillRoutingConfig = skillRoutingConfigSchema.parse({})
 ) {
-  const calibratedAt = "2026-05-10T16:14:45.000Z";
+  const calibratedAt = "2026-05-13T00:00:00.000Z";
   const state = projectStateSchema.parse({
     projectBrief: {
       projectGoal: "打开 Threadsmith 并进入今天的工作",
       currentVersionScope:
-        "Threadsmith 前门只负责选择今天要进入的真实项目；实时进度以进入后的项目 `.threadsmith` 为准。当前公开稳定线是 v0.2.1，v0.3.0 是已合并但未发布的候选线。",
+        "Threadsmith 前门只负责选择今天要进入的真实项目；实时进度以进入后的项目 `.threadsmith` 为准。当前公开稳定线是 v0.3.1，v0.3.0 是 Skill Orchestrator 功能基线。",
       nonGoals: [
         "替代主聊天面",
         "把现有 web control deck 重写成桌面应用",
-        "把 v0.3.0 误读成已经发布的稳定版本",
+        "把前门误读成某个真实项目的实时进度",
         "在前门里直接启动真实项目执行"
       ],
       keyConstraints: [
@@ -39,7 +39,7 @@ export function createAppHomeBridgeResponse(
         "需要推进时回到 conductor surface 或显式调用 $threadsmith"
       ],
       openStrategicQuestions: [
-        "是否把 v0.3.0 作为正式 GitHub Release 发布，还是继续作为内部候选线打磨？",
+        "v0.3.1 发布后，下一条主线是继续打磨 all-Codex 使用体验，还是重新评估 desktop shell？",
         "什么时候正式开启 desktop shell / macOS wrapper v1"
       ]
     },
@@ -49,13 +49,13 @@ export function createAppHomeBridgeResponse(
       overallState: "stable",
       currentFocus: "选择今天要进入的真实项目；进入后再读取该项目的实时 .threadsmith truth。",
       projectStatusSummary:
-        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。最新稳定线是 v0.2.1 Windows Launcher Parity；v0.3.0 Skill Orchestrator baseline 已合并到 main，但尚未 tag / GitHub Release。",
+        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。最新稳定线是 v0.3.1 Harness Skill Orchestrator patch release；v0.3.0 是 Skill Orchestrator 功能基线。",
       latestAcceptedSlice: {
-        title: "v0.2.1 Windows Launcher Parity",
-        recordedAt: "2026-05-10T00:00:00.000Z"
+        title: "v0.3.1 public documentation and hygiene patch",
+        recordedAt: "2026-05-13T00:00:00.000Z"
       },
       nextPlannedSlice: {
-        title: "进入真实项目或评估 v0.3.0 release decision",
+        title: "进入真实项目或继续 all-Codex polish",
         recordedAt: null
       },
       currentMilestoneId: "front-door-entry",
@@ -63,7 +63,7 @@ export function createAppHomeBridgeResponse(
       topRisks: [
         "前门只是入口快照，不代表任何真实项目的实时进度。",
         "如果 conductor 没有写回 `.threadsmith`，页面只能显示旧 truth。",
-        "v0.3.0 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
+        "v0.3.1 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
       ],
       updatedAt: calibratedAt
     },
@@ -82,7 +82,7 @@ export function createAppHomeBridgeResponse(
         {
           id: "launcher-parity",
           label: "跨平台入口",
-          title: "v0.2.1 Windows / macOS launcher parity",
+          title: "Windows / macOS launcher parity",
           summary: "macOS 和 Windows 都有前门与项目直达启动脚本。",
           state: "done"
         },
@@ -101,10 +101,10 @@ export function createAppHomeBridgeResponse(
           state: "next"
         },
         {
-          id: "release-decision",
-          label: "发布决策",
-          title: "决定是否发布 v0.3.0",
-          summary: "v0.3.0 baseline 已合并，但是否 tag / GitHub Release 仍需人工确认。",
+          id: "post-release-roadmap",
+          label: "后续路线",
+          title: "继续打磨 all-Codex 使用体验",
+          summary: "v0.3.1 发布后，继续围绕 truth、skill routing、autopilot safety 和使用者路径做小步改进。",
           state: "later"
         }
       ],
@@ -121,7 +121,7 @@ export function createAppHomeBridgeResponse(
       ],
       outOfScope: [
         "在前门直接执行真实项目任务",
-        "发布或 tag v0.3.0",
+        "发布或 tag 新版本",
         "替代 Codex Desktop / Codex CLI 的主聊天入口"
       ],
       stopCondition: "已经进入一个真实项目，或完成首次项目连接与初始化。",
@@ -154,7 +154,7 @@ export function createAppHomeBridgeResponse(
         },
         {
           id: "version-boundary",
-          label: "稳定线 v0.2.1 与候选线 v0.3.0 的边界不混淆",
+          label: "v0.3.1 稳定补丁版与 v0.3.0 功能基线的边界不混淆",
           status: "pass"
         }
       ],
@@ -163,7 +163,7 @@ export function createAppHomeBridgeResponse(
       verificationStatus: "passed",
       closeoutStatus: "done",
       knownGaps: [
-        "v0.3.0 尚未发布 tag / GitHub Release。",
+        "前门只展示入口快照；真实项目状态仍以项目 `.threadsmith` 为准。",
         "前门不会自动读取聊天线程里的临时讨论；只有写回 `.threadsmith` 的 truth 才会稳定出现。"
       ],
       finalState: "accepted"
