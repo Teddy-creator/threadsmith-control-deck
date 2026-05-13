@@ -3,31 +3,31 @@
     {
       "role": "planner",
       "status": "done",
-      "taskSummary": "确认本轮进入 v0.3.1 patch release 收口，不扩大到新功能。",
+      "taskSummary": "确认本轮进入 v0.3.2 schema-fix patch release 收口，不扩大到新功能。",
       "requiresUserDecision": false
     },
     {
       "role": "executor",
       "status": "done",
-      "taskSummary": "更新 v0.3.1 版本号、README、usage guide、CONTRIBUTING、release docs 和 .threadsmith truth。",
+      "taskSummary": "更新 v0.3.2 版本号、README、usage guide、front-door copy、release docs 和 .threadsmith truth。",
       "requiresUserDecision": false
     },
     {
       "role": "reviewer",
       "status": "done",
-      "taskSummary": "已检查发布叙事：v0.3.1 是 patch release，risk review 是 advisory，global skill 与 multi-provider non-goals 均保持边界清楚。",
+      "taskSummary": "已检查发布叙事：v0.3.2 是 schema-fix patch release，global skill 与 multi-provider non-goals 均保持边界清楚。",
       "requiresUserDecision": false
     },
     {
       "role": "verifier",
       "status": "done",
-      "taskSummary": "已运行 release verification matrix：npm ci、test、build、launchers、audit、public scan 与 diff hygiene。",
+      "taskSummary": "已运行 release verification matrix：npm ci、test、build、launchers、e2e、audit、public scan 与 diff hygiene。",
       "requiresUserDecision": false
     },
     {
       "role": "closeout",
       "status": "running",
-      "taskSummary": "验证通过后记录 v0.3.1 release closeout，并创建 tag / GitHub Release。",
+      "taskSummary": "验证通过后记录 v0.3.2 release closeout，并创建 tag / GitHub Release。",
       "requiresUserDecision": false
     }
   ],

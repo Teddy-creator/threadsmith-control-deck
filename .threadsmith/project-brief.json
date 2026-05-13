@@ -1,8 +1,8 @@
 {
   "projectGoal": "交付稳定、诚实、可公开使用的 Threadsmith v0.3.x：在 Context OS 与 Harness Skill Orchestrator 基础上，把 Codex-first workflow supervision、skill routing metadata、fallback mini protocols 和 release hygiene 打磨成真实可用闭环。",
-  "currentVersionScope": "v0.3.1 patch release：当前只做公开文档准确性、advisory risk-review route 边界、public repo hygiene、版本号、tag 和 GitHub Release 收口。",
+  "currentVersionScope": "v0.3.2 patch release：当前只做 release truth schema / source archive 对齐、版本号、发布资料、tag 和 GitHub Release 收口。",
   "nonGoals": [
-    "发布除 v0.3.1 以外的版本",
+    "发布除 v0.3.2 以外的版本",
     "立即实现 multi-provider 自动执行",
     "真实执行任意外部 skill 或 CLI 插件",
     "修改或安装全局 ~/.codex/skills/threadsmith/SKILL.md",
@@ -15,15 +15,15 @@
     "开发 Threadsmith 自身时，不允许污染正在使用的全局 installed $threadsmith skill",
     "每一刀保持 phase-bound，并用 evidence-backed verification 收尾"
   ],
-  "successFrame": "新用户能在本地启动 Threadsmith、绑定项目、理解页面真相来源、安装或升级 $threadsmith skill，并清楚知道 v0.3.1 是当前稳定 patch release，v0.3.0 是 Skill Orchestrator 功能基线。",
+  "successFrame": "新用户能在本地启动 Threadsmith、绑定项目、理解页面真相来源、安装或升级 $threadsmith skill，并清楚知道 v0.3.2 是当前稳定 patch release，v0.3.0 是 Skill Orchestrator 功能基线。",
   "priorityOrder": [
-    "校准 v0.3.1 release checklist、CHANGELOG、README、usage guide 与 committed truth",
-    "准备 v0.3.1 GitHub Release copy",
+    "校准 v0.3.2 release checklist、CHANGELOG、README、usage guide 与 committed truth",
+    "准备 v0.3.2 GitHub Release copy",
     "运行 release verification matrix",
-    "创建 v0.3.1 tag 与 GitHub Release"
+    "创建 v0.3.2 tag 与 GitHub Release"
   ],
   "openStrategicQuestions": [
-    "v0.3.1 发布后，下一条主线是继续强化 all-Codex 使用体验，还是重新评估 desktop shell？",
+    "v0.3.2 发布后，下一条主线是继续强化 all-Codex 使用体验，还是重新评估 desktop shell？",
     "未来的 External skill invocation 应由 Codex skill prompt composition 驱动，还是由 CLI/adapter runner 驱动？"
   ]
 }

@@ -18,7 +18,7 @@ export function createAppHomeBridgeResponse(
     projectBrief: {
       projectGoal: "打开 Threadsmith 并进入今天的工作",
       currentVersionScope:
-        "Threadsmith 前门只负责选择今天要进入的真实项目；实时进度以进入后的项目 `.threadsmith` 为准。当前公开稳定线是 v0.3.1，v0.3.0 是 Skill Orchestrator 功能基线。",
+        "Threadsmith 前门只负责选择今天要进入的真实项目；实时进度以进入后的项目 `.threadsmith` 为准。当前公开稳定线是 v0.3.2，v0.3.0 是 Skill Orchestrator 功能基线。",
       nonGoals: [
         "替代主聊天面",
         "把现有 web control deck 重写成桌面应用",
@@ -39,7 +39,7 @@ export function createAppHomeBridgeResponse(
         "需要推进时回到 conductor surface 或显式调用 $threadsmith"
       ],
       openStrategicQuestions: [
-        "v0.3.1 发布后，下一条主线是继续打磨 all-Codex 使用体验，还是重新评估 desktop shell？",
+        "v0.3.2 发布后，下一条主线是继续打磨 all-Codex 使用体验，还是重新评估 desktop shell？",
         "什么时候正式开启 desktop shell / macOS wrapper v1"
       ]
     },
@@ -49,9 +49,9 @@ export function createAppHomeBridgeResponse(
       overallState: "stable",
       currentFocus: "选择今天要进入的真实项目；进入后再读取该项目的实时 .threadsmith truth。",
       projectStatusSummary:
-        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。最新稳定线是 v0.3.1 Harness Skill Orchestrator patch release；v0.3.0 是 Skill Orchestrator 功能基线。",
+        "这个来源不是某个真实项目的开发页，而是 Threadsmith 的产品前门。最新稳定线是 v0.3.2 Harness Skill Orchestrator patch release；v0.3.0 是 Skill Orchestrator 功能基线。",
       latestAcceptedSlice: {
-        title: "v0.3.1 public documentation and hygiene patch",
+        title: "v0.3.2 release truth schema patch",
         recordedAt: "2026-05-13T00:00:00.000Z"
       },
       nextPlannedSlice: {
@@ -63,7 +63,7 @@ export function createAppHomeBridgeResponse(
       topRisks: [
         "前门只是入口快照，不代表任何真实项目的实时进度。",
         "如果 conductor 没有写回 `.threadsmith`，页面只能显示旧 truth。",
-        "v0.3.1 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
+        "v0.3.2 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
       ],
       updatedAt: calibratedAt
     },
@@ -104,7 +104,7 @@ export function createAppHomeBridgeResponse(
           id: "post-release-roadmap",
           label: "后续路线",
           title: "继续打磨 all-Codex 使用体验",
-          summary: "v0.3.1 发布后，继续围绕 truth、skill routing、autopilot safety 和使用者路径做小步改进。",
+          summary: "v0.3.2 发布后，继续围绕 truth、skill routing、autopilot safety 和使用者路径做小步改进。",
           state: "later"
         }
       ],
@@ -154,7 +154,7 @@ export function createAppHomeBridgeResponse(
         },
         {
           id: "version-boundary",
-          label: "v0.3.1 稳定补丁版与 v0.3.0 功能基线的边界不混淆",
+          label: "v0.3.2 稳定补丁版与 v0.3.0 功能基线的边界不混淆",
           status: "pass"
         }
       ],

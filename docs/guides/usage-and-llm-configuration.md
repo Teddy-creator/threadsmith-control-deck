@@ -2,7 +2,7 @@
 
 Threadsmith 是一个本地运行的 web control deck。它负责展示和维护项目的 workflow truth，不负责替代你和 AI 的主聊天入口。
 
-当前最新稳定线是 `v0.3.1 Harness Skill Orchestrator patch release`。它沿用 `v0.3.0` 的 Skill Orchestrator 功能基线，并补齐 public docs、risk-review route 说明和仓库卫生边界。
+当前最新稳定线是 `v0.3.2 Harness Skill Orchestrator patch release`。它沿用 `v0.3.0` 的 Skill Orchestrator 功能基线和 `v0.3.1` 的 public docs / risk-review route 边界，并修复 release truth schema 与 source archive 对齐问题。
 
 最简单的心智模型是：
 

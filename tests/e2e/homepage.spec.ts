@@ -87,7 +87,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Threadsmith", exact: true })).toBeVisible();
   await expect(
-    page.getByText("v0.3.1 patch release", { exact: true }).first()
+    page.getByText("v0.3.2 patch release", { exact: true }).first()
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "当前总命令" })).toBeVisible();
 
@@ -96,7 +96,7 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("项目工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      /Threadsmith v0\.3\.1 是 v0\.3\.x Skill Orchestrator 线的补丁发布/
+      /Threadsmith v0\.3\.2 是 v0\.3\.x Skill Orchestrator 线的补丁发布/
     )
   ).toBeVisible();
   await expect(
@@ -107,14 +107,14 @@ test("current Threadsmith repo can be read as a real project from the source and
   await expect(inspectorPanel.getByText("阶段工作台", { exact: true })).toBeVisible();
   await expect(inspectorPanel.getByRole("heading", { name: "Context 状态" })).toBeVisible();
   await expect(
-    inspectorPanel.getByText("v0.3.1 patch release").first()
+    inspectorPanel.getByText("v0.3.2 patch release").first()
   ).toBeVisible();
 
   await page.getByRole("button", { name: "验收", exact: true }).click();
   await expect(inspectorPanel.getByText("验收工作台")).toBeVisible();
   await expect(
     inspectorPanel.getByText(
-      "v0.3.1 patch release 正在发布收口；当前目标是确认文档、truth、版本号、验证证据、tag 和 GitHub Release 全部一致。"
+      "v0.3.2 patch release 正在发布收口；当前目标是确认 schema-valid truth、source archive、版本号、验证证据、tag 和 GitHub Release 全部一致。"
     ).first()
   ).toBeVisible();
 });

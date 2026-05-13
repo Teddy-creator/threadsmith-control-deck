@@ -2,6 +2,21 @@
 
 All notable changes to Threadsmith will be documented in this file.
 
+## v0.3.2 - 2026-05-13
+
+### Fixed
+
+- Fixed the committed `.threadsmith` release truth schema so the public source
+  archive validates cleanly in smoke E2E checks.
+- Aligned homepage E2E expectations with the current release truth after the
+  schema-fix follow-up commit.
+
+### Changed
+
+- Bumped all workspace package versions to `0.3.2`.
+- Updated public release notes, checklist, README status, usage guide, and
+  front-door copy so the latest stable line points to `v0.3.2`.
+
 ## v0.3.1 - 2026-05-13
 
 ### Added

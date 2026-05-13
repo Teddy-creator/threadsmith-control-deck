@@ -1,24 +1,24 @@
 {
-  "currentClaim": "v0.3.1 patch release 正在发布收口；当前目标是确认文档、truth、版本号、验证证据、tag 和 GitHub Release 全部一致。",
+  "currentClaim": "v0.3.2 patch release 正在发布收口；当前目标是确认 schema-valid truth、source archive、版本号、验证证据、tag 和 GitHub Release 全部一致。",
   "doneWhenChecklist": [
     {
-      "id": "truth-v0-3-1",
-      "label": ".threadsmith committed truth 已切到 v0.3.1 patch release",
+      "id": "truth-v0-3-2",
+      "label": ".threadsmith committed truth 已切到 v0.3.2 patch release",
       "status": "pass"
     },
     {
-      "id": "release-checklist-v0-3-1",
-      "label": "v0.3.1 release checklist 反映本轮 patch release 范围",
+      "id": "release-checklist-v0-3-2",
+      "label": "v0.3.2 release checklist 反映本轮 patch release 范围",
       "status": "pass"
     },
     {
-      "id": "changelog-v0-3-1",
-      "label": "CHANGELOG 中包含独立 v0.3.1 条目",
+      "id": "changelog-v0-3-2",
+      "label": "CHANGELOG 中包含独立 v0.3.2 条目",
       "status": "pass"
     },
     {
-      "id": "release-copy-v0-3-1",
-      "label": "v0.3.1 GitHub Release copy 可供发布使用",
+      "id": "release-copy-v0-3-2",
+      "label": "v0.3.2 GitHub Release copy 可供发布使用",
       "status": "pass"
     },
     {
@@ -32,9 +32,9 @@
   "verificationStatus": "passed",
   "closeoutStatus": "pending",
   "knownGaps": [
-    "仍需完成 v0.3.1 tag、GitHub Release 创建，以及 push 后 GitHub Actions CI 确认。",
+    "仍需完成 v0.3.2 tag、GitHub Release 创建，以及 push 后 GitHub Actions CI 确认。",
     "发布动作不会自动安装或覆盖用户本机全局 ~/.codex/skills/threadsmith/SKILL.md。",
-    "v0.3.1 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
+    "v0.3.2 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
   ],
   "finalState": "accepted-with-closeout-pending"
 }

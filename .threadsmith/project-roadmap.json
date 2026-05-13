@@ -49,6 +49,13 @@
       "label": "补丁发布",
       "title": "v0.3.1 public documentation and hygiene patch",
       "summary": "Publish the v0.3.1 patch release for advisory risk-review documentation, public repo hygiene, and release truth alignment.",
+      "state": "done"
+    },
+    {
+      "id": "v0-3-2-schema-fix-patch",
+      "label": "Schema 补丁",
+      "title": "v0.3.2 release truth schema patch",
+      "summary": "Publish a tiny patch release so the v0.3.1 follow-up schema fix is included in a clean tag and source archive.",
       "state": "current"
     }
   ],

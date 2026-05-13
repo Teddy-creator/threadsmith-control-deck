@@ -1,23 +1,23 @@
 {
   "projectLabel": "Threadsmith",
-  "currentTrack": "v0.3.1 patch release",
+  "currentTrack": "v0.3.2 patch release",
   "overallState": "stable",
-  "currentFocus": "v0.3.1 patch release 正在收口：校准公开文档、committed truth、release checklist，然后创建 tag 并发布 GitHub Release。",
-  "projectStatusSummary": "Threadsmith v0.3.1 是 v0.3.x Skill Orchestrator 线的补丁发布，重点是公开文档准确性、advisory risk-review route 边界和 public repo hygiene；不引入新的自动化承诺。",
+  "currentFocus": "v0.3.2 patch release 正在收口：把 v0.3.1 后续 schema 修复纳入干净 tag/source archive，并确认 GitHub Release / CI。",
+  "projectStatusSummary": "Threadsmith v0.3.2 是 v0.3.x Skill Orchestrator 线的补丁发布，重点是 release truth schema、source archive、版本号和发布资料对齐；不引入新的自动化承诺。",
   "latestAcceptedSlice": {
-    "title": "v0.3.0 Skill Orchestrator public release",
-    "recordedAt": "2026-05-10T17:12:01.000Z"
+    "title": "v0.3.1 public documentation and hygiene patch",
+    "recordedAt": "2026-05-13T00:00:00.000Z"
   },
   "nextPlannedSlice": {
-    "title": "v0.3.1 tag / GitHub Release",
+    "title": "v0.3.2 tag / GitHub Release",
     "recordedAt": null
   },
-  "currentMilestoneId": "v0-3-1-patch-release",
-  "nextMilestoneId": "post-v0-3-1-roadmap",
+  "currentMilestoneId": "v0-3-2-schema-fix-patch",
+  "nextMilestoneId": "post-v0-3-2-roadmap",
   "topRisks": [
     "本机全局 $threadsmith skill 可能仍是旧版；本轮只更新仓库说明，不自动覆盖全局 skill。",
     "发布态文案必须与 tag / GitHub Release 状态一致。",
-    "v0.3.1 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
+    "v0.3.2 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
   ],
   "updatedAt": "2026-05-13T00:00:00.000Z"
 }

@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
 ![Node.js >= 22](https://img.shields.io/badge/node-%3E%3D22-3c873a.svg)
 ![npm >= 11](https://img.shields.io/badge/npm-%3E%3D11-cb3837.svg)
-![stable v0.3.1 Skill Orchestrator](https://img.shields.io/badge/stable-v0.3.1%20Skill%20Orchestrator-f59e0b.svg)
+![stable v0.3.2 Skill Orchestrator](https://img.shields.io/badge/stable-v0.3.2%20Skill%20Orchestrator-f59e0b.svg)
 ![Web control deck](https://img.shields.io/badge/surface-local%20web%20deck-2563eb.svg)
 ![Codex-first](https://img.shields.io/badge/runtime-Codex--first-111827.svg)
 
@@ -209,7 +209,7 @@ Threadsmith 会对高成本承诺给出 advisory risk-review signal，例如发�
 
 ## 当前状态
 
-Latest stable release: `v0.3.1 Harness Skill Orchestrator`.
+Latest stable release: `v0.3.2 Harness Skill Orchestrator patch release`.
 
 当前稳定能力：
 
@@ -294,6 +294,8 @@ npm run verify:release
 - Usage and LLM configuration: [docs/guides/usage-and-llm-configuration.md](docs/guides/usage-and-llm-configuration.md)
 - Truth boundary: [docs/architecture/threadsmith-truth-boundary.md](docs/architecture/threadsmith-truth-boundary.md)
 - Changelog: [CHANGELOG.md](CHANGELOG.md)
+- v0.3.2 release notes: [docs/releases/threadsmith-v0.3.2.md](docs/releases/threadsmith-v0.3.2.md)
+- v0.3.2 release checklist: [docs/checklists/release-v0.3.2.md](docs/checklists/release-v0.3.2.md)
 - v0.3.1 release notes: [docs/releases/threadsmith-v0.3.1.md](docs/releases/threadsmith-v0.3.1.md)
 - v0.3.1 release checklist: [docs/checklists/release-v0.3.1.md](docs/checklists/release-v0.3.1.md)
 - v0.3.0 Skill Orchestrator baseline: [docs/releases/threadsmith-v0.3.0.md](docs/releases/threadsmith-v0.3.0.md)
