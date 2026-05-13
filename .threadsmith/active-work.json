@@ -26,7 +26,7 @@
     },
     {
       "role": "closeout",
-      "status": "in-progress",
+      "status": "running",
       "taskSummary": "验证通过后记录 v0.3.1 release closeout，并创建 tag / GitHub Release。",
       "requiresUserDecision": false
     }

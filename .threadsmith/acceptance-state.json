@@ -27,14 +27,14 @@
       "status": "pass"
     }
   ],
-  "implementationStatus": "ready-for-release",
-  "reviewStatus": "ready-for-release",
-  "verificationStatus": "passed-local",
+  "implementationStatus": "ready-for-review",
+  "reviewStatus": "ready-for-verification",
+  "verificationStatus": "passed",
   "closeoutStatus": "pending",
   "knownGaps": [
     "仍需完成 v0.3.1 tag、GitHub Release 创建，以及 push 后 GitHub Actions CI 确认。",
     "发布动作不会自动安装或覆盖用户本机全局 ~/.codex/skills/threadsmith/SKILL.md。",
     "v0.3.1 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
   ],
-  "finalState": "ready-for-release"
+  "finalState": "accepted-with-closeout-pending"
 }
