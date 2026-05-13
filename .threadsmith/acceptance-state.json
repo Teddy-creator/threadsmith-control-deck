@@ -33,7 +33,7 @@
   "closeoutStatus": "done",
   "knownGaps": [
     "仍需完成 v0.3.0 tag 和 GitHub Release 创建。",
-    "发布动作不会自动安装或覆盖用户本机全局 /Users/cloud/.codex/skills/threadsmith/SKILL.md。",
+    "发布动作不会自动安装或覆盖用户本机全局 ~/.codex/skills/threadsmith/SKILL.md。",
     "v0.3.0 仍不承诺 multi-provider 自动执行或真实外部 skill 调用。"
   ],
   "finalState": "accepted"

@@ -31,7 +31,7 @@ const baseConfig: SkillOrchestratorConfig = {
   selfHosting: {
     activeController: "installed-skill",
     repositorySkillPath: "codex/skills/threadsmith/SKILL.md",
-    installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+    installedSkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
     allowGlobalSkillMutation: false
   }
 };
@@ -44,9 +44,9 @@ function discoveredSkill(overrides: Partial<DiscoveredSkill>): DiscoveredSkill {
       overrides.description ?? "Use when encountering bugs and unexpected behavior.",
     skillPath:
       overrides.skillPath ??
-      "/Users/cloud/.codex/skills/systematic-debugging/SKILL.md",
+      "/home/user/.codex/skills/systematic-debugging/SKILL.md",
     source: overrides.source ?? "global-codex",
-    sourceRoot: overrides.sourceRoot ?? "/Users/cloud/.codex/skills",
+    sourceRoot: overrides.sourceRoot ?? "/home/user/.codex/skills",
     relativePath: overrides.relativePath ?? "systematic-debugging/SKILL.md",
     frontmatter: overrides.frontmatter ?? {
       name: overrides.name ?? "systematic-debugging",
@@ -65,7 +65,7 @@ function discovery(skills: DiscoveredSkill[]): SkillDiscoverySummary {
     generatedAt: "2026-05-10T11:00:00.000Z",
     roots: [
       {
-        root: "/Users/cloud/.codex/skills",
+        root: "/home/user/.codex/skills",
         source: "global-codex"
       }
     ],

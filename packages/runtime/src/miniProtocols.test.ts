@@ -26,7 +26,7 @@ const baseConfig: SkillOrchestratorConfig = {
   selfHosting: {
     activeController: "installed-skill",
     repositorySkillPath: "codex/skills/threadsmith/SKILL.md",
-    installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+    installedSkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
     allowGlobalSkillMutation: false
   }
 };
@@ -126,7 +126,7 @@ describe("buildMiniProtocolInstruction", () => {
             safety: {
               canMutateCommittedTruth: false,
               canMutateGlobalSkill: true,
-              forbiddenPaths: ["/Users/cloud/.codex/skills/threadsmith"]
+              forbiddenPaths: ["/home/user/.codex/skills/threadsmith"]
             }
           }
         ]

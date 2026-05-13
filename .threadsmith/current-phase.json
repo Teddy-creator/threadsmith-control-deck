@@ -12,7 +12,7 @@
   "outOfScope": [
     "发布除 v0.3.0 以外的版本",
     "修改仓库可见性",
-    "安装或覆盖 /Users/cloud/.codex/skills/threadsmith/SKILL.md",
+    "安装或覆盖 ~/.codex/skills/threadsmith/SKILL.md",
     "实现 multi-provider 自动执行",
     "真实执行任意外部 skill",
     "大改 UI 视觉骨架或交互结构"

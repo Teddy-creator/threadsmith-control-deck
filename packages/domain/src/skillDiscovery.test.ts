@@ -10,9 +10,9 @@ describe("discoveredSkillSchema", () => {
       id: "systematic-debugging",
       name: "systematic-debugging",
       description: "Use when encountering any bug or unexpected behavior.",
-      skillPath: "/Users/cloud/.codex/skills/systematic-debugging/SKILL.md",
+      skillPath: "/home/user/.codex/skills/systematic-debugging/SKILL.md",
       source: "global-codex",
-      sourceRoot: "/Users/cloud/.codex/skills",
+      sourceRoot: "/home/user/.codex/skills",
       relativePath: "systematic-debugging/SKILL.md",
       frontmatter: {
         name: "systematic-debugging",
@@ -57,7 +57,7 @@ describe("skillDiscoverySummarySchema", () => {
       generatedAt: "2026-05-10T11:00:00.000Z",
       roots: [
         {
-          root: "/Users/cloud/.codex/skills",
+          root: "/home/user/.codex/skills",
           source: "global-codex"
         }
       ],

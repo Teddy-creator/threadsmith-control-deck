@@ -13,6 +13,7 @@ All notable changes to Threadsmith will be documented in this file.
 - Context routing and budget checks that point roles to compact `.threadsmith/context` artifacts instead of replaying long thread history.
 - Self-hosting safety checks that keep repository skill source separate from the installed global `$threadsmith` controller.
 - First-run onboarding, demo polish, and clearer `$threadsmith` install/upgrade guidance.
+- Advisory risk-review route documentation for `critical-decision-review`, including the no-auto-run, no-blocking-gate boundary.
 
 ### Changed
 
@@ -21,6 +22,7 @@ All notable changes to Threadsmith will be documented in this file.
 - Clarified `$threadsmith` skill install/upgrade guidance, continuous mode, and autopilot continuation usage in README and the usage guide.
 - Updated startup copy and homepage verification expectations to avoid implying that `v0.3.0` has already been tagged or released.
 - Kept v0.3.0 explicitly Codex-first: provider routing and skill routing are explainable workflow metadata, not a promise of fully automated multi-provider execution.
+- Clarified that low-risk, reversible changes should not trigger ritualized critical-decision-review friction.
 
 ### Known Limits
 

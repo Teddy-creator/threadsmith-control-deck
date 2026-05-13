@@ -74,12 +74,14 @@ git diff --check
 Also run a public scan:
 
 ```bash
-git grep -n -E '/Users/cloud|docs/superpowers|Threadsmith App|api[_-]?key|secret|token|password|gmncode|wechat|com\.tencent|qq' -- ':!package-lock.json' ':!docs/assets/*' ':!docs/releases/public-sync-strategy.md' || true
+git grep -n -E '/Users/cloud|docs/superpowers|Threadsmith App|api[_-]?key|secret|access[_-]?token|auth[_-]?token|bearer[_-]?token|password|gmncode|wechat|com\.tencent|qq' -- ':!package-lock.json' ':!docs/assets/*' ':!docs/releases/public-sync-strategy.md' || true
 ```
 
 Expected benign matches are currently limited to:
 
 - `.gitignore` mentioning ignored `docs/superpowers/`
+- `SECURITY.md` explaining that users should not paste secrets, tokens, or
+  credentials into public reports
 - test strings containing `Unexpected token`
 
 ## Fresh Clone Smoke

@@ -8,7 +8,7 @@ import {
 const safeSelfHosting = {
   activeController: "installed-skill",
   repositorySkillPath: "codex/skills/threadsmith/SKILL.md",
-  installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+  installedSkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
   allowGlobalSkillMutation: false
 } as const;
 
@@ -46,7 +46,7 @@ describe("skillOrchestratorConfigSchema", () => {
           safety: {
             canMutateCommittedTruth: false,
             canMutateGlobalSkill: false,
-            forbiddenPaths: ["/Users/cloud/.codex/skills/threadsmith"]
+            forbiddenPaths: ["/home/user/.codex/skills/threadsmith"]
           }
         }
       ]
@@ -92,7 +92,7 @@ describe("skillOrchestratorConfigSchema", () => {
         defaultFallback: "plan",
         selfHosting: {
           ...safeSelfHosting,
-          repositorySkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md"
+          repositorySkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md"
         }
       })
     ).toThrow(/repositorySkillPath/);
@@ -107,7 +107,7 @@ describe("skillOrchestratorConfigSchema", () => {
         selfHosting: {
           ...safeSelfHosting,
           activeController: "repo-source",
-          repositorySkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md"
+          repositorySkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md"
         }
       })
     ).toThrow(/repo-source controller/);
@@ -151,7 +151,7 @@ describe("getSelfHostingSafetyWarnings", () => {
     const warnings = getSelfHostingSafetyWarnings({
       activeController: "repo-source",
       repositorySkillPath: "~/.codex/skills/threadsmith/SKILL.md",
-      installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+      installedSkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
       allowGlobalSkillMutation: true
     });
 

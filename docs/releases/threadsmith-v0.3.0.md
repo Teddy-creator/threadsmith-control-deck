@@ -71,12 +71,30 @@ Developing Threadsmith with Threadsmith is now safer:
 - installed-skill controller mode must declare an installed path
 - unsafe self-hosting boundaries block external adapters and fall back to built-in mini protocols
 
+### Advisory Risk Review Route
+
+Threadsmith can surface high-cost decision risk before commitment:
+
+- release / publish
+- public product claims
+- skipped verification
+- broad architecture change
+- provider / tooling / credential changes
+- destructive operations
+
+The route can recommend `critical-decision-review` and carry that suggestion into
+role prompts or command bridge artifacts. It remains advisory-only: Threadsmith
+does not auto-run the external skill and does not turn the signal into a blocking
+gate. Low-risk, reversible changes with current evidence should return to the
+normal workflow instead of triggering a heavy review.
+
 ## What v0.3.0 Does Not Promise
 
 This release remains intentionally scoped:
 
 - no fully automated multi-provider execution
 - no real external skill invocation
+- no automatic `critical-decision-review` execution or hard risk-review gate
 - no native desktop app packaging
 - no hosted backend, embeddings, or RAG
 - no replacement for the main Codex / CLI conductor conversation

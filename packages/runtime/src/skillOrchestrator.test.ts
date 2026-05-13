@@ -14,7 +14,7 @@ const baseConfig: SkillOrchestratorConfig = {
   selfHosting: {
     activeController: "installed-skill",
     repositorySkillPath: "codex/skills/threadsmith/SKILL.md",
-    installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+    installedSkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
     allowGlobalSkillMutation: false
   }
 };
@@ -210,7 +210,7 @@ describe("resolveSkillRoute", () => {
         safety: {
           canMutateCommittedTruth: false,
           canMutateGlobalSkill: true,
-          forbiddenPaths: ["/Users/cloud/.codex/skills/threadsmith"]
+          forbiddenPaths: ["/home/user/.codex/skills/threadsmith"]
         }
       })
     });
@@ -219,7 +219,7 @@ describe("resolveSkillRoute", () => {
     expect(decision.availability).toBe("unsafe");
     expect(decision.selectedProtocol).toBe("debug");
     expect(decision.safetyWarnings[0]).toContain("global skill mutation");
-    expect(decision.safetyWarnings[1]).toContain("/Users/cloud/.codex/skills/threadsmith");
+    expect(decision.safetyWarnings[1]).toContain("/home/user/.codex/skills/threadsmith");
   });
 
   it("falls back when self-hosting config points repo source at the installed global skill", () => {
@@ -245,8 +245,8 @@ describe("resolveSkillRoute", () => {
         ...adapterConfig(),
         selfHosting: {
           activeController: "repo-source",
-          repositorySkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
-          installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+          repositorySkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
+          installedSkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
           allowGlobalSkillMutation: false
         }
       }
@@ -281,7 +281,7 @@ describe("inspectSelfHostingSafety", () => {
 
     expect(report.canUseExternalAdapters).toBe(true);
     expect(report.protectedPaths).toEqual([
-      "/Users/cloud/.codex/skills/threadsmith/SKILL.md"
+      "/home/user/.codex/skills/threadsmith/SKILL.md"
     ]);
     expect(report.warnings).toEqual([]);
   });
@@ -291,8 +291,8 @@ describe("inspectSelfHostingSafety", () => {
       ...baseConfig,
       selfHosting: {
         activeController: "installed-skill",
-        repositorySkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
-        installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+        repositorySkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
+        installedSkillPath: "/home/user/.codex/skills/threadsmith/SKILL.md",
         allowGlobalSkillMutation: true
       }
     });

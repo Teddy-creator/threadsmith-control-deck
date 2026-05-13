@@ -12,6 +12,8 @@ Threadsmith 是一个本地运行的 web control deck。它负责展示和维护
 
 当前稳定自动执行路径仍然是 Codex-first。`v0.3.0` 会发现和路由本地 Codex skills，但这里的 route 是可解释的 workflow metadata，不等于自动执行任意外部 skill。
 
+Threadsmith 也会在高成本承诺前显示 advisory risk-review signal，例如发布、公开宣传、跳过验证、大架构改动、provider/tooling 变更或破坏性操作。这个信号可以建议显式调用 `critical-decision-review`，但它不会隐藏自动执行，也不是 blocking gate。
+
 ## 1. 安装
 
 环境要求：
@@ -299,6 +301,8 @@ Runtime artifacts：
 需要注意：这里的“route”不是自动执行外部 skill。当前 v1 只做到 discovery、health、routing metadata 和 built-in mini protocol fallback。真正执行仍由 conductor surface（例如 Codex Desktop / Codex CLI）完成。
 
 如果某个项目没有安装 `systematic-debugging`、`independent-verification` 这类外部 skill，Threadsmith 不应该失败。它会退回 built-in mini protocol，并在页面里解释为什么 fallback。
+
+Risk review 也遵守同样边界：Threadsmith 可以把 `critical-decision-review` 写进 advisory route metadata、role packets 和 route artifacts，但不会代替你自动调用外部 skill。低风险、可逆、证据充分的改动可以快速通过并回到普通 workflow，不需要为了显得“严谨”而做重审查。
 
 ## 7. LLM / Provider 配置
 

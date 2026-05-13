@@ -31,6 +31,7 @@ Threadsmith 是一个面向 vibe coding / agentic coding 的 **local web control
 - **Lower token drag**: 角色优先读取最新 packet 和 committed truth，而不是重放整段聊天历史。
 - **Single-screen supervision**: 首页用五块信息展示当前命令、项目地图、推进判断、协作现场和验收雷达。
 - **Skill Orchestrator foundation**: v0.3.0 可以发现本地 Codex skills、解释 route health，并在缺少外部 skill 时回退到内置 mini protocols。
+- **Risk-aware decision support**: 对 release、public claim、跳过验证、大架构改动等高成本决策显示 advisory `critical-decision-review` 建议，但不做隐藏自动执行或 blocking gate。
 - **Codex-first autopilot**: 支持连续推进 locked phase，并在 accepted、paused、需要用户决策或命中 stop condition 时停下。
 - **Local-first web app**: 本地运行，读取你自己的项目目录；没有托管后端要求。
 - **macOS / Windows launchers**: 提供 `.command` 和 `.ps1` 快捷入口。
@@ -200,6 +201,12 @@ v0.3.0 内置 `brief`、`plan`、`debug`、`review`、`verify`、`closeout`、`h
 
 Threadsmith 可以发现本地 Codex skills，并把 route decision 写成可解释的 workflow metadata。当前版本不会自动执行任意外部 skill；它会在不可用时回退到内置 mini protocol。
 
+### Risk Review：关键决策审查提示
+
+Threadsmith 会对高成本承诺给出 advisory risk-review signal，例如发布、公开宣传、跳过验证、大改架构、provider/tooling 变更或破坏性操作。这个信号可以建议你显式调用 `critical-decision-review`，也会进入 role packets 和 command bridge route artifacts。
+
+它不是隐藏自动执行，也不是 blocking gate。低风险、可逆、证据充分的小改动应该继续按普通 workflow 推进，不应该被仪式化反对拖慢。
+
 ## 当前状态
 
 Latest stable release: `v0.3.0 Harness Skill Orchestrator`.
@@ -211,6 +218,7 @@ Latest stable release: `v0.3.0 Harness Skill Orchestrator`.
 - Context OS artifacts
 - role packet generation
 - skill routing metadata
+- advisory risk-review route metadata
 - built-in mini protocol fallback
 - safer autopilot continuation
 - Windows and macOS launcher parity

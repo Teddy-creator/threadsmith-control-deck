@@ -184,7 +184,7 @@ function builtInOnlyOrchestratorConfig(): SkillOrchestratorConfig {
     selfHosting: {
       activeController: "installed-skill",
       repositorySkillPath: "codex/skills/threadsmith/SKILL.md",
-      installedSkillPath: "/Users/cloud/.codex/skills/threadsmith/SKILL.md",
+      installedSkillPath: "~/.codex/skills/threadsmith/SKILL.md",
       allowGlobalSkillMutation: false
     }
   };

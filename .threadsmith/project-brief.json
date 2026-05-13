@@ -5,7 +5,7 @@
     "发布除 v0.3.0 以外的版本",
     "立即实现 multi-provider 自动执行",
     "真实执行任意外部 skill 或 CLI 插件",
-    "修改或安装全局 /Users/cloud/.codex/skills/threadsmith/SKILL.md",
+    "修改或安装全局 ~/.codex/skills/threadsmith/SKILL.md",
     "native desktop app、hosted backend、embeddings 或 RAG",
     "把 Threadsmith 网页变成主聊天入口"
   ],
